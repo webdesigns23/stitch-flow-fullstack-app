@@ -15,8 +15,8 @@ class ProjectSchema(Schema):
 	updated_at = fields.DateTime(dump_only=True)
 
 	#nested relationship
-	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)))
-	project_materials = fields.Nested(lambda: ProjectMaterialSchema, many=True, exclude=("project", "material"))
+	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), allow_none=True)
+	project_materials = fields.Nested(lambda: ProjectMaterialSchema(), many=True, exclude=("project", "material"))
 
 
 class PatternRequirementSchema(Schema):
@@ -25,10 +25,10 @@ class PatternRequirementSchema(Schema):
 	material_type = fields.String(required=True)
 	quantity = fields.Decimal(as_string=True, places=2, required=True)
 	unit = 	fields.String(required=True)
-	notes = fields.String(required=False, validate=validate.Length(max=100))
+	size = fields.String(required=True, validate=validate.Length(max=100))
 
 	#nested relationship
-	pattern = fields.Nested(lambda:PatternSchema(exclude=("pattern_requirments",)))
+	pattern = fields.Nested(lambda:PatternSchema(exclude=("pattern_requirements", "projects")))
 
 
 class PatternSchema(Schema):
@@ -40,7 +40,7 @@ class PatternSchema(Schema):
 	notes = fields.String(required=False, validate=validate.Length(max=100))
 
 	#nested relationship
-	project = fields.Nested(lambda: ProjectSchema(exclude=("patterns",)))
+	projects = fields.Nested(lambda: ProjectSchema(exclude=("patterns","project_materials")), many=True)
 	pattern_requirements = fields.List(fields.Nested(PatternRequirementSchema(exclude=("pattern",))))
 	
 
@@ -50,12 +50,13 @@ class MaterialSchema(Schema):
 	material_type = fields.String(required=True)
 	color = fields.String(required=True)
 	quantity = fields.Decimal(as_string=True, places=2, required=True)
+	unit = 	fields.String(required=True)
 	price = fields.Decimal(as_string=True, places=2, required=True)
 	supplier = fields.String(required=True)
 	notes = fields.String(required=False, validate=validate.Length(max=100))
 
 	#nested relationship
-	project_materials = fields.Nested(lambda: ProjectMaterialSchema, many=True, exclude=("project", "material"))
+	project_materials = fields.Nested(lambda: ProjectMaterialSchema(), many=True, exclude=("project", "material"))
 
 
 class ProjectMaterialSchema(Schema):
@@ -68,5 +69,5 @@ class ProjectMaterialSchema(Schema):
 	notes = notes = fields.String(required=False, validate=validate.Length(max=100))
 
 	#nested relationship
-	project = fields.Nested(lambda:ProjectSchema, many=False, exclude=("project_materials",))
-	material = fields.Nested(lambda:MaterialSchema, many=False, exclude=("project_materials",))
+	project = fields.Nested(lambda:ProjectSchema(), many=False, exclude=("project_materials",))
+	material = fields.Nested(lambda:MaterialSchema(), many=False, exclude=("project_materials",))
