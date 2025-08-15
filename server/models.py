@@ -19,7 +19,7 @@ class Project(db.Model):
 	project_materials = db.relationship("ProjectMaterial", back_populates="project", cascade="all, delete-orphan")
 
 	def __repr__(self):
-		return f'<Project {self.id}, {self.pattern_id}, {self.title}, {self.status}, {self.notes}, {self.date_created}, {self.date_updated}>'
+		return f'<Project {self.id}, {self.title}, {self.status}, {self.notes}>'
 
 class Pattern(db.Model):
 	__tablename__ = "patterns"
@@ -29,7 +29,7 @@ class Pattern(db.Model):
 	brand = db.Column(db.String, nullable=False)
 	pattern_number = db.Column(db.String, nullable=True)
 	category = db.Column(db.String, nullable=False)
-	notes = db.Column(db.Text, nullable=True)
+	notes = db.Column(db.String, nullable=True)
 
 	#relationship
 	projects = db.relationship("Project", back_populates="pattern")
@@ -46,7 +46,7 @@ class PatternRequirement(db.Model):
 	material_type = db.Column(db.String, nullable=False)
 	quantity = db.Column(db.Numeric(precision=8, scale=2), nullable=False)
 	unit = db.Column(db.String, nullable=False)
-	notes = db.Column(db.Text, nullable=True)
+	notes = db.Column(db.String, nullable=True)
 	pattern_id = db.Column(db.Integer, db.ForeignKey('patterns.id'), nullable=False, index=True)
 
 	#relationship
@@ -65,7 +65,7 @@ class Material(db.Model):
 	quantity = db.Column(db.Numeric(precision=8, scale=2), nullable=False)
 	price = db.Column(db.Numeric(precision=8, scale=2), nullable=True)
 	supplier = db.Column(db.String, nullable=True)
-	notes = db.Column(db.Text, nullable=True)
+	notes = db.Column(db.String, nullable=True)
 
 	#relationship
 	project_materials = db.relationship("ProjectMaterial", back_populates="material")
@@ -84,7 +84,7 @@ class ProjectMaterial(db.Model):
 	material_type = db.Column(db.String)
 	quantity = db.Column(db.Numeric(precision=8, scale=2))
 	unit = db.Column(db.String)
-	notes = db.Column(db.Text, nullable=True)
+	notes = db.Column(db.String, nullable=True)
 
 	#relationship
 	project = db.relationship("Project", back_populates="project_materials")
