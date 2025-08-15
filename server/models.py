@@ -1,5 +1,5 @@
 from sqlalchemy.sql import func
-from sqlalchemy import Numeric
+from sqlalchemy.orm import validates
 from config import db
 
 #Models
@@ -48,7 +48,7 @@ class PatternRequirement(db.Model):
 	unit = db.Column(db.String, nullable=False)
 	notes = db.Column(db.Text, nullable=True)
 	pattern_id = db.Column(db.Integer, db.ForeignKey('patterns.id'), nullable=False, index=True)
-	
+
 	#relationship
 	pattern = db.relationship("Pattern", back_populates="pattern_requirements")
 
@@ -79,15 +79,12 @@ class ProjectMaterial(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	project_id = db.Column(db.Integer, db.ForeignKey("projects.id"), nullable=False, index=True)
 	material_id = db.Column(db.Integer, db.ForeignKey("materials.id"), nullable=True, index=True)
-
-	#will use if NOT using a material from materials, material_id is none
 	name = db.Column(db.String)
 	role = db.Column(db.String)
 	material_type = db.Column(db.String)
 	quantity = db.Column(db.Numeric(precision=8, scale=2))
 	unit = db.Column(db.String)
 	notes = db.Column(db.Text, nullable=True)
-	
 
 	#relationship
 	project = db.relationship("Project", back_populates="project_materials")
