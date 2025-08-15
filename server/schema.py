@@ -1,5 +1,5 @@
 from models import *
-from marshmallow import Schema, fields, validate, ValidationError
+from marshmallow import Schema, fields, validate
 
 #Status allowed string
 allowed_project_status = [
@@ -41,7 +41,7 @@ class PatternSchema(Schema):
 
 	#nested relationship
 	project = fields.Nested(lambda: ProjectSchema(exclude=("patterns",)))
-	pattern_requirements = fields.List(fields.Nested(PatternRequirementSchema(exclude=("patttern",))))
+	pattern_requirements = fields.List(fields.Nested(PatternRequirementSchema(exclude=("pattern",))))
 	
 
 class MaterialSchema(Schema):
