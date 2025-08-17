@@ -4,6 +4,8 @@ from app import app
 from models import db, Project, Pattern, PatternRequirement, Material, ProjectMaterial
 
 with app.app_context():
+	db.drop_all()
+	db.create_all()
 
 	print("Clearing old data...")
 	ProjectMaterial.query.delete()

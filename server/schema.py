@@ -15,8 +15,8 @@ class ProjectSchema(Schema):
 	updated_at = fields.DateTime(dump_only=True)
 
 	#nested relationship
-	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), allow_none=True)
-	project_materials = fields.Nested(lambda: ProjectMaterialSchema(), many=True, exclude=("project", "material"))
+	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), allow_none=True, dump_only=True)
+	project_materials = fields.Nested(lambda: ProjectMaterialSchema(exclude=("project", "material")), many=True, dump_only=True)
 
 
 class PatternRequirementSchema(Schema):
@@ -66,7 +66,7 @@ class ProjectMaterialSchema(Schema):
 	material_type = fields.String(required=True)
 	quantity = fields.Decimal(as_string=True, places=2, required=True)
 	unit = fields.String(required=True)
-	notes = notes = fields.String(required=False, validate=validate.Length(max=100))
+	notes = fields.String(required=False, validate=validate.Length(max=100))
 
 	#nested relationship
 	project = fields.Nested(lambda:ProjectSchema(), many=False, exclude=("project_materials",))
