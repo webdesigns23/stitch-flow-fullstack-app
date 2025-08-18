@@ -17,7 +17,6 @@ export default function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/projects" element={<ProjectPage />} />
-            <Route path="new" element={<AddProjectForm></AddProjectForm>}></Route>
           <Route path="/patterns" element={<PatternPage />} />
           <Route path="/materials" element={<MaterialsPage />} />
         </Routes>

@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ProjectCard from "./ProjectCard"
-import AddProjectForm from './AddProjectForm';
+import { ProjectContext } from '../../context/ProjectContext';
 
 export default function ProjectPage() {
-  const [projects, setProjects] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+	const {
+		projects, setProjects,
+		loading, setLoading,
+		error, setError
+	} = useContext(ProjectContext)
+  
   useEffect(() => {
 	const fetchData = async() => {
 	  try{
@@ -32,7 +34,7 @@ export default function ProjectPage() {
 	<>
 	  <h1>Sewing Project Manager</h1>
 	  {projects.length === 0 ? (
-		<p>No projects found.</p>
+		<p>No projects found!</p>
 	  ): (
 		<div className="gallery">
 		  {projects.map(project => (
@@ -40,10 +42,6 @@ export default function ProjectPage() {
 				<ProjectCard project={project} />
 			</div>
 		  ))}
-		  <AddProjectForm 
-		  setProjects={setProjects}
-		  setError={setError}
-		  setLoading={setLoading} />
 		</div>
 	  )}
 	</>

@@ -1,14 +1,14 @@
-import {useState} from "react";
-import { useOutletContext } from "react-router-dom";
+import {useState, useContext} from "react";
+import { ProjectContext } from "../../context/ProjectContext";
 
-const allowed_project_status = [
-	"planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"]
 
 export default function AddProjectForm() {
+	const { setProjects, setLoading, setError} = useContext(ProjectContext);
+
 	const [title, setTitle] = useState("");
 	const [status, setStatus] = useState("planning");
 	const [notes, setNotes] = useState("");
-	const {setProjects, setError, setLoading} = useOutletContext();
+
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -28,8 +28,8 @@ export default function AddProjectForm() {
 		if (!response.ok) {
 				throw new Error("failed to add project");
 			}
-		setProjects((prev) => [data, ...prev]);
-
+		setProjects(
+			prev => [data, ...(Array.isArray(prev) ? prev : [])]);
 		setTitle("");
 		setStatus("planning");
 		setNotes("");
