@@ -5,7 +5,7 @@ import "../styles/NavBar.css"
 export default function NavBar() {
 	return (
     <nav className="navbar">
-		<img src="./src/assets/new_logo.png"/>
+		<img src="./src/assets/new_logo.png" alt="stitch flow logo"/>
 
 		<ul className="nav-links">
 			<NavLink to="/">Home</NavLink>

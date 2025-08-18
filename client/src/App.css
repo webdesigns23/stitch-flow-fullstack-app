@@ -1,13 +1,15 @@
 #root {
-  max-width: 90%;
+  width: 90%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} 
 
 body {
   background-color: #f7f3ed;
+  margin-left: 240px;
 }
+
 
 /* Gallery Layout */
 .gallery {
@@ -29,3 +31,4 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(0,0,0,.12);
 }
+
