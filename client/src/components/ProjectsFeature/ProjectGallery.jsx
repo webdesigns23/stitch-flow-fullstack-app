@@ -9,26 +9,44 @@ export default function ProjectPage() {
 		error, setError
 	} = useContext(ProjectContext)
   
-  useEffect(() => {
-	const fetchData = async() => {
-	  try{
-		const response = await fetch("http://127.0.0.1:5555/projects")
-		if (!response.ok) {
-		  throw new Error(`HTTP error!: ${response.status}`);
+	//Lists all Projects
+	useEffect(() => {
+		const fetchData = async() => {
+		try{
+			const response = await fetch("http://127.0.0.1:5555/projects")
+			if (!response.ok) {
+			throw new Error(`HTTP error!: ${response.status}`);
+			}
+			const data = await response.json();
+			setProjects(Array.isArray(data) ? data : []);
+		} catch (error){
+			setError("Error loading project data", error);
+		}finally{
+			setLoading(false);
 		}
-		const data = await response.json();
-		setProjects(Array.isArray(data) ? data : []);
-	  } catch (error){
-		setError("Error loading project data", error);
-	  }finally{
-		setLoading(false);
-	  }
-	};
-	fetchData()
-  }, [])
+		};
+		fetchData()
+	}, [])
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error}</p>
+	//Delete a Project
+	async function handleDelete(id) {
+		try {
+			setLoading(true);
+			const response = await fetch(`http://127.0.0.1:5555/projects/${id}`, {
+				method: "DELETE"});
+			if (!response.ok && response.status !==204) {
+				throw new Error(`${response.status}`);
+			}
+			setProjects(prev => prev.filter(p => p.id !==id));
+		} catch (error) {
+			setError(`Failed to delete project: ${error.message || error}`)
+		} finally {
+			setLoading(false);
+		}
+	}
+
+	if (loading) return <p>Loading...</p>
+	if (error) return <p>Error: {error}</p>
 
   return (
 	<>
@@ -39,7 +57,7 @@ export default function ProjectPage() {
 		<div className="gallery">
 		  {projects.map(project => (
 			<div key={project.id} className="gallery-item">
-				<ProjectCard project={project} />
+				<ProjectCard project={project} handleDelete={() => handleDelete(project.id)}/>
 			</div>
 		  ))}
 		</div>
