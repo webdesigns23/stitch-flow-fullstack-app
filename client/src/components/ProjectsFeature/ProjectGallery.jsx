@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import ProjectCard from "./ProjectCard"
+import { Outlet } from 'react-router-dom';
 
 export default function ProjectPage() {
-  const [projects, setProjects] = useState(null);
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,6 +40,7 @@ export default function ProjectPage() {
 				<ProjectCard project={project} />
 			</div>
 		  ))}
+		  <Outlet context={{projects, setProjects}} />
 		</div>
 	  )}
 	</>
