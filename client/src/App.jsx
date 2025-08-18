@@ -1,48 +1,29 @@
-import { useState, useEffect } from 'react'
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import './App.css'
+import NavBar from './components/NavBar';
+import Home from './pages/HomePage';
+import DashboardPage from './pages/DashboardPage';
+import ProjectPage from './pages/ProjectPage';
+import PatternPage from './pages/PatternPage';
+import MaterialsPage from './pages/MaterialsPage';
 
-function App() {
-  const [projects, setProjects] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async() => {
-      try{
-        const response = await fetch("http://127.0.0.1:5555/projects")
-        if (!response.ok) {
-          throw new Error(`HTTP error!: ${response.status}`);
-        }
-        const data = await response.json();
-        setProjects(Array.isArray(data) ? data : []);
-      } catch (error){
-        setError(error.message || String(error));
-      }finally{
-        setLoading(false);
-      }
-    };
-    fetchData()
-  }, [])
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error}</p>
-
+export default function App() {
   return (
-    <div>
-      <h1>Sewing Project Manager</h1>
-      {projects.length === 0 ? (
-        <p>No projects found.</p>
-      ): (
-        <ul>
-          {projects.map(project => (
-            <li key={project.id}>
-              Title: {project.title} - Status: {project.status}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <>
+      <BrowserRouter>
+      <NavBar/>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/projects" element={<ProjectPage />} />
+          <Route path="/patterns" element={<PatternPage />} />
+          <Route path="/materials" element={<MaterialsPage />} />
+        </Routes>
+      </BrowserRouter>
+
+
+    </>
   )
 }
 
-export default App
+
