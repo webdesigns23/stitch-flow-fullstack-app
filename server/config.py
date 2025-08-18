@@ -11,10 +11,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
 # So front can talk to back and session-based works with React
-CORS(app, supports_credentials=True, origins=['http://localhost:5173'])
+CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173/"])
 
 metadata = MetaData(naming_convention={
+	"ix": "ix_%(table_name)s_%(column_0_name)s",
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+	"pk": "pk_%(table_name)s",
 })
 db = SQLAlchemy(metadata=metadata)
 

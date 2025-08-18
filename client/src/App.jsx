@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [projects, setProjects] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try{
+        const response = await fetch("http://127.0.0.1:5555/projects")
+        if (!response.ok) {
+          throw new Error(`HTTP error!: ${response.status}`);
+        }
+        const data = await response.json();
+        setProjects(Array.isArray(data) ? data : []);
+      } catch (error){
+        setError(error.message || String(error));
+      }finally{
+        setLoading(false);
+      }
+    };
+    fetchData()
+  }, [])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error}</p>
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>Sewing Project Manager</h1>
+      {projects.length === 0 ? (
+        <p>No projects found.</p>
+      ): (
+        <ul>
+          {projects.map(project => (
+            <li key={project.id}>
+              Title: {project.title} - Status: {project.status}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   )
 }
 

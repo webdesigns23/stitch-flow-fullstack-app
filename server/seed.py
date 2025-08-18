@@ -9,8 +9,6 @@ with app.app_context():
 
 	print("Clearing old data...")
 	ProjectMaterial.query.delete()
-	db.session.commit()
-
 	Project.query.delete()
 	Pattern.query.delete()
 	PatternRequirement.query.delete()
@@ -35,7 +33,7 @@ with app.app_context():
 	)
 
 	db.session.add_all([pat1, pat2])
-	db.session.commit()
+	db.session.flush()
 
 	#Create PatternRequirment
 	pat_req1= PatternRequirement(
@@ -44,7 +42,7 @@ with app.app_context():
 		quantity = .5,
 		unit = "yds",
 		size = "large",
-		pattern_id = 1
+		pattern_id = pat1.id
 		)	
 	pat_req2= PatternRequirement(
 		role = "exterior fabric",
@@ -52,7 +50,7 @@ with app.app_context():
 		quantity = 2.5,
 		unit = "yds",
 		size = "medium",
-		pattern_id = 2
+		pattern_id = pat2.id
 		)	
 	pat_req3= PatternRequirement(
 		role = "trim",
@@ -60,12 +58,11 @@ with app.app_context():
 		quantity = 1.5,
 		unit = "yds",
 		size = "medium",
-		pattern_id = 2
+		pattern_id = pat2.id
 		)	
 	
 	db.session.add_all([pat_req1, pat_req2, pat_req3])
-	db.session.commit()
-	
+		
 	#Create Material
 	mat1 = Material(
 		name = "fusible interfacing",
@@ -109,18 +106,30 @@ with app.app_context():
 	)
 
 	db.session.add_all([mat1, mat2, mat3, mat4])
-	db.session.commit()
+	db.session.flush()
 
 	#Create Project
 	proj1 = Project(
 		title = "summer dress",
 		status = "cutting",
 		notes = "lightweight flowy fabric",
-		pattern_id = 2
+		pattern_id = pat2.id
+	)
+	proj2 = Project(
+		title = "workout shorts",
+		status = "sewing",
+		notes = "add 2 inches to short length",
+		pattern_id = pat1.id
+	)
+	proj3 = Project(
+		title = "makeup bag",
+		status = "planning",
+		notes = "need to find fabric",
+		pattern_id = ""
 	)
 
-	db.session.add_all([proj1])
-	db.session.commit()
+	db.session.add_all([proj1, proj2, proj3])
+	db.session.flush()
 
 	#Create ProjectMaterial
 	proj_mat1 = ProjectMaterial(
