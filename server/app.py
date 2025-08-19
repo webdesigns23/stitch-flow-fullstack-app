@@ -114,6 +114,42 @@ class PatternDetails(Resource):
             db.session.delete(pattern)
             db.session.commit()
             return {}, 204
+        
+#Pattern Requirments Routes
+class PatternRequirementList(Resource):
+    def get(self, pattern_id):
+        pattern = Pattern.query.filter_by(id = id).first()
+        if not pattern:
+            return {"error": "Pattern not found"}, 404
+        req = PatternRequirement.query.filter_by(pattern_id = pattern_id).all()
+        return [PatternRequirementSchema().dump(r) for r in req], 200
+    
+    def post(self, pattern_id):
+        pattern = Pattern.query.filter_by(id = id).first()
+        if not pattern:
+            return {"error": "Pattern not found"}, 404
+        
+        data = request.get_json() or {}
+        try:
+            req = PatternRequirement(
+                role = data.get("role"),
+	            material_type = data.get("material_type"),
+	            quantity = data.get("quantity"),
+	            unit = 	data.get("unit"),
+	            size = data.get("size"),
+                pattern_id = pattern_id,
+            )
+            db.session.add(req)
+            db.session.commit()
+            return PatternRequirementSchema().dump(req), 201
+        
+        except ValueError:
+            db.session.rollback()
+            return {"error": "Unable to Process, Incorrect Value"}, 422
+        
+        except IntegrityError:
+            db.session.rollback()
+            return {"error": "Unable to Process, Data Invalid"}, 422
     
 
 
@@ -122,6 +158,7 @@ api.add_resource(ProjectIndex, "/projects", endpoint="projects")
 api.add_resource(ProjectDetails, "/projects/<int:id>")
 api.add_resource(PatternIndex, "/patterns", endpoint="patterns")
 api.add_resource(PatternDetails, "/patterns/<int:id>")
+api.add_resource(PatternRequirementList, "/patterns/<pattern_id>/requirements")
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
