@@ -41,7 +41,7 @@ with app.app_context():
 		material_type = "spandex",
 		quantity = .5,
 		unit = "yds",
-		size = "large",
+		size = "medium",
 		pattern_id = pat1.id
 		)	
 	pat_req2= PatternRequirement(
