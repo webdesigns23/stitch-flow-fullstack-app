@@ -3,7 +3,7 @@ from marshmallow import Schema, fields, validate
 
 #Status allowed string
 allowed_project_status = [
-	"planning", "ready to sew", "cutting", "sewing", "final touches", "complete"]
+	"planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"]
 
 #Schemas
 class ProjectSchema(Schema):
@@ -11,8 +11,8 @@ class ProjectSchema(Schema):
 	title = fields.String(required=True, validate=validate.Length(max=35))
 	status = fields.String(validate=validate.OneOf(allowed_project_status), load_default="planning")
 	notes = fields.String(required=False, validate=validate.Length(max=100))
-	created_at = fields.DateTime(dump_only=True)
-	updated_at = fields.DateTime(dump_only=True)
+	created_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
+	updated_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
 
 	#nested relationship
 	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), allow_none=True, dump_only=True)
@@ -40,8 +40,8 @@ class PatternSchema(Schema):
 	notes = fields.String(required=False, validate=validate.Length(max=100))
 
 	#nested relationship
-	projects = fields.Nested(lambda: ProjectSchema(exclude=("patterns","project_materials")), many=True)
-	pattern_requirements = fields.List(fields.Nested(PatternRequirementSchema(exclude=("pattern",))))
+	projects = fields.Nested(lambda: ProjectSchema(exclude=("pattern","project_materials")), many=True)
+	pattern_requirements = fields.List(fields.Nested(PatternRequirementSchema(exclude=("pattern",))), dump_only=True)
 	
 
 class MaterialSchema(Schema):

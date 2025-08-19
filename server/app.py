@@ -8,7 +8,7 @@ from config import app, db, api
 from models import *
 from schema import *
 
-#Routes
+#Project Routes
 class ProjectIndex(Resource):
     def get(self):
         projects = [ProjectSchema().dump(project) for project in Project.query.all()]
@@ -19,13 +19,13 @@ class ProjectIndex(Resource):
         
         try:
             project = Project(
-            title = data.get("title"),
-            status = data.get("status") or "planning",
-            notes = data.get("notes")            
-        )
+                title = data.get("title"),
+                status = data.get("status") or "planning",
+                notes = data.get("notes")            
+            )
             db.session.add(project)
             db.session.commit()
-            return ProjectSchema.dump(project), 201
+            return ProjectSchema().dump(project), 201
         
         except ValueError:
             db.session.rollback()  
@@ -47,12 +47,12 @@ class ProjectDetails(Resource):
         if "status" in data:
             new_status = (data.get("status")).strip()
             if new_status not in allowed_project_status:
-                return {"error": "Invalid status, update to 'planning', 'ready to sew', 'cutting', 'sewing', 'final touches', or 'complete'"}, 422
+                return {"error": "Invalid status, update to 'planning', 'ready_to_sew', 'cutting', 'sewing', 'final_touches', or 'complete'"}, 422
             project.status = new_status
             
         try:
             db.session.commit()
-            return ProjectSchema.dump(project), 200
+            return ProjectSchema().dump(project), 200
         except IntegrityError:
             db.session.rollback()
             return {"error": "Unable to update project"}, 422 
@@ -69,9 +69,44 @@ class ProjectDetails(Resource):
             return {}, 204
         
 
+#Pattern Routes
+class PatternIndex(Resource):
+    def get(self):
+        patterns = [PatternSchema().dump(p) for p in Pattern.query.all()]
+        return patterns, 200
+    
+    def post(self):
+        data = request.get_json()
+
+        try:
+            pattern = Pattern(
+                name = data.get("name"),
+	            brand = data.get("brand"),
+	            pattern_number = data.get("pattern_number"),
+	            category = data.get("category"),
+	            notes = data.get("notes"),
+            )
+            db.session.add(pattern)
+            db.session.commit()
+            return PatternSchema().dump(pattern), 201
+        
+        except ValueError:
+            db.session.rollback()
+            return {'error': 'Unable to Process, Incorrect Value'}, 422
+        
+        except IntegrityError:
+            db.session.rollback()
+            return {'error': 'Unable to Process, Data Invalid'}, 422
+        
+class PatternDetails(Resource):
+    pass
+
+
 # API Endpoints
 api.add_resource(ProjectIndex, "/projects", endpoint="projects")
 api.add_resource(ProjectDetails, "/projects/<int:id>")
+api.add_resource(PatternIndex, "/patterns", endpoint="patterns")
+api.add_resource(PatternDetails, "/patterns/<int:id>")
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
