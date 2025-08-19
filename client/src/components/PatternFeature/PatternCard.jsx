@@ -25,7 +25,7 @@ export default function PatternCard({pattern, handleDelete}) {
 			}
 		}
 	
-		
+	
 
 	return(
 		<>
@@ -45,25 +45,36 @@ export default function PatternCard({pattern, handleDelete}) {
 			{showReq && (
 				<div>
 					{requirements && requirements.length > 0 ? (
-						<ul>
+					<div className="table">
+					<table className="req_table">
+						<caption>Pattern Requirements</caption>
+						<thread>
+							<tr>
+								<th>Role</th>
+								<th>Material Type</th>
+								<th>Quantity</th>
+								<th>Unit</th>
+								<th>Size</th>
+							</tr>
+						</thread>
+						<tbody>
 							{requirements.map((r) => (
-								<li key={r.id}>
-								{r.role}
-								{r.material_type}
-								{r.quantity}
-								{r.unit}
-								{r.size}
-								</li>
+								<tr key={r.id}>
+								<td>{r.role}</td>
+								<td>{r.material_type}</td>
+								<td>{r.quantity}</td>
+								<td>{r.unit}</td>
+								<td>{r.size}</td>
+								</tr>
 							))}
-						</ul>
+						</tbody>
+					</table>
+					</div>
 					): (
-						<p>No Requirements</p>
+					<p>No Requirements</p>
 					)}
 				</div>
 			)}
-
-
-			
 		</>
 	)
 }
