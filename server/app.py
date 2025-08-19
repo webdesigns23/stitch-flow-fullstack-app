@@ -44,6 +44,18 @@ class ProjectDetails(Resource):
         if not project:
             return {"error": "No projects found, add a project"}, 404
         
+        if "title" in data:
+            title = (data.get("title")).strip()
+            if len(title) > 35:
+                return {"error": "Title cannot be more than 35 characters"}, 422
+            project.title = title
+
+        if "notes" in data:
+            notes = (data.get("notes")).strip()
+            if len(notes) > 100:
+                return {"error": "Notes cannot be more than 100 characters"}, 422
+            project.notes = notes
+        
         if "status" in data:
             new_status = (data.get("status")).strip()
             if new_status not in allowed_project_status:

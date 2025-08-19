@@ -2,13 +2,14 @@ import { useState, useEffect, useContext } from 'react'
 import ProjectCard from "./ProjectCard"
 import { ProjectContext } from '../../context/ProjectContext';
 
-export default function ProjectPage() {
+export default function ProjectGallery() {
 	const {
 		projects, setProjects,
 		loading, setLoading,
 		error, setError
 	} = useContext(ProjectContext)
-  
+
+	  
 	//Lists all Projects
 	useEffect(() => {
 		const fetchData = async() => {
@@ -28,7 +29,7 @@ export default function ProjectPage() {
 		fetchData()
 	}, [])
 
-	//Delete a Project
+	//Delete Project
 	async function handleDelete(id) {
 		try {
 			setLoading(true);
@@ -45,9 +46,28 @@ export default function ProjectPage() {
 		}
 	}
 
+	//Update Project with Update button
+	async function updateProject(id, updates) {
+		try{
+			setLoading(true);
+			const response = await fetch(`http://127.0.0.1:5555/projects/${id}`, {
+			method: "PATCH",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(updates),
+		});
+		const data = await response.json();
+		if (!response.ok) throw new Error(`${response.status}`);			setProjects(prev => prev.map(p => (p.id === id ? data : p)));
+		} catch	(error) {
+			setError(`Failed to update project: ${error.message || error}`)
+		} finally {
+			setLoading(false);
+		}
+	}
+
 	if (loading) return <p>Loading...</p>
 	if (error) return <p>Error: {error}</p>
 
+	
   return (
 	<>
 	  <h1>Sewing Project Manager</h1>
@@ -57,7 +77,11 @@ export default function ProjectPage() {
 		<div className="gallery">
 		  {projects.map(project => (
 			<div key={project.id} className="gallery-item">
-				<ProjectCard project={project} handleDelete={() => handleDelete(project.id)}/>
+				<ProjectCard 
+				project={project} 
+				handleDelete={() => handleDelete(project.id)}
+				updateProject={(updates) => updateProject(project.id, updates)}
+				/>
 			</div>
 		  ))}
 		</div>
