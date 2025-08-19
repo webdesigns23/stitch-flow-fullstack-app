@@ -5,7 +5,6 @@ import Home from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
 import ProjectPage from './pages/ProjectPage';
 import PatternPage from './pages/PatternPage';
-import PatternDetails from './components/PatternFeature/PatternDetails'
 import MaterialsPage from './pages/MaterialsPage';
 
 
@@ -20,9 +19,7 @@ export default function App() {
               <Route path="/" element={<Home/>} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/projects" element={<ProjectPage />} />
-              <Route path ="/patterns" element={<PatternPage />} >
-                <Route path=":id" element={<PatternDetails />} />
-              </Route>
+              <Route path ="/patterns" element={<PatternPage />} />
               <Route path="/materials" element={<MaterialsPage />} />
             </Routes>
           </div>

@@ -1,5 +1,3 @@
-// import React from "react";
-
 import { useState, useEffect, useContext } from 'react'
 import PatternCard from "./PatternCard"
 import { PatternContext } from '../../context/PatternContext';
@@ -42,7 +40,7 @@ export default function PatternGallery() {
 			}
 			setPatterns(prev => prev.filter(p => p.id !==id));
 		} catch (error) {
-			setError(`Failed to delete pattern: ${error.message || error}`)
+			setError(`Failed to delete pattern: ${error}`)
 		} finally {
 			setLoading(false);
 		}

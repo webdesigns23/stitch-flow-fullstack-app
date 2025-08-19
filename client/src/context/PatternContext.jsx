@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 
-//1. creat context-TripContext
+//1. creat context
 export const PatternContext = createContext(null);
 
 export function PatternProvider({children}){

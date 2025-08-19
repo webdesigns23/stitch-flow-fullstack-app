@@ -8,7 +8,7 @@ export default function ProjectCard({project, handleDelete}) {
 			<p>Notes: {project.notes}</p>
 			<p>Created: {project.created_at}</p>
 			{project.updated_at && <p>Updated: {project.updated_at}</p>}
-			<button onClick={handleDelete}>Remove</button>
+			<button className="delete_button" onClick={handleDelete}>Remove</button>
 		</>
 	)
 }
