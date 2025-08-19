@@ -91,6 +91,7 @@ class PatternIndex(Resource):
         data = request.get_json() or {}
 
         try:
+            #To create pattern
             pattern = Pattern(
                 name = data.get("name"),
 	            brand = data.get("brand"),
@@ -99,6 +100,24 @@ class PatternIndex(Resource):
 	            notes = data.get("notes"),
             )
             db.session.add(pattern)
+            db.session.flush()
+
+            #To create requirements for pattern
+            reqs = data.get("pattern_requirements", [])
+            new_reqs = []
+            for r in reqs:
+                req = PatternRequirement(
+                role = r.get("role"),
+	            material_type = r.get("material_type"),
+	            quantity = r.get("quantity"),
+	            unit = 	r.get("unit"),
+	            size = r.get("size"),
+                pattern_id = pattern.id,
+            )
+            new_reqs.append(req)
+            if new_reqs:
+                db.session.add_all(new_reqs)
+            
             db.session.commit()
             return PatternSchema().dump(pattern), 201
         
@@ -136,32 +155,33 @@ class PatternRequirementList(Resource):
         req = PatternRequirement.query.filter_by(pattern_id = pattern_id).all()
         return [PatternRequirementSchema().dump(r) for r in req], 200
     
-    def post(self, pattern_id):
-        pattern = Pattern.query.get(pattern_id)
-        if not pattern:
-            return {"error": "Pattern not found"}, 404
+    ##ADDED PATTERN REQ POST TO PATTERNS POST TO ADD AT SAME TIME
+    # def post(self, pattern_id):
+    #     pattern = Pattern.query.get(pattern_id)
+    #     if not pattern:
+    #         return {"error": "Pattern not found"}, 404
         
-        data = request.get_json() or {}
-        try:
-            req = PatternRequirement(
-                role = data.get("role"),
-	            material_type = data.get("material_type"),
-	            quantity = data.get("quantity"),
-	            unit = 	data.get("unit"),
-	            size = data.get("size"),
-                pattern_id = pattern_id,
-            )
-            db.session.add(req)
-            db.session.commit()
-            return PatternRequirementSchema().dump(req), 201
+    #     data = request.get_json() or {}
+    #     try:
+    #         req = PatternRequirement(
+    #             role = data.get("role"),
+	#             material_type = data.get("material_type"),
+	#             quantity = data.get("quantity"),
+	#             unit = 	data.get("unit"),
+	#             size = data.get("size"),
+    #             pattern_id = pattern_id,
+    #         )
+    #         db.session.add(req)
+    #         db.session.commit()
+    #         return PatternRequirementSchema().dump(req), 201
         
-        except ValueError:
-            db.session.rollback()
-            return {"error": "Unable to Process, Incorrect Value"}, 422
+    #     except ValueError:
+    #         db.session.rollback()
+    #         return {"error": "Unable to Process, Incorrect Value"}, 422
         
-        except IntegrityError:
-            db.session.rollback()
-            return {"error": "Unable to Process, Data Invalid"}, 422
+    #     except IntegrityError:
+    #         db.session.rollback()
+    #         return {"error": "Unable to Process, Data Invalid"}, 422
     
 
 

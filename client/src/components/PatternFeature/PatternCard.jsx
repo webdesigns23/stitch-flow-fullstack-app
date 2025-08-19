@@ -6,7 +6,7 @@ export default function PatternCard({pattern, handleDelete}) {
 	const [ loading, setLoading ] = useState(false);
 	const [ error, setError ] = useState(null)
 	
-	//Lists Requirments with Toggle button
+	//Lists Requirements with Toggle button
 	async function handleToggleReq() {
 		setShowReq(!showReq);
 		if (!showReq && !requirements)
@@ -25,8 +25,9 @@ export default function PatternCard({pattern, handleDelete}) {
 			}
 		}
 	
+	if (loading) return <p>Loading...</p>
+	if (error) return <p>Error: {error}</p>
 	
-
 	return(
 		<>
 			<h2>{pattern.name}</h2>
