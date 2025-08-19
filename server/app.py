@@ -15,7 +15,7 @@ class ProjectIndex(Resource):
         return projects, 200
     
     def post(self):
-        data = request.get_json()
+        data = request.get_json() or {}
         
         try:
             project = Project(
@@ -38,7 +38,7 @@ class ProjectIndex(Resource):
 
 class ProjectDetails(Resource):
     def patch(self, id):
-        data = request.get_json()
+        data = request.get_json() or {}
         project = Project.query.filter_by(id = id).first()
 
         if not project:
@@ -76,7 +76,7 @@ class PatternIndex(Resource):
         return patterns, 200
     
     def post(self):
-        data = request.get_json()
+        data = request.get_json() or {}
 
         try:
             pattern = Pattern(
@@ -92,14 +92,29 @@ class PatternIndex(Resource):
         
         except ValueError:
             db.session.rollback()
-            return {'error': 'Unable to Process, Incorrect Value'}, 422
+            return {"error": "Unable to Process, Incorrect Value"}, 422
         
         except IntegrityError:
             db.session.rollback()
-            return {'error': 'Unable to Process, Data Invalid'}, 422
+            return {"error": "Unable to Process, Data Invalid"}, 422
         
 class PatternDetails(Resource):
-    pass
+    def get(self, id):
+        pattern = Pattern.query.filter_by(id = id).first()
+        if not pattern:
+            return {"error": "Pattern not found"}, 404
+        return PatternSchema().dump(pattern), 200    
+
+    def delete(self, id):
+        pattern = Pattern.query.filter_by(id = id).first()
+
+        if not pattern:
+            return {"error": "No patterns found, add a pattern"}, 404
+        else:
+            db.session.delete(pattern)
+            db.session.commit()
+            return {}, 204
+    
 
 
 # API Endpoints
