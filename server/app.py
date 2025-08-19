@@ -130,14 +130,14 @@ class PatternDetails(Resource):
 #Pattern Requirments Routes
 class PatternRequirementList(Resource):
     def get(self, pattern_id):
-        pattern = Pattern.query.filter_by(id = id).first()
+        pattern = Pattern.query.get(pattern_id)
         if not pattern:
             return {"error": "Pattern not found"}, 404
         req = PatternRequirement.query.filter_by(pattern_id = pattern_id).all()
         return [PatternRequirementSchema().dump(r) for r in req], 200
     
     def post(self, pattern_id):
-        pattern = Pattern.query.filter_by(id = id).first()
+        pattern = Pattern.query.get(pattern_id)
         if not pattern:
             return {"error": "Pattern not found"}, 404
         
@@ -170,7 +170,7 @@ api.add_resource(ProjectIndex, "/projects", endpoint="projects")
 api.add_resource(ProjectDetails, "/projects/<int:id>")
 api.add_resource(PatternIndex, "/patterns", endpoint="patterns")
 api.add_resource(PatternDetails, "/patterns/<int:id>")
-api.add_resource(PatternRequirementList, "/patterns/<pattern_id>/requirements")
+api.add_resource(PatternRequirementList, "/patterns/<int:pattern_id>/requirements")
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

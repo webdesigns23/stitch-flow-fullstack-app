@@ -47,7 +47,7 @@ class PatternRequirement(db.Model):
 	quantity = db.Column(db.Numeric(precision=8, scale=2), nullable=False)
 	unit = db.Column(db.String, nullable=False)
 	size = db.Column(db.String, nullable=False)
-	pattern_id = db.Column(db.Integer, db.ForeignKey('patterns.id'), ondelete="CASCADE", nullable=False, index=True)
+	pattern_id = db.Column(db.Integer, db.ForeignKey('patterns.id',ondelete="CASCADE"), nullable=False, index=True)
 
 	#relationship
 	pattern = db.relationship("Pattern", back_populates="pattern_requirements")

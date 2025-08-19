@@ -46,23 +46,23 @@ export default function ProjectGallery() {
 		}
 	}
 
-	//Update Project with Update button
-	async function updateProject(id, updates) {
-		try{
-			setLoading(true);
-			const response = await fetch(`http://127.0.0.1:5555/projects/${id}`, {
-			method: "PATCH",
-			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify(updates),
-		});
-		const data = await response.json();
-		if (!response.ok) throw new Error(`${response.status}`);			setProjects(prev => prev.map(p => (p.id === id ? data : p)));
-		} catch	(error) {
-			setError(`Failed to update project: ${error.message || error}`)
-		} finally {
-			setLoading(false);
-		}
-	}
+	// //Update Project with Update button
+	// async function updateProject(id, updates) {
+	// 	try{
+	// 		setLoading(true);
+	// 		const response = await fetch(`http://127.0.0.1:5555/projects/${id}`, {
+	// 		method: "PATCH",
+	// 		headers: {"Content-Type": "application/json"},
+	// 		body: JSON.stringify(updates),
+	// 	});
+	// 	const data = await response.json();
+	// 	if (!response.ok) throw new Error(`${response.status}`);			setProjects(prev => prev.map(p => (p.id === id ? data : p)));
+	// 	} catch	(error) {
+	// 		setError(`Failed to update project: ${error.message || error}`)
+	// 	} finally {
+	// 		setLoading(false);
+	// 	}
+	// }
 
 	if (loading) return <p>Loading...</p>
 	if (error) return <p>Error: {error}</p>
@@ -80,7 +80,6 @@ export default function ProjectGallery() {
 				<ProjectCard 
 				project={project} 
 				handleDelete={() => handleDelete(project.id)}
-				updateProject={(updates) => updateProject(project.id, updates)}
 				/>
 			</div>
 		  ))}

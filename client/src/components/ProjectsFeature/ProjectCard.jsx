@@ -1,5 +1,6 @@
 
 export default function ProjectCard({project, handleDelete}) {
+
 	return(
 		<>
 			<h2>{project.title}</h2>
