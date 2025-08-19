@@ -1,9 +1,10 @@
 import React from "react";
+import PatternGallery from "../components/PatternFeature/PatternGallery";
 
 export default function PatternPage() {
 	return (
 	<> 
-	  <h1>Pattern Page</h1>
+	  <PatternGallery />
 	</>
   );
 }

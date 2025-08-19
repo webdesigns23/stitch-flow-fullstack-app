@@ -5,9 +5,9 @@ export default function ProjectPage() {
 
 
   return (
-	<div>
+	<>
 		<ProjectGallery />
 		<AddProjectForm />
-	</div>
+	</>
   )
 }
