@@ -13,9 +13,11 @@ class ProjectSchema(Schema):
 	notes = fields.String(required=False, validate=validate.Length(max=100))
 	created_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
 	updated_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
+	pattern_id = fields.Integer(load_only=True)
+
 
 	#nested relationship
-	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), allow_none=True, dump_only=True)
+	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), dump_only=True)
 	project_materials = fields.Nested(lambda: ProjectMaterialSchema(exclude=("project", "material")), many=True, dump_only=True)
 
 

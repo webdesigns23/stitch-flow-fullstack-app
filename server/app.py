@@ -16,13 +16,38 @@ class ProjectIndex(Resource):
     
     def post(self):
         data = request.get_json() or {}
-        
+
+        #to link pattern to project
+        patternId = data.get("pattern_id")
+        if patternId is None:
+            return {"error": "Pattern Id required"}, 422
+            
+        pattern = Pattern.query.get(patternId)
+        if not pattern:
+            return {"error": "Pattern not found"}, 404
+            
         try:
+            title = (data.get("title") or "").strip()
+            if not title:
+                return {"error": "Title is required"}, 422
+            if len(title) > 35:
+                return {"error": "Title cannot be more than 35 characters"}, 422
+
+            status = (data.get("status") or "planning").strip()
+            if status not in allowed_project_status:
+                return {"error": "Invalid status, update to 'planning', 'ready_to_sew', 'cutting', 'sewing', 'final_touches', or 'complete'"}, 422
+
+            notes = (data.get("notes") or "").strip()
+            if len(notes) > 100:
+                return {"error": "Notes cannot be more than 100 characters"}, 422
+
             project = Project(
                 title = data.get("title"),
                 status = data.get("status") or "planning",
-                notes = data.get("notes")            
+                notes = data.get("notes"),
+                pattern = pattern           
             )
+
             db.session.add(project)
             db.session.commit()
             return ProjectSchema().dump(project), 201
@@ -114,7 +139,8 @@ class PatternIndex(Resource):
 	            size = r.get("size"),
                 pattern_id = pattern.id,
             )
-            new_reqs.append(req)
+                new_reqs.append(req)
+                
             if new_reqs:
                 db.session.add_all(new_reqs)
             
@@ -155,34 +181,7 @@ class PatternRequirementList(Resource):
         req = PatternRequirement.query.filter_by(pattern_id = pattern_id).all()
         return [PatternRequirementSchema().dump(r) for r in req], 200
     
-    ##ADDED PATTERN REQ POST TO PATTERNS POST TO ADD AT SAME TIME
-    # def post(self, pattern_id):
-    #     pattern = Pattern.query.get(pattern_id)
-    #     if not pattern:
-    #         return {"error": "Pattern not found"}, 404
-        
-    #     data = request.get_json() or {}
-    #     try:
-    #         req = PatternRequirement(
-    #             role = data.get("role"),
-	#             material_type = data.get("material_type"),
-	#             quantity = data.get("quantity"),
-	#             unit = 	data.get("unit"),
-	#             size = data.get("size"),
-    #             pattern_id = pattern_id,
-    #         )
-    #         db.session.add(req)
-    #         db.session.commit()
-    #         return PatternRequirementSchema().dump(req), 201
-        
-    #     except ValueError:
-    #         db.session.rollback()
-    #         return {"error": "Unable to Process, Incorrect Value"}, 422
-        
-    #     except IntegrityError:
-    #         db.session.rollback()
-    #         return {"error": "Unable to Process, Data Invalid"}, 422
-    
+
 
 
 # API Endpoints
