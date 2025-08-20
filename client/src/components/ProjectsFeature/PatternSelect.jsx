@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { PatternContext } from "../../context/PatternContext";
 
-export default function PatternSelect() {
+export default function PatternSelect({value, onChange, required=true, disabled=false}) {
 	const { 
 		patterns, setPatterns, 
 		loading, setLoading, 
