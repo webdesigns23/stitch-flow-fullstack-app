@@ -62,10 +62,16 @@ class ProjectIndex(Resource):
        
 
 class ProjectDetails(Resource):
+    def get(self,id):
+        project = Project.query.get(id)
+        if not project:
+            return {"error": "Project not found"}, 404
+        return ProjectSchema().dump(project), 200
+        
+
     def patch(self, id):
         data = request.get_json() or {}
         project = Project.query.filter_by(id = id).first()
-
         if not project:
             return {"error": "No projects found, add a project"}, 404
         
@@ -86,6 +92,16 @@ class ProjectDetails(Resource):
             if new_status not in allowed_project_status:
                 return {"error": "Invalid status, update to 'planning', 'ready_to_sew', 'cutting', 'sewing', 'final_touches', or 'complete'"}, 422
             project.status = new_status
+
+        if "pattern_id" in data:
+            patternId = data.get("pattern_id")
+            if patternId is None:
+                return {"error": "Project mush have a pattern"}, 422
+            pattern = Pattern.query.get(patternId)
+
+            if not pattern:
+                return {"error": "Pattern not found"}, 404
+            project.pattern = pattern
             
         try:
             db.session.commit()
