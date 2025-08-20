@@ -49,7 +49,7 @@ export default function PatternCard({pattern, handleDelete}) {
 					<div className="table">
 					<table className="req_table">
 						<caption>Pattern Requirements</caption>
-						<thread>
+						<thead>
 							<tr>
 								<th>Role</th>
 								<th>Material Type</th>
@@ -57,7 +57,7 @@ export default function PatternCard({pattern, handleDelete}) {
 								<th>Unit</th>
 								<th>Size</th>
 							</tr>
-						</thread>
+						</thead>
 						<tbody>
 							{requirements.map((r) => (
 								<tr key={r.id}>

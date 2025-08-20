@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
-# So front can talk to back and session-based works with React
+# So front can talk to back with React
 CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
 
 metadata = MetaData(naming_convention={
