@@ -1,8 +1,11 @@
 import { useState, useContext } from "react";
 import { PatternContext } from "../../context/PatternContext";
 
+const emptyReqs = { role: "", material_type: "", quantity: "", unit: "", size: "" }
+
 export default function AddPatternForm() {
 	const { setPatterns, setLoading, setError} = useContext(PatternContext);
+
 		//pattern
 		const [name, setName] = useState("");
 		const [brand, setBrand] = useState("");
@@ -11,14 +14,37 @@ export default function AddPatternForm() {
 		const [notes, setNotes] = useState("");
 
 		//pattern requirements
-		const [role, setRole] = useState("");
-		const [materialType, setMaterialType] = useState("");
-		const [quantity, setQuantity] = useState("");
-		const [unit, setUnit] = useState("");
-		const [size, setSize] = useState("");
+		// const [role, setRole] = useState("");
+		// const [materialType, setMaterialType] = useState("");
+		// const [quantity, setQuantity] = useState("");
+		// const [unit, setUnit] = useState("");
+		// const [size, setSize] = useState("");
+		const [requirements, setRequirements] = useState([{ ...emptyReqs}]);
 
 		const [submitting, setSubmitting] = useState(false);
-	
+
+		//helper functions for dynamic rows for multiple pattern reqs
+		function updateReq(index, key, value){
+			setRequirements(
+				rows => rows.map((r, i) => 
+					(i === index ? { ...r, [key]: value} : r )));
+		};
+			
+		function addRow() {
+			setRequirements(rows => [ ...rows, { ...emptyReqs}]);
+		};
+
+		function removeRow(index) {
+			setRequirements(rows => (rows.length === 1 ? rows : rows.filter((_, i) => i !== index))); 
+		};
+
+		function validReq(r) {
+			const quantity_number = Number(r.quantity);
+			return(
+				r.role.tirm() && r.materialType.trim() && r.unit.trim() && r.size.trim() && r.quantity !== "" && !Number.isNaN(quantity_number)
+			);
+		};
+
 		async function handlePatternSubmit(e) {
 			e.preventDefault();
 			setLoading(true);
@@ -26,31 +52,32 @@ export default function AddPatternForm() {
     		setError(null);
 
 			try{
-				if(!role.trim() || !materialType.trim() || quantity === "" || !unit.trim() || !size.trim()){
-					throw new Error("Please fill out the pattern requirements.")
+				
+			const newReqs = requirements.map(r => {
+				const quantity_number = number(r.quantity);
+				if (Number.isNaN(quantity_number)) {
+					throw new Error("Each requirement's quantity must be a number ('0.00')");
 				}
-			//normalize quantity
-			const quantity_number = Number(quantity);
-			if (Number.isNaN(quantity_number)){
-				throw new Error("Quantity must be a number ('0.00').")
-			}
-			const quantityFormat = quantity_number.toFixed(2);
-
+				return {
+					role: r.role.trim(),
+          			material_type: r.material_type.trim(),
+          			quantity: qNum.toFixed(2),
+          			unit: r.unit.trim(),
+          			size: r.size.trim(),
+				};
+			});
+			
+			if (newReqs.length === 0) {
+				throw new Error("Add at least one pattern requirement.");
+      		}
+					
 			const newPattern = {
 				name: name.trim(),
 				brand: brand.trim(),
 				pattern_number: patternNumber.trim(),
 				category: category.trim(),
 				notes: notes.trim() || "",
-				pattern_requirements: [
-					{
-					role: role.trim(),
-					material_type: materialType.trim(),
-					quantity: quantityFormat,
-					unit: unit.trim(),
-					size: size.trim(),
-					},
-				]
+				pattern_requirements: newReqs,
 			};
 			const response = await fetch("http://127.0.0.1:5555/patterns", {
 				method: "POST",
@@ -69,11 +96,7 @@ export default function AddPatternForm() {
 			setPatternNumber("");
 			setCategory("");
 			setNotes("");
-			setRole("");
-			setMaterialType("");
-			setQuantity("");
-			setUnit("");
-			setSize("");
+			setRequirements([{ ... emptyReqs}]);
 			}catch (error){
 			setError("Error loading project data", error);
 			}finally{
