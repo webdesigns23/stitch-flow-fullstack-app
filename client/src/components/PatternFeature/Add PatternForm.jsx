@@ -25,8 +25,8 @@ export default function AddPatternForm() {
 
 		//helper functions for dynamic rows for multiple pattern reqs
 		function updateReq(index, key, value){
-			setRequirements(
-				rows => rows.map((r, i) => 
+			setRequirements(rows => 
+				rows.map((r, i) => 
 					(i === index ? { ...r, [key]: value} : r )));
 		};
 			
@@ -38,13 +38,7 @@ export default function AddPatternForm() {
 			setRequirements(rows => (rows.length === 1 ? rows : rows.filter((_, i) => i !== index))); 
 		};
 
-		function validReq(r) {
-			const quantity_number = Number(r.quantity);
-			return(
-				r.role.tirm() && r.materialType.trim() && r.unit.trim() && r.size.trim() && r.quantity !== "" && !Number.isNaN(quantity_number)
-			);
-		};
-
+	
 		async function handlePatternSubmit(e) {
 			e.preventDefault();
 			setLoading(true);
@@ -54,14 +48,14 @@ export default function AddPatternForm() {
 			try{
 				
 			const newReqs = requirements.map(r => {
-				const quantity_number = number(r.quantity);
+				const quantity_number = Number(r.quantity);
 				if (Number.isNaN(quantity_number)) {
 					throw new Error("Each requirement's quantity must be a number ('0.00')");
 				}
 				return {
 					role: r.role.trim(),
           			material_type: r.material_type.trim(),
-          			quantity: qNum.toFixed(2),
+          			quantity: quantity_number.toFixed(2),
           			unit: r.unit.trim(),
           			size: r.size.trim(),
 				};
@@ -79,6 +73,8 @@ export default function AddPatternForm() {
 				notes: notes.trim() || "",
 				pattern_requirements: newReqs,
 			};
+			console.log("newReqs being sent:", newReqs); // should show 4 objects
+
 			const response = await fetch("http://127.0.0.1:5555/patterns", {
 				method: "POST",
 				headers: {"Content-Type": "application/json"},
@@ -98,7 +94,7 @@ export default function AddPatternForm() {
 			setNotes("");
 			setRequirements([{ ... emptyReqs}]);
 			}catch (error){
-			setError("Error loading project data", error);
+			setError("Error creating pattern");
 			}finally{
 			setSubmitting(false);
 			setLoading(false);
@@ -136,33 +132,41 @@ export default function AddPatternForm() {
 					<input type="text" placeholder="Notes" value={notes}
 					onChange={(e) => setNotes(e.target.value)} />
 				</label>
+				
+				{/* pattern reqs */}
+				{requirements.map((req, index) => (
+					<div key={index} className="add_requirements">
+						<h3>Add Pattern Requirements {index +1}</h3>
+						<label>Role:
+							<input type="text" placeholder="base fabric, interfacing, etc." value={req.role}
+							onChange={(e) => updateReq(index, "role", e.target.value)} required />
+						</label>
+						<label>Material Type:
+							<input type="text" placeholder="spandex, cotton, etc." value={req.material_type}
+							onChange={(e) => updateReq(index, "material_type", e.target.value)} required />
+						</label>
+						<label>Quantity:
+							<input type="number" step="0.01" placeholder="0.00" value={req.quantity}
+							onChange={(e) => updateReq(index, "quantity", e.target.value)} required />
+						</label>
+						<label>Unit:
+							<input type="text" placeholder="yds, ea, pcs, etc." value={req.unit}
+							onChange={(e) => updateReq(index, "unit", e.target.value)} required />
+						</label>
+						<label>Size:
+							<input type="text" placeholder="small, medium, 2, 4, etc." value={req.size}
+							onChange={(e) => updateReq(index, "size", e.target.value)} required />
+						</label>	
 
-			<h3>Add Pattern Requirements</h3>
-				<label>Role:
-					<input type="text" placeholder="base fabric, interfacing, etc." value={role}
-					onChange={(e) => setRole(e.target.value)} required />
-				</label>
-				<label>Material Type:
-					<input type="text" placeholder="spandex, cotton, etc." value={materialType}
-					onChange={(e) => setMaterialType(e.target.value)} required />
-				</label>
-				<label>Quantity:
-					<input type="number" step="0.01" placeholder="0.00" value={quantity}
-					onChange={(e) => setQuantity(e.target.value)} required />
-				</label>
-				<label>Unit:
-					<input type="text" placeholder="yds, ea, pcs, etc." value={unit}
-					onChange={(e) => setUnit(e.target.value)} required />
-				</label>
-				<label>Size:
-					<input type="text" placeholder="small, medium, 2, 4, etc." value={size}
-					onChange={(e) => setSize(e.target.value)} required />
-				</label>		
+						<button type="button" onClick={() => removeRow(index)} disabled={requirements.length === 1}>Remove</button>	
+
+					</div>
+				))}
+				<button type="button" onClick={addRow}> + Add Another Requirement</button>
 
 				<button type="submit" disabled={submitting}>
-					{submitting ? "Saving..." : "Save Pattern"}
+					{submitting ? "Saving Pattern..." : "Save Pattern"}
 				</button>
 		</form>
-
 	)
 }
