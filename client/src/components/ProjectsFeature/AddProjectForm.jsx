@@ -15,12 +15,12 @@ export default function AddProjectForm() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
+		setError(null);
 
 		try {
 			if (!title.trim()) throw new Error("Title is required");
       		if (title.trim().length > 35) throw new Error("Title max length is 35");
       		if (notes.trim().length > 100) throw new Error("Notes max length is 100");
-      		if (!allowedStatus.includes(status)) throw new Error("Invalid status");
       		if (!patternId) throw new Error("Please choose a pattern");
 
 			setLoading(true);
@@ -40,7 +40,7 @@ export default function AddProjectForm() {
 			})
 			const data = await response.json()
 			if (!response.ok) {
-					throw new Error("failed to add project");
+					throw new Error(data?.error || `HTTP ${response.status}`);
 				}
 			setProjects(
 				prev => [data, ...(Array.isArray(prev) ? prev : [])]);
@@ -49,7 +49,8 @@ export default function AddProjectForm() {
 			setNotes("");
 			setPatternId(null);
 			}catch (error){
-			setError("Error loading project data", error);
+			setError(error.message || "Error loading project data");
+			console.error(error)
 			}finally{
 			setLoading(false);
 			setSubmitting(false);
@@ -67,6 +68,7 @@ export default function AddProjectForm() {
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 					required
+					maxLength={35}
 					/>
 				</label>
 				<label>Current Status:
@@ -87,6 +89,7 @@ export default function AddProjectForm() {
 					placeholder="Notes"
 					value={notes}
 					onChange={(e) => setNotes(e.target.value)}
+					maxLength={100}
 					/>
 				</label>
 
