@@ -27,7 +27,8 @@ export default function PatternGallery() {
 		}
 		};
 		fetchData()
-	}, [])
+	//1. added in sl,se,sp for pattern details change
+	}, [setLoading, setError, setPatterns]) 
 
 	//Delete Pattern
 	async function handleDelete(id) {
