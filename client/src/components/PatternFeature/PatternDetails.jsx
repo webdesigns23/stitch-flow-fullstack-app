@@ -29,7 +29,7 @@ export default function PatternDetails() {
 				throw new Error(`HTTP error!: ${response.status}`);
 				}
 				const data = await response.json();
-				setPattern(Array.isArray(data) ? data : []);
+				setPattern(data);
 			} catch (error){
 				setPatError("Error loading pattern data" || error);
 			}finally{
@@ -44,10 +44,10 @@ export default function PatternDetails() {
 		setShowReq(!showReq);
 		if (!showReq && !requirements)
 		setReqLoading(true);
-		setError(null);
+		setReqError(null);
 
 		try{
-			const response = await fetch(`http://127.0.0.1:5555/patterns/${pattern.id}/requirements`)
+			const response = await fetch(`http://127.0.0.1:5555/patterns/${id}/requirements`)
 			if (!response.ok) {throw new Error(`HTTP error!: ${response.status}`);}
 			const data = await response.json();
 			setRequirements(Array.isArray(data) ? data : []);
@@ -63,6 +63,10 @@ export default function PatternDetails() {
 	
 	return(
 		<>
+			<p>
+				<Link to="/patterns">Back to All Patterns</Link>
+			</p>
+			
 			<h1>{pattern.name}</h1>
 			<div className="grid">
 			<p><strong>Brand:</strong> {pattern.brand}</p>
