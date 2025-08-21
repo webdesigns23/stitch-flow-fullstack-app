@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom"
 
 export default function ProjectCard({project, handleDelete}) {
 	const p = project?.pattern;
+	const patternId = p?.id ?? project?.pattern_id;
 
 	return(
 		<>
@@ -9,8 +11,14 @@ export default function ProjectCard({project, handleDelete}) {
 			<p>Notes: {project.notes || "-"}</p>
 
 			{/* linked pattern */}
-			<p>Pattern: 
-				{p ? `${p.name} (${p.brand})` : "No pattern linked to project"}
+			<p>Pattern:{" "}
+				{patternId ?(
+				<Link to={`/patterns/${patternId}`} >
+				{`${p.name} (${p.brand})`}
+				</Link>
+				):(
+					"No pattern linked to project"
+				)}
 			</p>
 			
 			<p>Created: {project.created_at}</p>

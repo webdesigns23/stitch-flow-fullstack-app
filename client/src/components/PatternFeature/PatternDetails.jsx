@@ -1,11 +1,10 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link} from "react-router-dom";
 import { PatternContext } from "../../context/PatternContext";
 
 export default function PatternDetails() {
 	const { patterns } = useContext(PatternContext);
 	const { id } = useParams();
-	const navigate = useNavigate();
 
 	const [ pattern, setPattern ] = useState(null);
 	const [ patLoading, setPatLoading ] = useState(true);
@@ -65,6 +64,8 @@ export default function PatternDetails() {
 		<>
 			<p>
 				<Link to="/patterns">Back to All Patterns</Link>
+				<br></br>
+				<Link to="/projects">Back to All Projects</Link>
 			</p>
 			
 			<h1>{pattern.name}</h1>
