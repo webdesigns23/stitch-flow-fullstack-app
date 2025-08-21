@@ -52,7 +52,6 @@ export default function ProjectGallery() {
 	//Update Project Status
 	async function updateProject(id, updates) {
 		try{
-			setLoading(true);
 			const response = await fetch(`http://127.0.0.1:5555/projects/${id}`, {
 			method: "PATCH",
 			headers: {"Content-Type": "application/json"},
@@ -63,9 +62,7 @@ export default function ProjectGallery() {
 		setProjects(prev => prev.map(p => (p.id === id ? data : p)));
 		} catch	(error) {
 			setError(`Failed to update project: ${error.message || error}`)
-		} finally {
-			setLoading(false);
-		}
+		} 
 	}
 
 	if (loading) return <p>Loading...</p>
