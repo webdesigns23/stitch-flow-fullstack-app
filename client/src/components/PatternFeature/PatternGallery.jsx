@@ -1,51 +1,15 @@
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import PatternCard from "./PatternCard"
 import { PatternContext } from '../../context/PatternContext';
 
 export default function PatternGallery() {
 	const {
-		patterns, setPatterns,
-		loading, setLoading,
-		error, setError
+		patterns, 
+		loading, 
+		error, 
+		deletePattern,
 	} = useContext(PatternContext)
-
 	  
-	//Lists all Patterns
-	useEffect(() => {
-		const fetchData = async() => {
-		try{
-			const response = await fetch("http://127.0.0.1:5555/patterns")
-			if (!response.ok) {
-			throw new Error(`HTTP error!: ${response.status}`);
-			}
-			const data = await response.json();
-			setPatterns(Array.isArray(data) ? data : []);
-		} catch (error){
-			setError("Error loading pattern data", error);
-		}finally{
-			setLoading(false);
-		}
-		};
-		fetchData()
-	}, [setLoading, setError, setPatterns]) 
-
-	//Delete Pattern
-	async function handleDelete(id) {
-		try {
-			setLoading(true);
-			const response = await fetch(`http://127.0.0.1:5555/patterns/${id}`, {
-				method: "DELETE"});
-			if (!response.ok && response.status !==204) {
-				throw new Error(`${response.status}`);
-			}
-			setPatterns(prev => prev.filter(p => p.id !==id));
-		} catch (error) {
-			setError(`Failed to delete pattern: ${error}`)
-		} finally {
-			setLoading(false);
-		}
-	}
-
 	if (loading) return <p>Loading...</p>
 	if (error) return <p>Error: {error}</p>
 	
@@ -59,7 +23,7 @@ export default function PatternGallery() {
 			<div key={pattern.id} className="gallery-item">
 				<PatternCard 
 				pattern={pattern} 
-				handleDelete={() => handleDelete(pattern.id)}
+				handleDelete={() => deletePattern(pattern.id)}
 				/>
 			</div>
 		  ))}
