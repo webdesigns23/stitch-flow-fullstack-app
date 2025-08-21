@@ -1,0 +1,75 @@
+/* Layout for the dashboard gallery */
+.stat-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Each card */
+.stat-gallery-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+/* Headings */
+.stat-gallery-item h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+}
+
+/* Big numbers */
+.stat-value {
+  font-size: 4rem;  
+  font-weight: 700;
+  color: #c47171;   
+}
+
+/* Status list */
+.status-count {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.status-count li {
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  color: #c47171;
+}
+
+.stat-gallery {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.stat-gallery-item.is-compact { 
+	grid-column: span 3; 
+}
+
+.stat-gallery-item.is-wide {
+	grid-column: span 6; 
+} 
+
+@media (max-width: 1000px) {
+  .stat-gallery-item.is-compact {
+	grid-column: span 6;
+	}
+  .stat-gallery-item.is-wide {
+	grid-column: span 12;
+	}
+}
+
+@media (max-width: 640px) {
+  .stat-gallery-item { 
+	grid-column: span 12; 
+	}
+}

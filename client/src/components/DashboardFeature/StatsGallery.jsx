@@ -2,6 +2,7 @@ import StatsCard from "./StatsCard"
 import { ProjectContext } from "../../context/ProjectContext"
 import { PatternContext } from "../../context/PatternContext"
 import { useContext } from "react";
+import "../../styles/Stats.css"
 
 const statuses = [
 		"planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"
@@ -33,23 +34,24 @@ export default function StatsGallery() {
 	const statusCounts = getStatusCount(projects);
 
 	return (
-		<div className="gallery">
-			<div className="gallery-item project-card">
+		<div className="stat-gallery">
+			<div className="stat-gallery-item is-compact">
 				<h2>Total Projects</h2>
 				<div className="stat-value">{totalProjects}</div>
 			</div>
-			<div className="gallery-item project-card">
+			<div className="stat-gallery-item is-compact">
 				<h2>Total Patterns</h2>
 				<div className="stat-value">{totalPatterns}</div>
 			</div>
-			<div className="gallery-item project-card">
+			<div className="stat-gallery-item is-wide">
 				<h2>Projects by Status</h2>
-				<ul className="status-list">
-					{Object.entries(statusCounts).map(([status, count]) => (
-						<li key={status}>
-							{statuses[status] || status}: {count}
-						</li>
-					))}
+				<ul className="status-count">
+					{["planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"]
+						.map((status) => (
+							<li key={status}>
+								{statuses[status] || status}: {statusCounts[status] || 0}
+							</li>
+						))}
 				</ul>
 			</div>
 		</div>
