@@ -1,12 +1,13 @@
 import React from "react";
 import PatternGallery from "../components/PatternFeature/PatternGallery";
-import AddPatternForm from "../components/PatternFeature/Add PatternForm";
+import AddPatternForm from "../components/PatternFeature/AddPatternForm";
 
 export default function PatternPage() {
 	return (
 	<> 
-	  <PatternGallery />
-	  <AddPatternForm />
+		<h1>Patterns</h1>
+	  	<AddPatternForm />
+	  	<PatternGallery />
 	</>
   );
 }

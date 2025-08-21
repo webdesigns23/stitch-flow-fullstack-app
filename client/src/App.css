@@ -10,8 +10,11 @@ body {
   margin-left: 240px;
 }
 
-
 /* Gallery Layout */
+.pattern_gallery{
+  margin: 25px;
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { PatternContext } from "../../context/PatternContext";
 
+
 const emptyReqs = { role: "", material_type: "", quantity: "", unit: "", size: "" }
 
 export default function AddPatternForm() {
@@ -14,11 +15,6 @@ export default function AddPatternForm() {
 		const [notes, setNotes] = useState("");
 
 		//pattern requirements
-		// const [role, setRole] = useState("");
-		// const [materialType, setMaterialType] = useState("");
-		// const [quantity, setQuantity] = useState("");
-		// const [unit, setUnit] = useState("");
-		// const [size, setSize] = useState("");
 		const [requirements, setRequirements] = useState([{ ...emptyReqs}]);
 
 		const [submitting, setSubmitting] = useState(false);
@@ -73,8 +69,6 @@ export default function AddPatternForm() {
 				notes: notes.trim() || "",
 				pattern_requirements: newReqs,
 			};
-			console.log("newReqs being sent:", newReqs); // should show 4 objects
-
 			const response = await fetch("http://127.0.0.1:5555/patterns", {
 				method: "POST",
 				headers: {"Content-Type": "application/json"},
