@@ -13,27 +13,27 @@
 .p_form h2, 
 .p_form h3 {
   margin-bottom: 0.5rem;
-  color: #b88383;
-  border-bottom: 1px solid #ddd;
+  color: #ca6d6d;
+  border-bottom: 2px solid #ddd;
   font-size: 1.1rem;
   text-align: left;
+  padding-bottom: 10px;
 }
 
 
 
 /* Buttons */
 .p_form button {
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
   margin-top: 0.5rem;
-  border: 1px solid #888;
-  background: #eee;
+  border: 1px solid #979133;
+  background: #eaeef1;
   color: #333;
-  cursor: pointer;
   font-size: 0.9rem;
 }
 
 .p_form button:hover {
-  background: #ddd;
+  background: #a39b9b;
 }
 
 
@@ -47,7 +47,7 @@
 }
 
 .p_form label {
-  flex: 0 0 150px;   /* fixed width label */
+  flex: 0 0 150px;  
   margin-right: 0.5rem;
   text-align: right;
 }

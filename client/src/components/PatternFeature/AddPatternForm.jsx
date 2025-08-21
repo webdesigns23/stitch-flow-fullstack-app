@@ -98,7 +98,7 @@ export default function AddPatternForm() {
 
 	return(
 		<form className="p_form" onSubmit={handlePatternSubmit}>
-			<h2>Add Pattern</h2>
+			<h2>Add New Pattern:</h2>
 				<label>Name:
 					<input type="text" placeholder="Pattern Name" value={name}
 					onChange={(e) => setName(e.target.value)} required />
@@ -131,7 +131,7 @@ export default function AddPatternForm() {
 				{/* pattern reqs */}
 				{requirements.map((req, index) => (
 					<div key={index} className="add_requirements">
-						<h3>Add Pattern Requirements {index +1}</h3>
+						<h3>Add Pattern Requirements {index +1}:</h3>
 						<label>Role:
 							<input type="text" placeholder="base fabric, interfacing, etc." value={req.role}
 							onChange={(e) => updateReq(index, "role", e.target.value)} required />
