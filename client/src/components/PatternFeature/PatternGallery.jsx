@@ -54,7 +54,7 @@ export default function PatternGallery() {
 	  {patterns.length === 0 ? (
 		<p>No patterns found!</p>
 	  ): (
-		<div className="pattern_gallery">
+		<div className="gallery">
 		  {patterns.map(pattern => (
 			<div key={pattern.id} className="gallery-item">
 				<PatternCard 

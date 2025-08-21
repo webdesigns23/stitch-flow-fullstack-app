@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { PatternContext } from "../../context/PatternContext";
+import "../../styles/Forms.css"
 
 
 const emptyReqs = { role: "", material_type: "", quantity: "", unit: "", size: "" }

@@ -5,9 +5,9 @@ import AddPatternForm from "../components/PatternFeature/AddPatternForm";
 export default function PatternPage() {
 	return (
 	<> 
-		<h1>Patterns</h1>
-	  	<AddPatternForm />
+		<h1>Patterns</h1>	
 	  	<PatternGallery />
+		<AddPatternForm />
 	</>
   );
 }
