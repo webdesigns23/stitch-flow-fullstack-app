@@ -6,8 +6,9 @@ export default function ProjectPage() {
 
   return (
 	<>
-		<ProjectGallery />
+		<h1>Sewing Project Manager</h1>
 		<AddProjectForm />
+		<ProjectGallery />
 	</>
   )
 }

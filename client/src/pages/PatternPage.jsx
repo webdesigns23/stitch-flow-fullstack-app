@@ -6,8 +6,8 @@ export default function PatternPage() {
 	return (
 	<> 
 		<h1>Patterns</h1>	
-	  	<PatternGallery />
 		<AddPatternForm />
+	  	<PatternGallery />
 	</>
   );
 }

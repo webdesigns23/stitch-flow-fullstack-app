@@ -97,7 +97,7 @@ export default function AddPatternForm() {
 		}
 
 	return(
-		<form className="pattern_form" onSubmit={handlePatternSubmit}>
+		<form className="p_form" onSubmit={handlePatternSubmit}>
 			<h2>Add Pattern</h2>
 				<label>Name:
 					<input type="text" placeholder="Pattern Name" value={name}

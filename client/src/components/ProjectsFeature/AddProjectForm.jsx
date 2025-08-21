@@ -60,7 +60,7 @@ export default function AddProjectForm() {
 	return(
 		<>
 			<h2>Add New Project</h2>
-			<form className="form" onSubmit={handleSubmit}>
+			<form className="p_form" onSubmit={handleSubmit}>
 				<label>Title:
 					<input
 					type="text"
