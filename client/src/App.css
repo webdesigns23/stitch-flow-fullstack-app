@@ -10,6 +10,14 @@ body {
   margin-left: 240px;
 }
 
+a {
+  color: rgb(82, 88, 114);
+}
+
+a:hover {
+  color: rgb(214, 110, 110);
+}
+
 /* Gallery Layout */
 .pattern_gallery{
   margin: 25px;
@@ -60,9 +68,49 @@ body {
 
 .req_table td {
   padding: 0.55rem 0.75rem;
-  border-bottom: 1px solid  rgb(218, 213, 213);
+  border-bottom: 2px solid  rgb(218, 213, 213);
   color: #504242;
 }
+
+/* Project Status Border */
+.gallery-item[data-status] {
+  border-left: 10px ridge transparent;   
+  border-top: 10px ridge transparent;   
+}
+
+/* planning */
+.gallery-item[data-status="planning"] {
+  border-left-color: rgb(199, 140, 150);
+  border-top-color: rgb(199, 140, 150);
+}
+/* ready to sew */
+.gallery-item[data-status="ready-to-sew"] {
+  border-left-color: rgb(47, 116, 78);
+  border-top-color: rgb(47, 116, 78);
+}
+
+.gallery-item[data-status="cutting"] {
+  border-left-color: rgb(45, 114, 160);
+   border-top-color: rgb(45, 114, 160);
+}
+
+.gallery-item[data-status="sewing"] {
+  border-left-color: rgb(110, 94, 141);
+  border-top-color: rgb(110, 94, 141);
+}
+
+.gallery-item[data-status="final-touches"] {
+  border-left-color: rgb(161, 155, 58);
+  border-top-color: rgb(161, 155, 58);
+}
+
+.gallery-item[data-status="complete"] {
+  border-left-color:rgb(63, 61, 61) ;
+  border-top-color:rgb(63, 61, 61) ;
+}
+
+
+
 
 
 /* FOR ONE CARD PER ROW */

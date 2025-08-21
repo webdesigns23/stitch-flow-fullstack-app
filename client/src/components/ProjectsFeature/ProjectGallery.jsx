@@ -3,6 +3,9 @@ import ProjectCard from "./ProjectCard"
 import { ProjectContext } from '../../context/ProjectContext';
 
 export default function ProjectGallery() {
+	const statusKey = (s) =>
+		(s || "").toLowerCase().trim().replace(/[_\s]+/g, "-");
+
 	const {
 		projects, setProjects,
 		loading, setLoading,
@@ -76,7 +79,9 @@ export default function ProjectGallery() {
 	  ): (
 		<div className="gallery">
 		  {projects.map(project => (
-			<div key={project.id} className="gallery-item">
+			<div key={project.id} 
+			className="gallery-item" 
+			data-status={statusKey(project.status)}>
 				<ProjectCard 
 				project={project} 
 				handleDelete={() => handleDelete(project.id)}
