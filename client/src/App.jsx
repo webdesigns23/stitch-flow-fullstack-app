@@ -5,7 +5,7 @@ import Home from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
 import ProjectPage from './pages/ProjectPage';
 import PatternPage from './pages/PatternPage';
-import PatternDetails from './components/PatternFeature/PatternDetails';
+import PatternInfoPage from './pages/PatternInfoPage';
 import MaterialsPage from './pages/MaterialsPage';
 
 
@@ -21,7 +21,7 @@ export default function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/projects" element={<ProjectPage />} />
               <Route path ="/patterns" element={<PatternPage />} />
-              <Route path ="/patterns/:id" element={<PatternDetails />} />
+              <Route path ="/patterns/:id" element={<PatternInfoPage />} />
               <Route path="/materials" element={<MaterialsPage />} />
             </Routes>
           </div>
