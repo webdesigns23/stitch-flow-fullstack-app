@@ -11,6 +11,7 @@ export default function PatternDetails() {
 	const [ pattern, setPattern ] = useState(null);
 	const [ patLoading, setPatLoading ] = useState(true);
 	const [ patError, setPatError ] = useState(null);
+	const [ editing, setEditing] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -42,6 +43,13 @@ export default function PatternDetails() {
 	
 	if (patLoading) return <p>Loading pattern details...</p>
 	if (patError || !pattern) return <p>Error: {patError || "Pattern not found"}</p>
+
+	//Update Function
+	function handlePatternUpdated(updated) {
+		if (updated) {
+			setPattern(updated);
+		} setEditing(false);
+	}
 	
 	return(
 		<>
@@ -62,7 +70,9 @@ export default function PatternDetails() {
 			)}
 			<ReqDetails pattern={pattern}/>
 
-			<EditPatternForm pattern={pattern}/>
+			<EditPatternForm 
+			pattern={pattern}
+			handlePatternUpdated={handlePatternUpdated}/>
 
 			{/* delete button */}
 			{pattern && (

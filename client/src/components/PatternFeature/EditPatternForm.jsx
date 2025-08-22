@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { PatternContext } from "../../context/PatternContext";
 
-export default function EditPatternForm({pattern}) {
+export default function EditPatternForm({pattern, handlePatternUpdated}) {
 	const categories = [
 	"clothing", "accessories", "quilting", "home_decor", "costumes", "other"];
 
@@ -14,8 +14,44 @@ export default function EditPatternForm({pattern}) {
 	const [notes, setNotes] = useState(pattern.notes);
 	const [editError, setEditError] = useState(null);
 
-	function handleSubmit() {
-		
+	function validateEdits() {
+		if (name.trim().length > 35) 
+			return setEditError("Name must be <35 characters.");
+		if (brand.trim().length > 35)
+			return setEditError("Brand must be <35 characters.");
+		if (patternNumber.trim().length > 35)
+			return setEditError("Pattern # must be <35 characters.");
+		if (!categories.includes(category))
+			return setEditError("Invalid Category");
+		if (notes.trim().length > 100)
+			return setEditError("Notes must be <100 characters.");
+		return null;
+	}
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+		setEditError(null);
+
+		const error = validateEdits();
+		if (error) {
+			setEditError(error);
+			return;
+		}
+
+		const patternEdits = {
+			name: name.trim(),
+			brand: brand.trim(),
+			pattern_number: patternNumber.trim(),
+			category,
+			notes: notes.trim(),
+		};
+
+		const response = await updatePattern(pattern.id, patternEdits);
+		if (response.ok) {
+			handlePatternUpdated?.(response.data);
+		}else {
+			setEditError (response.error?.message || "Unable to update Pattern");
+		}
 	}
 
 	return (
