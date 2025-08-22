@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function PatternCard({pattern, handleDelete}) {
+export default function PatternCard({pattern}) {
 
 
 	return(
@@ -12,18 +12,6 @@ export default function PatternCard({pattern, handleDelete}) {
 			<p>Pattern #: {pattern.pattern_number}</p>
 			<p>Category: {pattern.category}</p>
 			</Link>
-
-			{/* delete button */}
-			{handleDelete && (
-				<button className="delete_button" 
-				onClick={(e) => { 
-					e.preventDefault(); 
-					e.stopPropagation(); 
-					handleDelete();}}>
-				X Remove
-				</button>
-			)}
-
 		</article> 
 	)
 }

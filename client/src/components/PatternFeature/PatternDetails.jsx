@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, Link} from "react-router-dom";
+import { useParams, Link, Navigate, useNavigate} from "react-router-dom";
 import { PatternContext } from "../../context/PatternContext";
 
 export default function PatternDetails() {
-	const { patterns } = useContext(PatternContext);
+	const { patterns, deletePattern } = useContext(PatternContext);
 	const { id } = useParams();
 
 	const [ pattern, setPattern ] = useState(null);
@@ -13,7 +13,13 @@ export default function PatternDetails() {
 	const [ requirements, setRequirements ] = useState(null)
 	const [ reqLoading, setReqLoading ] = useState(false);
 	const [ reqError, setReqError ] = useState(null)
+	
+	const navigate = useNavigate();
 
+	function handleDelete() {
+		deletePattern(pattern.id);
+		navigate("/patterns");
+	};
 
 	//Lists Pattern Details By Id
 		useEffect(() => {
@@ -58,7 +64,7 @@ export default function PatternDetails() {
 	
 	
 	if (patLoading) return <p>Loading pattern details...</p>
-	if (patError || !pattern) return <p>Error: {error} || "Pattern not found"</p>
+	if (patError || !pattern) return <p>Error: {patError || "Pattern not found"}</p>
 	
 	return(
 		<>
@@ -82,7 +88,7 @@ export default function PatternDetails() {
 				<h2>{`${pattern.name}`} requirements:</h2>
 				{reqLoading && <p>Loading pattern requirements...</p>}
 				{reqError && <p>Error loading pattern requirements...</p>}
-				
+
 				{requirements && requirements.length > 0 ? (
 				<div className="table">
 				<table className="req_table">
@@ -112,6 +118,18 @@ export default function PatternDetails() {
 				<p>No Requirements</p>
 				)}
 			</div>		
+
+			{/* delete button */}
+			{pattern && (
+				<button className="delete_button" 
+				onClick={(e) => { 
+					e.preventDefault(); 
+					e.stopPropagation(); 
+					handleDelete();}}>
+				Delete Pattern
+				</button>
+			)}
+
 		</>
 	)
 }

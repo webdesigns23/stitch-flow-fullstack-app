@@ -7,7 +7,6 @@ export default function PatternGallery() {
 		patterns, 
 		loading, 
 		error, 
-		deletePattern,
 	} = useContext(PatternContext)
 	  
 	if (loading) return <p>Loading...</p>
@@ -23,7 +22,6 @@ export default function PatternGallery() {
 			<div key={pattern.id} className="gallery-item">
 				<PatternCard 
 				pattern={pattern} 
-				handleDelete={() => deletePattern(pattern.id)}
 				/>
 			</div>
 		  ))}

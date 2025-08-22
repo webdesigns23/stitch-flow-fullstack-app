@@ -38,8 +38,10 @@ export function PatternProvider({children}){
 				throw new Error(`${response.status}`);
 			}
 			setPatterns(prev => prev.filter(p => p.id !==id));
+			return true;
 		} catch (error) {
 			setError(`Failed to delete pattern: ${error}`)
+			return false;
 		} finally {
 			setLoading(false);
 		}
