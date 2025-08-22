@@ -57,6 +57,7 @@ export function ProjectsProvider({children}){
 		setProjects(prev => prev.map(p => (p.id === id ? data : p)));
 		} catch	(error) {
 		setError(`Failed to update project: ${error.message || error}`)
+		throw error; //if kanban messes up
 		} 
 	}
 

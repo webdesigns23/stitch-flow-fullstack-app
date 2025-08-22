@@ -43,7 +43,7 @@ a:hover {
   box-shadow: 0 10px 22px rgba(0,0,0,.12);
 }
 
-.table { 
+div.table { 
   overflow-x: auto; 
   padding: 15px;
   margin-top: 25px;
@@ -54,16 +54,11 @@ a:hover {
   font-size: 1rem;
 }
 
-.req_table caption {
-  text-align: left;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-  color:#d8a7a7;
-}
-
 .req_table thead th {
-  text-align: left;
+  text-align: center;
   padding: 0.6rem 0.75rem;
+  color: rgb(190, 90, 90);
+  border-bottom: rgb(93, 111, 121) double ;
 }
 
 .req_table td {

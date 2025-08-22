@@ -33,6 +33,11 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: rgb(190, 95, 95);
+}
+
+h2 {
+  color: rgb(78, 91, 104);
 }
 
 button {

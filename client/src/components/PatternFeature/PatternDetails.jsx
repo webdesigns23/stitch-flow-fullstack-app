@@ -85,10 +85,10 @@ export default function PatternDetails() {
 
 			{showReq && (
 				<div>
+					<h2>{`${pattern.name}`} requirements:</h2>
 					{requirements && requirements.length > 0 ? (
 					<div className="table">
 					<table className="req_table">
-						<caption>Pattern Requirements</caption>
 						<thead>
 							<tr>
 								<th>Role</th>
