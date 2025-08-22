@@ -182,7 +182,7 @@ class PatternDetails(Resource):
         data = request.get_json() or {}
         pattern = Pattern.query.filter_by(id = id).first()
         if not pattern:
-            return {"error": "No patterm found, add a pattern"}, 404
+            return {"error": "No pattern found, add a pattern"}, 404
         
         if "name" in data:
             name = (data.get("name")).strip()
@@ -195,6 +195,12 @@ class PatternDetails(Resource):
             if len(brand) > 35:
                 return {"error": "Brand cannot be more than 35 characters"}, 422
             pattern.brand = brand
+
+        if "pattern_number" in data:
+            pattern_number = (data.get("pattern_number")).strip()
+            if len(pattern_number) > 35:
+                return {"error": "Pattern number cannot be more than 35 characters"}, 422
+            pattern.pattern_number = pattern_number
 
         if "notes" in data:
             notes = (data.get("notes")).strip()
