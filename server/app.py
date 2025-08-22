@@ -96,7 +96,7 @@ class ProjectDetails(Resource):
         if "pattern_id" in data:
             patternId = data.get("pattern_id")
             if patternId is None:
-                return {"error": "Project mush have a pattern"}, 422
+                return {"error": "Project must have a pattern"}, 422
             pattern = Pattern.query.get(patternId)
 
             if not pattern:
@@ -176,7 +176,38 @@ class PatternDetails(Resource):
         pattern = Pattern.query.filter_by(id = id).first()
         if not pattern:
             return {"error": "Pattern not found"}, 404
-        return PatternSchema().dump(pattern), 200    
+        return PatternSchema().dump(pattern), 200   
+     
+    def patch(self, id):
+        data = request.get_json() or {}
+        pattern = Pattern.query.filter_by(id = id).first()
+        if not pattern:
+            return {"error": "No patterm found, add a pattern"}, 404
+        
+        if "brand" in data:
+            brand = (data.get("brand")).strip()
+            if len(brand) > 35:
+                return {"error": "Brand cannot be more than 35 characters"}, 422
+            pattern.brand = brand
+
+        if "notes" in data:
+            notes = (data.get("notes")).strip()
+            if len(notes) > 100:
+                return {"error": "Notes cannot be more than 100 characters"}, 422
+            pattern.notes = notes
+        
+        if "category" in data:
+            new_category = (data.get("category")).strip()
+            if new_category not in allowed_pattern_category:
+                return {"error": "Invalid status, update to 'clothing', 'accessories', 'quilting', 'home_decor', 'costumes', or 'other'"}, 422
+            pattern.category = new_category
+
+        try:
+            db.session.commit()
+            return PatternSchema().dump(pattern), 200
+        except IntegrityError:
+            db.session.rollback()
+            return {"error": "Unable to update pattern"}, 422 
 
     def delete(self, id):
         pattern = Pattern.query.filter_by(id = id).first()
@@ -197,8 +228,6 @@ class PatternRequirementList(Resource):
         req = PatternRequirement.query.filter_by(pattern_id = pattern_id).all()
         return [PatternRequirementSchema().dump(r) for r in req], 200
     
-
-
 
 # API Endpoints
 api.add_resource(ProjectIndex, "/projects", endpoint="projects")

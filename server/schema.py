@@ -5,6 +5,11 @@ from marshmallow import Schema, fields, validate
 allowed_project_status = [
 	"planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"]
 
+#Category allowed string
+allowed_pattern_category = [
+	"clothing", "accessories", "quilting", "home_decor", "costumes", "other"
+]
+
 #Schemas
 class ProjectSchema(Schema):
 	id = fields.Integer(dump_only=True)
@@ -38,7 +43,7 @@ class PatternSchema(Schema):
 	name = fields.String(required=True, validate=validate.Length(max=35))
 	brand = fields.String(required=True)
 	pattern_number = fields.String(required=True)
-	category = fields.String(required=True)
+	category = fields.String(validate=validate.OneOf(allowed_pattern_category))
 	notes = fields.String(required=False, validate=validate.Length(max=100))
 
 	#nested relationship

@@ -47,12 +47,29 @@ export function PatternProvider({children}){
 		}
 	}
 
+	//Update Pattern
+	async function updatePattern(id, updates) {
+		try{
+			const response = await fetch(`http://127.0.0.1:5555/patterns/${id}`, {
+			method: "PATCH",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(updates),
+		});
+		const data = await response.json();
+		if (!response.ok) throw new Error(`${response.status}`);			
+		setPatterns(prev => prev.map(p => (p.id === id ? data : p)));
+		} catch	(error) {
+		setError(`Failed to update project: ${error.message || error}`)
+		} 
+	}
+
   return(
 	<PatternContext.Provider value={{
 	  patterns, setPatterns,
 	  loading, setLoading,
 	  error, setError,
-	  deletePattern}}>
+	  deletePattern,
+	  updatePattern}}>
 	  {children}
 	</PatternContext.Provider>
   );
