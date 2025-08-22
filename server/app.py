@@ -184,6 +184,12 @@ class PatternDetails(Resource):
         if not pattern:
             return {"error": "No patterm found, add a pattern"}, 404
         
+        if "name" in data:
+            name = (data.get("name")).strip()
+            if len(name) > 35:
+                return {"error": "Name cannot be more than 35 characters"}, 422
+            pattern.name = name
+        
         if "brand" in data:
             brand = (data.get("brand")).strip()
             if len(brand) > 35:

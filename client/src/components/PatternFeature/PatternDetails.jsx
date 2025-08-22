@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useNavigate} from "react-router-dom";
 import { PatternContext } from "../../context/PatternContext";
 import ReqDetails from "./ReqDetails";
+import EditPatternForm from "./EditPatternForm";
 
 export default function PatternDetails() {
 	const { patterns, deletePattern } = useContext(PatternContext);
@@ -60,6 +61,8 @@ export default function PatternDetails() {
 				<p><strong>Notes:</strong> {pattern.notes}</p>
 			)}
 			<ReqDetails pattern={pattern}/>
+
+			<EditPatternForm pattern={pattern}/>
 
 			{/* delete button */}
 			{pattern && (
