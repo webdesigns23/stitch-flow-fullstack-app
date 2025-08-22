@@ -10,8 +10,6 @@ export default function PatternDetails() {
 	const [ patLoading, setPatLoading ] = useState(true);
 	const [ patError, setPatError ] = useState(null);
 
-
-	const [ showReq, setShowReq ] = useState(false);
 	const [ requirements, setRequirements ] = useState(null)
 	const [ reqLoading, setReqLoading ] = useState(false);
 	const [ reqError, setReqError ] = useState(null)
@@ -38,24 +36,26 @@ export default function PatternDetails() {
 			LoadPatternDetails()
 		}, [id, patterns]) 
 	
-	//Lists Requirements with Toggle button
-	async function handleToggleReq() {
-		setShowReq(!showReq);
-		if (!showReq && !requirements)
-		setReqLoading(true);
-		setReqError(null);
 
+	//Lists Requirements 
+	useEffect(() => {
+		const LoadPattReq = async() => {
+			setReqLoading(true);
+			setReqError(null);
 		try{
 			const response = await fetch(`http://127.0.0.1:5555/patterns/${id}/requirements`)
 			if (!response.ok) {throw new Error(`HTTP error!: ${response.status}`);}
 			const data = await response.json();
 			setRequirements(Array.isArray(data) ? data : []);
-			} catch (error){
+		} catch (error){
 			setReqError("Error loading pattern requirments data" || error);
-			}finally{
+		}finally{
 			setReqLoading(false);
-			}
 		}
+		};
+		LoadPattReq()
+	}, [id])
+	
 	
 	if (patLoading) return <p>Loading pattern details...</p>
 	if (patError || !pattern) return <p>Error: {error} || "Pattern not found"</p>
@@ -78,44 +78,40 @@ export default function PatternDetails() {
 			{pattern.notes && (
 				<p><strong>Notes:</strong> {pattern.notes}</p>
 			)}
-
-			<button onClick={handleToggleReq}>
-				{showReq ? "Hide Requirements": "Show Requirements"}
-			</button>
-
-			{showReq && (
-				<div>
-					<h2>{`${pattern.name}`} requirements:</h2>
-					{requirements && requirements.length > 0 ? (
-					<div className="table">
-					<table className="req_table">
-						<thead>
-							<tr>
-								<th>Role</th>
-								<th>Material Type</th>
-								<th>Quantity</th>
-								<th>Unit</th>
-								<th>Size</th>
+			<div>
+				<h2>{`${pattern.name}`} requirements:</h2>
+				{reqLoading && <p>Loading pattern requirements...</p>}
+				{reqError && <p>Error loading pattern requirements...</p>}
+				
+				{requirements && requirements.length > 0 ? (
+				<div className="table">
+				<table className="req_table">
+					<thead>
+						<tr>
+							<th>Role</th>
+							<th>Material Type</th>
+							<th>Quantity</th>
+							<th>Unit</th>
+							<th>Size</th>
+						</tr>
+					</thead>
+					<tbody>
+						{requirements.map((r) => (
+							<tr key={r.id}>
+							<td>{r.role}</td>
+							<td>{r.material_type}</td>
+							<td>{r.quantity}</td>
+							<td>{r.unit}</td>
+							<td>{r.size}</td>
 							</tr>
-						</thead>
-						<tbody>
-							{requirements.map((r) => (
-								<tr key={r.id}>
-								<td>{r.role}</td>
-								<td>{r.material_type}</td>
-								<td>{r.quantity}</td>
-								<td>{r.unit}</td>
-								<td>{r.size}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-					</div>
-					): (
-					<p>No Requirements</p>
-					)}
+						))}
+					</tbody>
+				</table>
 				</div>
-			)}
+				): (
+				<p>No Requirements</p>
+				)}
+			</div>		
 		</>
 	)
 }
