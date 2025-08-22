@@ -3,6 +3,7 @@ import { ProjectContext } from "../../context/ProjectContext"
 import { PatternContext } from "../../context/PatternContext"
 import { useContext } from "react";
 import "../../styles/Stats.css"
+import StatusPieChart from "./StatusChart";
 
 const statuses = [
 		"planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"
@@ -43,7 +44,7 @@ export default function StatsGallery() {
 				<h2>Total Patterns</h2>
 				<div className="stat-value">{totalPatterns}</div>
 			</div>
-			<div className="stat-gallery-item is-wide">
+			{/* <div className="stat-gallery-item is-wide">
 				<h2>Projects by Status</h2>
 				<ul className="status-count">
 					{["planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"]
@@ -53,6 +54,10 @@ export default function StatsGallery() {
 							</li>
 						))}
 				</ul>
+			</div> */}
+			<div className="stat-gallery-item is-wide">
+				<h2>Projects by Status</h2>
+				<StatusPieChart statusCounts={statusCounts} statuses={statuses} />
 			</div>
 		</div>
 	)
