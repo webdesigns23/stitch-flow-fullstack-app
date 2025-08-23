@@ -1,23 +1,20 @@
-# Sewing Project Manager Full-Stack App
+Sewing Project Manager Full-Stack App
 =======
 
-## Stay inspired and organized with all your sewing projects in one easy space
+Stay inspired and organized with all your sewing projects in one easy space
 
-Include a README.md with:
+# Overview
+A sewing project management tracker that helps casual sewists, quilters, and cosplayers turn creative ideas into finished projects. Plan your projects, track your progress, and keep all your pattern specs, materials, costs and notes in one place. Whether you’re starting something new or revisiting a favorite creation, StitchFlow keeps your sewing projects moving smoothly from the first stitch to the final seam so you can spend less time organizing and more time sewing.
 
-
-## Technologies used
-## Setup and run instructions
-## Overview of core functionality
-
-
-
-## Overview
-LunaLuxe is your gateway to the stars—a next-generation travel platform designed for cosmic explorers. This application includes the following features:
-* Welcome page with a short about us description
-* A list of transportation vessels that we offer with a button for displaying vessel stats
-* A list of destination planets that we travel too, along with an "Expore" button for more information about destination.
-* An exploration planner page to filter through what each planet destination has to offer, see what vessel options work best for you and calculate your anticipated travel time base off of the selected destination and transportation vessel.
+# Features
+- Users can view Projects and Patterns
+- Add Projects and Patterns
+- Delete Projects and Patterns
+- Update status of Projects
+- Update Pattern Information
+- Connect Patterns to Projects
+- View all completed Projects
+- View a Dashboad that gives an overview of how many projects and patterns they have as well as a pie chart that shows how many projects are at a certain status.
 
 # Tools Featured in this Project:
 - [GitHub Repo](https://github.com/webdesigns23/stitch-flow-fullstack-app.git)
@@ -27,220 +24,129 @@ LunaLuxe is your gateway to the stars—a next-generation travel platform design
 - React Router
 - Vite
 - Node.js
+- Python 3.8.13+
+- Virtualenv
+- Python Packages listed in requirements.txt
+- Flask
+- SQLAlchemy
+- SQLite for development
+- Vite
 
-## Resources
+# Resources
 - [React Router](https://reactrouter.com/en/main)
-- [Recharts]()
+- [Recharts](https://recharts.org/en-US)
 
-## API's used
-* [Solar System OpenData](https://api.le-systeme-solaire.net/en/)
-
-
-## React Router Endpoints
-* "/" : Home Page
-* "/destinations" : Destinations Page
-    * ":id" : Destination More Info
-* "/vessels" : Spaceships Page
-    * ":id" : Spaceships More Info
-* "/expedition_planner" : Expedition Planner Page with filters and calculations
+# React Router Endpoints
+* "/" : Home Page, about Stitch Flow
+* "/dashboard" : Dashboard Page with stats and pie chart of projects by status
+* "/projects" : Projects Gallery, has filtering and add project form
+* "/patterns" : Patterns Gallery, has add patterns form, links to patterns/id page
+* "/patterns/:id" : Pattern info and requirments, edit pattern info
+* "/materials" : Feature thats coming soon, lets users know what to look forward to
+* "/completed" : Gallery of Completed Project Cards
 
 # Set Up and Installation:
-1. Fork and clone the GitHub Repo
+Fork and clone the GitHub Repo
 ```bash
 git clone <repo_url>
 cd <folder name>
 
 ```
-# Running Application:
-To run the React application
-1. Install dependencies
-```bash
-npm install
-```
-2. Start the application
-```bash
-npm run dev
-```
-
-3. The `src` folder contains the following files:
-
-```txt
-src/
-└── assets/
-    ├── planets (images)
-    ├── vessels (images)
-	├── Various Extra Images
-└── components/
-    ├── BodyInfo.jsx
-    ├── VessleInfo.jsx
-    ├── DestinationCarousel.jsx
-    ├── GravityCheck.jsx
-    ├── NavBar.jsx
-    ├── PlanetCard.jsx
-    ├── ShipCard.jsx
-    ├── PlanetGallery.jsx
-	├── SpeedCheck.jsx
-	├── TempCheck.jsx
-	├── VesselCarousel.jsx
-	├── TripSummary.jsx
-└── context/
-    ├── TripContext.jsx
-└── data/
-    ├── destinations.js
-    ├── vessels.js
-└── pages/
-    ├── Destinations.jsx
-    ├── ExpPlanner.jsx
-    ├── Home.jsx
-    ├── SpaceVessels.jsx
-└── styles/
-    ├── Carousel.css
-    ├── ExpPlanner.css
-    ├── NavBar.css
-├── .env
-├── App.css
-├── App.jsx
-├── index.css
-├── main.jsx
-```
-# Testing: 
-- Does not contain test files.
-- Test in Postman or by using application in browser and inspect
-
-# Commit and Push Git History if any adjustments to this code are made
-1. Add your changes to the staging area by executing
-2. Create a commit by executing 
-3. Push your commits to GitHub by executing 
-4. If you created a separate feature branch, remember to open a PR on main and merge.
-```bash
-git add .
-git commit -m "Your commit message"
-git push origin main
-```
-
-
-
-
-
-
-# Features:
-1. Users are able to create an account to personally manage their wine collection.
-	- User can Sign up by creating a username, password, and providing an image_url
-	- Users are able to Login/Logout
-	- Session cookies are used to remember login
-
-2. Once logged in, they are able to view, update, create, or delete their wine bottles logged in their Cellar Records. 
-
-3. Users are able to store the following information about their wines in their Cellar Record:
-	- Wine (Name of the Wine)
-	- Grape (Name of the Grape)
-	- Country (Wine Origin)
-	- Vintage (Year wine was harvested, YYYY)
-	- Quantity (How many bottles they have in their Cellar, UPDATABLE)
-	- Tasting Notes (Wine Flavors UPDATABLE)
-
-# Tools and Resources Featured in this Project:
-- [GitHub Repo](https://github.com/webdesigns23/flask-c10-summative-lab-sessions-and-jwt-clients.git)
-- Python 3.8.13+
-- Text Editor or IDE (e.g., VS Code)
-- Git + GitHub
-- Virtualenv
-- Python Packages listed in requirements.txt
-- React
-- Node.js
-
-# Set Up and Installation:
-1. Fork and clone the GitHub Repo
-```bash
-git clone <repo_url>
-
-```
-2. Set up your virtual environment of choice (virtualenv prefered)
+# Server: Running Application Backend:
+1. Set up your virtual environment of choice (virtualenv prefered)
 ```bash
 virtualenv env1
 source env1/bin/activate
 ```
-3. Install PyPi dependencies using requiements.txt
+2. Install PyPi dependencies using requiements.txt
 ```bash
 pip install -r requirements.txt
 ```
-4. Navigate into the server/ directory and set environment variables:
+3. Navigate into the server/ directory and set environment variables:
 ```bash
 cd server
 export FLASK_APP=app.py
 export FLASK_RUN_PORT=5555
 ```
-5. Create a migrations folder, run initial migration and update
+4. Create a migrations folder, run initial migration and update
 ```bash
 cd server
 flask db init
 flask db migrate -m "initial migration"
 flask db upgrade
 ```
-6. Populate database with initial data
+5. Populate database with initial data
 ```bash
 python seed.py
 ```
 # Running Back-end of Application:
-Should run on port 5555 to match proxy in package.json
+6. Should run on port 5555 to match proxy in package.json
 You can run the Flask server with:
 ```bash
 python app.py
 ```
 
-# Running Front-end of Application:
+# Client: Running Application Frontend:
 To run the React application
-1. Install dependencies
+Should run on: (http://127.0.0.1:5173/)
+1. Open client folder
+```bash
+cd client
+```
+2. Install dependencies
 ```bash
 npm install
 ```
-2. Start the application
+3. Start the application
 ```bash
-npm start
+npm run dev
 ```
 
 # API Endpoints and Functionality:
-## Authorization/ Authentication:
-`POST /signup`
-* Registers a new user and logs them in by setting the session
+`/projects`
+`/projects/<id>`
+`/patterns`
+`/patterns/<id>`
+`/patterns/<pattern_id>/requirements`
 
-`GET /check_session`
-* Verifies if a user session is active.
-
-`POST /login`
-* Authenticates an existing user and sets the session cookie
-
-`DELETE /logout`
-* Ends the session by removing user_id from the session store.
-
-## Cellar Record Index Class:
-`GET /cellar_record – paginated`
-* Returns all wines
-Includes Pagination:
+## Project and Pattern Index Class:
+`GET /projects or /patterns – paginated`
+* Returns all Projects and Patterns
+Includes Pagination if called:
 * Uses page and per_page query parameters
 * Returns only the requested chunk of data
 * Includes metadata like the total number of pages
 
-`POST /cellar_record`
-* Adds a New wine to cellar with the following info:
-	- Wine (Name of the Wine)
-	- Grape (Name of the Grape)
-	- Country (Wine Origin)
-	- Vintage (Year wine was harvested, YYYY)
-	- Quantity (How many bottles they have in their Cellar, UPDATABLE)
-	- Tasting Notes (Wine Flavors UPDATABLE)
+`POST /projects and /patterns`
+* Adds a New Project or Pattern
 
-## Cellar Record Id Class:
-`PATCH /cellar_record/<id>`
+## Project Deatails and Pattern Details Class:
+`GET /projects/<id> or /patterns/<id>`
+*Returns all projects or patterns by id
+
+`PATCH /projects/<id> or /patterns/<id>`
 * Search by id
-* Update a quantity or tasting notes of a wine in cellar record
+* Update a status for projects
+* Update pattern information
 
 `DELETE /cellar_record/<id>`
-* Delete a wine from cellar record
+* Delete a a project or pattern
+
+## Pattern Requirements List Class:
+`GET /patterns/<pattern_id>/requirements`
+*Returns all pattern requirments for a patterns by id
 
 # Testing: 
 - Does not contain test files.
-- Test in Postman or by using application in browser and inspect
+- Use the App for testing.
+- Test endpoints in Postman or by using application in browser and inspect
+
+# Application Flow:
+1. Add a pattern with all pattern info and pattern requirements
+2. Add a project with pattern, choose from pattern dropdown to link to project
+3. Default status is set to "planning"
+4. Update status as you work on your project
+5. Delete if you decide you no longer want to work on project
 
 # Commit and Push Git History if any adjustments to this code are made
 1. Add your changes to the staging area by executing
