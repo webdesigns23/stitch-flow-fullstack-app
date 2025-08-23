@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react"
+import { useContext } from "react"
 import { PatternContext } from "../../context/PatternContext";
 
 export default function PatternSelect({value, onChange, required=true, disabled=false}) {
