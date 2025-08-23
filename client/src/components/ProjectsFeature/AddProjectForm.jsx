@@ -59,48 +59,57 @@ export default function AddProjectForm() {
 
 	return(
 		<>
-			
 			<form className="p_form" onSubmit={handleSubmit}>
 				<h2>Add New Project:</h2>
-				<label>Title:
-					<input
-					type="text"
-					placeholder="Project Title"
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
-					required
-					maxLength={35}
-					/>
-				</label>
+
+				<div className="form_row">
+					<label>Title:
+						<input
+						type="text"
+						placeholder="Project Title"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						required
+						maxLength={35}
+						/>
+					</label>
+				</div>
+
+				<div className="form_row">
 				<label>Current Status:
-					<select value={status} 
-						onChange={(e) => setStatus(e.target.value)}>
-					<option value="">Select Status</option>
-					<option value="planning">Planning</option>
-					<option value="ready_to_sew">Ready to Sew</option>
-					<option value="cutting">Cutting</option>
-					<option value="sewing">Sewing</option>
-					<option value="final_touches">Final Touches</option>
-					<option value="complete">Complete</option>
-					</select>
-				</label>
-				<label>Notes:
-					<input
-					type="text"
-					placeholder="Notes"
-					value={notes}
-					onChange={(e) => setNotes(e.target.value)}
-					maxLength={100}
-					/>
-				</label>
-
-				<label>Pattern:
-					<PatternSelect value={patternId} onChange={setPatternId} />
-				</label>
-
-				<button type="submit" disabled={submitting}>
-					{submitting ? "Adding..." : "Add Project"}
-				</button>
+						<select value={status} 
+							onChange={(e) => setStatus(e.target.value)}>
+						<option value="">Select Status</option>
+						<option value="planning">Planning</option>
+						<option value="ready_to_sew">Ready to Sew</option>
+						<option value="cutting">Cutting</option>
+						<option value="sewing">Sewing</option>
+						<option value="final_touches">Final Touches</option>
+						<option value="complete">Complete</option>
+						</select>
+					</label>
+				</div>
+				<div className="form_row">
+					<label>Notes:
+						<input
+						type="text"
+						placeholder="Notes"
+						value={notes}
+						onChange={(e) => setNotes(e.target.value)}
+						maxLength={100}
+						/>
+					</label>
+				</div>
+				<div className="form_row">
+					<label>Pattern:
+						<PatternSelect value={patternId} onChange={setPatternId} />
+					</label>
+				</div>
+				<div className="button_row">
+					<button type="submit" disabled={submitting}>
+						{submitting ? "Adding..." : "Add Project"}
+					</button>
+				</div>
 			</form>
 		</>
 	)

@@ -3,7 +3,7 @@
 .navbar {
   position: fixed;
   inset: 0 auto 0 0;       /* left, full height */
-  width: 240px;
+  width: 150px;
   background:  #1e1b1b;
   color: #bfaeae;
   padding: 20px 14px;
