@@ -12,6 +12,7 @@ export default function CompleteProjects() {
 
 	return (
 		<>
+		<h1>Finished Projects</h1>
 		  {completed.length === 0 ? (
 			<p>No completed projects yet!</p>
 		  ): (

@@ -16,8 +16,6 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 	return(
 		<div className="project-card">
 			<h2>{project.title}</h2>
-
-			{/* <p>Status: "{project.status}"</p> */}
 			
 			 <label className="status-control">
           		<span>Status:</span>
