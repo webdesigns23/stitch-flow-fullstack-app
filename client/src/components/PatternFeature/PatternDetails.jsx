@@ -70,9 +70,14 @@ export default function PatternDetails() {
 			)}
 			<ReqDetails pattern={pattern}/>
 
-			<EditPatternForm 
+			<button onClick={() => setEditing(!editing)}>
+				{editing ? "Exit Editing Mode" : "Edit Pattern"}
+			</button>
+			{editing && (
+				<EditPatternForm 
 			pattern={pattern}
 			handlePatternUpdated={handlePatternUpdated}/>
+			)}
 
 			{/* delete button */}
 			{pattern && (
