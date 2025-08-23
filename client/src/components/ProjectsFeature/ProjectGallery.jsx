@@ -19,7 +19,6 @@ export default function ProjectGallery() {
 
   return (
 	<>
-	  <h2>Current Projects</h2>
 	  {projects.length === 0 ? (
 		<p>No projects found!</p>
 	  ): (

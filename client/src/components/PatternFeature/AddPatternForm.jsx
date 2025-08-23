@@ -89,7 +89,7 @@ export default function AddPatternForm() {
 			setNotes("");
 			setRequirements([{ ... emptyReqs}]);
 			}catch (error){
-			setError("Error creating pattern");
+			setError("Error creating pattern requirements.");
 			}finally{
 			setSubmitting(false);
 			setLoading(false);

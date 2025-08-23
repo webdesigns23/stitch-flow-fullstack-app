@@ -54,6 +54,8 @@ export default function EditPatternForm({pattern, handlePatternUpdated}) {
 		}
 	}
 
+	if (editError) return <p>Error: {editError}</p>
+
 	return (
 		<form className="p_form" onSubmit={handleSubmit}>
 			<h2>Edit Pattern:</h2>
