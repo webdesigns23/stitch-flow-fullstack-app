@@ -6,15 +6,13 @@ import StatusFilter from './StatusFilter';
 export default function ProjectGallery() {
 	const [statusFilter, setStatusFilter] = useState("all");
 
+	//For css color status
 	const statusKey = (s) =>
 		(s || "").toLowerCase().trim().replace(/[_\s]+/g, "-");
 
 	const {
-		projects, 
-		loading, 
-		error, 
-		deleteProject,
-		updateProject,
+		projects, loading, error, 
+		deleteProject,updateProject,
 	} = useContext(ProjectContext)
 
 	if (loading) return <p>Loading...</p>
@@ -31,7 +29,6 @@ export default function ProjectGallery() {
 		
 		return projectStatus;
 	});
-	
 
   return (
 	<>

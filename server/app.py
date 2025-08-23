@@ -112,12 +112,12 @@ class ProjectDetails(Resource):
         if "pattern_id" in data:
             patternId = data.get("pattern_id")
             if patternId is None:
-                return {"error": "Project must have a pattern"}, 422
-            pattern = Pattern.query.get(patternId)
-
-            if not pattern:
-                return {"error": "Pattern not found"}, 404
-            project.pattern = pattern
+                project.pattern = None
+            else:
+                pattern = Pattern.query.get(patternId)
+                if not pattern:
+                    return {"error": "Pattern not found"}, 422
+                project.pattern = pattern
             
         try:
             db.session.commit()
