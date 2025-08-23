@@ -10,10 +10,26 @@ from schema import *
 
 #Project Routes
 class ProjectIndex(Resource):
+    #Pagination:
     def get(self):
-        projects = [ProjectSchema().dump(project) for project in Project.query.all()]
-        return projects, 200
-    
+        if "page" not in request.args:
+            items = Project.query.all()
+            return [ProjectSchema().dump(p) for p in items], 200
+        
+        page = request.args.get("page", 1, type=int)
+        per_page = request.args.get("per_page", 5, type=int)
+
+        pagination = db.paginate(Project.query, page=page, per_page=per_page, error_out=False)
+        projects = pagination.items
+
+        return {
+            "page": page,
+            "per_page": per_page,
+            "total": pagination.total,
+            "total_pages": pagination.pages,
+            "items": [ProjectSchema().dump(project) for project in projects]
+        }, 200
+        
     def post(self):
         data = request.get_json() or {}
 
@@ -124,9 +140,26 @@ class ProjectDetails(Resource):
 
 #Pattern Routes
 class PatternIndex(Resource):
+    #Pagination:
     def get(self):
-        patterns = [PatternSchema().dump(p) for p in Pattern.query.all()]
-        return patterns, 200
+        if "page" not in request.args:
+            items = Pattern.query.all()
+            return [PatternSchema().dump(p) for p in items], 200
+        
+        page = request.args.get("page", 1, type=int)
+        per_page = request.args.get("per_page", 5, type=int)
+
+        pagination = db.paginate(Pattern.query, page=page, per_page=per_page, error_out=False)
+        patterns = pagination.items
+
+        return {
+            "page": page,
+            "per_page": per_page,
+            "total": pagination.total,
+            "total_pages": pagination.pages,
+            "items": [PatternSchema().dump(pattern) for pattern in patterns]
+        }, 200
+
     
     def post(self):
         data = request.get_json() or {}
