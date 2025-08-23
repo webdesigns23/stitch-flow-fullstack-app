@@ -59,18 +59,25 @@ export default function EditPatternForm({pattern, handlePatternUpdated}) {
 	return (
 		<form className="p_form" onSubmit={handleSubmit}>
 			<h2>Edit Pattern:</h2>
+			<div className="form_row">
 				<label>Name:
 					<input type="text" value={name}
 					onChange={(e) => setName(e.target.value)} maxLength={35} />
 				</label>
+			</div>	
+			<div className="form_row">
 				<label>Brand:
 					<input type="text"  value={brand}
 					onChange={(e) => setBrand(e.target.value)} maxLength={35}/>
 				</label>
+			</div>
+			<div className="form_row">
 				<label>Pattern #:
 					<input type="text"  value={patternNumber}
 					onChange={(e) => setPatternNumber(e.target.value)} maxLength={35}/>
 				</label>
+			</div>
+			<div className="form_row">		
 				<label>Category:
 					<select value={category} 
 						onChange={(e) => setCategory(e.target.value)} >
@@ -83,12 +90,14 @@ export default function EditPatternForm({pattern, handlePatternUpdated}) {
 					<option value="other">Other</option>
 					</select>
 				</label>
+			</div>
+			<div className="form_row">
 				<label>Notes:
 					<input type="text" value={notes}
 					onChange={(e) => setNotes(e.target.value)} maxLength={100} />
 				</label>
-
-				<button type="submit">Save Changes</button>
+			</div>
+				<button className="button_row" type="submit">Save Changes</button>
 		</form>
 
 	)

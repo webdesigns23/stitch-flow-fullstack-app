@@ -48,7 +48,7 @@
 }
 
 /* Buttons */
-.p_form .btn_row {
+.p_form .button_row {
   display: flex;
   justify-content: flex-end;
   margin-top: 0.5rem;
