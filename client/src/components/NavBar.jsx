@@ -13,6 +13,7 @@ export default function NavBar() {
 			<NavLink to="/patterns">Patterns</NavLink>
 			<NavLink to="/projects">Projects</NavLink>
 			<NavLink to="/materials">Materials</NavLink>
+			<NavLink to="/completed">Completed</NavLink>
 		</ul>
     </nav>
   );

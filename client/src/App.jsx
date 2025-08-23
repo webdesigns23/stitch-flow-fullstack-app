@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import Home from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
 import ProjectPage from './pages/ProjectPage';
+import CompleteProjects from './pages/CompleteProjects';
 import PatternPage from './pages/PatternPage';
 import PatternInfoPage from './pages/PatternInfoPage';
 import MaterialsPage from './pages/MaterialsPage';
@@ -23,6 +24,7 @@ export default function App() {
               <Route path ="/patterns" element={<PatternPage />} />
               <Route path ="/patterns/:id" element={<PatternInfoPage />} />
               <Route path="/materials" element={<MaterialsPage />} />
+              <Route path="/completed" element={<CompleteProjects />} />
             </Routes>
           </div>
         </main>
