@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_migrate import Migrate
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
@@ -20,9 +20,25 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 
 app.json.compact = False
 
+
+ALLOWED_ORIGINS = {"http://localhost:5173", "http://127.0.0.1:5173"}
+
 # Connect React to Flask
-CORS(app, 
-	 origins=["http://localhost:5173", "http://127.0.0.1:5173"])
+CORS(app,
+	resources={r"/*": {"origins": list(ALLOWED_ORIGINS)}}, 
+	allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+	)
+
+# @app.after_request
+# def add_cors_headers(response):
+#     origin = request.headers.get("Origin")
+#     if origin in ALLOWED_ORIGINS:
+#         response.headers["Access-Control-Allow-Origin"] = origin
+#         response.headers["Vary"] = "Origin"  
+#         response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type"
+#         response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, DELETE, OPTIONS"
+#     return response
 
 metadata = MetaData(naming_convention={
 	"ix": "ix_%(table_name)s_%(column_0_name)s",
