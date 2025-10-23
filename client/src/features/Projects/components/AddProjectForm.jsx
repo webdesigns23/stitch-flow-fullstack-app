@@ -1,5 +1,5 @@
 import {useState, useContext} from "react";
-import { ProjectContext } from "../../context/ProjectContext";
+import { ProjectContext } from "../context/ProjectContext";
 import PatternSelect from "./PatternSelect";
 
 

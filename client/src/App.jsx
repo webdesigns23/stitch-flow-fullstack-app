@@ -1,14 +1,13 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import './App.css'
+import './styles/App.css'
 import NavBar from './components/NavBar';
 import Home from './pages/HomePage';
-import DashboardPage from './pages/DashboardPage';
-import ProjectPage from './pages/ProjectPage';
-import CompleteProjects from './pages/CompleteProjects';
-import PatternPage from './pages/PatternPage';
-import PatternInfoPage from './pages/PatternInfoPage';
+import DashboardPage from './features/Dashboard/pages/DashboardPage';
+import ProjectPage from './features/Projects/pages/ProjectPage';
+import CompleteProjects from './features/Projects/pages/CompleteProjects';
+import PatternPage from './features/Patterns/pages/PatternPage';
+import PatternInfoPage from './features/Patterns/pages/PatternInfoPage'
 import MaterialsPage from './pages/MaterialsPage';
-
 
 export default function App() {
   return (

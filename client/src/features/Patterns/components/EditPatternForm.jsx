@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { PatternContext } from "../../context/PatternContext";
+import { PatternContext } from "../context/PatternContext"
 
 export default function EditPatternForm({pattern, handlePatternUpdated}) {
 	const categories = [

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import ProjectGallery from "../components/ProjectsFeature/ProjectGallery"
-import AddProjectForm from "../components/ProjectsFeature/AddProjectForm"
+import AddProjectForm from "../components/AddProjectForm"
+import ProjectGallery from "../components/ProjectGallery"
 
 export default function ProjectPage() {
 	const [showProjForm, setShowProjForm] = useState(false);

@@ -1,7 +1,7 @@
-import { ProjectContext } from "../../context/ProjectContext"
-import { PatternContext } from "../../context/PatternContext"
+import { PatternContext } from "../../Patterns/context/PatternContext"
+import { ProjectContext } from "../../Projects/context/ProjectContext";
 import { useContext } from "react";
-import "../../styles/Stats.css"
+import "../../../styles/Stats.css"
 import StatusPieChart from "./StatusChart";
 
 const statuses = [

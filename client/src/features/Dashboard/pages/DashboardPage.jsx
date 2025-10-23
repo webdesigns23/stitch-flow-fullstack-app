@@ -1,6 +1,6 @@
 import React from "react";
-import StatsGallery from "../components/DashboardFeature/StatsGallery";
-import PatternReqs from "../components/DashboardFeature/PatternReqs";
+import StatsGallery from "../components/StatsGallery";
+import PatternReqs from "../components/PatternReqs";
 
 export default function DashboardPage() {
 	return (

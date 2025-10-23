@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { ProjectContext } from "../../context/ProjectContext";
+import { ProjectContext } from "../../Projects/context/ProjectContext";
 
 export default function PlanningRequirementsList() {
   const { projects } = useContext(ProjectContext);

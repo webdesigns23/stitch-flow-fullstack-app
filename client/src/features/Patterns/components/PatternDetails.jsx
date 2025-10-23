@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useNavigate} from "react-router-dom";
-import { PatternContext } from "../../context/PatternContext";
+import { PatternContext } from "../context/PatternContext";
 import ReqDetails from "./ReqDetails";
 import EditPatternForm from "./EditPatternForm";
 

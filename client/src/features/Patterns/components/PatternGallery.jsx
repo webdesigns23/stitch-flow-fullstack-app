@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import PatternCard from "./PatternCard"
-import { PatternContext } from '../../context/PatternContext';
+import { PatternContext } from '../context/PatternContext'
 
 export default function PatternGallery() {
 	const {

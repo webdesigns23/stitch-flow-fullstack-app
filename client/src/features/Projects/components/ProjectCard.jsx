@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react";
-import { PatternContext } from "../../context/PatternContext";
+import { PatternContext } from "../../Patterns/context/PatternContext"
 
 export default function ProjectCard({project, handleDelete, updateProject}) {
 	const { patterns, loading: patternLoading } = useContext(PatternContext);

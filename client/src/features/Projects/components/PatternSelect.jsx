@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { PatternContext } from "../../context/PatternContext";
+import { PatternContext } from "../../Patterns/context/PatternContext";
 
 export default function PatternSelect({value, onChange, required=true, disabled=false}) {
 	const { 

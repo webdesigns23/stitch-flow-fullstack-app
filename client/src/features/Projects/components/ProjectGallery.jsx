@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
-import ProjectCard from "./ProjectCard"
-import { ProjectContext } from '../../context/ProjectContext';
+import ProjectCard from './ProjectCard';
+import { ProjectContext } from '../context/ProjectContext';
 import StatusFilter from './StatusFilter';
 
 export default function ProjectGallery() {
