@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-
-from app import app
-from models import db, Project, Pattern, PatternRequirement, Material, ProjectMaterial
+from config import app, db
+from models import User, Project, Pattern, PatternRequirement, Material, ProjectMaterial
 
 with app.app_context():
 	db.drop_all()
@@ -13,11 +12,24 @@ with app.app_context():
 	Pattern.query.delete()
 	PatternRequirement.query.delete()
 	Material.query.delete()
+	User.query.delete()
+	db.session.commit()
+
+	# Create USERS: unique username, pw hashed before stored!
+	print('Creating Users...')
+	u1 = User(username = 'luna', display_name='looneyluna') 
+	u1.password_hash = 'kitten123'
+
+	u2 = User(username = 'pew', display_name='bertiebotts')
+	u2.password_hash = 'cat456'
+
+	db.session.add_all([u1,u2])
 	db.session.commit()
 
 	print("Seeding new data...")
 	#Create Pattern
 	pat1 = Pattern(
+		user_id = u1.id,
 		name="classic biker short", 
 		brand="charms", 
 		pattern_number="bkshcd123", 
@@ -25,6 +37,7 @@ with app.app_context():
 		notes = "paper patterns"
 	)
 	pat2 = Pattern(
+		user_id = u2.id,
 		name = "short sleeve tshirt dress",
 		brand = "tailornova",
 		pattern_number = "tn1001",
@@ -65,6 +78,7 @@ with app.app_context():
 		
 	#Create Material
 	mat1 = Material(
+		user_id = u1.id,
 		name = "fusible interfacing",
 		material_type = "pellon 809",
 		color = "white",
@@ -75,6 +89,7 @@ with app.app_context():
 		notes = "iron on",
 )
 	mat2 = Material(
+		user_id = u1.id,
 		name = "invisible zipper",
 		material_type = "notion",
 		color = "white",
@@ -85,6 +100,7 @@ with app.app_context():
 		notes = "12-14 inch",
 	)
 	mat3 = Material(
+		user_id = u1.id,
 		name = "mushroom print",
 		material_type = "jersey",
 		color = "multi",
@@ -95,6 +111,7 @@ with app.app_context():
 		notes = "discontinued fabric",
 	)
 	mat4 = Material(
+		user_id = u2.id,
 		name = "athleisure sportswear",
 		material_type = "lycra",
 		color = "black",
@@ -110,18 +127,21 @@ with app.app_context():
 
 	#Create Project
 	proj1 = Project(
+		user_id = u1.id,
 		title = "summer dress",
 		status = "cutting",
 		notes = "lightweight flowy fabric",
 		pattern_id = pat2.id
 	)
 	proj2 = Project(
+		user_id = u1.id,
 		title = "workout shorts",
 		status = "sewing",
 		notes = "add 2 inches to short length",
 		pattern_id = pat1.id
 	)
 	proj3 = Project(
+		user_id = u2.id,
 		title = "makeup bag",
 		status = "planning",
 		notes = "need to find fabric",
