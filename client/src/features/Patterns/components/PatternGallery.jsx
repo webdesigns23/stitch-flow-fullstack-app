@@ -15,7 +15,10 @@ export default function PatternGallery() {
   return (
 	<>
 	  {patterns.length === 0 ? (
-		<p>No patterns found!</p>
+		<div>
+			<h2>Looks like you don't have any Patterns Added!</h2> 
+			<p>Click the Add New Pattern button above to add your first Pattern</p>
+		</div>
 	  ): (
 		<div className="gallery">
 		  {patterns.map(pattern => (

@@ -13,7 +13,13 @@ export function PatternProvider({children}){
 	useEffect(() => {
 		const fetchData = async() => {
 		try{
-			const response = await fetch("http://127.0.0.1:5555/patterns")
+			const token = localStorage.getItem("token");
+			const response = await fetch("http://127.0.0.1:5555/patterns", {
+				headers: {
+					"Accept": "application/json",
+					...(token ? {Authorization: `Bearer ${token}`}: {}),
+				},
+			});
 			if (!response.ok) {
 			throw new Error(`HTTP error!: ${response.status}`);
 			}
@@ -29,15 +35,23 @@ export function PatternProvider({children}){
 	}, [setLoading, setError, setPatterns]) 
 
 	//Delete Pattern
-	async function deletePattern(id) {
+	async function deletePattern(pattern_id) {
+		setError(null);
+		setLoading(true);
+
 		try {
-			setLoading(true);
-			const response = await fetch(`http://127.0.0.1:5555/patterns/${id}`, {
-				method: "DELETE"});
+			const token = localStorage.getItem("token");
+			const response = await fetch(`http://127.0.0.1:5555/patterns/${pattern_id}`, {
+				method: "DELETE",
+			headers: {
+				"Accept": "application/json",
+				...(token ? {Authorization: `Bearer ${token}`}: {}),
+				},
+			});
 			if (!response.ok && response.status !==204) {
 				throw new Error(`${response.status}`);
 			}
-			setPatterns(prev => prev.filter(p => p.id !==id));
+			setPatterns(prev => prev.filter((p) => p.id !==pattern_id));
 			return true;
 		} catch (error) {
 			setError(`Failed to delete pattern: ${error}`)
@@ -48,12 +62,22 @@ export function PatternProvider({children}){
 	}
 
 	//Update Pattern
-	async function updatePattern(id, updates) {
+	async function updatePattern(pattern_id, updates) {
+		setError(null)
+		setLoading(true);
+
+		const token = localStorage.getItem("token");
+		const data = {...updates};
+
 		try{
-			const response = await fetch(`http://127.0.0.1:5555/patterns/${id}`, {
+			const response = await fetch(`http://127.0.0.1:5555/patterns/${pattern_id}`, {
 			method: "PATCH",
-			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify(updates),
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				...(token ? {Authorization: `Bearer ${token}`}: {}),
+			},
+			body: JSON.stringify(data),
 		});
 		const data = await response.json();
 		if (!response.ok) throw new Error(`${response.status}`);			
