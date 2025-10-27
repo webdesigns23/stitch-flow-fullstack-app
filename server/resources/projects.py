@@ -86,7 +86,10 @@ class ProjectDetails(Resource):
     @jwt_required()
     def get(self, project_id):
         user_id = int(get_jwt_identity())
-        project = Project.query.filter_by(user_id=user_id).get(project_id)
+        project = Project.query.filter_by(user_id=user_id, id=project_id).first()
+
+        # project = Project.query.filter_by(user_id=user_id).get(project_id)
+
         if not project:
             return {"error": "Project not found"}, 404
         return ProjectSchema().dump(project), 200
@@ -95,7 +98,10 @@ class ProjectDetails(Resource):
     def patch(self, project_id):
         user_id = int(get_jwt_identity())
         data = request.get_json() or {}
-        project = Project.query.filter_by(user_id=user_id, project_id = project_id).first()
+        
+        project = Project.query.filter_by(user_id=user_id, id=project_id).first()
+        
+        # project = Project.query.filter_by(user_id=user_id, project_id = project_id).first()
         if not project:
             return {"error": "No projects found, add a project"}, 404
         
@@ -148,4 +154,4 @@ class ProjectDetails(Resource):
 # API Endpoints
 def register_project_resources(api):
     api.add_resource(ProjectIndex, "/projects", endpoint="projects")
-    api.add_resource(ProjectDetails, "/projects/<int:id>")
+    api.add_resource(ProjectDetails, "/projects/<int:project_id>")

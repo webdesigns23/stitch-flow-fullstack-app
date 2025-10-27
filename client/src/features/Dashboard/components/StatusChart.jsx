@@ -3,10 +3,10 @@ import {PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer} from 'rechart
 export default function StatusChart({statusCounts={}, statuses={}}) {
 	const pieStatuses = [
 		"planning",
-  		"ready_to_sew",
+  		"ready to sew",
 		"cutting",
   		"sewing",
-  		"final_touches",
+  		"final touches",
   		"complete",
 	];
 	
@@ -23,6 +23,9 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 		{name: statuses[status] || status, value: Number(statusCounts[status] || 0)}
 	));
 
+	//if zero value hide label
+	const visibleLabel = data.filter((item) => item.value > 0);
+
 	return (
 		<div style={{width: "100%", height: 400}}>
 		<ResponsiveContainer width="100%" height="100%">
@@ -34,7 +37,10 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 					cx="50%"        
 					cy="50%"        
 					outerRadius={150} 
-					label={({name, value}) => `${name}; ${value}`} 
+					labelLine={false}
+					label={({name, value}) => 
+						value > 0 ? `${name}: ${value}`: ""
+						} 
           			>
 					{data.map((entry, index) => (
 						<Cell key={pieStatuses[index]} fill={COLORS[index % COLORS.length]} />

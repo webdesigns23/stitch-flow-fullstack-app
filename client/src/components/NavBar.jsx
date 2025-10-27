@@ -1,18 +1,28 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import "../styles/NavBar.css"
 import logo from "../assets/logo.png"
 
 export default function NavBar({user, setUser}) {
+	const navigate = useNavigate();
+	
 	function handleLogout() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {
-        setUser(null);
-      }
-    });
-    localStorage.removeItem("token");
-    setUser(null);
-  }
+		localStorage.removeItem("token");
+		localStorage.removeItem("user");
+		setUser(null);
+
+		window.location.replace("/");
+	}
+
+// 	function handleLogout() {
+//     fetch("/logout", { method: "DELETE" }).then((r) => {
+//       if (r.ok) {
+//         setUser(null);
+//       }
+//     });
+//     localStorage.removeItem("token");
+//     setUser(null);
+//   }
 
 
 	return (

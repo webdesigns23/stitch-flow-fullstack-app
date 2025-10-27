@@ -13,26 +13,35 @@ from schema import *
 #Pattern Routes
 class PatternIndex(Resource):
     @jwt_required()
-    #Pagination:
     def get(self):
         user_id = int(get_jwt_identity())
-        if "page" not in request.args:
-            items = Pattern.query.filter_by(user_id=user_id).all()
-            return [PatternSchema().dump(p) for p in items], 200
+        patterns = (
+            Pattern.query
+            .filter_by(user_id=user_id)
+            .all())
+        return [PatternSchema().dump(p) for p in patterns], 200
+    
+    # @jwt_required()
+    # #Pagination:
+    # def get(self):
+    #     user_id = int(get_jwt_identity())
+    #     if "page" not in request.args:
+    #         items = Pattern.query.filter_by(user_id=user_id).all()
+    #         return [PatternSchema().dump(p) for p in items], 200
         
-        page = request.args.get("page", 1, type=int)
-        per_page = request.args.get("per_page", 5, type=int)
+    #     page = request.args.get("page", 1, type=int)
+    #     per_page = request.args.get("per_page", 5, type=int)
 
-        pagination = db.paginate(Pattern.query, page=page, per_page=per_page, error_out=False)
-        patterns = pagination.items
+    #     pagination = db.paginate(Pattern.query, page=page, per_page=per_page, error_out=False)
+    #     patterns = pagination.items
 
-        return {
-            "page": page,
-            "per_page": per_page,
-            "total": pagination.total,
-            "total_pages": pagination.pages,
-            "items": [PatternSchema().dump(p) for p in patterns]
-        }, 200
+    #     return {
+    #         "page": page,
+    #         "per_page": per_page,
+    #         "total": pagination.total,
+    #         "total_pages": pagination.pages,
+    #         "items": [PatternSchema().dump(p) for p in patterns]
+    #     }, 200
 
     @jwt_required()
     def post(self):
@@ -88,7 +97,9 @@ class PatternDetails(Resource):
     @jwt_required()
     def get(self, pattern_id):
         user_id = int(get_jwt_identity())
-        pattern = Pattern.query.filter_by(id = pattern_id, user_id=user_id).first()
+
+        pattern = Pattern.query.filter_by(pattern_id = pattern_id, user_id=user_id).first()
+
         if not pattern:
             return {"error": "Pattern not found"}, 404
         return PatternSchema().dump(pattern), 200   
@@ -173,5 +184,5 @@ class PatternRequirementList(Resource):
 # API Endpoints
 def register_pattern_resources(api):
     api.add_resource(PatternIndex, "/patterns", endpoint="patterns")
-    api.add_resource(PatternDetails, "/patterns/<int:id>")
+    api.add_resource(PatternDetails, "/patterns/<int:pattern_id>")
     api.add_resource(PatternRequirementList, "/patterns/<int:pattern_id>/requirements")

@@ -11,6 +11,8 @@ import PatternInfoPage from './features/Patterns/pages/PatternInfoPage'
 import MaterialsPage from './pages/MaterialsPage';
 import LoginPage from './features/Auth/pages/LoginPage';
 import logo from './/assets/logo.png'
+import { PatternProvider } from "./features/Patterns/context/PatternContext";
+import { ProjectsProvider } from "./features/Projects/context/ProjectContext";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -34,7 +36,7 @@ export default function App() {
         if (response.ok) {
           const me = await response.json();
           setUser(me);
-        } else if (response.status === 401) {
+        } else {
           localStorage.removeItem("token");
           setUser(null);
         }
@@ -49,18 +51,21 @@ export default function App() {
 
   const onLogin = (token, user) => {
     localStorage.setItem("token", token);
-    setUser(user)
+    setUser(user);
+    setCheckAuth(false);
   }
   
   if (checkAuth) return <div>  
-    <img src={logo} width="60%" margin-top="200px" alt="stitch flow logo"/>
+    <h1>Checking Authorization...</h1>
     </div>
   if (!user) return <LoginPage onLogin={onLogin}/>;
 
   return (
     <>
       <BrowserRouter>
-      <NavBar user={user} setUser={setUser}/>
+      <PatternProvider>
+      <ProjectsProvider>
+        <NavBar user={user} setUser={setUser}/>
         <main className="main">
           <div className="container">
             <Routes>
@@ -73,7 +78,9 @@ export default function App() {
               <Route path="/completed" element={<CompleteProjects />} />
             </Routes>
           </div>
-        </main>
+        </main>          
+      </ProjectsProvider>
+      </PatternProvider>
       </BrowserRouter>
 
 

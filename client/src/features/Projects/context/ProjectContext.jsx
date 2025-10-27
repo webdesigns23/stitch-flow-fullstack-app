@@ -12,7 +12,13 @@ export function ProjectsProvider({children}){
 	useEffect(() => {
 		async function fetchData() {
 		try{
-			const response = await fetch("http://127.0.0.1:5555/projects")
+			const token = localStorage.getItem("token");
+			const response = await fetch("http://127.0.0.1:5555/projects", {
+				headers: {
+					"Accept": "application/json",
+					...(token ? {Authorization: `Bearer ${token}`}: {}),
+				},
+			})
 			if (!response.ok) {
 			throw new Error(`HTTP error!: ${response.status}`);
 			}
@@ -28,11 +34,17 @@ export function ProjectsProvider({children}){
 	}, [])
 
 	//Delete Project
-	async function deleteProject(id) {
+	async function deleteProject(project_id) {
 		try {
 			setLoading(true);
-			const response = await fetch(`http://127.0.0.1:5555/projects/${id}`, {
-				method: "DELETE"});
+			const token = localStorage.getItem("token");
+			const response = await fetch(`http://127.0.0.1:5555/projects/${project_id}`, {
+				method: "DELETE",
+				headers: {
+				"Accept": "application/json",
+				...(token ? {Authorization: `Bearer ${token}`}: {}),
+				},
+			});
 			if (!response.ok && response.status !==204) {
 				throw new Error(`${response.status}`);
 			}
@@ -45,11 +57,14 @@ export function ProjectsProvider({children}){
 	}
 
 	//Update Project Status
-	async function updateProject(id, updates) {
+	async function updateProject(project_id, updates) {
 		try{
-			const response = await fetch(`http://127.0.0.1:5555/projects/${id}`, {
+			const token = localStorage.getItem("token");
+			const response = await fetch(`http://127.0.0.1:5555/projects/${project_id}`, {
 			method: "PATCH",
-			headers: {"Content-Type": "application/json"},
+			headers: {"Content-Type": "application/json",
+			Accept: "application/json",
+				...(token ? {Authorization: `Bearer ${token}`}: {}),},
 			body: JSON.stringify(updates),
 		});
 		const data = await response.json();
@@ -57,7 +72,7 @@ export function ProjectsProvider({children}){
 		setProjects(prev => prev.map(p => (p.id === id ? data : p)));
 		} catch	(error) {
 		setError(`Failed to update project: ${error.message || error}`)
-		throw error; //if kanban messes up
+		throw error; 
 		} 
 	}
 
@@ -72,3 +87,4 @@ export function ProjectsProvider({children}){
     </ProjectContext.Provider>
   );
 }
+

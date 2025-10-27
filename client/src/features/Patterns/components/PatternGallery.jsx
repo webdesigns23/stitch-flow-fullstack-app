@@ -17,7 +17,7 @@ export default function PatternGallery() {
 	  {patterns.length === 0 ? (
 		<div>
 			<h2>Looks like you don't have any Patterns Added!</h2> 
-			<p>Click the Add New Pattern button above to add your first Pattern</p>
+			<p>Click the "Add New Pattern" button above to add your first Pattern</p>
 		</div>
 	  ): (
 		<div className="gallery">

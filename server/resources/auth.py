@@ -65,6 +65,7 @@ class WhoAmI(Resource):
         user = User.query.filter_by(id=user_id).first()
         return UserSchema().dump(user), 200
     
+    
 class Login(Resource):
     def post(self):
         data = request.get_json() or {}

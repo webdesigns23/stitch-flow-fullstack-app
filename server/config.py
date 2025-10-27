@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from flask import Flask, request
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
@@ -8,7 +9,6 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 import os
 from datetime import timedelta
-from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -20,7 +20,6 @@ app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 
 app.json.compact = False
-
 
 ALLOWED_ORIGINS = {"http://localhost:5173", "http://127.0.0.1:5173"}
 
@@ -41,6 +40,7 @@ def add_cors_headers(response):
         response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, DELETE, OPTIONS"
     return response
 
+#DB setup
 metadata = MetaData(naming_convention={
 	"ix": "ix_%(table_name)s_%(column_0_name)s",
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
@@ -48,8 +48,8 @@ metadata = MetaData(naming_convention={
 })
 db = SQLAlchemy(metadata=metadata)
 db.init_app(app)
-bcrypt = Bcrypt(app)
 
+bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
-jwt = JWTManager(app)
 api = Api(app)
+jwt = JWTManager(app)
