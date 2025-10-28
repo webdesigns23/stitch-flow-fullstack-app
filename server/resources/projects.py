@@ -38,13 +38,13 @@ class ProjectIndex(Resource):
         data = request.get_json() or {}
 
         #to link pattern to project
-        patternId = data.get("pattern_id")
-        if patternId is None:
+        pattern_id = data.get("pattern_id")
+        if pattern_id is None:
             return {"error": "Pattern Id required"}, 422
             
-        pattern = Pattern.query.get(patternId)
+        pattern = Pattern.query.filter_by(id=pattern_id, user_id=user_id).first()
         if not pattern:
-            return {"error": "Pattern not found"}, 404
+            return {"error": "Pattern not found or does not belong to you"}, 404
             
         try:
             title = (data.get("title") or "").strip()
@@ -63,9 +63,9 @@ class ProjectIndex(Resource):
 
             new_project = Project(
                 user_id = user_id,
-                title = data.get("title"),
-                status = data.get("status") or "planning",
-                notes = data.get("notes"),
+                title = title,
+                status = status,
+                notes = notes,
                 pattern = pattern           
             )
 

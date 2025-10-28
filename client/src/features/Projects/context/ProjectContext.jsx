@@ -48,7 +48,7 @@ export function ProjectsProvider({children}){
 			if (!response.ok && response.status !==204) {
 				throw new Error(`${response.status}`);
 			}
-			setProjects(prev => prev.filter(p => p.id !==id));
+			setProjects(prev => prev.filter(p => p.id !==project_id));
 		} catch (error) {
 			setError(`Failed to delete project: ${error.message || error}`)
 		} finally {
@@ -69,7 +69,7 @@ export function ProjectsProvider({children}){
 		});
 		const data = await response.json();
 		if (!response.ok) throw new Error(`${response.status}`);			
-		setProjects(prev => prev.map(p => (p.id === id ? data : p)));
+		setProjects(prev => prev.map(p => (p.id === project_id ? data : p)));
 		} catch	(error) {
 		setError(`Failed to update project: ${error.message || error}`)
 		throw error; 

@@ -62,28 +62,26 @@ export default function App() {
 
   return (
     <>
-      <BrowserRouter>
       <PatternProvider>
-      <ProjectsProvider>
-        <NavBar user={user} setUser={setUser}/>
-        <main className="main">
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<Home/>} />
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/projects" element={<ProjectPage />} />
-              <Route path ="/patterns" element={<PatternPage />} />
-              <Route path ="/patterns/:id" element={<PatternInfoPage />} />
-              <Route path="/materials" element={<MaterialsPage />} />
-              <Route path="/completed" element={<CompleteProjects />} />
-            </Routes>
-          </div>
-        </main>          
-      </ProjectsProvider>
+        <ProjectsProvider>
+          <BrowserRouter>  
+            <NavBar user={user} setUser={setUser}/>
+            <main className="main">
+              <div className="container">
+                <Routes>
+                  <Route path="/" element={<Home/>} />
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/projects" element={<ProjectPage />} />
+                  <Route path ="/patterns" element={<PatternPage />} />
+                  <Route path ="/patterns/:id" element={<PatternInfoPage />} />
+                  <Route path="/materials" element={<MaterialsPage />} />
+                  <Route path="/completed" element={<CompleteProjects />} />
+                </Routes>
+              </div>
+            </main>      
+          </BrowserRouter>      
+        </ProjectsProvider>
       </PatternProvider>
-      </BrowserRouter>
-
-
     </>
   )
 }
