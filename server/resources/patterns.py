@@ -98,7 +98,7 @@ class PatternDetails(Resource):
     def get(self, pattern_id):
         user_id = int(get_jwt_identity())
 
-        pattern = Pattern.query.filter_by(pattern_id = pattern_id, user_id=user_id).first()
+        pattern = Pattern.query.filter_by(id = pattern_id, user_id=user_id).first()
 
         if not pattern:
             return {"error": "Pattern not found"}, 404

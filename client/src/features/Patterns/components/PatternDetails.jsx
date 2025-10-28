@@ -26,7 +26,13 @@ export default function PatternDetails() {
 				setPatLoading(true);
 				setPatError(null);
 			try{
-				const response = await fetch(`http://127.0.0.1:5555/patterns/${id}`)
+				const token = localStorage.getItem("token");
+				const response = await fetch(`http://127.0.0.1:5555/patterns/${id}`,{
+				headers: {
+					"Accept": "application/json",
+					...(token ? { Authorization: `Bearer ${token}`} : {}),
+				},
+			})
 				if (!response.ok) {
 				throw new Error(`HTTP error!: ${response.status}`);
 				}

@@ -33,9 +33,13 @@ export default function AddProjectForm() {
 				pattern_id: patternId,
 			};
 
+			const token = localStorage.getItem("token");
 			const response = await fetch("http://127.0.0.1:5555/projects", {
 				method: "POST",
-				headers: {"Content-Type": "application/json"},
+				headers: {
+					"Content-Type": "application/json",
+					...(token ? {Authorization: `Bearer ${token}`} : {}),
+				},
 				body: JSON.stringify(newProject),
 			})
 			const data = await response.json()

@@ -43,6 +43,7 @@ export default function AddPatternForm() {
     		setError(null);
 
 			try{
+			const token = localStorage.getItem("token");
 				
 			const newReqs = requirements.map(r => {
 				const quantity_number = Number(r.quantity);
@@ -72,7 +73,9 @@ export default function AddPatternForm() {
 			};
 			const response = await fetch("http://127.0.0.1:5555/patterns", {
 				method: "POST",
-				headers: {"Content-Type": "application/json"},
+				headers: {"Content-Type": "application/json",
+				...(token ? {Authorization: `Bearer ${token}`} : {}),
+				},
 				body: JSON.stringify(newPattern),	
 			})
 
