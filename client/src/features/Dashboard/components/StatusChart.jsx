@@ -3,10 +3,10 @@ import {PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer} from 'rechart
 export default function StatusChart({statusCounts={}, statuses={}}) {
 	const pieStatuses = [
 		"planning",
-  		"ready to sew",
+  		"ready_to_sew",
 		"cutting",
   		"sewing",
-  		"final touches",
+  		"final_touches",
   		"complete",
 	];
 	

@@ -11,18 +11,8 @@ export default function NavBar({user, setUser}) {
 		localStorage.removeItem("user");
 		setUser(null);
 
-		window.location.replace("/");
+		navigate("/");
 	}
-
-// 	function handleLogout() {
-//     fetch("/logout", { method: "DELETE" }).then((r) => {
-//       if (r.ok) {
-//         setUser(null);
-//       }
-//     });
-//     localStorage.removeItem("token");
-//     setUser(null);
-//   }
 
 
 	return (
@@ -38,8 +28,9 @@ export default function NavBar({user, setUser}) {
 		<ul className="nav-links">
 			<NavLink to="/">Home</NavLink>
 			<NavLink to="/dashboard">Dashboard</NavLink>
-			<NavLink to="/patterns">Patterns</NavLink>
+			<NavLink to="/contacts">Contacts</NavLink>
 			<NavLink to="/projects">Projects</NavLink>
+			<NavLink to="/patterns">Patterns</NavLink>
 			<NavLink to="/materials">Materials</NavLink>
 			<NavLink to="/completed">Completed</NavLink>
 		</ul>
