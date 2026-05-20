@@ -10,6 +10,10 @@ body {
   margin-left: 150px;
 }
 
+img {
+  border-radius: 25px;
+}
+
 a {
   color: rgb(82, 88, 114);
 }

@@ -14,7 +14,6 @@ export default function NavBar({user, setUser}) {
 		navigate("/");
 	}
 
-
 	return (
     <nav className="navbar">
 		<button className="logout_btn" onClick={handleLogout}>
@@ -28,7 +27,6 @@ export default function NavBar({user, setUser}) {
 		<ul className="nav-links">
 			<NavLink to="/">Home</NavLink>
 			<NavLink to="/dashboard">Dashboard</NavLink>
-			<NavLink to="/contacts">Contacts</NavLink>
 			<NavLink to="/projects">Projects</NavLink>
 			<NavLink to="/patterns">Patterns</NavLink>
 			<NavLink to="/materials">Materials</NavLink>

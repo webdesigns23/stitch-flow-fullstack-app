@@ -1,4 +1,4 @@
-import PatternDetails from "../components/PatternDetails";
+import PatternDetails from "../components/patterns/PatternDetails";
 
 export default function PatternPage() {
 	return (

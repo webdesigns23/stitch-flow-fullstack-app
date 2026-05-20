@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ProjectContext } from '../context/ProjectContext';
-import ProjectCard from '../components/ProjectCard';
+import ProjectCard from '../components/projects/ProjectCard';
 
 export default function CompleteProjects() {
 	const statusKey = (s) =>

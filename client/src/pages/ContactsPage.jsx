@@ -1,4 +1,4 @@
-import MeasurementsForm from "../components/MeasurementsForm"
+import MeasurementsForm from "../components/measurements/MeasurementsForm"
 
 export default function ContactsPage() {
 	return(

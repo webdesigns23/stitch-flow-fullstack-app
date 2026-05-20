@@ -2,18 +2,17 @@ import { useState, useEffect } from "react";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import './styles/App.css'
 import NavBar from './components/NavBar';
-import Home from './features/Auth/pages/HomePage';
-import DashboardPage from './features/Dashboard/pages/DashboardPage';
-import ContactsPage from "./features/Contacts/pages/ContactsPage";
-import ProjectPage from './features/Projects/pages/ProjectPage';
-import CompleteProjects from './features/Projects/pages/CompleteProjects';
-import PatternPage from './features/Patterns/pages/PatternPage';
-import PatternInfoPage from './features/Patterns/pages/PatternInfoPage'
-import MaterialsPage from './features/Materials/pages/MaterialsPage'
-import LoginPage from './features/Auth/pages/LoginPage';
+import Home from './pages/HomePage'
+import DashboardPage from './pages/DashboardPage';
+import ProjectPage from './pages/ProjectPage';
+import CompleteProjects from './pages/CompleteProjects';
+import PatternPage from './pages/PatternPage';
+import PatternInfoPage from './pages/PatternInfoPage'
+import MaterialsPage from './pages/MaterialsPage'
+import LoginPage from './pages/LoginPage';
 import logo from './/assets/logo.png'
-import { PatternProvider } from "./features/Patterns/context/PatternContext";
-import { ProjectsProvider } from "./features/Projects/context/ProjectContext";
+import { PatternProvider } from "./context/PatternContext";
+import { ProjectsProvider } from "./context/ProjectContext";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -72,7 +71,6 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<Home/>} />
                   <Route path="/dashboard" element={<DashboardPage />} />
-                  <Route path="/contacts" element={<ContactsPage/>} />
                   <Route path="/projects" element={<ProjectPage />} />
                   <Route path ="/patterns" element={<PatternPage />} />
                   <Route path ="/patterns/:id" element={<PatternInfoPage />} />

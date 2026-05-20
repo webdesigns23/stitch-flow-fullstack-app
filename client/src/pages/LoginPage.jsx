@@ -1,7 +1,7 @@
 import { useState } from "react"
-import LoginForm from "../components/LoginForm";
-import SignUpForm from "../components/SignupForm";
-import logo from "../../../assets/logo.png"
+import LoginForm from "../components/authorization/LoginForm";
+import SignUpForm from "../components/authorization/SignupForm";
+import logo from "../assets/logo.png"
 
 export default function LoginPage({onLogin}) {
 	const [showSignup, setShowSignup] = useState(false);

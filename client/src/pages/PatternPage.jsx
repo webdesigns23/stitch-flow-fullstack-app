@@ -1,6 +1,6 @@
 import { useState } from "react";
-import PatternGallery from "../components/PatternGallery"
-import AddPatternForm from "../components/AddPatternForm";
+import PatternGallery from "../components/patterns/PatternGallery"
+import AddPatternForm from "../components/patterns/AddPatternForm";
 
 export default function PatternPage() {
 	const [showPatForm, setShowPatForm] = useState(false);

@@ -11,7 +11,6 @@ export function PatternProvider({children}){
 
   //Lists all Patterns
 	useEffect(() => {
-		console.log("fetching patterns")
 		async function fetchData() {
 		try{
 			const token = localStorage.getItem("token");
