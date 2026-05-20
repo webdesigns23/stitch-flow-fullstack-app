@@ -1,10 +1,12 @@
 import {useState, useContext} from "react";
 import { ProjectContext } from "../../context/ProjectContext";
+import { createPattern } from "../../api/patterns";
 import PatternSelect from "./PatternSelect";
+import { createProject } from "../../api/projects";
 
 
 export default function AddProjectForm() {
-	const { setProjects, setLoading, setError} = useContext(ProjectContext);
+	const { setProjects, setError} = useContext(ProjectContext);
 
 	const [title, setTitle] = useState("");
 	const [status, setStatus] = useState("planning");
@@ -23,7 +25,6 @@ export default function AddProjectForm() {
       		if (notes.trim().length > 100) throw new Error("Notes max length is 100");
       		if (!patternId) throw new Error("Please choose a pattern");
 
-			setLoading(true);
 			setSubmitting(true);
 		
 			const newProject = {
@@ -34,18 +35,11 @@ export default function AddProjectForm() {
 			};
 
 			const token = localStorage.getItem("token");
-			const response = await fetch("http://127.0.0.1:5555/projects", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					...(token ? {Authorization: `Bearer ${token}`} : {}),
-				},
-				body: JSON.stringify(newProject),
-			})
-			const data = await response.json()
+			const response = await createProject(newProject);
 			if (!response.ok) {
 					throw new Error(data?.error || `HTTP ${response.status}`);
 				}
+			const data = await response.json()	
 			setProjects(
 				prev => [data, ...(Array.isArray(prev) ? prev : [])]);
 			setTitle("");
@@ -56,7 +50,6 @@ export default function AddProjectForm() {
 			setError(error.message || "Error loading project data");
 			console.error(error)
 			}finally{
-			setLoading(false);
 			setSubmitting(false);
 			}
 		}

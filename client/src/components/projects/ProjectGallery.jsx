@@ -34,7 +34,7 @@ export default function ProjectGallery() {
 	<>
 		<StatusFilter statusFilter={statusFilter} onChange={setStatusFilter} />
 
-	  	{filteredProjects.length === 0 ? (
+	  	{filteredProjects.length === 0 && statusFilter == "all" ? (
 			<div>
 				<h2>Looks like you don't have any Projects Started!</h2> 
 				<p>Click the "Add New Project" button above to start a Project</p>
