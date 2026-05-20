@@ -3,7 +3,7 @@ from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
-from config import app, db, api, jwt
+from config import db
 from models import User
 from schema import UserSchema
 
@@ -86,11 +86,8 @@ class Login(Resource):
         if not user.authenticate(password):
             return {'error': ['Incorrect password']}, 401
 
-        if user and user.authenticate(password):
-            access_token = create_access_token(identity=str(user.id))
-            return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 200)
-        
-        return {'error': ['Unauthorized: invalid credentials']}, 401
+        access_token = create_access_token(identity=str(user.id))
+        return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 200)
     
 
 # API Endpoints

@@ -49,7 +49,7 @@ class Project(db.Model):
 	status = db.Column(db.String, default="planning", nullable=False)
 	notes = db.Column(db.String, nullable=True)
 	created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
-	updated_at = db.Column(db.DateTime, onupdate=func.now())
+	updated_at = db.Column(db.DateTime, onupdate=func.now(), server_default=func.now())
 	pattern_id = db.Column(db.Integer, db.ForeignKey('patterns.id'), nullable=True, index=True)
 
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
@@ -99,45 +99,45 @@ class PatternRequirement(db.Model):
 	def __repr__(self):
 		return f'<PatternRequirement {self.id}, {self.role}, {self.material_type}, {self.quantity}, {self.unit}, {self.size}>'
 
-class Material(db.Model):
-	__tablename__ = "materials"
+# class Material(db.Model):
+# 	__tablename__ = "materials"
 
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String, nullable=False)
-	material_type = db.Column(db.String, nullable=False)
-	color = db.Column(db.String, nullable=True)
-	quantity = db.Column(db.Numeric(precision=8, scale=2), nullable=False)
-	unit = db.Column(db.String, nullable=False)
-	price = db.Column(db.Numeric(precision=8, scale=2), nullable=True)
-	supplier = db.Column(db.String, nullable=True)
-	notes = db.Column(db.String, nullable=True)
+# 	id = db.Column(db.Integer, primary_key=True)
+# 	name = db.Column(db.String, nullable=False)
+# 	material_type = db.Column(db.String, nullable=False)
+# 	color = db.Column(db.String, nullable=True)
+# 	quantity = db.Column(db.Numeric(precision=8, scale=2), nullable=False)
+# 	unit = db.Column(db.String, nullable=False)
+# 	price = db.Column(db.Numeric(precision=8, scale=2), nullable=True)
+# 	supplier = db.Column(db.String, nullable=True)
+# 	notes = db.Column(db.String, nullable=True)
 
-	user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
+# 	user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
 
-	#relationship
-	project_materials = db.relationship("ProjectMaterial", back_populates="material")
-	user = db.relationship("User", back_populates="materials")
+# 	#relationship
+# 	project_materials = db.relationship("ProjectMaterial", back_populates="material")
+# 	user = db.relationship("User", back_populates="materials")
 
-	def __repr__(self):
-		return f'<Material {self.id}, {self.name}, {self.material_type}, {self.color}, {self.quantity}, {self.unit}, {self.price}, {self.supplier}, {self.notes}>'
+# 	def __repr__(self):
+# 		return f'<Material {self.id}, {self.name}, {self.material_type}, {self.color}, {self.quantity}, {self.unit}, {self.price}, {self.supplier}, {self.notes}>'
 
-class ProjectMaterial(db.Model):
-	__tablename__ = "project_materials"
+# class ProjectMaterial(db.Model):
+# 	__tablename__ = "project_materials"
 
-	id = db.Column(db.Integer, primary_key=True)
-	project_id = db.Column(db.Integer, db.ForeignKey("projects.id"), nullable=False, index=True)
-	material_id = db.Column(db.Integer, db.ForeignKey("materials.id"), nullable=True, index=True)
+# 	id = db.Column(db.Integer, primary_key=True)
+# 	project_id = db.Column(db.Integer, db.ForeignKey("projects.id", ondelete="CASCADE"), nullable=False, index=True)
+# 	material_id = db.Column(db.Integer, db.ForeignKey("materials.id", ondelete="SET NULL"), nullable=True, index=True)
 
-	name = db.Column(db.String)
-	role = db.Column(db.String)
-	material_type = db.Column(db.String)
-	quantity = db.Column(db.Numeric(precision=8, scale=2))
-	unit = db.Column(db.String)
-	notes = db.Column(db.String, nullable=True)
+# 	name = db.Column(db.String)
+# 	role = db.Column(db.String)
+# 	material_type = db.Column(db.String)
+# 	quantity = db.Column(db.Numeric(precision=8, scale=2))
+# 	unit = db.Column(db.String)
+# 	notes = db.Column(db.String, nullable=True)
 
-	#relationship
-	project = db.relationship("Project", back_populates="project_materials")
-	material = db.relationship("Material", back_populates="project_materials")
+# 	#relationship
+# 	project = db.relationship("Project", back_populates="project_materials")
+# 	material = db.relationship("Material", back_populates="project_materials")
 
-	def __repr__(self):
-		return f'<ProjectMaterial {self.id}, {self.name}, {self.role}, {self.material_type}, {self.quantity}, {self.unit}, {self.notes}>'
+# 	def __repr__(self):
+# 		return f'<ProjectMaterial {self.id}, {self.name}, {self.role}, {self.material_type}, {self.quantity}, {self.unit}, {self.notes}>'

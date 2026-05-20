@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from flask import request, session
+from flask import request
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
-from config import app, db, api
+from config import db
 from models import *
 from schema import *
 
@@ -88,8 +88,6 @@ class ProjectDetails(Resource):
         user_id = int(get_jwt_identity())
         project = Project.query.filter_by(user_id=user_id, id=project_id).first()
 
-        # project = Project.query.filter_by(user_id=user_id).get(project_id)
-
         if not project:
             return {"error": "Project not found"}, 404
         return ProjectSchema().dump(project), 200
@@ -100,25 +98,24 @@ class ProjectDetails(Resource):
         data = request.get_json() or {}
         
         project = Project.query.filter_by(user_id=user_id, id=project_id).first()
-        
-        # project = Project.query.filter_by(user_id=user_id, project_id = project_id).first()
+
         if not project:
             return {"error": "No projects found, add a project"}, 404
         
         if "title" in data:
-            title = (data.get("title")).strip()
+            title = data.get("title").strip()
             if len(title) > 35:
                 return {"error": "Title cannot be more than 35 characters"}, 422
             project.title = title
 
         if "notes" in data:
-            notes = (data.get("notes")).strip()
+            notes = data.get("notes").strip()
             if len(notes) > 100:
                 return {"error": "Notes cannot be more than 100 characters"}, 422
             project.notes = notes
         
         if "status" in data:
-            new_status = (data.get("status")).strip()
+            new_status = data.get("status").strip()
             if new_status not in allowed_project_status:
                 return {"error": "Invalid status, update to 'planning', 'ready_to_sew', 'cutting', 'sewing', 'final_touches', or 'complete'"}, 422
             project.status = new_status
@@ -128,7 +125,7 @@ class ProjectDetails(Resource):
             if patternId is None:
                 project.pattern = None
             else:
-                pattern = Pattern.query.get(patternId)
+                pattern = db.session.get(Pattern, patternId)
                 if not pattern:
                     return {"error": "Pattern not found"}, 422
                 project.pattern = pattern
@@ -147,10 +144,17 @@ class ProjectDetails(Resource):
 
         if not project:
             return {"error": "No projects found, add a project"}, 404
-        else:
+        try:
             db.session.delete(project)
             db.session.commit()
             return {}, 204
+        except IntegrityError:
+            db.session.rollback()
+            return {"error": ["Could not delete project"]}, 400
+        except Exception:
+            db.session.rollback()
+            return {"error": ["server error"]}, 500
+    
 # API Endpoints
 def register_project_resources(api):
     api.add_resource(ProjectIndex, "/projects", endpoint="projects")
