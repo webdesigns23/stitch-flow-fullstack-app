@@ -1,12 +1,13 @@
 import { useState, useContext } from "react";
 import { PatternContext } from "../../context/PatternContext";
+import { createPattern } from "../../api/patterns";
 import "../../styles/Forms.css"
 
 
 const emptyReqs = { role: "", material_type: "", quantity: "", unit: "", size: "" }
 
 export default function AddPatternForm() {
-	const { setPatterns, setLoading, setError} = useContext(PatternContext);
+	const { setPatterns, setError} = useContext(PatternContext);
 
 		//pattern
 		const [name, setName] = useState("");
@@ -38,13 +39,10 @@ export default function AddPatternForm() {
 	
 		async function handlePatternSubmit(e) {
 			e.preventDefault();
-			setLoading(true);
     		setSubmitting(true);
     		setError(null);
 
-			try{
-			const token = localStorage.getItem("token");
-				
+			try{				
 			const newReqs = requirements.map(r => {
 				const quantity_number = Number(r.quantity);
 				if (Number.isNaN(quantity_number)) {
@@ -71,18 +69,12 @@ export default function AddPatternForm() {
 				notes: notes.trim() || "",
 				pattern_requirements: newReqs,
 			};
-			const response = await fetch("http://127.0.0.1:5555/patterns", {
-				method: "POST",
-				headers: {"Content-Type": "application/json",
-				...(token ? {Authorization: `Bearer ${token}`} : {}),
-				},
-				body: JSON.stringify(newPattern),	
-			})
-
-			const data = await response.json()
+			const response = await createPattern(newPattern);
 			if (!response.ok) { 
 					throw new Error("failed to add pattern.");
 				}
+				
+			const data = await response.json()
 			setPatterns(
 				prev => [data, ...(Array.isArray(prev) ? prev : [])]);
 			setName("");
@@ -95,7 +87,6 @@ export default function AddPatternForm() {
 			setError("Error creating pattern requirements.");
 			}finally{
 			setSubmitting(false);
-			setLoading(false);
 			}
 		}
 
