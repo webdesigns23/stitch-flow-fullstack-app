@@ -13,6 +13,8 @@ import LoginPage from './pages/LoginPage';
 import logo from './/assets/logo.png'
 import { PatternProvider } from "./context/PatternContext";
 import { ProjectsProvider } from "./context/ProjectContext";
+import { me } from "./api/auth";
+
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -20,25 +22,18 @@ export default function App() {
 
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setCheckAuth(false);
-      return;
-    }
     (async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5555/me" ,{
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await me();
+        if (!response.ok) {
+          setCheckAuth(false);
+          return;
+        }
         if (response.ok) {
-          const me = await response.json();
-          setUser(me);
+          const data = await response.json();
+          setUser(data);
         } else {
           localStorage.removeItem("token");
-          setUser(null);
         }
       } catch (_) {
         setUser(null);

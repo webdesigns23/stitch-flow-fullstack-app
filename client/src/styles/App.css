@@ -30,7 +30,7 @@ a:hover {
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: stretch;
   margin: 30px;
 }

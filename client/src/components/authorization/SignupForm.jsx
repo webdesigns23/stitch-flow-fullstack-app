@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { signup } from "../../api/auth";
 
 export default function SignUpForm({onLogin}) {
 	const [username, setUsername] = useState("");
@@ -24,15 +25,7 @@ export default function SignUpForm({onLogin}) {
 
 		try {
 			setLoading(true);
-			const response = await fetch("http://127.0.0.1:5555/signup", {
-				method: "POST",
-				headers:{"Content-Type": "application/json"},
-				body:JSON.stringify({
-					username, 
-					password, 
-					password_confirmation: passwordConfirmation, display_name:displayName,
-				})
-			});
+			const response = await signup(username, password, passwordConfirmation, displayName);
 			const data = await response.json();
 
 			if (!response.ok) {

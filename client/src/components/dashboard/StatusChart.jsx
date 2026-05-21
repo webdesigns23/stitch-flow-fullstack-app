@@ -20,7 +20,7 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 	];
 
 	const data = pieStatuses.map((status) => (
-		{name: statuses[status] || status, value: Number(statusCounts[status] || 0)}
+		{name: status.replace(/_/g, " "), value: Number(statusCounts[status] || 0)}
 	));
 
 	//if zero value hide label
@@ -37,10 +37,7 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 					cx="50%"        
 					cy="50%"        
 					outerRadius={150} 
-					labelLine={false}
-					label={({name, value}) => 
-						value > 0 ? `${name}: ${value}`: ""
-						} 
+					label={false} 
           			>
 					{data.map((entry, index) => (
 						<Cell key={pieStatuses[index]} fill={COLORS[index % COLORS.length]} />

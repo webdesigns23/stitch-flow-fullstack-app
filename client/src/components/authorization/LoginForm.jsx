@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { login } from "../../api/auth";
 
 export default function LoginForm({onLogin}) {
 	const [username, setUsername] = useState("");
@@ -12,13 +13,7 @@ export default function LoginForm({onLogin}) {
 
 		try {
 			setLoading(true);
-			const response = await fetch("http://127.0.0.1:5555/login", {
-				method: "POST",
-				headers:{"Content-Type": "application/json"},
-				body:JSON.stringify({
-					username: username.trim(), 
-					password})
-			});
+			const response = await login(username, password);
 			const data = await response.json();
 			
 			if (!response.ok) {

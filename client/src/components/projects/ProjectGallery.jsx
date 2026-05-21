@@ -39,9 +39,13 @@ export default function ProjectGallery() {
 				<h2>Looks like you don't have any Projects Started!</h2> 
 				<p>Click the "Add New Project" button above to start a Project</p>
 			</div>
-	 	): (
-		<div className="gallery">
-			
+		) : filteredProjects.filter(project => project.status !== "complete").length === 0 && statusFilter !== "all" ? (
+			<div>
+				<h2>No projects in the {statusFilter.replace(/_/g, " ")} phase.</h2>
+			</div>
+		 	
+	 	) : (
+		<div className="gallery">			
 		  {filteredProjects
 		  .filter(project => project.status !== "complete")
 		  .map(project => (
