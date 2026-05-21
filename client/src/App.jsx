@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import './styles/App.css'
 import NavBar from './components/NavBar';
-import Home from './pages/HomePage'
 import DashboardPage from './pages/DashboardPage';
 import ProjectPage from './pages/ProjectPage';
 import CompleteProjects from './pages/CompleteProjects';
 import PatternPage from './pages/PatternPage';
 import PatternInfoPage from './pages/PatternInfoPage'
 import MaterialsPage from './pages/MaterialsPage'
-import LoginPage from './pages/LoginPage';
+import LandingPage from "./pages/LandingPage";
 import logo from './/assets/logo.png'
 import { PatternProvider } from "./context/PatternContext";
 import { ProjectsProvider } from "./context/ProjectContext";
@@ -53,7 +52,7 @@ export default function App() {
   if (checkAuth) return <div>  
     <h1>Checking Authorization...</h1>
     </div>
-  if (!user) return <LoginPage onLogin={onLogin}/>;
+  if (!user) return <LandingPage onLogin={onLogin}/>;
 
   return (
     <>
@@ -64,8 +63,7 @@ export default function App() {
             <main className="main">
               <div className="container">
                 <Routes>
-                  <Route path="/" element={<Home/>} />
-                  <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/" element={<DashboardPage />} />
                   <Route path="/projects" element={<ProjectPage />} />
                   <Route path ="/patterns" element={<PatternPage />} />
                   <Route path ="/patterns/:id" element={<PatternInfoPage />} />
