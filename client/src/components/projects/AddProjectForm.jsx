@@ -23,22 +23,21 @@ export default function AddProjectForm() {
 			if (!title.trim()) throw new Error("Title is required");
       		if (title.trim().length > 35) throw new Error("Title max length is 35");
       		if (notes.trim().length > 100) throw new Error("Notes max length is 100");
-      		if (!patternId) throw new Error("Please choose a pattern");
-
+      		
 			setSubmitting(true);
 		
 			const newProject = {
 				title: title.trim(),
 				status,
 				notes: notes.trim() || "",
-				pattern_id: patternId,
+				pattern_id: patternId ?? null,
 			};
 
-			const token = localStorage.getItem("token");
 			const response = await createProject(newProject);
 			if (!response.ok) {
 					throw new Error(data?.error || `HTTP ${response.status}`);
 				}
+
 			const data = await response.json()	
 			setProjects(
 				prev => [data, ...(Array.isArray(prev) ? prev : [])]);

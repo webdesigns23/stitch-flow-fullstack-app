@@ -55,7 +55,7 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 			<label>
           		<span>Change Pattern:</span>
           		<select value={patternId ?? ""} onChange={handlePatternChange}>
-					<option value= "">No Pattern Linked</option>
+					<option value= "none">No Pattern Linked</option>
             		{patterns.map(p => (
               			<option key={p.id} value={p.id}>
 							{p.name} ({p.brand})

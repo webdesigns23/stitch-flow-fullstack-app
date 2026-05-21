@@ -37,14 +37,13 @@ class ProjectIndex(Resource):
         user_id = int(get_jwt_identity())
         data = request.get_json() or {}
 
-        #to link pattern to project
+        #to link pattern to project, not required
         pattern_id = data.get("pattern_id")
-        if pattern_id is None:
-            return {"error": "Pattern Id required"}, 422
-            
-        pattern = Pattern.query.filter_by(id=pattern_id, user_id=user_id).first()
-        if not pattern:
-            return {"error": "Pattern not found or does not belong to you"}, 404
+        pattern = None
+        if pattern_id is not None:
+            pattern = Pattern.query.filter_by(id=pattern_id, user_id=user_id).first()
+            if not pattern:
+                return {"error": "Pattern not found or does not belong to you"}, 404
             
         try:
             title = (data.get("title") or "").strip()
