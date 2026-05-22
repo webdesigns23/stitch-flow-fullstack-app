@@ -3,7 +3,7 @@ from marshmallow import Schema, fields, validate
 
 #Status allowed string
 allowed_project_status = [
-	"planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"]
+	"planning", "cutting", "ready_to_sew",  "sewing", "final_touches", "complete"]
 
 #Category allowed string
 allowed_pattern_category = [

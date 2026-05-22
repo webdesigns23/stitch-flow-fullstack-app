@@ -23,17 +23,17 @@ export default function StatusFilter({statusFilter, onChange}) {
 				<input
 					type="radio"
 					name = "filter-status"
-					value = "ready_to_sew"
-					checked={statusFilter === "ready_to_sew"}
-					onChange={(e) => onChange(e.target.value)}/> Ready to Sew
+					value = "cutting"
+					checked={statusFilter === "cutting"}
+					onChange={(e) => onChange(e.target.value)}/> Cutting
 			</label>
 			<label style={{color: "rgb(45, 114, 160)"}}>
 				<input
 					type="radio"
 					name = "filter-status"
-					value = "cutting"
-					checked={statusFilter === "cutting"}
-					onChange={(e) => onChange(e.target.value)}/> Cutting
+					value = "ready_to_sew"
+					checked={statusFilter === "ready_to_sew"}
+					onChange={(e) => onChange(e.target.value)}/> Ready to Sew
 			</label>
 			<label style={{color: "rgb(110, 94, 141)"}}>
 				<input

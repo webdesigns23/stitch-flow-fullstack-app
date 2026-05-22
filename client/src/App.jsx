@@ -9,7 +9,6 @@ import PatternPage from './pages/PatternPage';
 import PatternInfoPage from './pages/PatternInfoPage'
 import MaterialsPage from './pages/MaterialsPage'
 import LandingPage from "./pages/LandingPage";
-import logo from './/assets/logo.png'
 import { PatternProvider } from "./context/PatternContext";
 import { ProjectsProvider } from "./context/ProjectContext";
 import { me } from "./api/auth";

@@ -22,8 +22,8 @@ export default function ProjectGallery() {
 	const filteredProjects = projects.filter((p) => {
 		const projectStatus = statusFilter === "all" ||
 		(statusFilter === "planning" && p.status === "planning") ||
-		(statusFilter === "ready_to_sew" && p.status === "ready_to_sew") ||
 		(statusFilter === "cutting" && p.status === "cutting") ||
+		(statusFilter === "ready_to_sew" && p.status === "ready_to_sew") ||
 		(statusFilter === "sewing" && p.status === "sewing") ||
 		(statusFilter === "final_touches" && p.status === "final_touches");
 		

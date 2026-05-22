@@ -21,14 +21,19 @@
   padding: 0;
 }
 
+.nav-user {
+  color: rgb(168, 157, 157);
+}
+
 .nav-links a {
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: #d8a7a7;
+  color: #ecb6b6;
   padding: 10px 12px;
   border-radius: 10px;
+  text-shadow: 2px 2px 4px rgba(48, 43, 43, 0.5);
 }
 
 .nav-links a:hover {

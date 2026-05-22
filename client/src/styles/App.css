@@ -77,12 +77,14 @@ div.table {
 .gallery-item[data-status="planning"] {
   border-left-color: rgb(199, 140, 150);
 }
-/* ready to sew */
-.gallery-item[data-status="ready-to-sew"] {
+
+/* cutting */
+.gallery-item[data-status="cutting"] {
   border-left-color: rgb(47, 116, 78);
 }
 
-.gallery-item[data-status="cutting"] {
+/* ready to sew */
+.gallery-item[data-status="ready-to-sew"] {
   border-left-color: rgb(45, 114, 160);
 }
 

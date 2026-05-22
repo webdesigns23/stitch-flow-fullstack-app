@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import "../styles/NavBar.css"
-import logo from "../assets/logo.png"
+import logo from "../assets/sf_logo.png"
 
 export default function NavBar({user, setUser}) {
 	const navigate = useNavigate();

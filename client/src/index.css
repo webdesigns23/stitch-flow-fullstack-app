@@ -42,15 +42,23 @@ h2 {
   font-size: 1.5em;
 }
 
+p {
+  color: rgb(51, 47, 47);
+  font-size: 1em;
+}
+
+span {
+  color: black;
+}
+
 button {
-  border: 1px solid transparent;
+  border: 2px solid rgb(83, 79, 79);
   margin: 15px;
   padding: .25em 2.5em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
-  transition: border-color 0.25s;
+  background-color: #dadcdd;
 }
 button:hover {
   border-color: #cfb831;

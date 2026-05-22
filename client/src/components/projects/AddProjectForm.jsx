@@ -77,8 +77,8 @@ export default function AddProjectForm() {
 							onChange={(e) => setStatus(e.target.value)}>
 						<option value="">Select Status</option>
 						<option value="planning">Planning</option>
-						<option value="ready_to_sew">Ready to Sew</option>
 						<option value="cutting">Cutting</option>
+						<option value="ready_to_sew">Ready to Sew</option>
 						<option value="sewing">Sewing</option>
 						<option value="final_touches">Final Touches</option>
 						<option value="complete">Complete</option>

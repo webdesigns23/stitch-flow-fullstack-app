@@ -9,7 +9,7 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 	const patternId = p?.id ?? project?.pattern_id;
 
 	const statuses = [
-		"planning", "ready_to_sew", "cutting", "sewing", "final_touches", "complete"];
+		"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"];
 
 	async function handleStatusChange(e) {
 		const newStatus = e.target.value;

@@ -116,7 +116,7 @@ class ProjectDetails(Resource):
         if "status" in data:
             new_status = data.get("status").strip()
             if new_status not in allowed_project_status:
-                return {"error": "Invalid status, update to 'planning', 'ready_to_sew', 'cutting', 'sewing', 'final_touches', or 'complete'"}, 422
+                return {"error": "Invalid status, update to 'planning',  'cutting', 'ready_to_sew', 'sewing', 'final_touches', or 'complete'"}, 422
             project.status = new_status
 
         if "pattern_id" in data:
