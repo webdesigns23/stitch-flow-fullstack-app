@@ -1,0 +1,98 @@
+/* Dynamic Project Status Color Border */
+.gallery-item[data-status] {border-left: 10px solid transparent;}
+.gallery-item[data-status="planning"] {border-left-color: rgb(199, 140, 150);}
+.gallery-item[data-status="cutting"] {border-left-color: rgb(47, 116, 78);}
+.gallery-item[data-status="ready_to_sew"] {border-left-color: rgb(45, 114, 160);}
+.gallery-item[data-status="sewing"] {border-left-color: rgb(110, 94, 141);}
+.gallery-item[data-status="final_touches"] {border-left-color: rgb(161, 155, 58);}
+.gallery-item[data-status="complete"] {border-left-color:rgb(63, 61, 61);}
+
+.proj-card-body {
+  padding: 1.5rem 1.5rem 1rem;
+  text-align: left;
+}
+
+.proj-card-field {
+  margin-bottom: 1rem;
+}
+
+.proj-card-title {
+  text-align: center;
+  color: rgb(63, 63, 77);
+  text-shadow: 2px 2px 4px rgba(189, 186, 186, 0.5);
+}
+
+.proj-card-label {
+  display: block;
+	font-size: 16px;
+	color: #5e5b5c;
+  text-transform: uppercase;
+	}
+
+.proj-card-select {
+  width: 95%;
+	font-family: 'Lato', sans-serif;
+	font-size: 13px;
+	padding: 6px 10px;
+	border: 0.5px solid #d3d1c7;
+	background: #f7f5f2;
+	color: #2c2c2a;
+	cursor: pointer;
+  border-radius: 6px;
+}
+.proj-card-meta {
+	color: #888085;
+}
+
+.proj-card-chang-pat {
+  padding: 0 1.5rem 1rem;
+}
+
+.proj-card-footer {
+  display: flex;
+	padding: 0.75rem;
+	border-top: 0.5px solid #e8e0dc;
+}
+
+.proj-card-btn,
+.proj-card-btn-remove {
+  flex: auto;
+	font-size: 12px;
+  font-family: 'Lato', sans-serif;
+	text-transform: uppercase;
+	padding: 8px;
+	cursor: pointer;  
+  background: #f7f5f2;
+  color: rgb(88, 84, 84);
+}
+
+.proj-card-btn-remove:hover {
+  border: 2px solid rgb(204, 102, 102);
+}
+
+.proj-card-divider {
+  border: none;
+  border-top: 0.5px solid #e8e0dc;
+  margin: 20px auto;
+  width: 85%;
+}
+
+.proj-card-patt-link {
+	font-size: 16px;
+	color: rgb(202, 115, 129);
+  text-decoration: none;
+}
+
+.proj-card-patt-link:hover {
+	text-decoration: underline;
+  color: #3b517c;
+}
+
+.proj-card-patt-none {
+	font-size: 13px;
+	color: #888780;
+}
+
+.proj-card-notes {
+  color: #3b517c;
+}

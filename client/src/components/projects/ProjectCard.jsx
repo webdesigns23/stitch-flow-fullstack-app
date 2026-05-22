@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PatternContext } from "../../context/PatternContext"
+import "../../styles/ProjectCard.css"
 
 export default function ProjectCard({project, handleDelete, updateProject}) {
+	const [ showChangePat, setShowChangePat ] = useState(false);
 	const { patterns, loading: patternLoading } = useContext(PatternContext);
 
 	const p = project?.pattern;
@@ -23,51 +25,79 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 
 	return(
 		<div className="project-card">
-			<h2>{project.title}</h2>
 
-			{/* status dropdown */}
-			 <label className="status-control">
-          		<span>Status:</span>
-          		<select value={project?.status} onChange={handleStatusChange}>
-            		{statuses.map(s => (
-              			<option key={s} value={s}>
-                			{s.replace(/_/g, " ")}
-              			</option>
-            		))}
-          		</select>
-        	</label>
-			
-			<p>Notes: {project.notes || "-"}</p>
+			<div className="proj-card-body">
+				<h2 className="proj-card-title">{project.title}</h2>
 
-			{/* linked pattern */}
-			<p>Pattern:{" "}
-				{patternId ?(
-				<Link to={`/patterns/${patternId}`} >
-				{`${p?.name} (${p?.brand})`}
-				</Link>
-				):(
-					"No pattern linked to project"
+				{/* status dropdown */}
+				<div className="proj-card-field">
+					<span className="proj-card-label">Status</span>
+					<select className="proj-card-select" value={project?.status} onChange={handleStatusChange}>
+						{statuses.map(s => (
+							<option key={s} value={s}>
+								{s.replace(/_/g, " ")}
+							</option>
+						))}
+					</select>
+				</div>
+
+				{/* linked pattern */}
+				<div className="proj-card-field">
+					<span className="proj-card-label">Pattern</span>
+					{patternId ?(
+					<Link className="proj-card-patt-link" 
+						to={`/patterns/${patternId}`}>
+						{`${p?.name} (${p?.brand})`}
+					</Link>
+					):(
+						<span className="proj-card-patt-none">"No pattern linked to project"</span>
+					)}
+				</div>		
+
+				<hr className="proj-card-divider" />
+
+				{/* project notes */}
+				<div className="proj-card-field">
+					<span className="proj-card-label">Notes</span>
+					<p className="proj-card-notes">{project.notes || "-"}</p>
+				</div>
+				
+
+				{/* date created/updated */}
+				<p className="proj-card-meta">Created: {project.created_at}</p>
+				{project.updated_at && <p className="proj-card-meta">Updated: {project.updated_at}</p>}
+			</div>
+
+			{/* change pattern panel */}
+			{showChangePat && !patternLoading && (
+				<div className="proj-card-chang-pat">
+					<span>Change Pattern:</span>
+					<select className="proj-card-select" value={patternId ?? ""} onChange={handlePatternChange}>
+						<option value= "none">No Pattern Linked</option>
+						{patterns.map(p => (
+							<option key={p.id} value={p.id}>
+								{p.name} ({p.brand})
+							</option>
+						))}
+					</select>
+				</div>	
 				)}
-			</p>
+				
+			<div className="proj-card-footer">
+				{/* change pattern */}
+				<button className="proj-card-btn" 
+					onClick={() => setShowChangePat(prevState => !prevState)}>
+					{showChangePat ? "Cancel" : "Change Pattern"}
+				</button>
 
-			{/* change pattern */}
-			{!patternLoading && (
-			<label>
-          		<span>Change Pattern:</span>
-          		<select value={patternId ?? ""} onChange={handlePatternChange}>
-					<option value= "none">No Pattern Linked</option>
-            		{patterns.map(p => (
-              			<option key={p.id} value={p.id}>
-							{p.name} ({p.brand})
-              			</option>
-            		))}
-          		</select>
-        	</label>	
-			)}
-			
-			<p>Created: {project.created_at}</p>
-			{project.updated_at && <p>Updated: {project.updated_at}</p>}
-			<button className="delete_button" onClick={handleDelete}>Remove</button>
+				
+				{/*Buttons for delete and update pattern*/}
+				<button className="proj-card-btn-remove" onClick={handleDelete}>
+					Remove Pattern
+				</button>
+			</div>
+
 		</div>
 	)
 }
+

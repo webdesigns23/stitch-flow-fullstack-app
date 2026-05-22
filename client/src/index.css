@@ -59,6 +59,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #dadcdd;
+  border-radius: 6px;
 }
 button:hover {
   border-color: #cfb831;

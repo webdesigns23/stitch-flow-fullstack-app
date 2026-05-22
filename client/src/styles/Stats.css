@@ -12,7 +12,8 @@
   padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   text-align: center;
-  border-top: 50px solid rgb(211, 202, 202)
+  border-top: 50px solid rgb(211, 202, 202);
+  border-radius: 6px;
 }
 
 /* Headings */

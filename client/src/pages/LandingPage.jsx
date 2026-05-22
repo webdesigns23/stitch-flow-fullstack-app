@@ -34,6 +34,8 @@ export default function LandingPage({onLogin}) {
 			<div className="landing-auth">
 				<img className="logo" src={logo} alt="Stitch Flow Logo" />
 				<h2>Lets Create Something Together ...</h2>
+
+				{/* Toggle signup/login form */}
 				{showSignup ? (
 				<SignUpForm onLogin={onLogin} />
 				) : (
