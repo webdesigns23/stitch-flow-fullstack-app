@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import LoginForm from "../components/authorization/LoginForm";
 import SignUpForm from "../components/authorization/SignupForm";
 import logo from "../assets/logo1.png"
@@ -7,6 +7,11 @@ import "../styles/Landing.css"
 export default function LandingPage({onLogin}) {
 	const [showSignup, setShowSignup] = useState(false);
 
+	useEffect(() => {
+		document.body.classList.add("landing-bg");
+		return () => document.body.classList.remove("landing-bg");
+	}, []);
+
 	return (
 		<div className="landing-page">
 			{/* Welcome/About Section */}
@@ -14,7 +19,7 @@ export default function LandingPage({onLogin}) {
 				<h1>Welcome to Stitch Flow</h1>
 				
 				<h2>
-					Stay inspired and organized with all your sewing projects in one easy space.
+					Stay inspired and organized with all your sewing projects in one easy space
 				</h2>
 				<p>
 					A sewing project management tracker that helps casual sewists, quilters, and cosplayers turn creative ideas into finished projects. Plan your projects, track your progress, and keep all your pattern specs, materials, and project notes in one place. Whether you're starting something new or revisiting a favorite creation, StitchFlow keeps your sewing projects moving smoothly from the first stitch to the final seam so you can spend less time organizing and more time sewing.

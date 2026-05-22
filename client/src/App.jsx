@@ -63,7 +63,7 @@ export default function App() {
             <main className="main">
               <div className="container">
                 <Routes>
-                  <Route path="/" element={<DashboardPage />} />
+                  <Route path="/" element={<DashboardPage user={user} />} />
                   <Route path="/projects" element={<ProjectPage />} />
                   <Route path ="/patterns" element={<PatternPage />} />
                   <Route path ="/patterns/:id" element={<PatternInfoPage />} />

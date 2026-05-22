@@ -16,13 +16,11 @@ export default function NavBar({user, setUser}) {
 
 	return (
     <nav className="navbar">
-		<button className="logout_btn" onClick={handleLogout}>
-			Logout
-		</button>	
-
-		<img src={logo} width="100%" alt="stitch flow logo"/>
-
-		<h2>welcome {user?.username}</h2>
+		
+		<img className="nav-logo" src={logo} width="100%" alt="stitch flow logo"/>
+		<p className="nav-user">
+			Welcome, {user?.username?.charAt(0).toUpperCase() + user?.username?.slice(1)}
+		</p>
 
 		<ul className="nav-links">
 			<NavLink to="/">Dashboard</NavLink>
@@ -31,6 +29,10 @@ export default function NavBar({user, setUser}) {
 			<NavLink to="/materials">Materials</NavLink>
 			<NavLink to="/completed">Completed</NavLink>
 		</ul>
+		<button className="logout_btn" onClick={handleLogout}>
+			Logout
+		</button>	
+
     </nav>
   );
 }

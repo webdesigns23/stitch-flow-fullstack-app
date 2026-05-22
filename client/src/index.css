@@ -2,11 +2,9 @@
   font-family: serif, sans-serif;
   line-height: 1.5;
   font-weight: 300;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -40,7 +38,7 @@ h1 {
 }
 
 h2 {
-  color: rgb(48, 45, 46);
+  color: rgb(86, 104, 126);
   font-size: 1.5em;
 }
 
