@@ -18,6 +18,8 @@ body.landing-bg {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .landing-welcome h2 {
@@ -44,6 +46,8 @@ body.landing-bg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .landing-auth h2 {
@@ -95,6 +99,7 @@ body.landing-bg {
   color: #202022;
   font-size: 0.9rem;
   outline: none;
+  border-radius: 6px;
 }
 
 .button-landing button {

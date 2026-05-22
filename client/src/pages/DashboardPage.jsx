@@ -7,6 +7,7 @@ export default function DashboardPage({user}) {
 	<> 
 	  <h1>{user?.username?.charAt(0).toUpperCase() + user?.username?.slice(1)}'s Dashboard</h1>
 	  <StatsGallery />
+	  <hr style={{margin:'40px'}}></hr>
 	  <PatternReqs />
 	</>
   );

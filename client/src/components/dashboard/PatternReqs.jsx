@@ -11,7 +11,7 @@ export default function PlanningRequirementsList() {
 
   return (
     <div>
-      <h2>Planning Projects - Materials Needed</h2>
+      <h2 className="planning-dash-title">Materials Needed For Planned Projects</h2>
 
       {planningProjects.length === 0 && <p>No projects in planning.</p>}
 
@@ -21,7 +21,7 @@ export default function PlanningRequirementsList() {
 
         return (
           <div key={project.id} className="req-card">
-            <h2>{project.title}</h2>
+            <h3>{project.title}</h3>
 			<div className="table" >
             {reqs.length > 0 ? (
               <table className="req_table">

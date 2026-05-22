@@ -39,7 +39,13 @@ h1 {
 
 h2 {
   color: rgb(86, 104, 126);
-  font-size: 1.5em;
+  font-size: 23px;
+}
+
+h3 {
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: rgb(197, 100, 100);
 }
 
 p {

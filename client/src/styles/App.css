@@ -18,6 +18,13 @@ a:hover {
   color: rgb(214, 110, 110);
 }
 
+/* Filter Labels for Status */
+.filter-label {
+  font-size: 18px;
+  font-weight: bold;
+  
+}
+
 /* Gallery Layout for Pattern and Project Gallery */
 .pattern_gallery{
   margin: 25px;
@@ -60,7 +67,7 @@ div.table {
 .req_table thead th {
   text-align: center;
   padding: 0.6rem 0.75rem;
-  color: rgb(190, 90, 90);
+  color: rgb(120, 128, 148);
   border-bottom: rgb(93, 111, 121) double ;
 }
 
@@ -70,3 +77,12 @@ div.table {
   color: #504242;
 }
 
+/* Dashboard */
+.planning-dash-title {
+  font-weight: 100;
+  font-size: 2.2em;
+  line-height: 1.1;
+  color: rgb(85, 105, 136);
+  margin: 10px;
+  text-shadow: 2px 2px 4px rgba(63, 61, 61, 0.5);
+}

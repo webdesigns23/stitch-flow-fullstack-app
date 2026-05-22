@@ -2,9 +2,9 @@
 .gallery-item[data-status] {border-left: 10px solid transparent;}
 .gallery-item[data-status="planning"] {border-left-color: rgb(199, 140, 150);}
 .gallery-item[data-status="cutting"] {border-left-color: rgb(47, 116, 78);}
-.gallery-item[data-status="ready_to_sew"] {border-left-color: rgb(45, 114, 160);}
+.gallery-item[data-status="ready-to-sew"] {border-left-color: rgb(45, 114, 160);}
 .gallery-item[data-status="sewing"] {border-left-color: rgb(110, 94, 141);}
-.gallery-item[data-status="final_touches"] {border-left-color: rgb(161, 155, 58);}
+.gallery-item[data-status="final-touches"] {border-left-color: rgb(161, 155, 58);}
 .gallery-item[data-status="complete"] {border-left-color:rgb(63, 61, 61);}
 
 .proj-card-body {
@@ -17,6 +17,7 @@
 }
 
 .proj-card-title {
+  font-size: 18px;
   text-align: center;
   color: rgb(63, 63, 77);
   text-shadow: 2px 2px 4px rgba(189, 186, 186, 0.5);
@@ -27,6 +28,7 @@
 	font-size: 16px;
 	color: #5e5b5c;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
 	}
 
 .proj-card-select {

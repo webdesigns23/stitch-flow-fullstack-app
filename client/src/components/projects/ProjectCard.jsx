@@ -27,7 +27,7 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 		<div className="project-card">
 
 			<div className="proj-card-body">
-				<h2 className="proj-card-title">{project.title}</h2>
+				<h2 className="proj-card-title">{project.title.toUpperCase()}</h2>
 
 				{/* status dropdown */}
 				<div className="proj-card-field">
