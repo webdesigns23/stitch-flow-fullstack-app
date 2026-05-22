@@ -106,7 +106,7 @@ export default function SignUpForm({onLogin}) {
 			</div>
 			{error && <p className="error"> {error}</p>}
 
-			<div className="button">
+			<div className="button-landing">
 				<button type="submit" disabled={loading}>
 					{loading ? "Signing Up..." : "Sign Up"}
 				</button>

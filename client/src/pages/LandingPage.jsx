@@ -24,26 +24,30 @@ export default function LandingPage({onLogin}) {
 				<p>
 					A sewing project management tracker that helps casual sewists, quilters, and cosplayers turn creative ideas into finished projects. Plan your projects, track your progress, and keep all your pattern specs, materials, and project notes in one place. Whether you're starting something new or revisiting a favorite creation, StitchFlow keeps your sewing projects moving smoothly from the first stitch to the final seam so you can spend less time organizing and more time sewing.
 				</p>
-				<img src="src/assets/Planning.png" width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
+				<div className="fade-in-image">
+					<img src="src/assets/Planning.png" width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
+				</div>
 			</div>
 
 
 			{/* Auth Section */}
 			<div className="landing-auth">
 				<img className="logo" src={logo} alt="Stitch Flow Logo" />
-				<h1>Lets Create Something Together ...</h1>
+				<h2>Lets Create Something Together ...</h2>
 				{showSignup ? (
 				<SignUpForm onLogin={onLogin} />
 				) : (
 				<LoginForm onLogin={onLogin} />
 				)}
 		
-				<p>
+				<h3>
 				{showSignup ? "Already have an account?" : "Don't have an account?"}
-				</p>
-				<button onClick={() => setShowSignup(prevState => !prevState)}>
-					{showSignup ? "Back to Login" : "Sign Up Now!"}
-				</button>
+				</h3>
+				<div className="button-landing">
+					<button onClick={() => setShowSignup(prevState => !prevState)}>
+						{showSignup ? "Back to Login" : "Sign Up Now!"}
+					</button>
+				</div>
 			</div>
 		</div>
 	)

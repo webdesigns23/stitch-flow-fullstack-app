@@ -10,44 +10,51 @@ body.landing-bg {
 	min-height: 90vh;
 }
 
+/* Welcome/About Section (left) */
 .landing-welcome {
   flex: 1;
   padding: 6rem;
-  background: rgba(189, 187, 187, 0.75);
+  background: rgba(218, 216, 216, 0.85);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .landing-welcome h2 {
-	font-size: 20px;
-	color: rgb(107, 50, 50);
+	font-size: 28px;
+	color: rgb(163, 70, 70);
+  text-shadow: 2px 2px 4px rgba(224, 192, 192, 0.5);
 }
 
 .landing-welcome p {
-	font-size: 18px;
+	font-size: 1.25em;
 	color: rgb(0, 0, 0);
 	padding-top: 20px;
 	border-top: 3px solid rgb(168, 141, 65);
 }
 
+/* Signup/Login Section (right) */
 .landing-auth {
   width: 35%;
   flex-shrink: 0;
-  background: rgba(58, 54, 54, 0.75);
+  background: rgba(58, 54, 54, 0.85);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   color: #c5c4c4;
   padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 0.8rem;
 }
 
-.landing-auth h1 {
-	color: rgb(202, 197, 197);
-	font-size: 30px;
+.landing-auth h2 {
+	color: rgb(221, 219, 216);
+	font-size: 28px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.landing-auth h3 {
+  color: #d4b038;
+	font-size: 20px;
 }
 
 .logo {
@@ -70,8 +77,54 @@ body.landing-bg {
   width: 100%;
 }
 
+.form_field label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1rem;
+  color: #d4b038;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
+.form_field input {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 0.7rem;
+  color: #202022;
+  font-size: 0.9rem;
+  outline: none;
+}
 
+.button-landing button {
+  width: 300px;
+  background: rgb(201, 190, 190);
+  border: 2px solid rgba(212, 178, 92, 0.5);
+  color: #1f303d;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.button-landing button:hover {
+  background: rgba(212, 178, 92, 0.12);
+}
+
+.button-landing button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fade-in-image {
+  animation: fadeIn 8s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 
 /* Responsive */
 @media (max-width: 768px) {
