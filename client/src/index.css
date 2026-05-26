@@ -26,6 +26,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  align-items: flex-start;
 }
 
 h1 {
@@ -40,6 +41,7 @@ h1 {
 h2 {
   color: rgb(86, 104, 126);
   font-size: 23px;
+  text-align: center;
 }
 
 h3 {

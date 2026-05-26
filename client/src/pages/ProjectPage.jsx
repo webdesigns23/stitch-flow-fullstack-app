@@ -7,8 +7,8 @@ export default function ProjectPage() {
 	const [showProjForm, setShowProjForm] = useState(false);
 
   return (
-	<>
-		<h1>Sewing Project Manager</h1>
+	<div className="project-container">
+		<h1>Sewing Project's</h1>
 		<Link to="/completed">View All Completed Projects</Link>
 		<br></br>
 
@@ -18,6 +18,6 @@ export default function ProjectPage() {
 
 		{showProjForm && <AddProjectForm />}
 		<ProjectGallery />
-	</>
+	</div>
   )
 }

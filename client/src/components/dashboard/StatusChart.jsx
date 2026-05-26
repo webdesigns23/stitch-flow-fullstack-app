@@ -12,8 +12,8 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 	
 	const COLORS = [
 		"rgb(199, 140, 150)",
-		"rgb(47, 116, 78)",
 		"rgb(45, 114, 160)",
+		"rgb(47, 116, 78)",
 		"rgb(110, 94, 141)", 
 		"rgb(161, 155, 58)", 
 		"rgb(63, 61, 61)"

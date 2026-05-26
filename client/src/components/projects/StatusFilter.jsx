@@ -19,7 +19,7 @@ export default function StatusFilter({statusFilter, onChange}) {
 					checked={statusFilter === "planning"}
 					onChange={(e) => onChange(e.target.value)}/> Planning
 			</label>
-			<label className="filter-label" style={{color: "rgb(47, 116, 78)"}}>
+			<label className="filter-label" style={{color: "rgb(45, 114, 160)"}}>
 				<input
 					type="radio"
 					name = "filter-status"
@@ -27,7 +27,7 @@ export default function StatusFilter({statusFilter, onChange}) {
 					checked={statusFilter === "cutting"}
 					onChange={(e) => onChange(e.target.value)}/> Cutting
 			</label>
-			<label className="filter-label" style={{color: "rgb(45, 114, 160)"}}>
+			<label className="filter-label" style={{color: "rgb(47, 116, 78)"}}>
 				<input
 					type="radio"
 					name = "filter-status"

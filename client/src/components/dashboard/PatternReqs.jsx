@@ -11,7 +11,7 @@ export default function PlanningRequirementsList() {
 
   return (
     <div>
-      <h2 className="planning-dash-title">Materials Needed For Planned Projects</h2>
+      <h2 className="planning-dash-title">Planned Projects Materials List</h2>
 
       {planningProjects.length === 0 && <p>No projects in planning.</p>}
 

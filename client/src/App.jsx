@@ -50,6 +50,7 @@ export default function App() {
   
   if (checkAuth) return <div>  
     <h1>Checking Authorization...</h1>
+    <img src="src/assets/Planning.png" width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
     </div>
   if (!user) return <LandingPage onLogin={onLogin}/>;
 

@@ -2,6 +2,7 @@ import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import "../styles/NavBar.css"
 import logo from "../assets/sf_logo.png"
+import { capitalizeWords } from "../utils/formatText";
 
 export default function NavBar({user, setUser}) {
 	const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function NavBar({user, setUser}) {
 		
 		<img className="nav-logo" src={logo} width="100%" alt="stitch flow logo"/>
 		<p className="nav-user">
-			Welcome, {user?.username?.charAt(0).toUpperCase() + user?.username?.slice(1)}
+			Welcome, {capitalizeWords(user?.username)}
 		</p>
 
 		<ul className="nav-links">

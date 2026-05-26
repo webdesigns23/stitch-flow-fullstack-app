@@ -20,20 +20,20 @@ export default function LandingPage({onLogin}) {
 				
 				<h2>
 					Stay inspired and organized with all your sewing projects in one easy space
-				</h2>
+				</h2><div className="fade-in-image">
+					<img src="src/assets/Planning.png" width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
+				</div>
 				<p>
 					A sewing project management tracker that helps casual sewists, quilters, and cosplayers turn creative ideas into finished projects. Plan your projects, track your progress, and keep all your pattern specs, materials, and project notes in one place. Whether you're starting something new or revisiting a favorite creation, StitchFlow keeps your sewing projects moving smoothly from the first stitch to the final seam so you can spend less time organizing and more time sewing.
 				</p>
-				<div className="fade-in-image">
-					<img src="src/assets/Planning.png" width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
-				</div>
+				
 			</div>
 
 
 			{/* Auth Section */}
 			<div className="landing-auth">
 				<img className="logo" src={logo} alt="Stitch Flow Logo" />
-				<h2>Lets Create Something Together ...</h2>
+				<h2>Your Creative Workspace...</h2>
 
 				{/* Toggle signup/login form */}
 				{showSignup ? (

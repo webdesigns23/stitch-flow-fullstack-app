@@ -41,7 +41,7 @@ export default function ProjectGallery() {
 			</div>
 		) : filteredProjects.filter(project => project.status !== "complete").length === 0 && statusFilter !== "all" ? (
 			<div>
-				<h2>No projects in the {statusFilter.replace(/_/g, " ")} phase.</h2>
+				<h2>No projects in the "{statusFilter.replace(/_/g, " ")}" phase.</h2>
 			</div>
 		 	
 	 	) : (

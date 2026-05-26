@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useContext, useState } from "react";
 import { PatternContext } from "../../context/PatternContext"
 import "../../styles/ProjectCard.css"
+import { capitalizeWords } from "../../utils/formatText";
 
 export default function ProjectCard({project, handleDelete, updateProject}) {
 	const [ showChangePat, setShowChangePat ] = useState(false);
@@ -27,7 +28,7 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 		<div className="project-card">
 
 			<div className="proj-card-body">
-				<h2 className="proj-card-title">{project.title.toUpperCase()}</h2>
+				<h2 className="proj-card-title">{capitalizeWords(project.title)}</h2>
 
 				{/* status dropdown */}
 				<div className="proj-card-field">
