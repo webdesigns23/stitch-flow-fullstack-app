@@ -10,22 +10,40 @@ allowed_pattern_category = [
 	"clothing", "accessories", "quilting", "home_decor", "costumes", "other"
 ]
 
+allowed_image_types = [
+	"design", "measurements", "fabric", "inspiration", "in_progress", "finished"
+]
+
 #Schemas
 class UserSchema(Schema):
-	id = fields.Integer(dump_only=True)
+	id = fields.Integer(dump_only=True)	
 	display_name = fields.String(required=True)
-	username = fields.String(required=True)
-	
+	email = fields.Email(required=True)
+
 	#relationship
 	projects = fields.Nested(lambda: ProjectSchema(exclude=("user",)), many=True, dump_only=True)
 	patterns = fields.Nested(lambda: PatternSchema(exclude=("user",)), many=True, dump_only=True)
 	
 
+class ProjectImageSchema(Schema):
+	id = fields.Integer(dump_only=True)
+	cloudinary_public_id = fields.String(dump_only=True)
+	secure_url = fields.String(dump_only=True)
+	image_type = fields.String(required=True, validate=validate.OneOf(allowed_image_types))
+	notes = fields.String(required=False, validate=validate.Length(max=250))
+	created_at = fields.DateTime(dump_only=True, format ="%m/%d/%Y")
+
+	#nested relationship
+	project = fields.Nested(lambda: ProjectSchema(exclude=("project_images",)), dump_only=True)
+
+
 class ProjectSchema(Schema):
 	id = fields.Integer(dump_only=True)
 	title = fields.String(required=True, validate=validate.Length(max=35))
 	status = fields.String(validate=validate.OneOf(allowed_project_status), load_default="planning")
-	notes = fields.String(required=False, validate=validate.Length(max=100))
+	deadline = fields.Date(required=False, format="%m/%d/%Y")
+	measurement_notes = fields.String(required=False, validate=validate.Length(max=100))
+	notes = fields.String(required=False, validate=validate.Length(max=250))
 	created_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
 	updated_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
 	pattern_id = fields.Integer(load_only=True)
@@ -34,7 +52,9 @@ class ProjectSchema(Schema):
 	#nested relationship
 	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), dump_only=True)
 	user = fields.Nested(lambda: UserSchema(exclude=("projects", "patterns")), dump_only=True)
+	project_images = fields.Nested(lambda:ProjectImageSchema(exclude=("project")), many=True, dump_only=True)
 	
+
 
 class PatternRequirementSchema(Schema):
 	id = fields.Integer(dump_only=True)
@@ -55,7 +75,7 @@ class PatternSchema(Schema):
 	user_id = fields.Integer(required=True)
 
 	#nested relationship
-	projects = fields.Nested(lambda: ProjectSchema(exclude=("pattern","project_materials")), many=True)
+	projects = fields.Nested(lambda: ProjectSchema(exclude=("pattern",)), many=True)
 	pattern_requirements = fields.List(fields.Nested(PatternRequirementSchema()), dump_only=True)
 	user = fields.Nested(lambda: UserSchema(exclude=("patterns", "projects")), dump_only=True)
 	

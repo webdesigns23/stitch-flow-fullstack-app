@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from config import app, db
-from models import User, Project, Pattern, PatternRequirement
+from models import User, Project, ProjectImage, Pattern, PatternRequirement
 
 with app.app_context():
 	db.drop_all()
@@ -8,6 +8,7 @@ with app.app_context():
 
 	print("Clearing old data...")
 	Project.query.delete()
+	ProjectImage.query.delete()
 	Pattern.query.delete()
 	PatternRequirement.query.delete()
 	User.query.delete()
@@ -15,16 +16,16 @@ with app.app_context():
 
 	# Create USERS: unique username, pw hashed before stored!
 	print('Creating Users...')
-	u1 = User(username = 'luna', display_name='looneyluna') 
+	u1 = User(email = 'luna@email.com', display_name='Luna Lovegood') 
 	u1.password_hash = 'kitten123'
 
-	u2 = User(username = 'guest', display_name='jane doe')
+	u2 = User(email = 'guest@email.com', display_name='Jane Doe')
 	u2.password_hash = 'pw123'
 
 	db.session.add_all([u1,u2])
 	db.session.commit()
 
-	print("Seeding new data...")
+	print("Seeding patterns...")
 	#Create Pattern
 	pat1 = Pattern(
 		user_id = u1.id,
@@ -47,10 +48,11 @@ with app.app_context():
 	db.session.flush()
 
 	#Create PatternRequirment
+	print("Seeding pattern requirements...")
 	pat_req1= PatternRequirement(
 		role = "base fabric",
 		material_type = "spandex",
-		quantity = .5,
+		quantity = 0.5,
 		unit = "yds",
 		size = "medium",
 		pattern_id = pat1.id
@@ -76,10 +78,13 @@ with app.app_context():
 		
 
 	#Create Project
+	print("Seeding projects...")
 	proj1 = Project(
 		user_id = u1.id,
 		title = "summer dress",
 		status = "cutting",
+		deadline=None,
+		measurement_notes="bust: 36 inches, waist: 28 inches, hips 38 inches",
 		notes = "lightweight flowy fabric",
 		pattern_id = pat2.id
 	)
@@ -88,6 +93,8 @@ with app.app_context():
 		title = "workout shorts",
 		status = "sewing",
 		notes = "add 2 inches to short length",
+		deadline=None,
+		measurement_notes=None,
 		pattern_id = pat1.id
 	)
 	proj3 = Project(
@@ -95,6 +102,8 @@ with app.app_context():
 		title = "makeup bag",
 		status = "planning",
 		notes = "need to find fabric",
+		deadline=None,
+		measurement_notes=None,
 		pattern_id = None
 	)
 

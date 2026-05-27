@@ -5,22 +5,25 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from config import db, bcrypt
 
+allowed_image_types = [
+	"design", "measurements", "fabric", "inspiration", "in_progress", "finished"
+]
+
 #Models
 class User(db.Model):
 	__tablename__ = 'users'
 
 	id = db.Column(db.Integer, primary_key=True)
 	display_name = db.Column(db.String, nullable=False)
-	username = db.Column(db.String, unique=True, nullable=False)
+	email = db.Column(db.String, unique=True, nullable=False)
 	_password_hash = db.Column(db.String, nullable=False)
 
 	#relationship
 	projects = db.relationship("Project", back_populates = "user", cascade="all, delete-orphan")
 	patterns = db.relationship("Pattern", back_populates = "user", cascade="all, delete-orphan")
-	materials = db.relationship("Material", back_populates = "user", cascade= "all, delete-orphan")
-	
-	@validates('username')
-	def normalize_username(self, key, value):
+		
+	@validates('email')
+	def normalize_email(self, key, value):
 		return value.strip().lower()
 
 	@hybrid_property
@@ -38,7 +41,7 @@ class User(db.Model):
 			self._password_hash, password.encode('utf-8'))
 
 	def __repr__(self):
-		return f'<User: {self.display_name}, {self.username}>'
+		return f'<User: {self.display_name}, {self.email}>'
 	
 
 class Project(db.Model):
@@ -47,20 +50,48 @@ class Project(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String, nullable=False)
 	status = db.Column(db.String, default="planning", nullable=False)
-	notes = db.Column(db.String, nullable=True)
+	notes = db.Column(db.Text, nullable=True)
+	deadline = db.Column(db.Date, nullable=True)
+	measurement_notes = db.Column(db.String, nullable=True)
 	created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
 	updated_at = db.Column(db.DateTime, onupdate=func.now(), server_default=func.now())
 	pattern_id = db.Column(db.Integer, db.ForeignKey('patterns.id'), nullable=True, index=True)
-
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
 	
 	#relationship
 	pattern = db.relationship("Pattern", back_populates="projects")
-	project_materials = db.relationship("ProjectMaterial", back_populates="project", cascade="all, delete-orphan")
+	project_images = db.relationship("ProjectImage", back_populates="project", cascade="all, delete-orphan")
 	user = db.relationship("User", back_populates="projects")
 
 	def __repr__(self):
-		return f'<Project {self.id}, {self.title}, {self.status}, {self.notes}>'
+		return f'<Project {self.id}, {self.title}, {self.status}>'
+	
+
+class ProjectImage(db.Model):
+	__tablename__ = "project_images"
+
+	id = db.Column(db.Integer, primary_key=True)
+	cloudinary_public_id = db.Column(db.String, nullable=True)
+	secure_url = db.Column(db.String, nullable=False)
+	image_type = db.Column(db.String, nullable=False)
+	notes = db.Column(db.String, nullable=True)
+	created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
+	project_id = db.Column(db.Integer, db.ForeignKey("projects.id", ondelete="CASCADE"), nullable=False, index=True)
+
+	#nested relationship
+	project = db.relationship("Project", back_populates="project_images") 
+
+	@validates('image_type')
+	def validate_image_type(self, key, value):
+		if value not in allowed_image_types:
+			raise ValueError(f"image_type must be one of: {allowed_image_types}")
+		return value
+						 
+	def __repr__(self):
+		return f'<ProjectImage {self.id}, {self.secure_url}, {self.image_type}>'
+						 
+    
+						 
 
 class Pattern(db.Model):
 	__tablename__ = "patterns"
@@ -81,6 +112,7 @@ class Pattern(db.Model):
 	
 	def __repr__(self):
 		return f'<Pattern {self.id}, {self.name}, {self.brand}, {self.pattern_number}, {self.category}, {self.notes}>'
+	
 
 class PatternRequirement(db.Model):
 	__tablename__ = "pattern_requirements"
