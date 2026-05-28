@@ -89,9 +89,7 @@ class ProjectImage(db.Model):
 						 
 	def __repr__(self):
 		return f'<ProjectImage {self.id}, {self.secure_url}, {self.image_type}>'
-						 
-    
-						 
+				 			 
 
 class Pattern(db.Model):
 	__tablename__ = "patterns"
