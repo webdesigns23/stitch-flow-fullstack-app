@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-
 from flask import request
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import get_jwt_identity, jwt_required
+from cloudinary_helper import upload_image, delete_image
 
 from config import db
 from models import *

@@ -4,7 +4,15 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from config import db, bcrypt
+#Status allowed string
+allowed_project_status = [
+	"planning", "cutting", "ready_to_sew",  "sewing", "final_touches", "complete"]
 
+#Category allowed string
+allowed_pattern_category = [
+	"clothing", "accessories", "quilting", "home_decor", "costumes", "other"
+]
+#Project image types
 allowed_image_types = [
 	"design", "measurements", "fabric", "inspiration", "in_progress", "finished"
 ]

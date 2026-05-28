@@ -2,6 +2,7 @@ from flask import request, jsonify, make_response
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+import re
 
 from config import db
 from models import User
@@ -11,18 +12,19 @@ from schema import UserSchema
 class Signup(Resource):
     def post(self):
         data = request.get_json(silent=True) or {}
-        username = (data.get("username") or "").strip().lower()
+        email = (data.get("email") or "").strip()
         password = data.get("password") or ""
         password_confirmation = data.get("password_confirmation") or ""
         display_name = (data.get("display_name") or "").strip()
 
         errors = {}
+        email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
         # Basic validation
-        if not username:
-            errors["username"] = "Username is required."
-        elif len(username) < 3:
-            errors["username"] = "Username must be at least 3 characters."
+        if not email:
+            errors["email"] = "Email is required."
+        elif not re.fullmatch(email_regex, email):
+            errors["email"] = "Must be a valid email address"
 
         if not password:
             errors["password"] = "Password is required."
@@ -39,10 +41,10 @@ class Signup(Resource):
             return make_response(jsonify(errors=errors), 400)
 
         # check duplicates
-        if User.query.filter_by(username=username).first():
-            return make_response(jsonify(errors={"username": "Username is already taken."}), 409)
+        if User.query.filter_by(email=email).first():
+            return make_response(jsonify(errors={"email": "Email already has an account."}), 409)
 
-        user = User(username=username, display_name=display_name)
+        user = User(email=email, display_name=display_name)
         user.password_hash = password
 
         try:
@@ -50,7 +52,7 @@ class Signup(Resource):
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
-            return make_response(jsonify(errors={"username": "Username is already taken."}), 409)
+            return make_response(jsonify(errors={"email": "Email already has an account."}), 409)
 
         access_token = create_access_token(identity=str(user.id))
         return make_response(
@@ -63,25 +65,27 @@ class WhoAmI(Resource):
     def get(self):
         user_id = int(get_jwt_identity())
         user = User.query.filter_by(id=user_id).first()
+        if not user: 
+            return {'error': ['User not found']}, 404
         return UserSchema().dump(user), 200
     
     
 class Login(Resource):
     def post(self):
         data = request.get_json() or {}
-        username = (data.get('username') or "").strip()
+        email = (data.get('email') or "").strip()
         password = data.get('password')
 
-        if not username:
-            return {'error': ['Username required to enter portal']}, 400
+        if not email:
+            return {'error': ['Email required to Login']}, 400
         
         if not password: 
-            return {'error': ['Password required to enter portal']}, 400
+            return {'error': ['Password required to Login']}, 400
 
-        user = User.query.filter_by(username=username).first()
+        user = User.query.filter_by(email=email).first()
         
         if not user:
-            return {'error': ['Username not found']}, 401
+            return {'error': ['User not found']}, 401
         
         if not user.authenticate(password):
             return {'error': ['Incorrect password']}, 401

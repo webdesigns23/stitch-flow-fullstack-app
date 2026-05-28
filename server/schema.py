@@ -10,6 +10,7 @@ allowed_pattern_category = [
 	"clothing", "accessories", "quilting", "home_decor", "costumes", "other"
 ]
 
+#Project image types
 allowed_image_types = [
 	"design", "measurements", "fabric", "inspiration", "in_progress", "finished"
 ]
