@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from config import app, db, api, jwt, migrate
+from config import app, api
 
 
 #Register Resources
