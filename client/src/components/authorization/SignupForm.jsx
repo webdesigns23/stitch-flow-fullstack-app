@@ -3,20 +3,20 @@ import { signup } from "../../api/auth";
 import "../../styles/Landing.css"
 
 export default function SignUpForm({onLogin}) {
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
   	const [password, setPassword] = useState("");
   	const [passwordConfirmation, setPasswordConfirmation] = useState("");
 	const [displayName, setDisplayName] = useState("");
 
 	const [error, setError] = useState(null);
-	const [usernameError, setUsernameError] = useState(null);
+	const [emailError, setEmailError] = useState(null);
 	const [passwordError, setPasswordError] = useState(null);
 	const [loading, setLoading] = useState(false);
 
 	async function handleSignup(e) {
 		e.preventDefault();
 		setError(null);
-		setUsernameError(null);
+		setEmailError(null);
 		setPasswordError(null);
 
 		if (password !== passwordConfirmation) {
@@ -26,12 +26,12 @@ export default function SignUpForm({onLogin}) {
 
 		try {
 			setLoading(true);
-			const response = await signup(username, password, passwordConfirmation, displayName);
+			const response = await signup(email, password, passwordConfirmation, displayName);
 			const data = await response.json();
 
 			if (!response.ok) {
 				if (data?.errors) {
-					setUsernameError(data.errors.username || null);
+					setEmailError(data.errors.email || null);
 					setPasswordError(
 						data.errors.password || data.errors.password_confirmation || null
 					);
@@ -61,17 +61,16 @@ export default function SignUpForm({onLogin}) {
 	return(
 		<form className="signup_form" onSubmit={handleSignup}>
 			<div className="form_field">
-				<label> Username:
+				<label> Email:
 					<input 
-					type="text" 
-					placeholder="username" 
-					value={username}
-					onChange={(e) =>setUsername(e.target.value)} 
+					type="email" 
+					placeholder="email" 
+					value={email}
+					onChange={(e) =>setEmail(e.target.value)} 
 					required
-					maxLength={35}
 					/>
 				</label>
-				{usernameError && <p className="error">{usernameError}</p>}
+				{emailError && <p className="error">{emailError}</p>}
 				<label> Password:
 					<input 
 					type="password" 

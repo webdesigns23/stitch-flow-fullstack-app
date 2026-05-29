@@ -53,7 +53,7 @@ class ProjectSchema(Schema):
 	#nested relationship
 	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), dump_only=True)
 	user = fields.Nested(lambda: UserSchema(exclude=("projects", "patterns")), dump_only=True)
-	project_images = fields.Nested(lambda:ProjectImageSchema(exclude=("project")), many=True, dump_only=True)
+	project_images = fields.Nested(lambda:ProjectImageSchema(exclude=("project",)), many=True, dump_only=True)
 	
 
 

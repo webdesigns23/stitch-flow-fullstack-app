@@ -20,7 +20,7 @@ export default function NavBar({user, setUser}) {
 		
 		<img className="nav-logo" src={logo} width="100%" alt="stitch flow logo"/>
 		<p className="nav-user">
-			Welcome, {capitalizeWords(user?.username)}
+			Welcome, {capitalizeWords(user?.display_name)}
 		</p>
 
 		<ul className="nav-links">

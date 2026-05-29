@@ -3,7 +3,7 @@ import { login } from "../../api/auth";
 import "../../styles/Landing.css"
 
 export default function LoginForm({onLogin}) {
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export default function LoginForm({onLogin}) {
 
 		try {
 			setLoading(true);
-			const response = await login(username, password);
+			const response = await login(email, password);
 			const data = await response.json();
 			
 			if (!response.ok) {
@@ -33,14 +33,13 @@ export default function LoginForm({onLogin}) {
 	return(
 		<form className="login_form" onSubmit={handleSubmit}>
 			<div className="form_field">
-				<label> Username:
+				<label> Email:
 					<input 
-					type="text" 
-					placeholder="username" 
-					value={username}
-					onChange={(e) =>setUsername(e.target.value)} 
+					type="email" 
+					placeholder="email" 
+					value={email}
+					onChange={(e) =>setEmail(e.target.value)} 
 					required
-					maxLength={35}
 					/>
 				</label>
 				<label> Password:

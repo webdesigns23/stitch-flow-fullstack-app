@@ -1,12 +1,12 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
 // Sign up a user
-export function signup(username, password, passwordConfirmation, displayName) {
+export function signup(email, password, passwordConfirmation, displayName) {
 	return fetch(`${API_URL}/signup`, {
 		method: "POST",
 		headers:{"Content-Type": "application/json"},
 		body:JSON.stringify({
-					username, 
+					email, 
 					password, 
 					password_confirmation: passwordConfirmation, display_name:displayName,
 		})
@@ -14,12 +14,12 @@ export function signup(username, password, passwordConfirmation, displayName) {
 }
 
 // Login a user
-export function login(username, password) {
+export function login(email, password) {
 	return fetch(`${API_URL}/login`, {
 		method: "POST",
 		headers:{"Content-Type": "application/json"},
 		body:JSON.stringify({
-			username: username.trim(), 
+			email: email.trim(), 
 			password
 		})
 	});
