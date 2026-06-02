@@ -42,3 +42,16 @@ export function updatePatternById(pattern_id, updates) {
 		body: JSON.stringify(updates),
 		});
 };
+
+//Lists Pattern Details By Id
+export async function fetchPatternById(id) {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${API_URL}/patterns/${id}`, {
+        headers: {
+            "Accept": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+    });
+    if (!response.ok) throw new Error(`HTTP error!: ${response.status}`);
+    return response.json();
+}

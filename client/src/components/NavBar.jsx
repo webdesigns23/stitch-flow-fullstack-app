@@ -27,7 +27,6 @@ export default function NavBar({user, setUser}) {
 			<NavLink to="/">Dashboard</NavLink>
 			<NavLink to="/projects">Projects</NavLink>
 			<NavLink to="/patterns">Patterns</NavLink>
-			<NavLink to="/materials">Materials</NavLink>
 			<NavLink to="/completed">Completed</NavLink>
 		</ul>
 		<button className="logout_btn" onClick={handleLogout}>

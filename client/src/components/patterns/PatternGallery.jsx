@@ -1,13 +1,10 @@
 import { useContext } from 'react'
-import PatternCard from "./PatternCard"
 import { PatternContext } from '../../context/PatternContext'
+import PatternCard from "./PatternCard"
+
 
 export default function PatternGallery() {
-	const {
-		patterns, 
-		loading, 
-		error, 
-	} = useContext(PatternContext)
+	const { patterns, loading, error } = useContext(PatternContext);
 	  
 	if (loading) return <p>Loading...</p>
 	if (error) return <p>Error: {error}</p>

@@ -28,7 +28,14 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 		<div className="project-card">
 
 			<div className="proj-card-body">
+				{/* project title */}
 				<h2 className="proj-card-title">{capitalizeWords(project.title)}</h2>
+
+				{/* project deadline */}
+				<div className="proj-card-field">
+					<span className="proj-card-label">Deadline</span>
+					<p className="proj-card-deadline">{project.deadline}</p>
+				</div>
 
 				{/* status dropdown */}
 				<div className="proj-card-field">
@@ -53,7 +60,14 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 					):(
 						<span className="proj-card-patt-none">"No pattern linked to project"</span>
 					)}
-				</div>		
+				</div>
+
+				{/* project notes */}
+				<div className="proj-card-field">
+					<span className="proj-card-label">Measurements</span>
+					<p className="proj-card-notes">{project.measurement_notes || "-"}</p>
+				</div>
+						
 
 				<hr className="proj-card-divider" />
 
@@ -94,7 +108,7 @@ export default function ProjectCard({project, handleDelete, updateProject}) {
 				
 				{/*Buttons for delete and update pattern*/}
 				<button className="proj-card-btn-remove" onClick={handleDelete}>
-					Remove Pattern
+					Delete Project
 				</button>
 			</div>
 

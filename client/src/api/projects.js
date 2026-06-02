@@ -43,6 +43,16 @@ export function updateProjectById(project_id, updates) {
 		});
 };
 
+//List Project Details by Id
+export async function fetchProjectById(id) {
+	const token = localStorage.getItem("token");
+	const response = await fetch(`${API_URL}/projects/${id}`, {
+		headers: getHeaders(),
+	});
+	if (!response.ok) throw new Error(`HTTP error!: ${response.status}`);
+	return response.json();
+}
+
 
 
 

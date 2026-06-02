@@ -10,6 +10,8 @@ export default function AddProjectForm() {
 
 	const [title, setTitle] = useState("");
 	const [status, setStatus] = useState("planning");
+	const [deadline, setDeadline] = useState("");
+	const [measuremenets, setMeasurements] = useState("");
 	const [notes, setNotes] = useState("");
 	const [patternId, setPatternId] = useState(null);
 	const [submitting, setSubmitting] = useState(false);
@@ -22,13 +24,16 @@ export default function AddProjectForm() {
 		try {
 			if (!title.trim()) throw new Error("Title is required");
       		if (title.trim().length > 35) throw new Error("Title max length is 35");
-      		if (notes.trim().length > 100) throw new Error("Notes max length is 100");
+			if (measuremenets.trim().length > 100) throw new Error("Notes max length is 100");
+      		if (notes.trim().length > 250) throw new Error("Notes max length is 250");
       		
 			setSubmitting(true);
 		
 			const newProject = {
 				title: title.trim(),
 				status,
+				deadline,
+				measuremenets,
 				notes: notes.trim() || "",
 				pattern_id: patternId ?? null,
 			};
@@ -43,6 +48,8 @@ export default function AddProjectForm() {
 				prev => [data, ...(Array.isArray(prev) ? prev : [])]);
 			setTitle("");
 			setStatus("planning");
+			setDeadline("");
+			setMeasurements("");
 			setNotes("");
 			setPatternId(null);
 			}catch (error){
@@ -85,22 +92,49 @@ export default function AddProjectForm() {
 						</select>
 					</label>
 				</div>
+
 				<div className="form_row">
-					<label>Notes:
+					<label>Deadline:
 						<input
-						type="text"
-						placeholder="Notes"
-						value={notes}
-						onChange={(e) => setNotes(e.target.value)}
+						type="date"
+						placeholder="Deadline"
+						value={deadline}
+						onChange={(e) => setDeadline(e.target.value)}
 						maxLength={100}
 						/>
 					</label>
 				</div>
+
+				<div className="form_row">
+					<label>Measurements:
+						<input
+						type="text"
+						placeholder="Measurement Notes"
+						value={measuremenets}
+						onChange={(e) => setMeasurements(e.target.value)}
+						maxLength={100}
+						/>
+					</label>
+				</div>
+
 				<div className="form_row">
 					<label>Pattern:
 						<PatternSelect value={patternId} onChange={setPatternId} />
 					</label>
 				</div>
+				
+				<div className="form_row">
+					<label>Notes:
+						<textarea
+						type="text"
+						placeholder="Notes"
+						value={notes}
+						onChange={(e) => setNotes(e.target.value)}
+						maxLength={250}>
+						</textarea>
+					</label>
+				</div>
+
 				<div className="button_row">
 					<button type="submit" disabled={submitting}>
 						{submitting ? "Adding..." : "Add Project"}

@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { capitalizeWords } from "../../utils/formatText";
 
-export default function PatternCard({pattern}) {
 
+export default function PatternCard({pattern}) {
 
 	return(
 		<article className="pattern_card">

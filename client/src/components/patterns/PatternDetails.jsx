@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useNavigate} from "react-router-dom";
 import { PatternContext } from "../../context/PatternContext";
+import { fetchPatternById } from "../../api/patterns";
 import ReqDetails from "./ReqDetails";
 import EditPatternForm from "./EditPatternForm";
 
@@ -22,29 +23,19 @@ export default function PatternDetails() {
 
 	//Lists Pattern Details By Id
 		useEffect(() => {
-			const LoadPatternDetails = async() => {
+			const loadPatternDetails = async() => {
 				setPatLoading(true);
 				setPatError(null);
-			try{
-				const token = localStorage.getItem("token");
-				const response = await fetch(`http://127.0.0.1:5555/patterns/${id}`,{
-				headers: {
-					"Accept": "application/json",
-					...(token ? { Authorization: `Bearer ${token}`} : {}),
-				},
-			})
-				if (!response.ok) {
-				throw new Error(`HTTP error!: ${response.status}`);
+				try{
+					const data = await fetchPatternById(id);
+					setPattern(data);
+				} catch (error){
+					setPatError("Error loading pattern data");
+				}finally{
+					setPatLoading(false);
 				}
-				const data = await response.json();
-				setPattern(data);
-			} catch (error){
-				setPatError("Error loading pattern data" || error);
-			}finally{
-				setPatLoading(false);
-			}
 			};
-			LoadPatternDetails()
+			loadPatternDetails()
 		}, [id, patterns]) 
 	
 	if (patLoading) return <p>Loading pattern details...</p>
