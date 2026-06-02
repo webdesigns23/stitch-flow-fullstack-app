@@ -1,3 +1,4 @@
+import { CalendarDays } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { PatternContext } from "../../context/PatternContext";
@@ -19,9 +20,12 @@ export default function ProjectDetails() {
 	const [ project, setProject ] = useState(null);
 	const [ projLoading, setProjLoading ] = useState(true);
 	const [ projError, setProjError ] = useState(null);
-	const [ editing, setEditing ] = useState(false);
-	const [ editForm, setEditForm ] = useState({});	
-	
+	const [ editingDeadline, setEditingDeadline ] = useState(false);
+	// const [ editing, setEditing ] = useState(false);
+	// const [ editForm, setEditForm ] = useState({});	
+	// const [ showChangePat, setShowChangePat ] = useState(false);
+
+
 	//List Project Details By Id
 	useEffect(() => {
 		const loadProjectDetails = async() => {
@@ -30,14 +34,14 @@ export default function ProjectDetails() {
 			try{
 				const data = await fetchProjectById(id);
 				setProject(data);
-				setEditForm({
-					title: data.title || "",
-					status: data.status || "planning",
-					measurement_notes: data.measurement_notes || "",
-					deadline: data.deadline || "",
-					notes: data.notes || "",
-					pattern_id: data.pattern?.id ?? "",
-				});
+				// setEditForm({
+				// 	title: data.title || "",
+				// 	status: data.status || "planning",
+				// 	measurement_notes: data.measurement_notes || "",
+				// 	deadline: data.deadline || "",
+				// 	notes: data.notes || "",
+				// 	pattern_id: data.pattern?.id ?? "",
+				// });
 			} catch (error){
 				setProjError("Error loading project data");
 			} finally{
@@ -60,17 +64,32 @@ export default function ProjectDetails() {
 		await deleteProject(project.id);
 		navigate("/projects");
 	};
-
-
-	// const [ showChangePat, setShowChangePat ] = useState(false);
-
+	
+	//Edit Status
 	async function handleStatusChange(e) {
 		e.stopPropagation();
-		await updateProject(project.id, {status: e.target.value});
-	}
+		const updated = await updateProject(project.id, {status: e.target.value});
+		setProject(updated);
+	};
+
+	//Edit Deadline to new date or null
+	async function handleDeadlineChange(e) {
+		e.stopPropagation();
+		const updated = await updateProject(project.id, {deadline: e.target.value });
+		setProject(updated);
+		setEditingDeadline(false);
+	};
+
+	async function handleDeadlineClear(e) {
+		const updated = await updateProject(project.id, {deadline: null });
+		setProject(updated);
+		setEditingDeadline(false);
+	};
+
+	//Edit Pattern
 	// async function handlePatternChange(e) {
 	// 	const newPattern = e.target.value ? Number(e.target.value) : null;
-	// 	await updateProject({pattern_id: newPattern});
+	// 	await updateProject(project.id, {pattern_id: newPattern});
 	// }
 
 	return(
@@ -104,9 +123,29 @@ export default function ProjectDetails() {
 				{/* deadline */}
 				<div className="proj-card-field">
 					<span className="proj-card-label">Deadline</span>
-					<p>{project.deadline ?? "No deadline"}</p>
-				</div>	
+					
 				
+				{editingDeadline ? (
+					<div>
+						<input
+							type="date"
+							defaultValue={project.deadline || ""}
+							onChange={handleDeadlineChange}
+							autoFocus
+						/>
+						<button className="proj-card-btn-remove"
+							onClick={() => handleDeadlineClear()}>No Deadline</button>
+						<button className="proj-card-btn-remove"
+							onClick={() => setEditingDeadline(false)}>Cancel Edit</button>
+					</div>
+				) : (
+					<span onClick={() => setEditingDeadline(true)} style={{ cursor: "pointer" }} title="click to edit">
+						<CalendarDays color="#b7951a" /> {project.deadline ?? "No Deadline"} 
+					</span>
+				)}
+				</div>	
+
+
 				{/* pattern */}
 				<div className="proj-card-field">
 					<span className="proj-card-label">Pattern</span>
