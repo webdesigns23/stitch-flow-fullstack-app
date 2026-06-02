@@ -4,7 +4,7 @@ import { PatternContext } from "../../context/PatternContext";
 import { ProjectContext } from "../../context/ProjectContext";
 import { fetchProjectById } from "../../api/projects";
 import { capitalizeWords } from "../../utils/formatText";
-
+import "../../styles/ProjectDetails.css";
 
 const statuses = [
 	"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
@@ -64,11 +64,10 @@ export default function ProjectDetails() {
 
 	// const [ showChangePat, setShowChangePat ] = useState(false);
 
-	// async function handleStatusChange(e) {
-	// 	const newStatus = e.target.value;
-	// 	await updateProject({status: newStatus});
-	// }
-
+	async function handleStatusChange(e) {
+		e.stopPropagation();
+		await updateProject(project.id, {status: e.target.value});
+	}
 	// async function handlePatternChange(e) {
 	// 	const newPattern = e.target.value ? Number(e.target.value) : null;
 	// 	await updateProject({pattern_id: newPattern});
@@ -79,23 +78,32 @@ export default function ProjectDetails() {
 			<Link to="/projects">Back to All Projects</Link>
 			
 			<h1>{project.title}</h1>
-			<div>
- 				<button className="proj-card-btn-remove" onClick={handleDelete}>
- 					Delete Project
- 				</button>
-			</div>
+			
 
 			<div className="proj-details-info">
 
 				{/* status */}
 				<div className="proj-card-field">
-					<span className="proj-card-label">Status</span>
-					<p>{project.status.replace(/_/g, " ")}</p>
+					<span className="proj-card-label">Current Status</span>
+					<div className="proj-status-radio">
+						{statuses.map(s => (
+							<label key={s} className="proj-status-option">
+								<input
+									type="radio"
+									name="status"
+									value={s}
+									checked={project?.status === s}
+									onChange={handleStatusChange}
+								/>
+								{s.replace(/_/g, " ")}
+							</label>
+						))}
+					</div>
 				</div>
 
 				{/* deadline */}
 				<div className="proj-card-field">
-					<span className="proj-card-field">Deadline</span>
+					<span className="proj-card-label">Deadline</span>
 					<p>{project.deadline ?? "No deadline"}</p>
 				</div>	
 				
@@ -131,6 +139,11 @@ export default function ProjectDetails() {
 
 			</div>
 
+			<div>
+				<button className="proj-card-btn-remove" onClick={handleDelete}>
+					Delete Project
+				</button>
+			</div>
 		</div>
 	)
 }

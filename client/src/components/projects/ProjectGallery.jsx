@@ -54,7 +54,6 @@ export default function ProjectGallery() {
 			data-status={statusKey(project.status)}>
 				<ProjectCard 
 				project={project} 
-				updateProject={(updates) => updateProject(project.id, updates)}
 				/>
 			</div>
 		  ))}

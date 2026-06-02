@@ -50,9 +50,9 @@ export function ProjectsProvider({children}){
 		try{
 			const token = localStorage.getItem("token");
 			const response = await updateProjectById(project_id, updates);
-		const data = await response.json();
-		if (!response.ok) throw new Error(`${response.status}`);			
-		setProjects(prev => prev.map(p => (p.id === project_id ? data : p)));
+			const data = await response.json();
+			if (!response.ok) throw new Error(`${response.status}`);			
+			setProjects(prev => prev.map(p => (p.id === project_id ? data : p)));
 		} catch	(error) {
 		setError(`Failed to update project: ${error.message || error}`)
 		throw error; 

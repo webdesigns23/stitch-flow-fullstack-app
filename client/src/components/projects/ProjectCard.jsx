@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
 import "../../styles/ProjectCard.css";
 
@@ -7,13 +9,14 @@ const statuses = [
 		"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
 	];
 
-export default function ProjectCard({project, updateProject}) {
+export default function ProjectCard({project}) {
+	const { updateProject } = useContext(ProjectContext);
 	const p = project?.pattern;
 	const patternId = p?.id ?? project?.pattern_id;
 
 	async function handleStatusChange(e) {
 		e.stopPropagation();
-		await updateProject({status: e.target.value});
+		await updateProject(project.id, {status: e.target.value});
 	}
 
 	async function handlePatternChange(e) {

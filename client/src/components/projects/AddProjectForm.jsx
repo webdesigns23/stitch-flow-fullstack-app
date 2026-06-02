@@ -1,6 +1,5 @@
 import {useState, useContext} from "react";
 import { ProjectContext } from "../../context/ProjectContext";
-import { createPattern } from "../../api/patterns";
 import PatternSelect from "./PatternSelect";
 import { createProject } from "../../api/projects";
 
@@ -11,7 +10,7 @@ export default function AddProjectForm() {
 	const [title, setTitle] = useState("");
 	const [status, setStatus] = useState("planning");
 	const [deadline, setDeadline] = useState("");
-	const [measuremenets, setMeasurements] = useState("");
+	const [measurements, setMeasurements] = useState("");
 	const [notes, setNotes] = useState("");
 	const [patternId, setPatternId] = useState(null);
 	const [submitting, setSubmitting] = useState(false);
@@ -24,7 +23,7 @@ export default function AddProjectForm() {
 		try {
 			if (!title.trim()) throw new Error("Title is required");
       		if (title.trim().length > 35) throw new Error("Title max length is 35");
-			if (measuremenets.trim().length > 100) throw new Error("Notes max length is 100");
+			if (measurements.trim().length > 100) throw new Error("Notes max length is 100");
       		if (notes.trim().length > 250) throw new Error("Notes max length is 250");
       		
 			setSubmitting(true);
@@ -32,18 +31,18 @@ export default function AddProjectForm() {
 			const newProject = {
 				title: title.trim(),
 				status,
-				deadline,
-				measuremenets,
+				deadline: deadline || null,
+				measurement_notes: measurements.trim() || null,
 				notes: notes.trim() || "",
 				pattern_id: patternId ?? null,
 			};
 
 			const response = await createProject(newProject);
+			const data = await response.json()	
 			if (!response.ok) {
 					throw new Error(data?.error || `HTTP ${response.status}`);
 				}
-
-			const data = await response.json()	
+			
 			setProjects(
 				prev => [data, ...(Array.isArray(prev) ? prev : [])]);
 			setTitle("");
@@ -110,7 +109,7 @@ export default function AddProjectForm() {
 						<input
 						type="text"
 						placeholder="Measurement Notes"
-						value={measuremenets}
+						value={measurements}
 						onChange={(e) => setMeasurements(e.target.value)}
 						maxLength={100}
 						/>
