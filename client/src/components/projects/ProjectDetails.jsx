@@ -1,4 +1,4 @@
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, PencilLine, PencilRuler } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { PatternContext } from "../../context/PatternContext";
@@ -17,12 +17,17 @@ export default function ProjectDetails() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
+	//Project State
 	const [ project, setProject ] = useState(null);
 	const [ projLoading, setProjLoading ] = useState(true);
 	const [ projError, setProjError ] = useState(null);
+
+	//Inline Editing State
 	const [ editingDeadline, setEditingDeadline ] = useState(false);
-	// const [ editing, setEditing ] = useState(false);
-	// const [ editForm, setEditForm ] = useState({});	
+	const [ editingMeasurements, setEditingMeasurements ] = useState(false);
+	const [editingNotes, setEditingNotes] = useState(false);
+	const [measurementsValue, setMeasurementsValue] = useState("");
+	const [notesValue, setNotesValue] = useState("");
 	// const [ showChangePat, setShowChangePat ] = useState(false);
 
 
@@ -34,14 +39,10 @@ export default function ProjectDetails() {
 			try{
 				const data = await fetchProjectById(id);
 				setProject(data);
-				// setEditForm({
-				// 	title: data.title || "",
-				// 	status: data.status || "planning",
-				// 	measurement_notes: data.measurement_notes || "",
-				// 	deadline: data.deadline || "",
-				// 	notes: data.notes || "",
-				// 	pattern_id: data.pattern?.id ?? "",
-				// });
+
+				// Initialize inline edit values after data loads
+				setMeasurementsValue(data.measurement_notes || "");
+				setNotesValue(data.notes || "");
 			} catch (error){
 				setProjError("Error loading project data");
 			} finally{
@@ -86,6 +87,20 @@ export default function ProjectDetails() {
 		setEditingDeadline(false);
 	};
 
+	// Measurement notes
+	async function handleMeasurementsSave() {
+		const updated = await updateProject(project.id, { measurement_notes: measurementsValue.trim() || null });
+		setProject(updated);
+		setEditingMeasurements(false);
+	}
+
+	// Notes
+	async function handleNotesSave() {
+		const updated = await updateProject(project.id, { notes: notesValue.trim() || null });
+		setProject(updated);
+		setEditingNotes(false);
+	}
+
 	//Edit Pattern
 	// async function handlePatternChange(e) {
 	// 	const newPattern = e.target.value ? Number(e.target.value) : null;
@@ -123,8 +138,6 @@ export default function ProjectDetails() {
 				{/* deadline */}
 				<div className="proj-card-field">
 					<span className="proj-card-label">Deadline</span>
-					
-				
 				{editingDeadline ? (
 					<div>
 						<input
@@ -140,7 +153,8 @@ export default function ProjectDetails() {
 					</div>
 				) : (
 					<span onClick={() => setEditingDeadline(true)} style={{ cursor: "pointer" }} title="click to edit">
-						<CalendarDays color="#b7951a" /> {project.deadline ?? "No Deadline"} 
+						<CalendarDays size={16} color="#9f831d" /> 
+						{" "} {project.deadline ?? "No Deadline"} 
 					</span>
 				)}
 				</div>	
@@ -156,19 +170,70 @@ export default function ProjectDetails() {
 					) : (
 						<span>No pattern linked</span>
 					)}
-				</div>		
-						
-				{/* measurement notes */}
-				<div className="proj-card-field">
-					<span className="proj-card-label">Measurement Notes</span>
-					<p>{project.measurement_notes || "-"}</p>
 				</div>
 
-				{/* project notes */}
- 				<div className="proj-card-field">
- 					<span className="proj-card-label">Notes</span>
- 					<p className="proj-card-notes">{project.notes || "-"}</p>
- 				</div>
+
+				{/* measurement notes */}
+				<div className="proj-card-field">
+					<span className="proj-card-label">
+						<PencilRuler size={14} color="#9f831d" onClick={() => setEditingMeasurements(true)} style={{ cursor: "pointer" }} />
+						{" "} Measurement Notes
+					</span>
+					{editingMeasurements ? (
+						<div>
+							<textarea
+								value={measurementsValue}
+								onChange={(e) => setMeasurementsValue(e.target.value)}
+								maxLength={100}
+								rows={5}
+								autoFocus
+							/>
+							<button 
+								className="proj-card-btn-remove"
+								onClick={handleMeasurementsSave}>
+								Save Measurements
+							</button>
+							<button 
+								className="proj-card-btn-remove"
+								onClick={() => setEditingMeasurements(false)}>
+								Cancel
+							</button>
+						</div>
+					) : (
+						<p>{project.measurement_notes || "-"}</p>
+					)}
+				</div>
+
+				{/* notes */}
+				<div className="proj-card-field">
+					<span className="proj-card-label">
+						<PencilLine size={14} color="#9f831d" onClick={() => setEditingNotes(true)} style={{ cursor: "pointer" }} />
+						{" "} Notes	
+					</span>
+					{editingNotes ? (
+						<div>
+							<textarea
+								value={notesValue}
+								onChange={(e) => setNotesValue(e.target.value)}
+								maxLength={250}
+								rows={5}
+								autoFocus
+							/>
+							<button 
+								className="proj-card-btn-remove"
+								onClick={handleNotesSave}>
+								Save Notes
+							</button>
+							<button
+								className="proj-card-btn-remove" 
+								onClick={() => setEditingNotes(false)}>
+								Cancel
+							</button>
+						</div>
+					) : (
+						<p>{project.notes || "-"}</p>
+					)}
+				</div>	
 
 				{/* date created/updated */}
 				<p className="proj-card-meta">Created: {project.created_at}</p>
