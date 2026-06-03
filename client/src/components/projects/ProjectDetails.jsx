@@ -1,4 +1,4 @@
-import { CalendarDays, PencilLine, PencilRuler } from "lucide-react";
+import { CalendarDays, PencilLine, PencilRuler, SquarePen } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { PatternContext } from "../../context/PatternContext";
@@ -28,7 +28,8 @@ export default function ProjectDetails() {
 	const [editingNotes, setEditingNotes] = useState(false);
 	const [measurementsValue, setMeasurementsValue] = useState("");
 	const [notesValue, setNotesValue] = useState("");
-	// const [ showChangePat, setShowChangePat ] = useState(false);
+	const [editingPattern, setEditingPattern] = useState(false);
+	const [patternSearch, setPatternSearch] = useState("");
 
 
 	//List Project Details By Id
@@ -101,11 +102,14 @@ export default function ProjectDetails() {
 		setEditingNotes(false);
 	}
 
-	//Edit Pattern
-	// async function handlePatternChange(e) {
-	// 	const newPattern = e.target.value ? Number(e.target.value) : null;
-	// 	await updateProject(project.id, {pattern_id: newPattern});
-	// }
+	//Edit Pattern with Search Pattern Functionality
+	async function handlePatternChange(selectedId) {
+		const updated = await updateProject(project.id, {
+			pattern_id: selectedId ? Number(selectedId): null});
+		setProject(updated);
+		setEditingPattern(false);
+		setPatternSearch("");
+	}
 
 	return(
 		<div className="proj-details">
@@ -159,19 +163,57 @@ export default function ProjectDetails() {
 				)}
 				</div>	
 
-
 				{/* pattern */}
 				<div className="proj-card-field">
-					<span className="proj-card-label">Pattern</span>
-					{patternId ? (
-						<Link to={`/patterns/${patternId}`}>
-							{`${p?.name} (${p?.brand})`}
-						</Link>
+					<span className="proj-card-label">
+						<PencilLine size={14} color="#9f831d" onClick={() => setEditingPattern(true)} style={{ cursor: "pointer" }} />
+						{" "} Pattern	
+					</span>
+					{editingPattern ? (
+						<div>
+							<input
+								type="text"
+								placeholder="Search patterns..."
+								value={patternSearch}
+								onChange={(e) => setPatternSearch(e.target.value)}
+								autoFocus
+							/>
+							<ul className="proj-pat-list">
+								<li onClick={() => handlePatternChange(null)} style={{ cursor: "pointer" }}>
+									No pattern linked
+								</li>
+								{patterns
+									.filter(pat =>
+										pat.name.toLowerCase().includes(patternSearch.toLowerCase()) ||
+										pat.brand.toLowerCase().includes(patternSearch.toLowerCase())
+									)
+									.map(pat => (
+										<li 
+											key={pat.id} 
+											onClick={() => handlePatternChange(pat.id)} style={{ cursor: "pointer" }}
+										>
+											{pat.name} ({pat.brand})
+										</li>
+									))
+								}
+							</ul>
+							<Link to="/patterns" className="proj-card-patt-link">
+								Don't see your pattern? Add it on the Patterns page
+							</Link>
+							<button
+								className="proj-card-btn-remove"
+								onClick={() => setEditingPattern(false)}>Cancel</button>
+						</div>
 					) : (
-						<span>No pattern linked</span>
+						<span>
+							{patternId && (
+								<Link to={`/patterns/${patternId}`} className="proj-card-patt-link">
+									{patternId ? `${p?.name} (${p?.brand})` : "No pattern linked"}
+								</Link>
+							)}
+						</span>
 					)}
 				</div>
-
 
 				{/* measurement notes */}
 				<div className="proj-card-field">
@@ -207,7 +249,7 @@ export default function ProjectDetails() {
 				{/* notes */}
 				<div className="proj-card-field">
 					<span className="proj-card-label">
-						<PencilLine size={14} color="#9f831d" onClick={() => setEditingNotes(true)} style={{ cursor: "pointer" }} />
+						<SquarePen size={14} color="#9f831d" onClick={() => setEditingNotes(true)} style={{ cursor: "pointer" }} />
 						{" "} Notes	
 					</span>
 					{editingNotes ? (
