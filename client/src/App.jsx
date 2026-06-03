@@ -4,10 +4,10 @@ import './styles/App.css'
 import NavBar from './components/NavBar';
 import DashboardPage from './pages/DashboardPage';
 import ProjectPage from './pages/ProjectPage';
-import ProjectDetails from "./components/projects/ProjectDetails";
+import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import CompleteProjects from './pages/CompleteProjects';
 import PatternPage from './pages/PatternPage';
-import PatternDetails from './components/patterns/PatternDetails'
+import PatternDetailsPage from './pages/PatternDetailsPage'
 import LandingPage from "./pages/LandingPage";
 import { PatternProvider } from "./context/PatternContext";
 import { ProjectsProvider } from "./context/ProjectContext";
@@ -65,9 +65,9 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<DashboardPage user={user} />} />
                   <Route path="/projects" element={<ProjectPage />} />
-                  <Route path="/projects/:id" element={<ProjectDetails />} />
+                  <Route path="/projects/:id" element={<ProjectDetailsPage />} />
                   <Route path ="/patterns" element={<PatternPage />} />
-                  <Route path ="/patterns/:id" element={<PatternDetails />} />
+                  <Route path ="/patterns/:id" element={<PatternDetailsPage />} />
                   <Route path="/completed" element={<CompleteProjects />} />
                 </Routes>
               </div>

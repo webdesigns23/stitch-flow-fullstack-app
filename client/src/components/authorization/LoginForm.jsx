@@ -40,6 +40,7 @@ export default function LoginForm({onLogin}) {
 					value={email}
 					onChange={(e) =>setEmail(e.target.value)} 
 					required
+					autoFocus
 					/>
 				</label>
 				<label> Password:

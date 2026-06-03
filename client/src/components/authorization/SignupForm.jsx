@@ -68,6 +68,7 @@ export default function SignUpForm({onLogin}) {
 					value={email}
 					onChange={(e) =>setEmail(e.target.value)} 
 					required
+					autoFocus
 					/>
 				</label>
 				{emailError && <p className="error">{emailError}</p>}

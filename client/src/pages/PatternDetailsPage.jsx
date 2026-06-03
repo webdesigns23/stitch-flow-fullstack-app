@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState  } from "react";
 import { Link, useParams, useNavigate} from "react-router-dom";
-import { PatternContext } from "../../context/PatternContext";
-import { fetchPatternById } from "../../api/patterns";
-import ReqDetails from "./ReqDetails";
-import EditPatternForm from "./EditPatternForm";
+import { PatternContext } from "../context/PatternContext";
+import { fetchPatternById } from "../api/patterns";
+import ReqDetails from "../components/patterns/ReqDetails";
+import EditPatternForm from "../components/patterns/EditPatternForm";
 
 export default function PatternDetails() {
 	const { patterns, deletePattern } = useContext(PatternContext);
