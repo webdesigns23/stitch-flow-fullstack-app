@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { uploadProjectImage, deleteProjectImage } from "../../../api/projects";
+import { uploadProjectImage } from "../../../api/projects";
 
 const image_types = [
-	"design", "measurements", "fabric", "inspiration", "in_progress", "finished"
+	"inspiration", "design", "fabric", "measurements", "in_progress", "finished"
 ]
 export default function ProjectImageForm({project, onImageUpdate}) {
 
@@ -89,7 +89,7 @@ export default function ProjectImageForm({project, onImageUpdate}) {
 					<input
 						id="image-file-upload"
 						type="file"
-						accept="image/*, .pdf"
+						accept="image/*"
 						onChange={(e) => setImageFile(e.target.files[0])}
 					/>
 				</div>

@@ -1,15 +1,32 @@
 import { useState } from "react";
+import { Pencil, Trash2 } from "lucide-react";
 import ProjectImageForm from "./ProjectImageForm";
-import { uploadProjectImage, deleteProjectImage } from "../../../api/projects";
+import { deleteProjectImage } from "../../../api/projects";
 
 const image_types = [
-	"design", "measurements", "fabric", "inspiration", "in_progress", "finished"
+	"inspiration", "design", "fabric", "measurements", "in_progress", "finished"
 ]
 
 export default function ProjectImages({project, onImageUpdate}) {
 	const [ showImageForm, setShowImageForm ] = useState(false);
 
 	const images = project.project_images || [];
+
+	//Delete image
+	async function handleDelete(image_id) {
+		if (!window.confirm("Delete this image?")) return;
+
+		try {
+			const response = await deleteProjectImage(project.id, image_id);
+			if (!response.ok) throw new Error("Failed to delete image");
+			onImageUpdate(project.project_images
+				.filter(img => img.id !== image_id));
+		} catch (error) {
+			console.error("Failed to delete image:", error);
+		}
+	}
+
+	//Edit image type and notes
 	
 
 	return (
@@ -40,7 +57,25 @@ export default function ProjectImages({project, onImageUpdate}) {
 								{img.notes && (
 									<p>{img.notes}</p>
 								)}	
-							</div>					
+							</div>
+
+							{/* delete image */}
+							<button
+								className="proj-card-btn-remove"
+								onClick={() => handleDelete(img.id)}
+								style={{ cursor: "pointer" }} 
+							>
+								<Trash2 color="#986f16" /> 
+							</button>
+
+							{/* edit image type/ notes */}
+							<button
+								className="proj-card-btn" 
+								style={{ cursor: "pointer" }}
+							>
+								<Pencil color="#986f16" />
+							</button>
+
 						</div>
 					))}
 				</div>

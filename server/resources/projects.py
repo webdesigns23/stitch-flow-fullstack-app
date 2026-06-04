@@ -293,7 +293,7 @@ class ProjectImageDetails(Resource):
             db.session.delete(image)
             db.session.commit()
             return {}, 204
-        except Exception:
+        except Exception as e:
             db.session.rollback()
             return {"error": "Could not delete image"}, 500
                

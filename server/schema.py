@@ -12,7 +12,7 @@ allowed_pattern_category = [
 
 #Project image types
 allowed_image_types = [
-	"design", "measurements", "fabric", "inspiration", "in_progress", "finished"
+	"inspiration", "design", "fabric", "measurements", "in_progress", "finished"
 ]
 
 #Schemas

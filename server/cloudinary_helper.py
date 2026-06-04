@@ -13,7 +13,7 @@ def upload_image(file, folder="sewing_projects"):
 	result = cloudinary.uploader.upload(
 		file,
 		folder=folder,
-		resource_type="auto"  # Handles images and PDFs
+		resource_type="auto"  
 	)
 	return {
 		"secure_url": result["secure_url"],
@@ -22,4 +22,4 @@ def upload_image(file, folder="sewing_projects"):
 
 
 def delete_image(public_id):
-	cloudinary.uploader.destroy(public_id, resource_type="auto")
+	cloudinary.uploader.destroy(public_id, resource_type="image")
