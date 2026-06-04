@@ -63,7 +63,7 @@ function getAuthHeader() {
 	};
 };
 
-//Upload image to a project
+//Upload Image to a project
 export function uploadProjectImage(project_id, formData) {
 	return fetch(`${API_URL}/projects/${project_id}/images`, {
 		method: "POST",
@@ -72,14 +72,6 @@ export function uploadProjectImage(project_id, formData) {
 		});
 }
 
-//Update ProjectImage Image_Type or Notes 
-export function updateProjectImage(project_id, image_id, updates) {
-	return fetch(`${API_URL}/projects/${project_id}/images/${image_id}`, {
-		method: "PATCH",
-		headers: getHeaders(),
-		body: JSON.stringify(updates),
-	});
-};
 
 //Delete ProjectImage
 export function deleteProjectImage(project_id, image_id) {
@@ -89,7 +81,14 @@ export function deleteProjectImage(project_id, image_id) {
 	});
 };
 
-
+//Update ProjectImage Image_Type or Notes 
+export function updateProjectImage(project_id, image_id, updates) {
+	return fetch(`${API_URL}/projects/${project_id}/images/${image_id}`, {
+		method: "PATCH",
+		headers: getHeaders(),
+		body: JSON.stringify(updates),
+	});
+};
 
 
 
