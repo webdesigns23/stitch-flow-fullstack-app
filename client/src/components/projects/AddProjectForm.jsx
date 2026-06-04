@@ -85,6 +85,7 @@ export default function AddProjectForm() {
 						<select value={status} 
 							onChange={(e) => setStatus(e.target.value)}
 						>
+							<option value="">Select Current Status...</option>
 							{statuses.map(s => (
 								<option key={s} value={s}>
 									{s.replace(/_/g, " ")}

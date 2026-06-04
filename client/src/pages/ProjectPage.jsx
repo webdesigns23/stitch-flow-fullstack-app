@@ -12,11 +12,14 @@ export default function ProjectPage() {
 		<Link to="/completed">View All Completed Projects</Link>
 		<br></br>
 
-		<button onClick={() => setShowProjForm(!showProjForm)}>
+		<button
+			className="proj-card-btn" 
+			onClick={() => setShowProjForm(!showProjForm)}>
 			{showProjForm ? "Exit Project Form" : "+ Add New Project"}
 		</button>
 
 		{showProjForm && <AddProjectForm />}
+
 		<ProjectGallery />
 	</div>
   )

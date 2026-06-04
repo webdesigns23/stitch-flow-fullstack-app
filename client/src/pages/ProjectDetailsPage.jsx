@@ -52,7 +52,7 @@ export default function ProjectDetails() {
 	};
 
 	//Handle ProjectImages updates
-	async function handleImagesUpdates(imageUpdates) {
+	async function handleImageUpdates(imageUpdates) {
 		setProject(prev => ({...prev, project_images: imageUpdates}));
 	};
 		
@@ -92,7 +92,7 @@ export default function ProjectDetails() {
 			</div>
 
 			<div className="proj-images">
-				<ProjectImages project={project} onImageUpdate={handleImagesUpdates} />
+				<ProjectImages project={project} onImageUpdate={handleImageUpdates} />
 			</div>
 
 			<div>
