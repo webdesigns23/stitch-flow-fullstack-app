@@ -3,8 +3,7 @@ const statuses = [
 	"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
 ];
 
-export default function ProjectDeadlineField({project, onUpdate}) {
-
+export default function ProjectStatusField({project, onUpdate}) {
 
 	//Edit Status
 	async function handleStatusChange(e) {

@@ -1,4 +1,3 @@
-import { CalendarDays, PencilLine, PencilRuler, SquarePen } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { ProjectContext } from "../context/ProjectContext";
@@ -9,7 +8,9 @@ import ProjectDeadlineField from "../components/projects/detailsFields/ProjectDe
 import ProjectPatternField from "../components/projects/detailsFields/ProjectPatternField";
 import ProjectStatusField from "../components/projects/detailsFields/ProjectStatusField";
 import ProjectNotesField from "../components/projects/detailsFields/ProjectNotesField";
-import "../styles/ProjectDetails.css"
+import ProjectImages from "../components/projects/detailsFields/ProjectImages";
+import "../styles/ProjectDetails.css";
+
 
 
 export default function ProjectDetails() {
@@ -21,10 +22,6 @@ export default function ProjectDetails() {
 	const [ project, setProject ] = useState(null);
 	const [ projLoading, setProjLoading ] = useState(true);
 	const [ projError, setProjError ] = useState(null);
-
-	//Inline Editing Notes State
-	const [ measurementsValue, setMeasurementsValue ] = useState("");
-	const [ notesValue, setNotesValue ] = useState("");
 
 
 	//List Project Details By Id
@@ -52,7 +49,12 @@ export default function ProjectDetails() {
 	async function handleFieldUpdates(updates) {
 		const updated = await updateProject(project.id, updates)
 		setProject(updated); 
-	}
+	};
+
+	//Handle ProjectImages updates
+	async function handleImagesUpdates(imageUpdates) {
+		setProject(prev => ({...prev, project_images: imageUpdates}));
+	};
 		
 	//Delete Project
 	async function handleDelete() {
@@ -61,7 +63,6 @@ export default function ProjectDetails() {
 		navigate("/projects");
 	};
 	
-
 	return(
 		<div className="proj-details">
 			<Link to="/projects">Back to All Projects</Link>
@@ -88,6 +89,10 @@ export default function ProjectDetails() {
 					<p className="proj-card-meta">Updated: {project.updated_at}</p>
 				)}
 
+			</div>
+
+			<div className="proj-images">
+				<ProjectImages project={project} onImageUpdate={handleImagesUpdates} />
 			</div>
 
 			<div>

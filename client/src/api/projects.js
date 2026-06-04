@@ -53,7 +53,41 @@ export async function fetchProjectById(id) {
 	return response.json();
 }
 
+/* Project Images */
+//Header for formData
+function getAuthHeader() {
+	const token = localStorage.getItem("token");
+	return {
+		Accept: "application/json",
+		...(token ? {Authorization: `Bearer ${token}`}: {})
+	};
+};
 
+//Upload image to a project
+export function uploadProjectImage(project_id, formData) {
+	return fetch(`${API_URL}/projects/${project_id}/images`, {
+		method: "POST",
+		headers: getAuthHeader(),
+		body: formData,
+		});
+}
+
+//Update ProjectImage Image_Type or Notes 
+export function updateProjectImage(project_id, image_id, updates) {
+	return fetch(`${API_URL}/projects/${project_id}/images/${image_id}`, {
+		method: "PATCH",
+		headers: getHeaders(),
+		body: JSON.stringify(updates),
+	});
+};
+
+//Delete ProjectImage
+export function deleteProjectImage(project_id, image_id) {
+	return fetch(`${API_URL}/projects/${project_id}/images/${image_id}`, {
+		method: "DELETE",
+		headers: getHeaders()
+	});
+};
 
 
 

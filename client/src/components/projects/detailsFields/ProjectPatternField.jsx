@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { PatternContext } from "../../../context/PatternContext";
 import { PencilLine } from "lucide-react"
 
-export default function ProjectDeadlineField({ project, onUpdate }) {
+export default function ProjectPatternField({ project, onUpdate }) {
 	const { patterns, loading: patternLoading } = useContext(PatternContext);
 
 	const [editingPattern, setEditingPattern] = useState(false);
