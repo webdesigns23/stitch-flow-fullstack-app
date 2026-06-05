@@ -1,3 +1,4 @@
+import { capitalizeWords } from "../../../utils/formatText";
 
 const statuses = [
 	"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
@@ -23,7 +24,7 @@ export default function ProjectStatusField({project, onUpdate}) {
 							checked={project?.status === s}
 							onChange={handleStatusChange}
 						/>
-						{s.replace(/_/g, " ")}
+						{capitalizeWords(s).replace(/_/g, " ")}
 					</label>
 				))}
 			</div>

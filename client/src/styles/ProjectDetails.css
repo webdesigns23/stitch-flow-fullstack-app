@@ -1,18 +1,13 @@
-.proj-status-option {
-	color: black;
-}
-
-.proj-pat-list {
-	color: black;
-}
-
-/* project image */
-.proj-image {
-	width: 30%;
-}
-
+/* ------ Header -----*/
 .proj-header {
 	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.proj-header button {
+	max-width: 150px;
 }
 
 .go-back {
@@ -20,3 +15,106 @@
 	gap: 5px;
 }
 
+/* ------ Project Details Main Info -----*/
+.proj-details {
+	text-align: left;
+}
+
+.proj-details h1 {
+	text-align: center;
+	margin-bottom: 18px;
+}
+
+/* ------ Status Stepper Card ------ */
+.status-banner-card {
+	background: rgba(245, 244, 239, 0.85);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+	border-radius: 8px;
+	padding: 16px;
+	margin-bottom: 16px;
+}
+
+.proj-status-radio {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	position: relative;
+	padding: 1rem 0;
+}
+
+/* Connecting line */
+.proj-status-radio::before {
+	content: "";
+	position: absolute;
+	top: 22px;
+	left: 16px;
+	right: 16px;
+	height: 2px;
+	background-color: #e0d5c1;
+	z-index: 0;
+}
+
+.proj-status-option {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	flex: 1;
+	position: relative;
+	color: #999;
+	cursor: pointer;
+	text-align: center;
+}
+
+/* Hide default radio, replace with circle */
+.proj-status-option input[type="radio"] {
+	appearance: none;
+	-webkit-appearance: none;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	border: 2px solid #e0d5c1;
+	background: #fff;
+	cursor: pointer;
+	margin: 0;
+	transition: all 0.2s ease;
+}
+
+.proj-status-option input[type="radio"]:checked {
+	background: #c09e23;
+	border-color: #4d4b46;
+}
+
+.proj-status-option:has(input:checked) {
+	font-weight: 100;
+	color: rgb(31, 58, 94);
+	text-shadow: 2px 2px 4px rgba(146, 149, 151, 0.5);
+}
+
+/* ------ Project Info Layout ------ */
+.meta-info-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+	margin-bottom: 16px;
+}
+
+.secondary-info-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+	margin-bottom: 24px;
+}
+
+/* Card Layout */
+.meta-card {
+	background: rgba(245, 244, 239, 0.85);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+	border-radius: 8px;
+	padding: 16px;
+}
+
+/* ------ Project Image Gallery ----- */
+.proj-image {
+	width: 30%;
+}

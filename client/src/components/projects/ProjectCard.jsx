@@ -27,8 +27,6 @@ export default function ProjectCard({project}) {
 	return(
 		<article className="project-card">
 
-			
-
 			<Link to={`/projects/${project.id}`} className="card_link" aria-label={`${project.title}`}>
 				<div className="proj-card-body">
 

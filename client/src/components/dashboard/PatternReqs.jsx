@@ -1,5 +1,6 @@
 import { useContext, useMemo } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
+import { capitalizeWords } from "../../utils/formatText";
 
 export default function PlanningRequirementsList() {
   const { projects } = useContext(ProjectContext);
@@ -21,7 +22,7 @@ export default function PlanningRequirementsList() {
 
         return (
           <div key={project.id} className="req-card">
-            <h3>{project.title}</h3>
+            <h3>{capitalizeWords(project.title)}</h3>
 			<div className="table" >
             {reqs.length > 0 ? (
               <table className="req_table">

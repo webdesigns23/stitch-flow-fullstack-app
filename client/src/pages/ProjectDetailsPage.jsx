@@ -67,51 +67,65 @@ export default function ProjectDetails() {
 	
 	return(
 		<>
-			<div className="proj-header">
+			<header className="proj-header">
 				<Link className="go-back" to="/projects">
 					<CircleArrowLeft color="#986f16" />{" "}Back to All Projects
 				</Link>
-			</div>
-			<div className="proj-details">
-				
-				
+
+				<button className="proj-card-btn-remove" onClick={handleDelete}>
+					Delete Project
+				</button>
+			</header>
+
+			<main className="proj-details">				
 				<h1>{capitalizeWords(project.title)}</h1>
 
-				<div className="proj-details-info">
-
+				{/* Top Banner: Status Timeline */}
+				<section className="status-banner-card">
 					{/* status */}
 					<ProjectStatusField project={project} onUpdate={handleFieldUpdates}/>
+				</section>
 
-					{/* deadline */}
-					<ProjectDeadlineField project={project} onUpdate={handleFieldUpdates}/>
+				{/* Grid Area: 3 Columns for Metadata */}
+				<div className="meta-info-grid">
+					<article className="meta-card deadline-card">
+						{/* deadline */}
+						<ProjectDeadlineField project={project} onUpdate={handleFieldUpdates}/>
+
+						<hr className="proj-card-divider" />
 					
-					{/* pattern */}
-					<ProjectPatternField project={project} onUpdate={handleFieldUpdates}/>
-					
-					{/* size notes */}
-					<ProjectSizeNotesField project={project} onUpdate={handleFieldUpdates}/>
+						<footer className="card-dates">
+							{/* date created/updated */}
+							<p className="proj-card-meta">Created: {project.created_at}</p>
+							{project.updated_at && (
+							<p className="proj-card-meta">Updated: {project.updated_at}</p>
+							)}					
+						</footer>
+					</article>
+					<article className="meta-card pattern-card">
+						{/* pattern */}
+						<ProjectPatternField project={project} onUpdate={handleFieldUpdates}/>
+					</article>
+					<article className="meta-card notes-card">
+						{/* notes */}
+						<ProjectNotesField project={project} onUpdate={handleFieldUpdates}/>
+					</article>
+				</div>		
 
-					{/* notes */}
-					<ProjectNotesField project={project} onUpdate={handleFieldUpdates}/>
-
-					{/* date created/updated */}
-					<p className="proj-card-meta">Created: {project.created_at}</p>
-					{project.updated_at && (
-						<p className="proj-card-meta">Updated: {project.updated_at}</p>
-					)}
-
-				</div>
-
-				<div className="proj-images">
+				{/* Grid Area: 2 Columns for Size notes and measurement image */}
+				<div className="secondary-info-grid">
+					<article> 
+						{/* size notes */}
+						<ProjectSizeNotesField project={project} onUpdate={handleFieldUpdates}/>
+					</article>					
+				</div>	
+				
+				{/* Large Bottom Section: Image Gallery */}
+				<section className="gallery-section-card">
 					<ProjectImages project={project} onImageUpdate={handleImageUpdates} />
-				</div>
+				</section>
 
-				<div>
-					<button className="proj-card-btn-remove" onClick={handleDelete}>
-						Delete Project
-					</button>
-				</div>
-			</div>
+			</main>
 		</>
 	)
 }
