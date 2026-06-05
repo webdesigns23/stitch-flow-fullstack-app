@@ -27,7 +27,7 @@ export default function ProjectImages({project, onImageUpdate}) {
 
 			{/* project images gallery */}
 			{images.length > 0 ? (
-				<div className="proj-images-gallery">
+				<div className="gallery">
 					{images.map(img => (
 						<div key={img.id} className="proj-image-card"> 
 							<img 

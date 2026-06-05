@@ -12,7 +12,6 @@ export function ProjectsProvider({children}){
 	useEffect(() => {
 		async function fetchData() {
 		try{
-			const token = localStorage.getItem("token");
 			const response = await fetchProjects();
 			if (!response.ok) {
 			throw new Error(`HTTP error!: ${response.status}`);
@@ -32,7 +31,6 @@ export function ProjectsProvider({children}){
 	async function deleteProject(project_id) {
 		try {
 			setLoading(true);
-			const token = localStorage.getItem("token");
 			const response = await deleteProjectById(project_id);
 			if (!response.ok && response.status !==204) {
 				throw new Error(`${response.status}`);
@@ -48,11 +46,11 @@ export function ProjectsProvider({children}){
 	//Update Project Status
 	async function updateProject(project_id, updates) {
 		try{
-			const token = localStorage.getItem("token");
 			const response = await updateProjectById(project_id, updates);
 			const data = await response.json();
 			if (!response.ok) throw new Error(`${response.status}`);			
 			setProjects(prev => prev.map(p => (p.id === project_id ? data : p)));
+			return data;
 		} catch	(error) {
 		setError(`Failed to update project: ${error.message || error}`)
 		throw error; 
