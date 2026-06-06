@@ -22,7 +22,7 @@
 
 .proj-details h1 {
 	text-align: center;
-	margin-bottom: 18px;
+	margin-bottom: 20px;
 }
 
 /* ------ Status Stepper Card ------ */
@@ -88,10 +88,18 @@
 .proj-status-option:has(input:checked) {
 	font-weight: 100;
 	color: rgb(31, 58, 94);
-	text-shadow: 2px 2px 4px rgba(146, 149, 151, 0.5);
+	text-shadow: 2px 2px 4px rgba(146, 149, 151, 0.25);
 }
 
 /* ------ Project Info Layout ------ */
+/*Deadline*/
+.proj-deadline {
+	border-radius: 10px;
+	padding: 8px 25px 8px 25px;
+	background: rgba(219, 72, 72, 0.25);
+	
+}
+
 .meta-info-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);

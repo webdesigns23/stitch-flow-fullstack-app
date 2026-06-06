@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CalendarDays } from "lucide-react"
+import { formatDate } from "../../../utils/formatDate";
 
 export default function ProjectDeadlineField({project, onUpdate}) {
 	const [ editingDeadline, setEditingDeadline ] = useState(false);
@@ -16,7 +17,13 @@ export default function ProjectDeadlineField({project, onUpdate}) {
 
 	return(
 		<div className="proj-card-field">
-			<span className="proj-card-label">Deadline</span>
+			<span className="proj-card-label">
+				<CalendarDays size={16} color="#9f831d" 
+					onClick={() => setEditingDeadline(true)} 
+					style={{ cursor: "pointer" }} 
+					title="click to edit"
+				/>{" "} Deadline
+			</span>
 				{editingDeadline ? (
 					<div>
 						<input
@@ -31,9 +38,12 @@ export default function ProjectDeadlineField({project, onUpdate}) {
 							onClick={() => setEditingDeadline(false)}>Cancel Edit</button>
 			    	</div>
 				) : (
-					<span onClick={() => setEditingDeadline(true)} style={{ cursor: "pointer" }} title="click to edit">
-						<CalendarDays size={16} color="#9f831d" /> 
-							{" "} {project.deadline ?? "No Deadline"} 
+					<span 
+						className="proj-deadline"
+						
+					>
+						
+							{" "} {formatDate(project.deadline) ?? "No Deadline"} 
 					</span>
 				)}
 		</div>	
