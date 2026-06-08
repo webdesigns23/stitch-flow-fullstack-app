@@ -42,7 +42,7 @@ class ProjectSchema(Schema):
 	id = fields.Integer(dump_only=True)
 	title = fields.String(required=True, validate=validate.Length(max=35))
 	status = fields.String(validate=validate.OneOf(allowed_project_status), load_default="planning")
-	deadline = fields.Date(required=False, format="%m/%d/%Y")
+	deadline = fields.Date(required=True, format="%m/%d/%Y")
 	measurement_notes = fields.String(required=False, validate=validate.Length(max=100))
 	notes = fields.String(required=False, validate=validate.Length(max=250))
 	created_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")

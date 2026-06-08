@@ -2,6 +2,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import date, timedelta
 
 from config import db, bcrypt
 #Status allowed string
@@ -16,6 +17,10 @@ allowed_pattern_category = [
 allowed_image_types = [
 	"inspiration", "design", "fabric", "measurements", "in_progress", "finished"
 ]
+
+#Default Deadline
+def default_deadline():
+	return date.today() + timedelta(days=21)
 
 #Models
 class User(db.Model):
@@ -59,7 +64,7 @@ class Project(db.Model):
 	title = db.Column(db.String, nullable=False)
 	status = db.Column(db.String, default="planning", nullable=False)
 	notes = db.Column(db.Text, nullable=True)
-	deadline = db.Column(db.Date, nullable=True)
+	deadline = db.Column(db.Date, nullable=False, default=default_deadline)
 	measurement_notes = db.Column(db.String, nullable=True)
 	created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
 	updated_at = db.Column(db.DateTime, onupdate=func.now(), server_default=func.now())

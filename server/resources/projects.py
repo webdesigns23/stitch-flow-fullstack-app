@@ -63,7 +63,7 @@ class ProjectIndex(Resource):
             if len(notes) > 250:
                 return {"error": "Notes cannot be more than 250 characters"}, 422
             
-            deadline = data.get("deadline") or None
+            deadline = data.get("deadline") or default_deadline()
 
             measurement_notes = (data.get("measurement_notes") or "").strip()
             if measurement_notes and len(measurement_notes) > 100:
@@ -131,7 +131,9 @@ class ProjectDetails(Resource):
             project.notes = notes
 
         if "deadline" in data: 
-            deadline = data.get("deadline") or None
+            deadline = data.get("deadline")
+            if not deadline:
+                return {"error": "Deadline is required"}, 422
             project.deadline = deadline
 
         if "measurement_notes" in data: 
