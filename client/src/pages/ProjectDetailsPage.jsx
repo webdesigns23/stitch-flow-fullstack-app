@@ -10,8 +10,9 @@ import ProjectPatternField from "../components/projects/detailsFields/ProjectPat
 import ProjectStatusField from "../components/projects/detailsFields/ProjectStatusField";
 import ProjectSizeNotesField from "../components/projects/detailsFields/ProjectSizeNotesField";
 import ProjectNotesField from "../components/projects/detailsFields/ProjectNotesField";
-import ProjectImages from "../components/projects/detailsFields/ProjectImages";
+import ProjectImageGallery from "../components/projects/detailsFields/ProjectImageGallery";
 import "../styles/ProjectDetails.css";
+import ProjectImageMeasurements from "../components/projects/detailsFields/ProjectImageMeasurements";
 
 
 
@@ -114,15 +115,18 @@ export default function ProjectDetails() {
 
 				{/* Grid Area: 2 Columns for Size notes and measurement image */}
 				<div className="secondary-info-grid">
-					<article> 
+					<article className="meta-card pattern-card"> 
 						{/* size notes */}
 						<ProjectSizeNotesField project={project} onUpdate={handleFieldUpdates}/>
-					</article>					
+					</article>	
+					{/* <section className="measurement-gallery">
+						<ProjectImageMeasurements project={project} onImageUpdate={handleImageUpdates}/>
+					</section>				 */}
 				</div>	
 				
 				{/* Large Bottom Section: Image Gallery */}
 				<section className="gallery-section-card">
-					<ProjectImages project={project} onImageUpdate={handleImageUpdates} />
+					<ProjectImageGallery project={project} onImageUpdate={handleImageUpdates} />
 				</section>
 
 			</main>

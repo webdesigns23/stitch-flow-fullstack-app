@@ -50,8 +50,8 @@ h3 {
   color: rgb(197, 100, 100);
 }
 
-p {
-  color: rgb(51, 47, 47);
+p, li {
+  color: rgb(73, 68, 68);
   font-size: 1em;
 }
 

@@ -25,9 +25,9 @@
 	margin-bottom: 20px;
 }
 
-/* ------ Status Stepper Card ------ */
+/* ------ Status Card ------ */
 .status-banner-card {
-	background: rgba(245, 244, 239, 0.85);
+	background: rgba(252, 251, 250, 0.85);
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 	border-radius: 8px;
 	padding: 16px;
@@ -37,22 +37,10 @@
 .proj-status-radio {
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-start;
-	position: relative;
-	padding: 1rem 0;
+	align-items: flex-start;	
+	padding-top: 1rem;
 }
 
-/* Connecting line */
-.proj-status-radio::before {
-	content: "";
-	position: absolute;
-	top: 22px;
-	left: 16px;
-	right: 16px;
-	height: 2px;
-	background-color: #e0d5c1;
-	z-index: 0;
-}
 
 .proj-status-option {
 	display: flex;
@@ -61,7 +49,7 @@
 	gap: 6px;
 	flex: 1;
 	position: relative;
-	color: #999;
+	color: #686464;
 	cursor: pointer;
 	text-align: center;
 }
@@ -70,25 +58,56 @@
 .proj-status-option input[type="radio"] {
 	appearance: none;
 	-webkit-appearance: none;
-	width: 26px;
-	height: 26px;
+	width: 23px;
+	height: 23px;
 	border-radius: 50%;
-	border: 2px solid #e0d5c1;
+	border: 2px solid #ccc2b0;
 	background: #fff;
 	cursor: pointer;
-	margin: 0;
 	transition: all 0.2s ease;
 }
 
 .proj-status-option input[type="radio"]:checked {
 	background: #c09e23;
 	border-color: #4d4b46;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);;
 }
 
 .proj-status-option:has(input:checked) {
-	font-weight: 100;
 	color: rgb(31, 58, 94);
-	text-shadow: 2px 2px 4px rgba(146, 149, 151, 0.25);
+}
+
+/* Current step */
+.proj-status-option input[type="radio"]:checked {
+    background: #c09e23;
+    border-color: #55534c;
+}
+
+/* Previous steps — filled gold */
+.proj-status-option:has(~ .proj-status-option input:checked) input[type="radio"] {
+    background: #c09e23;
+    border-color: #c09e23;
+}
+
+/* Previous step labels */
+.proj-status-option:has(~ .proj-status-option input:checked) {
+	color: rgb(31, 58, 94);
+}
+
+/* Progress bar */
+.proj-progress-bar {
+	height: 8px;
+	background-color: rgb(204, 198, 198);
+	border-radius: 8px;
+	width: 85%;
+	margin: 0 auto;
+}
+
+.proj-progress-fill {
+	height: 100%;
+	background-color: #c09e23;
+	transition: width .3s ease;
+	border-radius: 8px;
 }
 
 /* ------ Project Info Layout ------ */
@@ -116,7 +135,7 @@
 
 /* Card Layout */
 .meta-card {
-	background: rgba(245, 244, 239, 0.85);
+	background: rgba(252, 251, 250, 0.85);
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 	border-radius: 8px;
 	padding: 16px;
@@ -124,5 +143,13 @@
 
 /* ------ Project Image Gallery ----- */
 .proj-image {
-	width: 30%;
+	width: 60%;
 }
+
+.gallery-section-card {
+  	background: rgba(252, 251, 250, 0.85);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+	border-radius: 8px;
+	padding: 16px;
+}
+
