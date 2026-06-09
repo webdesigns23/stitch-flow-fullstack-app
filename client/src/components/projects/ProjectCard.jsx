@@ -13,15 +13,29 @@ const STATUSES = [
 export default function ProjectCard({project}) {
 	const { updateProject } = useContext(ProjectContext);
 	const p = project?.pattern;
-	const patternId = p?.id ?? project?.pattern_id;
 
+	//Update Status on radio bar
 	async function handleStatusChange(e) {
 		e.stopPropagation();
 		await updateProject(project.id, {status: e.target.value});
 	}
 
+	//Deadline Checks
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+	const [month, day, year] = project.deadline.split("/");
+	const deadlineDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+	//Past due date
+	const isOverdue = deadlineDate < today;
+
+	//Due in 7 days
+	const isDueSoon = !isOverdue && (deadlineDate - today) <= 7 * 24 * 60 * 60 * 1000;
+
 	return(
-		<article className="kanban-card">
+		<article className={`${isOverdue ? "kanban-card-overdue":
+			isDueSoon ? "kanban-card-due-soon":
+			"kanban-card"}`}>
 
 			<Link to={`/projects/${project.id}`} className="card_link" aria-label={`${project.title}`}>
 				<div className="kanban-card-body">
@@ -41,7 +55,8 @@ export default function ProjectCard({project}) {
 					)}
 
 					{/* project deadline */}
-					<span className="kanban-card-deadline">
+					<span className={`${isOverdue ? "kanban-card-deadline-overdue":
+						isDueSoon ? "kanban-card-deadline-due-soon": "kanban-card-deadline"}`}>
 						Due: {formatDate(project?.deadline)}
 					</span>	
 

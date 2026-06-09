@@ -35,7 +35,7 @@ export default function ProjectKanban({ projects }) {
 	return (
 		<div className="kanban-board">
 
-			{/* Month Filter */}
+			{/* Month Filter Nav Bar and Pills*/}
 			<div className="kanban-month-filter-nav">
 			{monthKeys.map(key => {
 				const [year, month] = key.split("-");
@@ -48,18 +48,22 @@ export default function ProjectKanban({ projects }) {
 						className="kanban-month-filter-pill">
 						{MONTH_NAMES[monthIndex]} {year}
 					</a>
-				);
-				
-				})}
-				</div>
-
+				);				
+			})}
+			</div>
+			
+			{/* Month Sections */}
 			{monthKeys.map(key => {
 				const [year, month] = key.split("-");
 				const monthIndex = parseInt(month) - 1;
 				const monthProjects = monthSections[key];
 
 				return (
-					<section key={key} id={`month-${key}`} className="kanban-month">
+					<section 
+						key={key} 
+						id={`month-${key}`} 
+						className="kanban-month"
+					>
 						<div className="kanban-month-header">
 							<h2 className="kanban-month-title">
 								{MONTH_NAMES[monthIndex]}
@@ -67,7 +71,8 @@ export default function ProjectKanban({ projects }) {
 							<div />
 							<hr className="kanban-month-line" />
 						</div>
-
+						
+						{/* Kanban Column headings (statuses) */}
 						<div className="kanban-columns">
 							{STATUSES.map(({ key: statusKey, label }) => {
 								const cards = monthProjects.filter(p => p.status === statusKey);
@@ -78,6 +83,8 @@ export default function ProjectKanban({ projects }) {
 												{label} ({cards.length})
 											</span>
 										</div>
+
+										{/* Kanban Project Cards */}
 										<div className="kanban-column-body">
 											{cards.length === 0 ? (
 												<div>-</div>
