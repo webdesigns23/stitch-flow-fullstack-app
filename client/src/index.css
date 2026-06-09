@@ -13,11 +13,11 @@
 
 a {
   font-weight: 500;
-  color: #7274a3;
+  color: #5c5d85;
   text-decoration: inherit;
 }
 a:hover {
-  color: #5c8991;
+  color: #af656f;
 }
 
 body {
@@ -39,15 +39,17 @@ h1 {
 }
 
 h2 {
-  color: rgb(86, 104, 126);
-  font-size: 23px;
-  text-align: center;
+  font-weight: 100;
+  font-size: 2.2em;
+  line-height: 1.1;
+  color: rgb(85, 105, 136);
+  margin: 10px;
+  text-shadow: 2px 2px 4px rgba(63, 61, 61, 0.5);
 }
 
 h3 {
-  font-size: 20px;
-  letter-spacing: 2px;
-  color: rgb(197, 100, 100);
+  font-size: 25px;
+  color: rgb(92, 77, 77);
 }
 
 p, li {
@@ -65,7 +67,7 @@ button {
   padding: .25em 2.5em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
+  font-family: 'Times New Roman', Times, serif;
   background-color: #eceff0;
   border-radius: 6px;
 }

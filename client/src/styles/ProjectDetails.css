@@ -6,8 +6,11 @@
 	align-items: center;
 }
 
-.proj-header button {
-	max-width: 150px;
+.proj-card-btn-remove {
+	max-width: fit-content;
+}
+.proj-card-btn-remove:hover {
+	border: 2px solid rgb(211, 123, 123);
 }
 
 .go-back {

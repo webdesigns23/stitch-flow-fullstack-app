@@ -27,9 +27,9 @@ export default function ProjectCard({project}) {
 				<div className="kanban-card-body">
 
 					{/* project title */}
-					<h2 className="kanban-card-title">
+					<h3 className="kanban-card-title">
 						{capitalizeWords(project.title)}
-					</h2>
+					</h3>
 
 					{/* linked pattern or none */}
 					{p ? (

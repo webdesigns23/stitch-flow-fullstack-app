@@ -36,15 +36,15 @@ export default function StatsGallery() {
 	return (
 		<div className="stat-gallery">
 			<div className="stat-gallery-item is-compact">
-				<h2>Total Projects</h2>
+				<h3>Total Projects</h3>
 				<div className="stat-value">{totalProjects}</div>
 			</div>
 			<div className="stat-gallery-item is-compact">
-				<h2>Total Patterns</h2>
+				<h3>Total Patterns</h3>
 				<div className="stat-value">{totalPatterns}</div>
 			</div>
 			<div className="stat-gallery-item is-wide">
-				<h2>Projects by Status</h2>
+				<h3>Projects by Status</h3>
 				<StatusPieChart statusCounts={statusCounts} statuses={statuses} />
 			</div>
 		</div>

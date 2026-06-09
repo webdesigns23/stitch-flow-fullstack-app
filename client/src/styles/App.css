@@ -10,14 +10,6 @@ body {
   margin-left: 150px;
 }
 
-a {
-  color: rgb(82, 88, 114);
-}
-
-a:hover {
-  color: rgb(214, 110, 110);
-}
-
 /* Filter Labels for Status */
 .filter-label {
   font-size: 18px;

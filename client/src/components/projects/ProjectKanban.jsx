@@ -34,13 +34,32 @@ export default function ProjectKanban({ projects }) {
 
 	return (
 		<div className="kanban-board">
+
+			{/* Month Filter */}
+			<div className="kanban-month-filter-nav">
+			{monthKeys.map(key => {
+				const [year, month] = key.split("-");
+				const monthIndex = parseInt(month) - 1;
+
+				return (
+					<a 
+						key={key} 
+						href={`#month-${key}`}
+						className="kanban-month-filter-pill">
+						{MONTH_NAMES[monthIndex]} {year}
+					</a>
+				);
+				
+				})}
+				</div>
+
 			{monthKeys.map(key => {
 				const [year, month] = key.split("-");
 				const monthIndex = parseInt(month) - 1;
 				const monthProjects = monthSections[key];
 
 				return (
-					<section key={key} className="kanban-month">
+					<section key={key} id={`month-${key}`} className="kanban-month">
 						<div className="kanban-month-header">
 							<h2 className="kanban-month-title">
 								{MONTH_NAMES[monthIndex]}
@@ -75,6 +94,7 @@ export default function ProjectKanban({ projects }) {
 					</section>
 				);
 			})}
+			
 		</div>
 	);
 }

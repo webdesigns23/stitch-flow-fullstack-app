@@ -5,6 +5,23 @@
     padding: 1rem 0;
 }
 
+/*Month filter*/
+.kanban-month-filter-nav {
+    margin-top: 5px;
+}
+
+.kanban-month-filter-pill {
+    font-size: 16px;
+	font-weight: 500;
+	padding: 8px 16px;
+    margin: 10px;
+	border-radius: 8px;
+	border: 1px solid #8d7313;
+	background: white;
+	color: #030303;
+	text-decoration: none;
+}
+
 /* ----- Month section ----- */
 .kanban-month-header {
     display: flex;
@@ -15,9 +32,9 @@
 
 .kanban-month-header h2 {
 	font-weight: 100;
-	font-size: 2.5em;
+	font-size: 3em;
 	line-height: 1.1;
-	color: rgb(52, 77, 109);
+	color: rgb(51, 52, 54);
 	margin: 10px;
 	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
@@ -75,6 +92,8 @@
     border-radius: 6px 6px 0 0;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(82, 74, 74, 0.5);
+    font-weight: 00;
 }
 
 .kanban-column-head--planning    { background: rgb(199, 140, 150, .75); }
