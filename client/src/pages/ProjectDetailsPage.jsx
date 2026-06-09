@@ -12,7 +12,6 @@ import ProjectSizeNotesField from "../components/projects/detailsFields/ProjectS
 import ProjectNotesField from "../components/projects/detailsFields/ProjectNotesField";
 import ProjectImageGallery from "../components/projects/detailsFields/ProjectImageGallery";
 import "../styles/ProjectDetails.css";
-import ProjectImageMeasurements from "../components/projects/detailsFields/ProjectImageMeasurements";
 
 
 
@@ -87,7 +86,7 @@ export default function ProjectDetails() {
 					<ProjectStatusField project={project} onUpdate={handleFieldUpdates}/>
 				</section>
 
-				{/* Grid Area: 3 Columns for Metadata */}
+				{/* Grid Area: 2 Columns for Deadline and Notes */}
 				<div className="meta-info-grid">
 					<article className="meta-card deadline-card">
 						{/* deadline */}
@@ -103,22 +102,25 @@ export default function ProjectDetails() {
 							)}					
 						</footer>
 					</article>
-					<article className="meta-card pattern-card">
-						{/* pattern */}
-						<ProjectPatternField project={project} onUpdate={handleFieldUpdates}/>
-					</article>
+					
 					<article className="meta-card notes-card">
 						{/* notes */}
 						<ProjectNotesField project={project} onUpdate={handleFieldUpdates}/>
 					</article>
 				</div>		
 
-				{/* Grid Area: 2 Columns for Size notes and measurement image */}
+				{/* Grid Area: 2 Columns for Pattern and Size notes*/}
 				<div className="secondary-info-grid">
+					<article className="meta-card pattern-card">
+						{/* pattern */}
+						<ProjectPatternField project={project} onUpdate={handleFieldUpdates}/>
+					</article>					
 					<article className="meta-card pattern-card"> 
 						{/* size notes */}
 						<ProjectSizeNotesField project={project} onUpdate={handleFieldUpdates}/>
 					</article>	
+
+
 					{/* <section className="measurement-gallery">
 						<ProjectImageMeasurements project={project} onImageUpdate={handleImageUpdates}/>
 					</section>				 */}

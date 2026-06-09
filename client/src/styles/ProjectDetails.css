@@ -6,6 +6,17 @@
 	align-items: center;
 }
 
+.proj-card-btn {
+	max-width: fit-content;
+	background: rgb(233, 231, 231);
+	border: 2px solid rgba(12, 12, 11, 0.5);
+	color: #1f303d;
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 .proj-card-btn-remove {
 	max-width: fit-content;
 }
@@ -173,3 +184,32 @@
 	padding: 16px;
 }
 
+.proj-images-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.image-filter-pill {
+	background: white;
+	color: #030303;
+	font-size: 16px;
+	font-weight: 500;
+	padding: 8px 16px;
+    margin: 10px;
+	border-radius: 8px;
+	border: 1px solid #8d7313;
+	text-decoration: none;
+}
+
+.image-filter-pill-active {
+	color: rgb(255, 255, 255);
+	background: rgb(87, 84, 84);
+	font-size: 16px;
+	font-weight: 500;
+	padding: 8px 16px;
+    margin: 10px;
+	border-radius: 8px;
+	border: 1px solid #8d7313;
+	text-decoration: none;
+}

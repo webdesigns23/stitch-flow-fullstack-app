@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { uploadProjectImage } from "../../../api/projects";
 
-const image_types = [
+const IMAGE_TYPES = [
 	"inspiration", "design", "fabric", "measurements", "in_progress", "finished"
 ]
 export default function ProjectImageForm({project, onImageUpdate}) {
@@ -61,7 +61,7 @@ export default function ProjectImageForm({project, onImageUpdate}) {
 						value={imageType}
 						onChange={(e) => setImageType(e.target.value)}>
 						<option value="">Select Image Type...</option>
-						{image_types.map(t => (
+						{IMAGE_TYPES.map(t => (
 							<option key={t} value={t}>
 								{t.replace(/_/g, " ")}
 							</option>

@@ -1,34 +1,65 @@
 import { useState } from "react";
+import { Image } from "lucide-react";
 import ProjectImageForm from "./ProjectImageForm";
 import ProjectImageEditForm from "./ProjectImageEditForm";
 import "../../../styles/ProjectDetails.css"
 
+const IMAGE_TYPES = [
+	{ key: "all" , label: "All" },
+	{ key:"inspiration" , label: "Inspiration" },
+	{ key: "design", label: "Design" },
+	{ key: "fabric", label: "Fabric" },
+	{ key: "measurements", label: "Measurements" },
+	{ key: "in_progress", label: "In Progress" },
+	{ key:"finished" , label: "Finished" },
+];
 
 export default function ProjectImageGallery({project, onImageUpdate}) {
 	const [ showImageForm, setShowImageForm ] = useState(false);
+	const [ filterType, setFilterType ] = useState("all");
 	
 	const images = project.project_images || [];
 
+	//Filter images by type in image gallery
+	const filteredImages = filterType === "all" ? images : images.filter(img => (
+		img.image_type === filterType)
+	);
 
 	return (
 		<div className="proj-images-section">
-			<h2>Project Images</h2>
-
-			<button 
-				className="proj-card-btn" 
-				onClick={() => setShowImageForm(!showImageForm)}>
-				{showImageForm ? "Exit Image Form" : "+ Add New Image"}
-			</button>
+			<header className="proj-images-header">
+				<span className="proj-details-label"><Image size={16} color="#9f831d"/>
+					{" "} Project Images ({images.length})
+				</span>
+				<button 
+					className="proj-card-btn" 
+					onClick={() => setShowImageForm(!showImageForm)}>
+					{showImageForm ? "Exit Image Form" : "+ Add New Image"}
+				</button>	
+			</header>
+			
 
 			{showImageForm && <ProjectImageForm 
 				project={project} 
 				onImageUpdate={onImageUpdate} 
 			/>}
 
+			{/* create image filter pills */}
+			<div className="image-filter-pills">
+				{IMAGE_TYPES.map(({key, label}) => (
+					<button
+					key={key}
+					className={`${filterType === key ? "image-filter-pill-active" : "image-filter-pill"}`}
+					onClick={() => setFilterType(key)}>
+						{label}
+					</button>
+				))}
+			</div>
+
 			{/* project images gallery */}
 			{images.length > 0 ? (
 				<div className="gallery">
-					{images.map(img => (
+					{filteredImages.map(img => (
 						<div key={img.id} className="proj-image-card"> 
 							<img 
 								className="proj-image"
