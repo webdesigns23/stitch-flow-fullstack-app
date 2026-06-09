@@ -9,9 +9,6 @@ export default function ProjectPage() {
 
 	const { projects, loading, error } = useContext(ProjectContext);
 
-	if (loading) return <p>Loading...</p>
-	if (error) return <p>Error: {error}</p>
-
   return (
 	<div className="project-container">
 		<h1>Sewing Project's</h1>
@@ -26,8 +23,12 @@ export default function ProjectPage() {
 
 		{showProjForm && <AddProjectForm />}
 
-		<ProjectKanban projects={projects}/>
+		{loading && <p>Loading...</p>}
+		{error && <p>Error: {error}</p>}
 
+		{!loading && !error && (
+			<ProjectKanban projects={projects}/>
+		)}
 	</div>
   )
 }

@@ -5,8 +5,7 @@
     padding: 1rem 0;
 }
 
-/* Month section */
-
+/* ----- Month section ----- */
 .kanban-month-header {
     display: flex;
     align-items: center;
@@ -54,41 +53,37 @@
     background: #b4900b;
 }
 
-/* Lanes row */
-.kanban-lanes {
+/* ----- Kanban Columns ----- */
+.kanban-columns {
     display: flex;
     gap: 10px;
     overflow-x: auto;
     padding-bottom: 4px;
 }
 
-.kanban-lane {
+.kanban-column {
     min-width: 150px;
     flex: 1;
 }
 
-/* Lane header */
-.kanban-lane-head {
+.kanban-column-head {
 	color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 8px;
     border-radius: 6px 6px 0 0;
-    font-size: 12px;
-    font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
 
-.kanban-lane-head--planning    { background: rgb(199, 140, 150, .75); }
-.kanban-lane-head--cutting     { background: rgb(45, 114, 160, .75); }
-.kanban-lane-head--ready_to_sew { background: rgb(47, 116, 78, .75); }
-.kanban-lane-head--sewing      { background: rgb(110, 94, 141, .75); }
-.kanban-lane-head--final_touches { background: rgb(161, 155, 58, .75); }
+.kanban-column-head--planning    { background: rgb(199, 140, 150, .75); }
+.kanban-column-head--cutting     { background: rgb(45, 114, 160, .75); }
+.kanban-column-head--ready_to_sew { background: rgb(47, 116, 78, .75); }
+.kanban-column-head--sewing      { background: rgb(110, 94, 141, .75); }
+.kanban-column-head--final_touches { background: rgb(161, 155, 58, .75); }
 
-/* Lane body */
-.kanban-lane-body {
+.kanban-column-body {
     background: #ede8de;
     border-radius: 0 0 6px 6px;
     padding: 6px;

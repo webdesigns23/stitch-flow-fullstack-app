@@ -126,10 +126,14 @@
 /* ------ Project Info Layout ------ */
 /*Deadline*/
 .proj-deadline {
+	width:fit-content;
+	font-size: 18px;
+	font-weight: 600;
+	color: #9f6c1a;
 	border-radius: 10px;
 	padding: 8px 25px 8px 25px;
-	background: rgba(219, 72, 72, 0.25);
-	
+	margin: 5px;
+	background: rgba(192, 187, 187, 0.25);	
 }
 
 .meta-info-grid {

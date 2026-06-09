@@ -34,7 +34,7 @@ export default function ProjectCard({project}) {
 					{/* linked pattern or none */}
 					{p ? (
 						<p className="kanban-card-pattern">
-						{p?.name} ({p?.brand})
+						{capitalizeWords(p?.name)}
 						</p>
 					) : (
 						<p className="kanban-card-pattern">No Pattern Linked</p>
@@ -50,7 +50,7 @@ export default function ProjectCard({project}) {
 
 			{/* status dropdown */}
 			<div className="kanban-card-footer">
-				<span className="kanban-card-label">Status</span>
+				<span className="kanban-card-status">Update Status:</span>
 				<select 
 					className="kanban-card-select" 
 					value={project?.status} 

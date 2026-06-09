@@ -6,24 +6,6 @@
 	overflow: hidden;
 }
 
-.kanban-card:hover {
-	border-top-color: #d3cfc7;
-	border-right-color: #d3cfc7;
-	border-bottom-color: #d3cfc7;
-}
-
-.kanban-card[data-status="planning"]      { border-left-color: rgb(199, 140, 150); }
-.kanban-card[data-status="cutting"]       { border-left-color: rgb(45, 114, 160); }
-.kanban-card[data-status="ready_to_sew"]  { border-left-color: rgb(47, 116, 78); }
-.kanban-card[data-status="sewing"]        { border-left-color: rgb(110, 94, 141); }
-.kanban-card[data-status="final_touches"] { border-left-color: rgb(161, 155, 58); }
-.kanban-card[data-status="complete"]      { border-left-color: rgb(63, 61, 61); }
-
-.kanban-card .card_link {
-	text-decoration: none;
-	color: inherit;
-}
-
 .kanban-card-body {
 	display: flex;
 	flex-direction: column;
@@ -35,7 +17,7 @@
 
 .kanban-card-title {
 	margin: 6px;
-	font-size: 20px;
+	font-size: 19px;
 	font-weight: 600;
 	color: #3a3020;
 	white-space: nowrap;
@@ -46,7 +28,7 @@
 }
 
 .kanban-card-pattern {
-	font-size: 14px;
+	font-size: 16px;
 	margin: 3px;
 	color: #888780;
 	white-space: nowrap;
@@ -60,6 +42,7 @@
 	width:fit-content;
 	gap: 4px;
 	font-size: 16px;
+	font-weight: 600;
 	color: #9f6c1a;
 	margin-top: 4px;
 	border-radius: 10px;
@@ -69,12 +52,18 @@
 
 .kanban-card-footer {
 	padding: 0 10px 10px;
+	text-align: left;
+}
+
+.kanban-card-status {
+	color: gray;
+	font-size: 14px;
 }
 
 .kanban-card-select {
 	width: 100%;
 	font-family: 'Lato', sans-serif;
-	font-size: 11px;
+	font-size: 12px;
 	padding: 3px 6px;
 	border: 0.5px solid #d3d1c7;
 	background: #f7f5f2;
