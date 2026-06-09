@@ -22,8 +22,8 @@ export default function ProjectPatternField({ project, onUpdate }) {
 	}
 
 	return (
-		<div className="proj-card-field">
-			<span className="proj-card-label">
+		<div className="proj-details-field">
+			<span className="proj-details-label">
 				<PencilLine size={14} color="#9f831d" 
 					onClick={() => setEditingPattern(true)} 
 					style={{ cursor: "pointer" }} 

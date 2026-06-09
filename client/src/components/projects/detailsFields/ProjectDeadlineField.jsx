@@ -16,8 +16,8 @@ export default function ProjectDeadlineField({project, onUpdate}) {
 	}
 
 	return(
-		<div className="proj-card-field">
-			<span className="proj-card-label">
+		<div className="proj-details-field">
+			<span className="proj-details-label">
 				<CalendarDays size={16} color="#9f831d" 
 					onClick={() => setEditingDeadline(true)} 
 					style={{ cursor: "pointer" }} 

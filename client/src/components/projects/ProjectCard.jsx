@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
+import { formatDate } from "../../utils/formatDate"
 import "../../styles/ProjectCard.css";
 
 
-const statuses = [
+const STATUSES = [
 		"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
 	];
 
@@ -19,53 +20,43 @@ export default function ProjectCard({project}) {
 		await updateProject(project.id, {status: e.target.value});
 	}
 
-	async function handlePatternChange(e) {
-		const newPattern = e.target.value ? Number(e.target.value) : null;
-		await updateProject({pattern_id: newPattern});
-	}
-
 	return(
-		<article className="project-card">
+		<article className="kanban-card">
 
 			<Link to={`/projects/${project.id}`} className="card_link" aria-label={`${project.title}`}>
-				<div className="proj-card-body">
+				<div className="kanban-card-body">
 
 					{/* project title */}
-					<h2 className="proj-card-title">
+					<h2 className="kanban-card-title">
 						{capitalizeWords(project.title)}
 					</h2>
 
-					{/* linked pattern */}
-					<div className="proj-card-field">
-						<span className="proj-card-label">Pattern</span>
-						{patternId ?(
-							<span>
-								{`${p?.name} (${p?.brand})`}
-							</span>
-						):(
-							<span className="proj-card-patt-none">"No pattern linked to project"</span>
-						)}
-					</div>	
-
-					<hr className="proj-card-divider" />
+					{/* linked pattern or none */}
+					{p ? (
+						<p className="kanban-card-pattern">
+						{p?.name} ({p?.brand})
+						</p>
+					) : (
+						<p className="kanban-card-pattern">No Pattern Linked</p>
+					)}
 
 					{/* project deadline */}
-					<p className="proj-card-meta">
-						Deadline: {project.deadline ?? "No deadline"}
-					</p>	
+					<span className="kanban-card-deadline">
+						Due: {formatDate(project?.deadline)}
+					</span>	
 
 				</div>				
 			</Link>
 
 			{/* status dropdown */}
-			<div className="proj-card-field">
-				<span className="proj-card-label">Status</span>
+			<div className="kanban-card-footer">
+				<span className="kanban-card-label">Status</span>
 				<select 
-					className="proj-card-select" 
+					className="kanban-card-select" 
 					value={project?.status} 
 					onChange={handleStatusChange}>
 					
-					{statuses.map(s => (
+					{	STATUSES.map(s => (
 						<option key={s} value={s}>
 							{s.replace(/_/g, " ")}
 						</option>

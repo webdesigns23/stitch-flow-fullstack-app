@@ -1,94 +1,84 @@
-/* Dynamic Project Status Color Border */
-.gallery-item[data-status] {border-left: 10px solid transparent;}
-.gallery-item[data-status="planning"] {border-left-color: rgb(199, 140, 150);}
-.gallery-item[data-status="cutting"] {border-left-color: rgb(45, 114, 160);}
-.gallery-item[data-status="ready-to-sew"] {border-left-color: rgb(47, 116, 78);}
-.gallery-item[data-status="sewing"] {border-left-color: rgb(110, 94, 141);}
-.gallery-item[data-status="final-touches"] {border-left-color: rgb(161, 155, 58);}
-.gallery-item[data-status="complete"] {border-left-color:rgb(63, 61, 61);}
+.kanban-card {
+	background: white;
+	border-radius: 8px;
+	border: 0.5px solid #e0d8c8;
+	border-left: 4px solid transparent;
+	overflow: hidden;
+}
 
-.proj-card-body {
-	padding: 1.5rem 1.5rem 1rem;
+.kanban-card:hover {
+	border-top-color: #d3cfc7;
+	border-right-color: #d3cfc7;
+	border-bottom-color: #d3cfc7;
+}
+
+.kanban-card[data-status="planning"]      { border-left-color: rgb(199, 140, 150); }
+.kanban-card[data-status="cutting"]       { border-left-color: rgb(45, 114, 160); }
+.kanban-card[data-status="ready_to_sew"]  { border-left-color: rgb(47, 116, 78); }
+.kanban-card[data-status="sewing"]        { border-left-color: rgb(110, 94, 141); }
+.kanban-card[data-status="final_touches"] { border-left-color: rgb(161, 155, 58); }
+.kanban-card[data-status="complete"]      { border-left-color: rgb(63, 61, 61); }
+
+.kanban-card .card_link {
+	text-decoration: none;
+	color: inherit;
+}
+
+.kanban-card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	padding: 6px;
 	text-align: left;
+	font-family: "Times New Roman", Times, Georgia, serif;
 }
 
-.proj-card-field {
-  	margin-bottom: 1rem;
+.kanban-card-title {
+	margin: 6px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #3a3020;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
+	border-bottom: 1px solid rgb(206, 204, 204);
 }
 
-.proj-card-label {
-  	display: block;
+.kanban-card-pattern {
+	font-size: 14px;
+	margin: 3px;
+	color: #888780;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.kanban-card-deadline {
+	display: inline-flex;
+	align-items: center;
+	width:fit-content;
+	gap: 4px;
 	font-size: 16px;
-	color: #5e5b5c;
-  	text-transform: uppercase;
-  	letter-spacing: 0.06em;
-	margin-bottom: 5px;
+	color: #9f6c1a;
+	margin-top: 4px;
+	border-radius: 10px;
+	padding: 6px 20px 6px 20px;
+	background: rgba(192, 187, 187, 0.25);
 }
 
-.proj-card-select {
-  	width: 95%;
+.kanban-card-footer {
+	padding: 0 10px 10px;
+}
+
+.kanban-card-select {
+	width: 100%;
 	font-family: 'Lato', sans-serif;
-	font-size: 13px;
-	padding: 6px 10px;
+	font-size: 11px;
+	padding: 3px 6px;
 	border: 0.5px solid #d3d1c7;
 	background: #f7f5f2;
 	color: #2c2c2a;
 	cursor: pointer;
-  	border-radius: 6px;
-}
-.proj-card-meta {
-	color: #888085;
-}
-
-.proj-card-chang-pat {
-  	padding: 0 1.5rem 1rem;
-}
-
-.proj-card-footer {
-  	display: flex;
-	padding: 0.75rem;
-	border-top: 0.5px solid #e8e0dc;
-}
-
-.proj-card-btn,
-.proj-card-btn-remove {
-  	flex: auto;
-	font-size: 12px;
-  	font-family: 'Lato', sans-serif;
-	text-transform: uppercase;
-	padding: 8px;
-	cursor: pointer;  
-  	background: #f7f5f2;
-  	color: rgb(88, 84, 84);
-}
-
-.proj-card-btn-remove:hover {
-  	border: 2px solid rgb(204, 102, 102);
-}
-
-.proj-card-divider {
-  	border: none;
-  	border-top: 0.5px solid #e8e0dc;
-  	margin: 20px auto;
- 	width: 85%;
-}
-
-.proj-card-patt-link {
-	font-size: 16px;
-	color: rgb(202, 115, 129);
-  	text-decoration: none;
-}
-
-.proj-card-patt-link:hover {
-	text-decoration: underline;
-  	color: #3b517c;
-}
-
-.proj-card-patt-none {
-	font-size: 13px;
-	color: #888780;
-}
-
-.proj-card-notes {
-  	color: #3b517c;
+	border-radius: 4px;
 }

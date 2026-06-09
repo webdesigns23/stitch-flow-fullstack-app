@@ -20,8 +20,8 @@ export default function ProjectNotesField({project, onUpdate}) {
 	return (
 		<>
 			{/* notes */}
-			<div className="proj-card-field">
-				<span className="proj-card-label">
+			<div className="proj-details-field">
+				<span className="proj-details-label">
 					<SquarePen size={14} color="#9f831d" onClick={() => setEditingNotes(true)} style={{ cursor: "pointer" }} />
 					{" "} Notes
 				</span>

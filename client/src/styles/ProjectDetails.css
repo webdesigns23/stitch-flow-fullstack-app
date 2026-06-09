@@ -25,6 +25,19 @@
 	margin-bottom: 20px;
 }
 
+.proj-details-field {
+  	margin-bottom: 1rem;
+}
+
+.proj-details-label {
+  	display: block;
+	font-size: 16px;
+	color: #5e5b5c;
+  	text-transform: uppercase;
+  	letter-spacing: 0.06em;
+	margin-bottom: 5px;
+}
+
 /* ------ Status Card ------ */
 .status-banner-card {
 	background: rgba(252, 251, 250, 0.85);

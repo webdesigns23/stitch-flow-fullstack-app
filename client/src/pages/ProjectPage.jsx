@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import AddProjectForm from "../components/projects/AddProjectForm"
-import ProjectGallery from "../components/projects/ProjectGallery"
+import ProjectKanban from "../components/projects/ProjectKanban";
+import { ProjectContext } from "../context/ProjectContext";
 
 export default function ProjectPage() {
 	const [showProjForm, setShowProjForm] = useState(false);
+
+	const { projects, loading, error } = useContext(ProjectContext);
+
+	if (loading) return <p>Loading...</p>
+	if (error) return <p>Error: {error}</p>
 
   return (
 	<div className="project-container">
@@ -20,7 +26,8 @@ export default function ProjectPage() {
 
 		{showProjForm && <AddProjectForm />}
 
-		<ProjectGallery />
+		<ProjectKanban projects={projects}/>
+
 	</div>
   )
 }

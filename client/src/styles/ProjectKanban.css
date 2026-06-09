@@ -1,0 +1,99 @@
+.kanban-board {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* Month section */
+
+.kanban-month-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.kanban-month-header h2 {
+	font-weight: 100;
+	font-size: 2.5em;
+	line-height: 1.1;
+	color: rgb(52, 77, 109);
+	margin: 10px;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.kanban-month-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3a3020;
+    white-space: nowrap;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.kanban-month-year {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #888780;
+}
+
+.kanban-month-count {
+    font-size: 12px;
+    color: #888780;
+    background: #ede8de;
+    padding: 2px 10px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.kanban-month-line {
+    flex: 1;
+    height: 1px;
+    background: #b4900b;
+}
+
+/* Lanes row */
+.kanban-lanes {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.kanban-lane {
+    min-width: 150px;
+    flex: 1;
+}
+
+/* Lane header */
+.kanban-lane-head {
+	color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 6px 6px 0 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.kanban-lane-head--planning    { background: rgb(199, 140, 150, .75); }
+.kanban-lane-head--cutting     { background: rgb(45, 114, 160, .75); }
+.kanban-lane-head--ready_to_sew { background: rgb(47, 116, 78, .75); }
+.kanban-lane-head--sewing      { background: rgb(110, 94, 141, .75); }
+.kanban-lane-head--final_touches { background: rgb(161, 155, 58, .75); }
+
+/* Lane body */
+.kanban-lane-body {
+    background: #ede8de;
+    border-radius: 0 0 6px 6px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 52px;
+}
