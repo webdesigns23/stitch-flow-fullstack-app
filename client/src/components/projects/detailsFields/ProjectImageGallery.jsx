@@ -17,6 +17,7 @@ const IMAGE_TYPES = [
 export default function ProjectImageGallery({project, onImageUpdate}) {
 	const [ showImageForm, setShowImageForm ] = useState(false);
 	const [ filterType, setFilterType ] = useState("all");
+	const [ lightboxImg, setLightboxImg ] = useState(null);
 	
 	const images = project.project_images || [];
 
@@ -65,6 +66,7 @@ export default function ProjectImageGallery({project, onImageUpdate}) {
 								className="proj-image"
 								src={img.secure_url} 
 								alt={img.image_type} 
+								onClick={() => setLightboxImg(img)}
 							/>
 						
 							<ProjectImageEditForm 
@@ -79,6 +81,22 @@ export default function ProjectImageGallery({project, onImageUpdate}) {
 				</div>
 			) : (
 				<p>No Project Images</p>
+			)}
+
+			{/* lightbox images */}
+			{lightboxImg && (
+				<div className="lightbox-overlay" onClick={() => setLightboxImg(null)}>
+					<button className="lightbox-close" onClick={() => setLightboxImg(null)}>X Close</button>
+					<img 
+						className="lightbox-img"
+						src={lightboxImg.secure_url} 									alt={lightboxImg.image_type}
+						onClick={(e) => e.stopPropagation()}
+					/>
+
+					{lightboxImg.notes && (
+						<p className="lightbox-caption">{lightboxImg.notes}</p>
+					)}
+				</div>
 			)}
 
 		</div>

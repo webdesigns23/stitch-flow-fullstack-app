@@ -213,3 +213,46 @@
 	border: 1px solid #8d7313;
 	text-decoration: none;
 }
+
+/* lightbox */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(46, 45, 45, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: pointer;
+    padding: 40px;
+}
+
+.lightbox-img {
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 6px;
+    cursor: default;
+    display: block;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    padding: 4px 10px;
+    font-size: 13px;
+    margin: 0;
+}
+
+.lightbox-close:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: white;
+	font-size: 18px;
+}
