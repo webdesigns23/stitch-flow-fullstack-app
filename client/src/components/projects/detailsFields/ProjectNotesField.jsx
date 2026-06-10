@@ -62,7 +62,7 @@ export default function ProjectNotesField({project, onUpdate}) {
 			<div className="proj-details-field">
 				<span className="proj-details-label">
 					<SquarePen 
-						size={14} 
+						size={20} 
 						color="#9f831d" 
 						onClick={handleEditStart} 
 						style={{ cursor: "pointer" }} 
@@ -80,7 +80,7 @@ export default function ProjectNotesField({project, onUpdate}) {
 							onChange={(e) => setNotesValue(e.target.value)}
 							onKeyDown={handleKeyDown}
 							maxLength={500}
-							rows={4}
+							rows={8}
 						/>
 						<div className="notes-actions">
 							<button

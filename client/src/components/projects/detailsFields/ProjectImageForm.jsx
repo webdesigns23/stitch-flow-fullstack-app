@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ImagePlus } from "lucide-react";
 import { uploadProjectImage } from "../../../api/projects";
 
 const IMAGE_TYPES = [
@@ -46,10 +47,15 @@ export default function ProjectImageForm({project, onImageUpdate}) {
 		}
 	};
 	return (
-		<div>
+		<div className="proj-details-field">
 			{/* upload image form */}
-			<form className="p_form" onSubmit={handleUpload}>
-				<h3>Upload Image</h3>
+			<form className="proj-image-form" onSubmit={handleUpload}>
+				<span className="proj-details-label">
+				<ImagePlus
+					size={20} 
+					color="#9f831d" 
+				/>{" "} Upload Images
+				</span>
 
 				{uploadError && <p>{uploadError}</p>}
 

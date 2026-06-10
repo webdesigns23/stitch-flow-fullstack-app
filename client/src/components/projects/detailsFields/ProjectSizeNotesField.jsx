@@ -22,8 +22,11 @@ export default function ProjectSizeNotesField({project, onUpdate}) {
 			{/* Size(measurement) notes */}
 			<div className="proj-details-field">
 				<span className="proj-details-label">
-					<PencilRuler size={14} color="#9f831d" onClick={() => setEditingSize(true)} style={{ cursor: "pointer" }} />
-					{" "} Size
+					<PencilRuler 
+						size={20} 
+						color="#9f831d" 
+						onClick={() => setEditingSize(true)} style={{ cursor: "pointer" }} 
+					/> {" "} Size
 				</span>
 				{editingSize ? (
 					<div>

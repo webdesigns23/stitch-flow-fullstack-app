@@ -110,8 +110,10 @@ export default function ProjectDetails() {
 						<ProjectNotesField project={project} onUpdate={handleFieldUpdates}/>
 					</article>
 
-					<article>
-						<ProjectImageForm />
+					<article className="image-upload-card">
+						<ProjectImageForm 
+							project={project} 
+							onImageUpdate={handleImageUpdates}/>
 					</article>
 
 				</div>		

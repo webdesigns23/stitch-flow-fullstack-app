@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Image } from "lucide-react";
-import ProjectImageForm from "./ProjectImageForm";
+// import ProjectImageForm from "./ProjectImageForm";
 import ProjectImageEditForm from "./ProjectImageEditForm";
 import "../../../styles/ProjectDetails.css"
 
@@ -32,18 +32,18 @@ export default function ProjectImageGallery({project, onImageUpdate}) {
 				<span className="proj-details-label"><Image size={16} color="#9f831d"/>
 					{" "} Project Images ({images.length})
 				</span>
-				<button 
+				{/* <button 
 					className="proj-card-btn" 
 					onClick={() => setShowImageForm(!showImageForm)}>
 					{showImageForm ? "Exit Image Form" : "+ Add New Image"}
-				</button>	
+				</button>	 */}
 			</header>
 			
 
-			{showImageForm && <ProjectImageForm 
+			{/* {showImageForm && <ProjectImageForm 
 				project={project} 
 				onImageUpdate={onImageUpdate} 
-			/>}
+			/>} */}
 
 			{/* create image filter pills */}
 			<div className="image-filter-pills">

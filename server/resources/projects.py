@@ -60,8 +60,8 @@ class ProjectIndex(Resource):
                 return {"error": "Invalid status, update to 'planning', 'ready_to_sew', 'cutting', 'sewing', 'final_touches', or 'complete'"}, 422
 
             notes = (data.get("notes") or "").strip()
-            if len(notes) > 250:
-                return {"error": "Notes cannot be more than 250 characters"}, 422
+            if len(notes) > 500:
+                return {"error": "Notes cannot be more than 500 characters"}, 422
             
             deadline = data.get("deadline") or default_deadline()
 
@@ -126,8 +126,8 @@ class ProjectDetails(Resource):
 
         if "notes" in data:
             notes = data.get("notes").strip()
-            if len(notes) > 250:
-                return {"error": "Notes cannot be more than 250 characters"}, 422
+            if len(notes) > 500:
+                return {"error": "Notes cannot be more than 500 characters"}, 422
             project.notes = notes
 
         if "deadline" in data: 

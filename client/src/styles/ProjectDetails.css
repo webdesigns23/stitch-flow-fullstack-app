@@ -153,6 +153,51 @@
 	padding: 16px;
 }
 
+/* ---- Image Upload Form ---- */
+.image-upload-card {
+  background: rgba(252, 251, 250, 0.85);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* Form internals */
+.proj-image-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.proj-image-form select,
+.proj-image-form input[type="text"],
+.proj-image-form input[type="file"] {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #c8b89a;
+  border-radius: 4px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 0.9rem;
+  color: #3a2e22;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.proj-image-form select:focus,
+.proj-image-form input[type="text"]:focus {
+  outline: none;
+  border-color: #986f16;
+}
+
+.proj-card-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.proj-card-label {
+	color: rgb(54, 49, 49);
+}
+
 /* ------ Project Image Gallery ----- */
 .gallery-section-card {
   	background: rgba(252, 251, 250, 0.85);

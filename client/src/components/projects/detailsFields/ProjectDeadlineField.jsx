@@ -24,7 +24,7 @@ export default function ProjectDeadlineField({project, onUpdate}) {
 		<div className="proj-details-field">
 			<span className="proj-details-label">
 				<CalendarDays 
-					size={16} 
+					size={20} 
 					color="#9f831d" 
 					onClick={handleDeadlineEdit} 
 					style={{ cursor: "pointer" }} 
