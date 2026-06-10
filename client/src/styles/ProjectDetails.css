@@ -286,7 +286,6 @@
 	text-wrap: auto;
 }
 
-
 /* lightbox */
 .lightbox-overlay {
     position: fixed;
@@ -314,19 +313,9 @@
     position: fixed;
     top: 16px;
     right: 20px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
     border-radius: 6px;
-    color: white;
+    color: rgb(0, 0, 0);
     cursor: pointer;
-    padding: 4px 10px;
-    font-size: 13px;
-    margin: 0;
-}
-
-.lightbox-close:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: white;
-	font-size: 18px;
+    font-size: 16px;
 }
 

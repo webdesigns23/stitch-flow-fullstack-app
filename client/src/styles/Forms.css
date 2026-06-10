@@ -1,8 +1,15 @@
-.p_form {
+.form-heading {
+  color: rgb(73, 73, 70);
+  text-transform: uppercase;
+  font-size: 25px;
+  text-align: left;
+}
+
+.form {
   max-width: 680px;
   margin: .5rem auto;
   padding: .25rem 1.5rem;
-  background: #fafafa;
+  background: #ebe9e5;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-family: serif, sans-serif;
@@ -10,62 +17,47 @@
   color: #333;
 }
 
-.p_form .form_row {
+.form .form_row {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;          
   margin-bottom: 1rem;
 }
 
-.p_form label {
-  font-weight: 600;
+.form label {
+  font-weight: 300;
   color: #444;
   text-align: left;
 }
 
-.p_form input,
-.p_form select,
-.p_form textarea {
-  border: 1px solid #cfcfcf;
-  background: #fff;
-  font-size: 0.95rem;
-  color: #333;
-}
-
-.p_form .help {
-  font-size: 0.8rem;
-  color: #666;
-}
-
 /* Buttons */
-.p_form button {
+.form button {
   width: 200px;
-	font-size: 12px;
-  font-family: 'Lato', sans-serif;
-	text-transform: uppercase;
-	padding: 8px;
+	font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+	padding: 3px;
 	cursor: pointer;  
   background: #f7f5f2;
   color: rgb(88, 84, 84);
 }
 
-.p_form button:hover {
+.form button:hover {
   border: 2px solid rgb(197, 156, 50);
 }
 
-.p_form button:disabled {
+.form button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
 /* Inputs */
-.p_form input,
-.p_form select,
-.p_form textarea {
+.form input,
+.form select,
+.form textarea {
   padding: 0.25rem 1rem;   
   border: 1px solid #cfcfcf;
   border-radius: 6px;
-  background: #fff;
+  background: #f7f6f6;
   font-size: 12px;
   line-height: 1.4;
   color: #333;
@@ -73,14 +65,14 @@
   box-sizing: border-box;   
 }
 
-.p_form textarea {
+.form textarea {
   resize: vertical; 
 }
 
-.p_form input:focus,
-.p_form select:focus,
-.p_form textarea:focus {
-  border-color: #7e5a5a;
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color: #0e2c583a;
   outline: none;
   box-shadow: 0 0 0 3px rgba(126, 90, 90, 0.12);
 }

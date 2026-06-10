@@ -21,20 +21,28 @@ export default function ProjectPage() {
 
 				<button
 					className="proj-card-btn" 
-					onClick={() => setShowProjForm(!showProjForm)}>
-					{showProjForm ? "Exit Project Form" : "+ Add New Project"}
+					onClick={() => setShowProjForm(true)}>
+						+ Add New Project
 				</button>
 		</header>
 
-		<h1>Sewing Project's</h1>
-		
-		<br></br>
+		<h1>Sewing Projects</h1>
 
-		{showProjForm && <AddProjectForm />}
+		{/* Add Project Modal */}
+		{showProjForm && (
+			<div className="modal-overlay"
+				onClick={() => setShowProjForm(false)}>
+					<div className="modal-content"
+						onClick={(e) => e.stopPropagation()}>
+						<AddProjectForm onClose={() => setShowProjForm(false)}/>
+					</div>
+			</div>
+		)}
 
 		{loading && <p>Loading...</p>}
 		{error && <p>Error: {error}</p>}
 
+		{/* Kanban Projects Display */}
 		{!loading && !error && (
 			<ProjectKanban projects={projects}/>
 		)}
