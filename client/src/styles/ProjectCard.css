@@ -6,51 +6,7 @@
 	overflow: hidden;
 }
 
-/* Deadline Overdue outline card in red and hightlight due date */
-.kanban-card-overdue {
-	background: white;
-	border-radius: 8px;
-	border: 0.5px solid #e0d8c8;
-	border-left: 4px solid transparent;
-	overflow: hidden;
-	border: 4px solid rgb(197, 105, 105);
-}
-.kanban-card-deadline-overdue {
-	display: inline-flex;
-	align-items: center;
-	width:fit-content;
-	gap: 4px;
-	font-size: 16px;
-	font-weight: 600;
-	color: #c75962;
-	margin-top: 4px;
-	border-radius: 10px;
-	padding: 6px 20px 6px 20px;
-	background: rgba(192, 187, 187, 0.25);
-}
 
-/* Deadline Due within 7 days outline card in yellow and hightlight due date */
-.kanban-card-due-soon {
-	background: white;
-	border-radius: 8px;
-	border: 0.5px solid #e0d8c8;
-	border-left: 4px solid transparent;
-	overflow: hidden;
-	border: 4px solid rgb(187, 158, 27);
-}
-.kanban-card-deadline-due-soon {
-	display: inline-flex;
-	align-items: center;
-	width:fit-content;
-	gap: 4px;
-	font-size: 16px;
-	font-weight: 600;
-	color: #927b13;
-	margin-top: 4px;
-	border-radius: 10px;
-	padding: 6px 20px 6px 20px;
-	background: rgba(192, 187, 187, 0.25);
-}
 
 /*---- Kanban cards info ---- */
 .kanban-card-body {
@@ -83,19 +39,27 @@
 	text-overflow: ellipsis;
 }
 
-.kanban-card-deadline {
-	display: inline-flex;
-	align-items: center;
-	width:fit-content;
-	gap: 4px;
-	font-size: 16px;
-	font-weight: 600;
-	color: #455c86;
-	margin-top: 4px;
-	border-radius: 10px;
-	padding: 6px 20px 6px 20px;
-	background: rgba(192, 187, 187, 0.25);
+
+
+/* Deadline Overdue outline card in red  */
+.kanban-card-overdue {
+	background: white;
+	border-radius: 8px;
+	border-left: 4px solid transparent;
+	overflow: hidden;
+	border: 4px solid rgb(197, 105, 105);
 }
+
+
+/* Deadline Due within 7 days outline card in yellow  */
+.kanban-card-due-soon {
+	background: white;
+	border-radius: 8px;
+	border-left: 4px solid transparent;
+	overflow: hidden;
+	border: 4px solid rgb(214, 169, 45);
+}
+
 
 .kanban-card-footer {
 	padding: 0 10px 10px;

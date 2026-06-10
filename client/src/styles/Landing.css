@@ -66,6 +66,12 @@ body.landing-bg {
 	font-size: 20px;
 }
 
+.landing-auth p {
+  color: rgb(235, 128, 137);
+  font-size: 19px;
+  text-transform: capitalize;
+}
+
 .logo {
 	width: 40%;
 	padding: 25px;

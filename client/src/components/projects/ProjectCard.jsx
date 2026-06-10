@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
-import { formatDate } from "../../utils/formatDate"
+import { formatDate } from "../../utils/dateUtils"
 import "../../styles/ProjectCard.css";
 
 
@@ -11,7 +11,7 @@ const STATUSES = [
 	];
 
 export default function ProjectCard({project}) {
-	const { updateProject } = useContext(ProjectContext);
+	const { updateProject, isOverdue, isDueSoon } = useContext(ProjectContext);
 	const p = project?.pattern;
 
 	//Update Status on radio bar
@@ -20,21 +20,9 @@ export default function ProjectCard({project}) {
 		await updateProject(project.id, {status: e.target.value});
 	}
 
-	//Deadline Checks
-	const today = new Date();
-	today.setHours(0, 0, 0, 0);
-	const [month, day, year] = project.deadline.split("/");
-	const deadlineDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-
-	//Past due date
-	const isOverdue = deadlineDate < today;
-
-	//Due in 7 days
-	const isDueSoon = !isOverdue && (deadlineDate - today) <= 7 * 24 * 60 * 60 * 1000;
-
 	return(
-		<article className={`${isOverdue ? "kanban-card-overdue":
-			isDueSoon ? "kanban-card-due-soon":
+		<article className={`${isOverdue(project.deadline) ? "kanban-card-overdue":
+			isDueSoon(project.deadline) ? "kanban-card-due-soon":
 			"kanban-card"}`}>
 
 			<Link to={`/projects/${project.id}`} className="card_link" aria-label={`${project.title}`}>
@@ -55,8 +43,8 @@ export default function ProjectCard({project}) {
 					)}
 
 					{/* project deadline */}
-					<span className={`${isOverdue ? "kanban-card-deadline-overdue":
-						isDueSoon ? "kanban-card-deadline-due-soon": "kanban-card-deadline"}`}>
+					<span className={`${isOverdue(project.deadline) ? "proj-card-deadline-overdue":
+						isDueSoon(project.deadline) ? "proj-card-deadline-due-soon": "proj-card-deadline"}`}>
 						Due: {formatDate(project?.deadline)}
 					</span>	
 

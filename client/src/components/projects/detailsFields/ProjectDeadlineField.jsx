@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CalendarDays } from "lucide-react"
-import { formatDate } from "../../../utils/formatDate";
+import { formatDate } from "../../../utils/dateUtils";
+import { ProjectContext } from "../../../context/ProjectContext";
 
 export default function ProjectDeadlineField({project, onUpdate}) {
 	const [ editingDeadline, setEditingDeadline ] = useState(false);
 	const [ deadlineValue, setDeadlineValue ] = useState(project.deadline);
+
+	const { isOverdue, isDueSoon, daysOverdue, daysUntilDue } = useContext(ProjectContext)
 
 	async function handleDeadlineSave(e) {
     	await onUpdate({ deadline: deadlineValue });
@@ -47,10 +50,29 @@ export default function ProjectDeadlineField({project, onUpdate}) {
 						</button>
 			    	</div>
 				) : (
-					<span className="proj-deadline">
-						{" "} {formatDate(project.deadline) ?? "No Deadline"} 
-					</span>
+					<div>
+						<span 
+							className={`${isOverdue(project.deadline) ? "proj-card-deadline-overdue":
+							isDueSoon(project.deadline) ? "proj-card-deadline-due-soon": 
+							"proj-card-deadline"}`}>
+
+							{" "} {formatDate(project.deadline)} 
+						</span>
+
+						{isOverdue(project.deadline) && (
+							<p className="deadline-days-overdue">
+								Overdue by {daysOverdue(project.deadline)} days
+							</p>
+						)}
+
+						{isDueSoon(project.deadline) && (
+							<p className="deadline-days-soon">
+								Due in {daysUntilDue(project.deadline)} days
+							</p>
+						)}
+					</div>
 				)}
 		</div>	
 	)
 }
+

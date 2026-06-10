@@ -68,7 +68,6 @@
 	padding-top: 1rem;
 }
 
-
 .proj-status-option {
 	display: flex;
 	flex-direction: column;
@@ -76,7 +75,7 @@
 	gap: 6px;
 	flex: 1;
 	position: relative;
-	color: #686464;
+	color: #425d7a;
 	cursor: pointer;
 	text-align: center;
 }
@@ -88,43 +87,29 @@
 	width: 23px;
 	height: 23px;
 	border-radius: 50%;
-	border: 2px solid #ccc2b0;
+	border: 2px solid #9e7b09;
 	background: #fff;
 	cursor: pointer;
 	transition: all 0.2s ease;
 }
 
-.proj-status-option input[type="radio"]:checked {
-	background: #c09e23;
-	border-color: #4d4b46;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);;
-}
-
-.proj-status-option:has(input:checked) {
-	color: rgb(31, 58, 94);
-}
-
 /* Current step */
 .proj-status-option input[type="radio"]:checked {
-    background: #c09e23;
-    border-color: #55534c;
+    background: #6e8eb3;
+    border-color: #9e7b09;
 }
 
 /* Previous steps — filled gold */
 .proj-status-option:has(~ .proj-status-option input:checked) input[type="radio"] {
-    background: #c09e23;
-    border-color: #c09e23;
+    background: #6e8eb3;
+    border-color: #9e7b09;
 }
 
-/* Previous step labels */
-.proj-status-option:has(~ .proj-status-option input:checked) {
-	color: rgb(31, 58, 94);
-}
 
 /* Progress bar */
 .proj-progress-bar {
 	height: 8px;
-	background-color: rgb(204, 198, 198);
+	background-color: rgb(218, 216, 211);
 	border-radius: 8px;
 	width: 85%;
 	margin: 0 auto;
@@ -132,23 +117,13 @@
 
 .proj-progress-fill {
 	height: 100%;
-	background-color: #c09e23;
+	background-color: #6e8eb3;
 	transition: width .3s ease;
 	border-radius: 8px;
 }
 
 /* ------ Project Info Layout ------ */
-/*Deadline*/
-.proj-deadline {
-	width:fit-content;
-	font-size: 18px;
-	font-weight: 600;
-	color: #9f6c1a;
-	border-radius: 10px;
-	padding: 8px 25px 8px 25px;
-	margin: 5px;
-	background: rgba(192, 187, 187, 0.25);	
-}
+/*Deadline in App.css*/
 
 .meta-info-grid {
 	display: grid;
@@ -265,7 +240,7 @@
 .lightbox-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(46, 45, 45, 0.85);
+    background: rgba(238, 236, 236, 0.85);
     display: flex;
     flex-direction: column;
     align-items: center;
