@@ -32,11 +32,12 @@
 
 .kanban-month-header h2 {
 	font-weight: 100;
-	font-size: 3em;
+	font-size: 2.15em;
 	line-height: 1.1;
 	color: rgb(51, 52, 54);
 	margin: 10px;
 	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-transform: capitalize;
 }
 
 .kanban-month-title {

@@ -10,18 +10,6 @@ body {
   margin-left: 150px;
 }
 
-/* Gallery Layout for Pattern and Project Gallery */
-.pattern_gallery{
-  margin: 25px;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  align-items: stretch;
-  margin: 30px;
-}
 
 /* Modal */
 .modal-overlay {
@@ -136,21 +124,6 @@ body {
   text-transform: capitalize;
   font-weight: bold;
   font-size: 20px;
-}
-
-/* Card wrapper */
-.gallery-item {
-  background: #fff;
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  border: 1px solid rgba(0,0,0,.06);
-  overflow: hidden;
-  transition: transform .15s ease, box-shadow .15s ease;
-  border-radius: 6px;
-  max-width: 450px;
-}
-.gallery-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(0,0,0,.12);
 }
 
 /* Pattern Requirments Table */

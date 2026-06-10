@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState  } from "react";
 import { Link, useParams, useNavigate} from "react-router-dom";
+import { CircleArrowLeft } from "lucide-react";
 import { PatternContext } from "../context/PatternContext";
 import { fetchPatternById } from "../api/patterns";
+import { capitalizeWords } from "../utils/formatText";
 import ReqDetails from "../components/patterns/ReqDetails";
 import EditPatternForm from "../components/patterns/EditPatternForm";
 
@@ -50,12 +52,14 @@ export default function PatternDetails() {
 	
 	return(
 		<>
-			<p>
-				<Link to="/patterns">Back to All Patterns</Link><br></br>
-				<Link to="/projects">Back to All Projects</Link>
-			</p>
+			<header className="proj-header">
+					<Link className="go-back" to="/patterns">
+						<CircleArrowLeft color="#986f16" />
+						{" "} Back to All Patterns
+					</Link>
+			</header>
 			
-			<h1>{pattern.name}</h1>
+			<h1>{capitalizeWords(pattern.name)}</h1>
 			<div className="grid">
 			<p><strong>Brand:</strong> {pattern.brand}</p>
 			<p><strong>Pattern #:</strong> {pattern.pattern_number}</p>

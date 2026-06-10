@@ -1,0 +1,49 @@
+/* Pattern Cards */
+.pat-card-meta {
+	text-align: left;
+	padding: 0 10px;
+}
+
+.pat-card-title {
+	font-size: 20px;
+	font-weight: 600;
+	color: #374a80;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
+	border-bottom: 1px solid rgb(206, 204, 204);
+}
+
+.pat-card-category {
+	background: rgba(212, 212, 212, 0.5);
+	color: rgb(207, 125, 139);
+
+}
+
+/* Gallery Layout Patterns */
+.pattern_gallery{
+  margin: 25px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 10px;
+}
+
+/* Card wrapper */
+.gallery-item {
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  border: 1px solid rgba(0,0,0,.06);
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .15s ease;
+  border-radius: 8px;
+  max-width: 450px;
+}
+.gallery-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.12);
+}
