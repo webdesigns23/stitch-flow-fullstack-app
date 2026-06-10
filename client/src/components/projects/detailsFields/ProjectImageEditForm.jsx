@@ -96,36 +96,29 @@ export default function ProjectImageEditForm({img, images, project, onImageUpdat
 				</div>
 			) : (
 				<div className="proj-image-info">
-
-					<h3>{img.image_type.replace(/_/g, " ")}</h3>
-
-					{img.notes && (
-						<p>{img.notes}</p>
-					)}
-
-
-					{/* delete image */}
-					<button
-						className="proj-card-btn-remove"
-						onClick={() => handleDelete(img.id)}
-						style={{ cursor: "pointer" }}
-						title="Delete Image"
-					>
-						<Trash2 color="#986f16" />
-					</button>
-
-					{/* edit image type/ notes */}
-					<button
-						className="proj-card-btn"
-						onClick={() => handleStartEdit(img)}
-						style={{ cursor: "pointer" }}
-						title="Edit Image Info"
-					>
-						<Pencil color="#986f16" />
-					</button>
+					<header className="proj-image-header">
+						<span className="proj-image-type">
+							{/* edit image type/ notes */}
+							<Pencil
+								size={18}
+								color="#986f16"
+								onClick={() => handleStartEdit(img)}
+								style={{ cursor: "pointer" }}
+								title="Edit Image Info"
+						/>
+							{" "} {img.image_type.replace(/_/g, " ")}
+						</span>
+						{/* delete image */}
+						<Trash2
+							size={16}
+							color="#c78275"
+							onClick={() => handleDelete(img.id)}
+							style={{ cursor: "pointer" }}
+							title="Delete Image"
+						/>
+					</header>
 				</div>
-			)
-			}
+			)}
 		</div>
 	)
 }
