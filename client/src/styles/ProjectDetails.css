@@ -39,10 +39,6 @@
 	margin-bottom: 20px;
 }
 
-.proj-details-field {
-  	margin-bottom: 1rem;
-}
-
 .proj-details-label {
   	display: block;
 	font-size: 16px;
@@ -78,6 +74,7 @@
 	color: #425d7a;
 	cursor: pointer;
 	text-align: center;
+	font-size: 18px;
 }
 
 /* Hide default radio, replace with circle */
@@ -105,7 +102,6 @@
     border-color: #9e7b09;
 }
 
-
 /* Progress bar */
 .proj-progress-bar {
 	height: 8px;
@@ -125,11 +121,21 @@
 /* ------ Project Info Layout ------ */
 /*Deadline in App.css*/
 
-.meta-info-grid {
+.primary-info-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 16px;
 	margin-bottom: 16px;
+}
+
+.proj-card-meta {
+	color: rgb(139, 113, 113);
+}
+
+.notes-display {
+	white-space: pre-wrap;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 18px;
 }
 
 .secondary-info-grid {

@@ -23,6 +23,38 @@ body {
   margin: 30px;
 }
 
+/* Textbox Notes Areas */
+.notes-textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 10px 12px;
+  border: 1px solid #c8b89a;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #3a2e22;
+  line-height: 1.6;
+  background: #fff;
+  box-sizing: border-box;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.notes-textarea:focus {
+  outline: none;
+  border-color: #986f16;
+}
+
+.notes-display {
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  color: #3a2e22;
+  line-height: 1.6;
+}
+
+.notes-actions {
+  display: flex;
+  gap: 8px;
+}
+
 /* Deadline on Project Cards and Project Details */
 .proj-card-deadline {
 	display: inline-flex;

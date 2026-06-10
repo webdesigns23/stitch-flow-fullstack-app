@@ -12,6 +12,7 @@ import ProjectSizeNotesField from "../components/projects/detailsFields/ProjectS
 import ProjectNotesField from "../components/projects/detailsFields/ProjectNotesField";
 import ProjectImageGallery from "../components/projects/detailsFields/ProjectImageGallery";
 import "../styles/ProjectDetails.css";
+import ProjectImageForm from "../components/projects/detailsFields/ProjectImageForm";
 
 
 
@@ -86,10 +87,11 @@ export default function ProjectDetails() {
 					<ProjectStatusField project={project} onUpdate={handleFieldUpdates}/>
 				</section>
 
-				{/* Grid Area: 2 Columns for Deadline and Notes */}
-				<div className="meta-info-grid">
+				{/* Grid Area: 3 Columns for Deadline, Notes, Size */}
+				<div className="primary-info-grid">
+					
+					{/* deadline */}
 					<article className="meta-card deadline-card">
-						{/* deadline */}
 						<ProjectDeadlineField project={project} onUpdate={handleFieldUpdates}/>
 
 						<hr className="proj-card-divider" />
@@ -102,11 +104,16 @@ export default function ProjectDetails() {
 							)}					
 						</footer>
 					</article>
-					
-					<article className="meta-card notes-card">
-						{/* notes */}
+
+					{/* notes */}
+					<article className="meta-card notes-card">	
 						<ProjectNotesField project={project} onUpdate={handleFieldUpdates}/>
 					</article>
+
+					<article>
+						<ProjectImageForm />
+					</article>
+
 				</div>		
 
 				{/* Grid Area: 2 Columns for Pattern and Size notes*/}
@@ -114,16 +121,13 @@ export default function ProjectDetails() {
 					<article className="meta-card pattern-card">
 						{/* pattern */}
 						<ProjectPatternField project={project} onUpdate={handleFieldUpdates}/>
-					</article>					
+					</article>	
+
+					{/* size notes */}
 					<article className="meta-card pattern-card"> 
-						{/* size notes */}
 						<ProjectSizeNotesField project={project} onUpdate={handleFieldUpdates}/>
 					</article>	
 
-
-					{/* <section className="measurement-gallery">
-						<ProjectImageMeasurements project={project} onImageUpdate={handleImageUpdates}/>
-					</section>				 */}
 				</div>	
 				
 				{/* Large Bottom Section: Image Gallery */}
