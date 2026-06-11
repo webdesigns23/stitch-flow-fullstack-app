@@ -1,10 +1,12 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { PatternContext } from '../../context/PatternContext'
 import PatternCard from "./PatternCard"
 
 const CATEGORIES = ["clothing", "accessories", "quilting", "home_decor", "costumes", "other"]
 
 export default function PatternGallery() {
+	const [ searchPattern, setSearchPattern ] = useState("");
+
 	const { patterns, loading, error } = useContext(PatternContext);
 
 	if (loading) return <p>Loading...</p>
@@ -22,9 +24,18 @@ export default function PatternGallery() {
 		)
 	}
 
+	//Search patterns
+	const query = searchPattern.toLowerCase();
+
+	const filteredPatterns = patterns.filter(p => 
+		p.name.toLowerCase().includes(query) ||
+		p.brand.toLowerCase().includes(query) ||
+		p.pattern_number.toLowerCase().includes(query)
+	);
+
 	//Group patterns in to sections by category
 	const categorySections = CATEGORIES.reduce((acc, cat) => {
-		const matches = patterns.filter(p => p.category === cat);
+		const matches = filteredPatterns.filter(p => p.category === cat);
 		if (matches.length > 0) acc[cat] = matches;
 		return acc;
 	}, {});
@@ -32,45 +43,59 @@ export default function PatternGallery() {
 	const activeCategories = Object.keys(categorySections);
 
 	return (
-		<div className="kanban-board">
+		<>
+			<div className="toolbar">
+				{/* Search bar */}
+				<div className='search-bar'>
+					<label>Search Patterns: 
+						<input
+							type="text"
+							placeholder="Search by name, brand, or number..."
+							value={searchPattern}
+							onChange={(e) => setSearchPattern(e.target.value)} />
+					</label>
+				</div>
 
-			{/* Pattern Filter Nav Bar and Pills*/}
-			<div className="kanban-month-filter-nav">
-				{activeCategories.map(cat => (
-					<a
+				{/* Pattern Filter Nav Bar and Pills*/}
+				<div className="kanban-month-filter-nav">
+					{activeCategories.map(cat => (
+						<a
+							key={cat}
+							href={`#category-${cat}`}
+							className="kanban-month-filter-pill"
+						>
+							{cat.replace(/_/g, " ")}
+						</a>
+					))}
+				</div>
+
+			</div>
+			<div className="kanban-board">
+					{/* Category Sections */}
+					{activeCategories.map(cat => (
+					<section
 						key={cat}
-						href={`#category-${cat}`}
-						className="kanban-month-filter-pill"
+						id={`category-${cat}`}
+						className="kanban-month"
 					>
-						{cat.replace(/_/g, " ")}
-					</a>
+						<div className="kanban-month-header">
+							<h2 className="kanban-month-title">
+								{cat.replace(/_/g, " ")}
+							</h2>
+							<div />
+							<hr className="kanban-month-line" />
+						</div>
+
+						<div className="gallery">
+							{categorySections[cat].map(pattern => (
+								<div key={pattern.id} className="gallery-item">
+									<PatternCard pattern={pattern} />
+								</div>
+							))}
+						</div>
+					</section>
 				))}
 			</div>
-			
-				{/* Category Sections */}
-				{activeCategories.map(cat => (
-				<section
-					key={cat}
-					id={`category-${cat}`}
-					className="kanban-month"
-				>
-					<div className="kanban-month-header">
-						<h2 className="kanban-month-title">
-							{cat.replace(/_/g, " ")}
-						</h2>
-						<div />
-						<hr className="kanban-month-line" />
-					</div>
-
-					<div className="gallery">
-						{categorySections[cat].map(pattern => (
-							<div key={pattern.id} className="gallery-item">
-								<PatternCard pattern={pattern} />
-							</div>
-						))}
-					</div>
-				</section>
-			))}
-		</div>
+		</>
 	)
 }

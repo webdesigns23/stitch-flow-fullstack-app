@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Store, Hash } from "lucide-react"
 import { capitalizeWords } from "../../utils/formatText";
 import "../../styles/PatternPage.css"
 
@@ -15,13 +16,26 @@ export default function PatternCard({pattern}) {
 					<h3 className="pat-card-title">
 						{capitalizeWords(pattern.name)}
 					</h3>
-					<p className="pat-card-body">
-						{capitalizeWords(pattern.brand)} ({pattern.pattern_number})
-					</p>
+					<div className="pat-card-body">
+						<Store 
+							size={16}
+							color="#9f831d" />
+						{" "} {capitalizeWords(pattern.brand)} 
+					</div>
+						
+					<div>
+						<Hash
+							size={16}
+							color="#9f831d" />
+						{" "} {pattern.pattern_number}
+					</div>
 
-					<p className="pat-card-category">
-						{pattern.category}
-					</p>
+					<div className="pat-card-footer">
+						<span className="pat-card-category">
+							{pattern.category}
+						</span>
+					</div>
+					
 				</div>
 			</Link>
 		</article> 

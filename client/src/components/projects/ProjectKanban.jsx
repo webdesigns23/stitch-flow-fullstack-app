@@ -1,3 +1,4 @@
+import { useState } from "react"
 import ProjectCard from "./ProjectCard";
 import "../../styles/ProjectKanban.css";
 
@@ -15,10 +16,18 @@ const MONTH_NAMES = [
 ];
 
 export default function ProjectKanban({ projects }) {
+	const [ searchProjects, setSearchProjects ] = useState("");
 
-	//Group projects into sections by month
+	//Search projects by title
+	const query = searchProjects.toLowerCase();
+
+	const filteredProjects = projects.filter(p => 
+		p.title.toLowerCase().includes(query)
+	);
+
+	//Group filtered projects into sections by month
 	const monthSections = {};
-	projects.forEach(project => {
+	filteredProjects.forEach(project => {
 		const [month, day, year] = project.deadline.split("/");
 		const key = `${year}-${month}`;
 		if (!monthSections[key]) monthSections[key] = [];
@@ -33,75 +42,89 @@ export default function ProjectKanban({ projects }) {
 	}
 
 	return (
-		<div className="kanban-board">
+		<>
+		<div className="toolbar">
+			{/* Search bar */}
+				<div className='search-bar'>
+					<label>Search Projects: 
+						<input
+							type="text"
+							placeholder="Search by project title"
+							value={searchProjects}
+							onChange={(e) => setSearchProjects(e.target.value)} 
+						/>
+					</label>
+				</div>
 
-			{/* Month Filter Nav Bar and Pills*/}
-			<div className="kanban-month-filter-nav">
-			{monthKeys.map(key => {
-				const [year, month] = key.split("-");
-				const monthIndex = parseInt(month) - 1;
+				{/* Month Filter Nav Bar and Pills*/}
+				<div className="kanban-month-filter-nav">
+				{monthKeys.map(key => {
+					const [year, month] = key.split("-");
+					const monthIndex = parseInt(month) - 1;
 
-				return (
-					<a 
-						key={key} 
-						href={`#month-${key}`}
-						className="kanban-month-filter-pill">
-						{MONTH_NAMES[monthIndex]} {year}
-					</a>
-				);				
-			})}
+					return (
+						<a 
+							key={key} 
+							href={`#month-${key}`}
+							className="kanban-month-filter-pill">
+							{MONTH_NAMES[monthIndex]} {year}
+						</a>
+					);				
+				})}
+				</div>
 			</div>
-			
-			{/* Month Sections */}
-			{monthKeys.map(key => {
-				const [year, month] = key.split("-");
-				const monthIndex = parseInt(month) - 1;
-				const monthProjects = monthSections[key];
 
-				return (
-					<section 
-						key={key} 
-						id={`month-${key}`} 
-						className="kanban-month"
-					>
-						<div className="kanban-month-header">
-							<h2 className="kanban-month-title">
-								{MONTH_NAMES[monthIndex]}
-							</h2>
-							<div />
-							<hr className="kanban-month-line" />
-						</div>
-						
-						{/* Kanban Column headings (statuses) */}
-						<div className="kanban-columns">
-							{STATUSES.map(({ key: statusKey, label }) => {
-								const cards = monthProjects.filter(p => p.status === statusKey);
-								return (
-									<div key={statusKey} className="kanban-column">
-										<div className={`kanban-column-head kanban-column-head--${statusKey}`}>
-											<span className="kanban-column-label">
-												{label} ({cards.length})
-											</span>
-										</div>
+			<div className="kanban-board">
+				{/* Month Sections */}
+				{monthKeys.map(key => {
+					const [year, month] = key.split("-");
+					const monthIndex = parseInt(month) - 1;
+					const monthProjects = monthSections[key];
 
-										{/* Kanban Project Cards */}
-										<div className="kanban-column-body">
-											{cards.length === 0 ? (
-												<div>-</div>
-											) : (
-												cards.map(project => (
-												<ProjectCard key={project.id} project={project} />
-												))
-											)}
+					return (
+						<section 
+							key={key} 
+							id={`month-${key}`} 
+							className="kanban-month"
+						>
+							<div className="kanban-month-header">
+								<h2 className="kanban-month-title">
+									{MONTH_NAMES[monthIndex]}
+								</h2>
+								<div />
+								<hr className="kanban-month-line" />
+							</div>
+							
+							{/* Kanban Column headings (statuses) */}
+							<div className="kanban-columns">
+								{STATUSES.map(({ key: statusKey, label }) => {
+									const cards = monthProjects.filter(p => p.status === statusKey);
+									return (
+										<div key={statusKey} className="kanban-column">
+											<div className={`kanban-column-head kanban-column-head--${statusKey}`}>
+												<span className="kanban-column-label">
+													{label} ({cards.length})
+												</span>
+											</div>
+
+											{/* Kanban Project Cards */}
+											<div className="kanban-column-body">
+												{cards.length === 0 ? (
+													<div>-</div>
+												) : (
+													cards.map(project => (
+													<ProjectCard key={project.id} project={project} />
+													))
+												)}
+											</div>
 										</div>
-									</div>
-								);
-							})}
-						</div>
-					</section>
-				);
-			})}
-			
-		</div>
+									);
+								})}
+							</div>
+						</section>
+					);
+				})}
+			</div>
+		</>
 	);
 }

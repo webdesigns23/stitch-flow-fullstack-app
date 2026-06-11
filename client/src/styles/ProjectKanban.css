@@ -5,7 +5,49 @@
     padding: 1rem 0;
 }
 
-/*Month filter*/
+/* ---- Toolbar ----*/
+.toolbar {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/*Search bar*/
+.search-bar {
+	margin-bottom: 0;
+}
+
+.search-bar label {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 20px;
+	white-space: nowrap;
+    color: rgb(68, 67, 62);
+}
+
+.search-bar input {
+	width: 300px;
+	padding: 0.4rem 0.75rem;
+	border: 1px solid #cfcfcf;
+	border-radius: 6px;
+	background: #f7f6f6;
+	font-size: 13px;
+	color: #333;
+	box-sizing: border-box;
+}
+
+.search-bar input:focus {
+	outline: none;
+	border-color: #0e2c583a;
+	box-shadow: 0 0 0 3px rgba(126, 90, 90, 0.12);
+}
+
+/*Month filters*/
 .kanban-month-filter-nav {
     margin-top: 5px;
 }
