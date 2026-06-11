@@ -3,7 +3,7 @@ import { CalendarDays } from "lucide-react"
 import { formatDate } from "../../../utils/dateUtils";
 import { ProjectContext } from "../../../context/ProjectContext";
 
-export default function ProjectDeadlineField({project, onUpdate}) {
+export default function ProjectDeadlineField({project, onUpdate, isCompleted}) {
 	const [ editingDeadline, setEditingDeadline ] = useState(false);
 	const [ deadlineValue, setDeadlineValue ] = useState(project.deadline);
 
@@ -52,22 +52,28 @@ export default function ProjectDeadlineField({project, onUpdate}) {
 				) : (
 					<div>
 						<span 
-							className={`${isOverdue(project.deadline) ? "proj-card-deadline-overdue":
-							isDueSoon(project.deadline) ? "proj-card-deadline-due-soon": 
-							"proj-card-deadline"}`}>
+							className={`${
+								!isCompleted && isOverdue(project.deadline) ? "proj-card-deadline-overdue":
+								!isCompleted && isDueSoon(project.deadline) ? "proj-card-deadline-due-soon": "proj-card-deadline"}`}>
 
 							{" "} {formatDate(project.deadline)} 
 						</span>
 
-						{isOverdue(project.deadline) && (
+						{!isCompleted && isOverdue(project.deadline) && (
 							<p className="deadline-days-overdue">
 								Overdue by {daysOverdue(project.deadline)} days
 							</p>
 						)}
 
-						{isDueSoon(project.deadline) && (
+						{!isCompleted && isDueSoon(project.deadline) && (
 							<p className="deadline-days-soon">
 								Due in {daysUntilDue(project.deadline)} days
+							</p>
+						)}
+
+						{isCompleted && project.completed_at && (
+							<p className="proj-card-finished">
+								Finished: {formatDate(project.completed_at)}
 							</p>
 						)}
 					</div>

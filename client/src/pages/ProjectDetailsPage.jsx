@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { CircleArrowLeft } from "lucide-react";
+import { formatDate } from "../utils/dateUtils";
 import { ProjectContext } from "../context/ProjectContext";
 import { fetchProjectById } from "../api/projects";
 import { capitalizeWords } from "../utils/formatText";
@@ -92,16 +93,19 @@ export default function ProjectDetails() {
 					
 					{/* deadline */}
 					<article className="meta-card deadline-card">
-						<ProjectDeadlineField project={project} onUpdate={handleFieldUpdates}/>
+						<ProjectDeadlineField 
+							project={project} 
+							onUpdate={handleFieldUpdates}
+							isCompleted={project.status == "complete"} />
 
 						<hr className="proj-card-divider" />
-					
+
 						<footer className="card-dates">
 							{/* date created/updated */}
 							<p className="proj-card-meta">Created: {project.created_at}</p>
 							{project.updated_at && (
-							<p className="proj-card-meta">Updated: {project.updated_at}</p>
-							)}					
+								<p className="proj-card-meta">Updated: {project.updated_at}</p>
+							)}
 						</footer>
 					</article>
 

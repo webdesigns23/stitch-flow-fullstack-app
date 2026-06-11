@@ -7,7 +7,6 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
   		"ready_to_sew",
   		"sewing",
   		"final_touches",
-  		"complete",
 	];
 	
 	const COLORS = [
@@ -16,7 +15,6 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 		"rgb(47, 116, 78)",
 		"rgb(110, 94, 141)", 
 		"rgb(161, 155, 58)", 
-		"rgb(63, 61, 61)"
 	];
 
 	const data = pieStatuses.map((status) => (

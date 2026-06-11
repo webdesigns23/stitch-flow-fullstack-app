@@ -8,7 +8,7 @@ export default function CompleteProjects() {
 
 	const {projects, deleteProject, updateProject,} = useContext(ProjectContext)
 
-	const completed = projects.filter(p => p.status === "complete");
+	const completed = projects.filter(p => p.status === "complete" && p.completed_at);
 
 	return (
 		<>
@@ -23,6 +23,7 @@ export default function CompleteProjects() {
 				data-status={statusKey(project.status)}>
 					<ProjectCard 
 					project={project} 
+					isCompleted={true}
 					handleDelete={() => deleteProject(project.id)}
 					updateProject={(updates) => updateProject(project.id, updates)}
 					/>

@@ -10,7 +10,7 @@ const STATUSES = [
 		"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
 	];
 
-export default function ProjectCard({project}) {
+export default function ProjectCard({ project, isCompleted }) {
 	const { updateProject, isOverdue, isDueSoon } = useContext(ProjectContext);
 	const p = project?.pattern;
 
@@ -21,9 +21,11 @@ export default function ProjectCard({project}) {
 	}
 
 	return(
-		<article className={`${isOverdue(project.deadline) ? "kanban-card-overdue":
+		<article className={
+			isCompleted ? "kanban-card" :
+			isOverdue(project.deadline) ? "kanban-card-overdue":
 			isDueSoon(project.deadline) ? "kanban-card-due-soon":
-			"kanban-card"}`}>
+			"kanban-card"}>
 
 			<Link to={`/projects/${project.id}`} className="card_link" aria-label={`${project.title}`}>
 				<div className="kanban-card-body">
@@ -43,11 +45,19 @@ export default function ProjectCard({project}) {
 					)}
 
 					{/* project deadline */}
-					<span className={`${isOverdue(project.deadline) ? "proj-card-deadline-overdue":
-						isDueSoon(project.deadline) ? "proj-card-deadline-due-soon": "proj-card-deadline"}`}>
+					{isCompleted ? (
+						<span className="proj-card-deadline">
+							Finished: {formatDate(project.completed_at)}
+						</span>
+					):(
+						<span className={
+							isOverdue(project.deadline) ?"proj-card-deadline-overdue":
+							isDueSoon(project.deadline) ? "proj-card-deadline-due-soon": 
+							"proj-card-deadline"}>
 						Due: {formatDate(project?.deadline)}
 					</span>	
-
+					)}
+					
 				</div>				
 			</Link>
 

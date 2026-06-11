@@ -126,6 +126,11 @@ body {
   font-size: 20px;
 }
 
+.proj-card-finished {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
 /* Pattern Requirments Table */
 div.table { 
   overflow-x: auto; 
