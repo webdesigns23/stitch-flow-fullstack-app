@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from datetime import datetime, timezone
 from flask import request
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
@@ -123,6 +124,10 @@ class ProjectDetails(Resource):
             if new_status not in allowed_project_status:
                 return {"error": "Invalid status, update to 'planning',  'cutting', 'ready_to_sew', 'sewing', 'final_touches', or 'complete'"}, 422
             project.status = new_status
+            if new_status == "complete":
+                project.completed_at = datetime.now(timezone.utc)
+            else: 
+                project.completed_at = None
 
         if "notes" in data:
             notes = data.get("notes").strip()

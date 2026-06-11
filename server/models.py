@@ -70,6 +70,7 @@ class Project(db.Model):
 	updated_at = db.Column(db.DateTime, onupdate=func.now(), server_default=func.now())
 	pattern_id = db.Column(db.Integer, db.ForeignKey('patterns.id'), nullable=True, index=True)
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
+	completed_at = db.Column(db.DateTime, nullable=True)
 	
 	#relationship
 	pattern = db.relationship("Pattern", back_populates="projects")

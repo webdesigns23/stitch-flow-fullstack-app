@@ -49,6 +49,7 @@ class ProjectSchema(Schema):
 	updated_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
 	pattern_id = fields.Integer(load_only=True)
 	user_id = fields.Integer(required=True, load_only=True)
+	completed_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
 
 	#nested relationship
 	pattern = fields.Nested(lambda:PatternSchema(exclude=("projects",)), dump_only=True)
