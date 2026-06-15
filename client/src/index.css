@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: serif, sans-serif;
   line-height: 1.5;
   font-weight: 300;
@@ -8,7 +8,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
+
+#root {
+  width: 90%;
+  margin: 0 auto;
+  padding: .5rem;
+  text-align: left;
+} 
 
 a {
   font-weight: 500;
@@ -41,7 +48,7 @@ h2 {
   font-weight: 100;
   font-size: 2.2em;
   line-height: 1.1;
-  color: rgb(85, 105, 136);
+  color: rgb(58, 103, 170);
   margin: 10px;
   text-shadow: 2px 2px 4px rgba(63, 61, 61, 0.5);
 }

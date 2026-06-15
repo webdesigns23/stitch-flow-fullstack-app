@@ -290,7 +290,7 @@
 .lightbox-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(238, 236, 236, 0.85);
+    background: rgba(224, 220, 212, 0.85);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -307,6 +307,7 @@
     border-radius: 6px;
     cursor: default;
     display: block;
+	border: 2px solid rgb(161, 153, 138);
 }
 
 .lightbox-close {
@@ -317,5 +318,14 @@
     color: rgb(0, 0, 0);
     cursor: pointer;
     font-size: 16px;
+}
+
+.lightbox-caption {
+	font-size: 20px;
+	color:rgba(224, 220, 212);
+	background: rgb(61, 58, 58);
+	padding: 20px;
+	border-radius: 8px;
+	border: 2px solid rgb(185, 163, 88);
 }
 

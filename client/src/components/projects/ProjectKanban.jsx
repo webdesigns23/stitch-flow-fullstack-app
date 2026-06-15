@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Search } from "lucide-react"
 import ProjectCard from "./ProjectCard";
 import "../../styles/ProjectKanban.css";
 
@@ -46,10 +47,10 @@ export default function ProjectKanban({ projects }) {
 		<div className="toolbar">
 			{/* Search bar */}
 				<div className='search-bar'>
-					<label>Search Projects: 
+					<label><Search />
 						<input
 							type="text"
-							placeholder="Search by project title"
+							placeholder="Search by project title..."
 							value={searchProjects}
 							onChange={(e) => setSearchProjects(e.target.value)} 
 						/>

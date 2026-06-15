@@ -40,7 +40,7 @@ export default function ReqDetails({pattern}) {
 	
 	return (
 		<div>
-			<h2>{`${pattern.name}`} requirements:</h2>
+			<h2>Material Requirements:</h2>
 
 			{requirements && requirements.length > 0 ? (
 			<div className="table">

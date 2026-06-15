@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { PatternContext } from '../../context/PatternContext'
+import { Search } from "lucide-react"
 import PatternCard from "./PatternCard"
 
 const CATEGORIES = ["clothing", "accessories", "quilting", "home_decor", "costumes", "other"]
@@ -47,7 +48,7 @@ export default function PatternGallery() {
 			<div className="toolbar">
 				{/* Search bar */}
 				<div className='search-bar'>
-					<label>Search Patterns: 
+					<label><Search /> 
 						<input
 							type="text"
 							placeholder="Search by name, brand, or number..."
@@ -89,7 +90,7 @@ export default function PatternGallery() {
 						<div className="gallery">
 							{categorySections[cat].map(pattern => (
 								<div key={pattern.id} className="gallery-item">
-									<PatternCard pattern={pattern} />
+									<PatternCard pattern={pattern} /> 
 								</div>
 							))}
 						</div>

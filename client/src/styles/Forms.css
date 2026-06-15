@@ -6,7 +6,7 @@
 }
 
 .form {
-  max-width: 680px;
+  max-width: 95%;
   margin: .5rem auto;
   padding: .25rem 1.5rem;
   background: #ebe9e5;
@@ -19,13 +19,14 @@
 
 .form .form_row {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;          
-  margin-bottom: 1rem;
+  flex-direction: column;  
+  margin: .75rem;
 }
 
 .form label {
-  font-weight: 300;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 17px;
   color: #444;
   text-align: left;
 }
@@ -54,7 +55,8 @@
 .form input,
 .form select,
 .form textarea {
-  padding: 0.25rem 1rem;   
+  padding: 0.5rem 1rem;   
+  margin: 5px;
   border: 1px solid #cfcfcf;
   border-radius: 6px;
   background: #f7f6f6;
@@ -87,7 +89,7 @@
 }
 
 .form-req-label {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 300;
   text-transform: uppercase;
   color: #272525;

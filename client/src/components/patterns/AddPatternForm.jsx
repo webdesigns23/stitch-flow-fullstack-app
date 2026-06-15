@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Scissors } from "lucide-react";
+import { Scissors, Ruler } from "lucide-react";
 import { PatternContext } from "../../context/PatternContext";
 import { createPattern } from "../../api/patterns";
 import "../../styles/Forms.css"
@@ -138,7 +138,9 @@ export default function AddPatternForm({ onClose }) {
 			{/* Pattern requirements */}
 			{requirements.map((req, index) => (
 				<div key={index} className="form-req-block">
-					<p className="form-req-label">Requirement {index + 1}</p>
+					<p className="form-req-label">
+						<Ruler size={16} color="#9f831d"/>
+						{" "} Requirement {index + 1}</p>
 
 					<div className="form-row">
 						<label>Role:

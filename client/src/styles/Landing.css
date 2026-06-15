@@ -8,6 +8,7 @@ body.landing-bg {
 .landing-page {
 	display: flex;
 	min-height: 90vh;
+  text-align: center;
 }
 
 /* Welcome/About Section (left) */

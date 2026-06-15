@@ -3,6 +3,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import './styles/App.css'
 import NavBar from './components/NavBar';
 import DashboardPage from './pages/DashboardPage';
+import MaterialsPage from "./pages/MaterialsPage";
 import ProjectPage from './pages/ProjectPage';
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import CompleteProjects from './pages/CompleteProjects';
@@ -64,6 +65,7 @@ export default function App() {
               <div className="container">
                 <Routes>
                   <Route path="/" element={<DashboardPage user={user} />} />
+                  <Route path="/materials" element={<MaterialsPage />} />
                   <Route path="/projects" element={<ProjectPage />} />
                   <Route path="/projects/:id" element={<ProjectDetailsPage />} />
                   <Route path ="/patterns" element={<PatternPage />} />

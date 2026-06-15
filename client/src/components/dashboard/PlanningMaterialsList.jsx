@@ -2,7 +2,7 @@ import { useContext, useMemo } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
 
-export default function PlanningRequirementsList() {
+export default function PlanningMaterialsList() {
   const { projects } = useContext(ProjectContext);
 
   const planningProjects = useMemo(
@@ -12,7 +12,7 @@ export default function PlanningRequirementsList() {
 
   return (
     <div>
-      <h2 className="planning-dash-title">Planned Projects Materials List</h2>
+      <h2 className="planning-dash-title">Planned Projects Materials</h2>
 
       {planningProjects.length === 0 && <p>No projects in planning.</p>}
 
