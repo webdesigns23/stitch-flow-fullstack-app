@@ -31,19 +31,33 @@
 }
 
 .stat-value {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #6387a5;
-  margin-left: 12px;
 }
 
 /* ----------------- Totals Section ----------------- */
 .totals-header,
 .materials-heading,
 .day-range-title {
-  font-size: 1.5rem;
-  color: #38393a;
+  font-size: 1.25rem;
+  color: #575654;
   text-transform: uppercase;
+}
+
+.active-proj-info, .patterns-info, .completed-info {
+  margin: 14px;
+  background: rgba(241, 241, 240, 0.85);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.completed-info {
+  padding: 16px
+}
+
+.stat-gallery-item.is-compact {
+  text-align: center;
 }
 
 .totals-chart-section {
@@ -53,24 +67,25 @@
 
 .totals-chart-section .pie-chart {
   flex: 1;
-  height: 250px;
+  height: 280px;
   min-width: 0;
 }
 
 .pie-chart .recharts-legend-item-text {
-  font-size: 18px !important;
+  font-size: 25px !important;
   color: #4e4b4b !important;
 }
 
 .totals-footer {
   font-size: 1.25rem;
   color: rgb(116, 104, 104);
+  margin: 2px;
 }
 
 /* ------------------ Urgent Section ------------------- */
 .overdue-heading, .due-soon-heading {
   color: rgb(204, 87, 87);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   padding-bottom: 8px;
   border-bottom: 1px solid rgb(212, 206, 206);
@@ -109,7 +124,7 @@
 }
 
 .proj-urgent-list li a {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-decoration: none;
 }
 
@@ -118,14 +133,16 @@
 }
 
 .materials-count {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: bold;
-  margin: 5px;
+  margin: 8px;
   color: #6387a5;
 }
 
 .materials-link {
   font-size: 1.25rem;
+  display: inline-flex;
+	gap: 5px;
 }
 
 
@@ -134,7 +151,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .day-range-context {
@@ -146,35 +163,36 @@
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  margin: 16px;
 }
 
 .upcoming-proj {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 10px 14px;
+  padding: 10px 18px;
   border-radius: 10px;
   text-decoration: none;
   min-width: 130px;
-  background: rgba(240, 237, 235, 0.85);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  background: rgba(240, 237, 235, 0.5);
+  box-shadow: 0 4px 15px rgba(68, 67, 67, 0.25);
   border-radius: 8px;
   padding: 16px;
   margin: 10px;
 }
 
 .upcoming-proj span:first-child {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 600;
 }
 .upcoming-proj span:last-child {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 
 .upcoming-proj.overdue { border-top: 8px solid rgb(199, 140, 150); }
 .upcoming-proj.today { border-top: 8px solid rgb(199, 140, 150); }
 .upcoming-proj.soon { border-top: 8px solid rgb(161, 155, 58); }
-.upcoming-proj.week { border-top: 8px solid rgb(47, 116, 78); }
+.upcoming-proj.week { border-top: 8px solid rgb(89, 138, 111); }
 .upcoming-proj.early { border-top: 8px solid rgb(45, 114, 160); }
 .upcoming-proj.coming-up { border-top: 8px solid rgb(110, 94, 141); }
 
@@ -216,12 +234,11 @@
 }
 
 .week-label {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 500;
     color: #52514e;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding-bottom: 4px;
+    padding-bottom: 8px;
     border-bottom: 0.5px solid #e8e4e0;
 }
 

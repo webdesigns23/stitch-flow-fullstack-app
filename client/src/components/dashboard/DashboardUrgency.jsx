@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ClipboardList, ArrowRight } from "lucide-react"
+import { ArrowRight, NotebookText } from "lucide-react"
 import { capitalizeWords }from "../../utils/formatText"
 
 
@@ -63,7 +63,7 @@ export default function DashboardUrgency({activeProjects, isOverdue, isDueSoon, 
 							{materialsProjects.length} Planned Project{materialsProjects.length === 1 ? "" : "s"} with Linked Pattern
 						</p>
 						<Link to="/materials" className="materials-link">
-						<ClipboardList size={30} color="#9f831d"/>{" "} View materials list</Link>
+						<NotebookText size={23} color="#9f831d"/>{" "} View materials list</Link>
 					</div>
 				) : (
 					<p className="empty-materials">No planned projects with patterns linked</p>

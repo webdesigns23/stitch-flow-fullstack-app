@@ -10,11 +10,11 @@ export default function StatusPieChart({statusCounts={}, statuses={}}) {
 	];
 	
 	const COLORS = [
-		"rgb(199, 140, 150)",
-		"rgb(45, 114, 160)",
-		"rgb(47, 116, 78)",
-		"rgb(110, 94, 141)", 
-		"rgb(161, 155, 58)", 
+		"rgb(199, 140, 150,.75)",
+		"rgb(45, 114, 160, .75)",
+		"rgb(47, 116, 78, .75)",
+		"rgb(110, 94, 141, .75)", 
+		"rgb(161, 155, 58, .75)", 
 	];
 
 	const data = pieStatuses.map((status) => (
@@ -33,11 +33,8 @@ export default function StatusPieChart({statusCounts={}, statuses={}}) {
 					dataKey="value" 
 					nameKey="name" 
 					cx="50%"        
-					cy="100%"        
-					outerRadius={170}
-					innerRadius={50}
-					startAngle={180}
-					endAngle={0}
+					cy="50%"        
+					outerRadius={140}
 					label={false} 
           			>
 					{data.map((entry, index) => (
@@ -46,9 +43,9 @@ export default function StatusPieChart({statusCounts={}, statuses={}}) {
 				</Pie>
 				<Tooltip />
 				<Legend
-					layout="vertical"
-					align="left"
-					verticalAlign="bottom"  
+					layout='vertical'
+					
+					align='left'
 					itemSorter={() => null}/>
 			</PieChart>
 		</ResponsiveContainer>
