@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Search } from "lucide-react"
+import { Search, MoveUpRight } from "lucide-react"
 import ProjectCard from "./ProjectCard";
 import "../../styles/ProjectKanban.css";
 
@@ -38,8 +38,15 @@ export default function ProjectKanban({ projects }) {
 	//Sort section keys in order
 	const monthKeys = Object.keys(monthSections).sort();
 
-	if (!projects.length) {
-		return <div className="kanban-empty"><p>No active projects. Add one to get started!</p></div>;
+	if (projects.length === 0) {
+		return(
+			<div className='kanban-empty'>
+				<h2>
+					Click the "Add New Project" button to add your first Project!
+					<MoveUpRight size={75} />
+				</h2>
+			</div>
+		) 
 	}
 
 	return (

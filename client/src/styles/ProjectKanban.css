@@ -5,6 +5,10 @@
     padding: 1rem 0;
 }
 
+.kanban-empty {
+    text-align: center;
+}
+
 /* ------------------------- Toolbar ---------------------------*/
 .toolbar {
 	display: flex;

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { PatternContext } from '../../context/PatternContext'
-import { Search } from "lucide-react"
+import { Search, MoveUpRight } from "lucide-react"
 import PatternCard from "./PatternCard"
 
 const CATEGORIES = ["clothing", "accessories", "quilting", "home_decor", "costumes", "other"]
@@ -17,10 +17,10 @@ export default function PatternGallery() {
 	if (patterns.length === 0) {
 		return (
 			<div className='kanban-empty'>
-				<h2>Looks like you don't have any Patterns Added!</h2>
-				<p>
-					Click the "Add New Pattern" button to add your first Pattern
-				</p>
+				<h2>
+					Click the "Add New Pattern" button to add your first Pattern!
+					<MoveUpRight size={75} />
+				</h2>
 			</div>
 		)
 	}

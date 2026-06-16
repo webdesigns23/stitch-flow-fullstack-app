@@ -6,7 +6,7 @@ import DashboardPage from './pages/DashboardPage';
 import MaterialsPage from "./pages/MaterialsPage";
 import ProjectPage from './pages/ProjectPage';
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
-import CompleteProjects from './pages/CompleteProjects';
+import CompletedPage from './pages/CompletedPage';
 import PatternPage from './pages/PatternPage';
 import PatternDetailsPage from './pages/PatternDetailsPage'
 import LandingPage from "./pages/LandingPage";
@@ -71,7 +71,7 @@ export default function App() {
                   <Route path="/projects/:id" element={<ProjectDetailsPage />} />
                   <Route path ="/patterns" element={<PatternPage />} />
                   <Route path ="/patterns/:id" element={<PatternDetailsPage />} />
-                  <Route path="/completed" element={<CompleteProjects />} />
+                  <Route path="/completed" element={<CompletedPage />} />
                 </Routes>
               </div>
             </main>      

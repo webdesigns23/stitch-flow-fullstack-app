@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { ProjectContext } from '../context/ProjectContext';
 import ProjectCard from '../components/projects/ProjectCard';
 
-export default function CompleteProjects() {
+export default function CompletedPage() {
 	const statusKey = (s) =>
 		(s || "").toLowerCase().trim().replace(/[_\s]+/g, "-");
 
@@ -14,7 +14,7 @@ export default function CompleteProjects() {
 		<>
 		<h1>Finished Projects</h1>
 		  {completed.length === 0 ? (
-			<p>No completed projects yet!</p>
+			<h2>No completed projects yet!</h2>
 		  ): (
 			<div className="gallery">
 			  {completed.map(project => (
