@@ -1,34 +1,252 @@
-/* Layout for the dashboard gallery */
+/* -------- Layout for the dashboard gallery -------- */
 .stat-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
-/* Each card */
+.stat-gallery-item.is-compact { 
+	grid-column: span 3; 
+}
+
+.stat-gallery-item.is-third {
+  grid-column: span 4;
+}
+
+.stat-gallery-item.is-wide {
+	grid-column: span 6; 
+} 
+
+.stat-gallery-item.is-full {
+	grid-column: span 12; 
+} 
+
+@media (max-width: 1100px) {
+  .stat-gallery-item.is-compact { grid-column: span 4; }
+  .stat-gallery-item.is-wide    { grid-column: span 8; }
+  .stat-gallery-item.is-full    { grid-column: span 12; }
+}
+
+@media (max-width: 800px) {
+  .stat-gallery-item.is-compact,
+  .stat-gallery-item.is-wide,
+  .stat-gallery-item.is-full    { grid-column: span 12; }
+}
+
+/* ----------------- Totals Section ----------------- */
+.totals-header, .materials-heading, .day-range-title {
+  font-size: 1.5rem;  
+  color: #38393a;
+  text-transform: uppercase;
+}
+
+.totals-chart-section {
+    display: flex;
+    gap: 1px;
+}
+
+.totals-chart-section .pie-chart {
+    flex: 1;
+    height: 250px;
+    min-width: 0;
+}
+
+.pie-chart .recharts-legend-item-text {
+    font-size: 18px !important;
+    color: #4e4b4b !important;
+}
+
+.totals-footer {
+  font-size: 1.25rem;
+  color: rgb(116, 104, 104);
+}
+
+/* ------------------ Urgent Section ------------------- */
+.stat-gallery-item.overdue-card {
+    border-top: 8px solid rgba(209, 108, 108, 0.5);
+}
+
+.overdue-badge {
+    display: inline-block;
+    background: rgb(204, 87, 87,.35);
+    border-radius: 15px;
+    padding: 1px 16px;
+    font-size: 1.25rem;
+    margin-left: 16px;
+}
+
+.overdue-heading {
+  color: rgb(204, 87, 87);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.stat-gallery-item.due-soon-card {
+    border-top: 8px solid rgb(180, 142, 36,.5);
+}
+
+.due-soon-heading {
+  color: rgb(148, 122, 51);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.due-soon-badge {
+    display: inline-block;
+    background: rgba(180, 142, 36, 0.35);
+    border-radius: 15px;
+    padding: 1px 16px;
+    font-size: 1.25rem;
+    margin-left: 16px;
+}
+
+.proj-urgent-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.proj-urgent-list li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.proj-urgent-list li a {
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+
+.proj-urgent-list li a:hover {
+    text-decoration: underline;
+}
+
+.materials-count {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 5px;
+  color:  #6387a5;
+}
+
+.materials-link {
+  font-size:  1.25rem;
+}
+
+
+/* ----- Weekly Planner Section ----- */
+.upcoming-proj-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.day-range-context {
+    font-size: 1.25rem;
+    color: #bbb;
+}
+
+.upcoming-proj-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.upcoming-proj {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid;
+    text-decoration: none;
+    min-width: 130px;
+}
+
+.upcoming-proj span:first-child {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.upcoming-proj span:last-child {
+    font-size: 1.5rem;
+}
+
+.upcoming-proj.overdue  { background: rgba(199, 140, 150, 0.2); border-color: rgb(199, 140, 150); color: rgb(120, 50, 60); }
+.upcoming-proj.today    { background: rgba(199, 140, 150, 0.35); border-color: rgb(199, 140, 150); color: rgb(100, 40, 50); }
+.upcoming-proj.soon     { background: rgba(161, 155, 58, 0.2); border-color: rgb(161, 155, 58); color: rgb(90, 85, 20); }
+.upcoming-proj.week     { background: rgba(47, 116, 78, 0.15); border-color: rgb(47, 116, 78); color: rgb(30, 80, 50); }
+.upcoming-proj.early    { background: rgba(45, 114, 160, 0.15); border-color: rgb(45, 114, 160); color: rgb(25, 70, 110); }
+.upcoming-proj.coming-up { background: rgba(110, 94, 141, 0.15); border-color: rgb(110, 94, 141); color: rgb(65, 50, 95); }
+
+.empty-upcoming-proj {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: #f9f8f5;
+    border: 0.5px dashed #ccc;
+    border-radius: 8px;
+}
+
+.empty-upcoming-proj span {
+    font-size: 1.85rem;
+    color: #888;
+}
+
+.empty-upcoming-proj a {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: #fff;
+    border: 0.5px solid #ccc;
+    color: #2c2c2a;
+    text-decoration: none;
+}
+
+.planner-weeks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.week-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.week-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 4px;
+    border-bottom: 0.5px solid #e8e4e0;
+}
+
+
+
+
+/* General */
 .stat-gallery-item {
   background: #fff;
   padding: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  text-align: center;
-  border-top: 50px solid rgb(211, 202, 202);
-  border-radius: 6px;
-}
-
-/* Headings */
-.stat-gallery-item h2 {
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 6px rgba(5, 5, 5, 0.08);
+  border-radius: 8px;
 }
 
 /* Big numbers */
 .stat-value {
-  font-size: 4rem;  
+  font-size: 3.2rem;  
   font-weight: 700;
-  color: #c47171;   
+  color: #6387a5;  
+  margin-left: 12px; 
 }
 
 /* Status list */
@@ -45,32 +263,3 @@
   color: #c47171;
 }
 
-.stat-gallery {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.stat-gallery-item.is-compact { 
-	grid-column: span 3; 
-}
-
-.stat-gallery-item.is-wide {
-	grid-column: span 6; 
-} 
-
-@media (max-width: 1000px) {
-  .stat-gallery-item.is-compact {
-	grid-column: span 6;
-	}
-  .stat-gallery-item.is-wide {
-	grid-column: span 12;
-	}
-}
-
-@media (max-width: 640px) {
-  .stat-gallery-item { 
-	grid-column: span 12; 
-	}
-}

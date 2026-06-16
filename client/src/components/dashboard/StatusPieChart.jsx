@@ -1,6 +1,6 @@
 import {PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 
-export default function StatusChart({statusCounts={}, statuses={}}) {
+export default function StatusPieChart({statusCounts={}, statuses={}}) {
 	const pieStatuses = [
 		"planning",
 		"cutting",
@@ -25,7 +25,7 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 	const visibleLabel = data.filter((item) => item.value > 0);
 
 	return (
-		<div style={{width: "100%", height: 400}}>
+		<div className="pie-chart">
 		<ResponsiveContainer width="100%" height="100%">
 			<PieChart>
 				<Pie
@@ -33,8 +33,11 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 					dataKey="value" 
 					nameKey="name" 
 					cx="50%"        
-					cy="50%"        
-					outerRadius={150} 
+					cy="100%"        
+					outerRadius={170}
+					innerRadius={50}
+					startAngle={180}
+					endAngle={0}
 					label={false} 
           			>
 					{data.map((entry, index) => (
@@ -42,7 +45,11 @@ export default function StatusChart({statusCounts={}, statuses={}}) {
 					))}
 				</Pie>
 				<Tooltip />
-				<Legend  itemSorter={() => null}/>
+				<Legend
+					layout="vertical"
+					align="left"
+					verticalAlign="bottom"  
+					itemSorter={() => null}/>
 			</PieChart>
 		</ResponsiveContainer>
 		</div>

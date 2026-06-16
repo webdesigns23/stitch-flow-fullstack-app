@@ -7,7 +7,6 @@ export default function DashboardPage({user}) {
 	<> 
 	  <h1>{capitalizeWords(user?.display_name)}'s Dashboard</h1>
 	  <StatsGallery />
-	  <hr style={{margin:'40px'}}></hr>
 	</>
   );
 }
