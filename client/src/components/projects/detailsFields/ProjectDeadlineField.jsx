@@ -32,7 +32,7 @@ export default function ProjectDeadlineField({project, onUpdate, isCompleted}) {
 				/>{" "} Deadline
 			</span>
 				{editingDeadline ? (
-					<div>
+					<div className="proj-deadline-edit">
 						<input
 							type="date"
 							defaultValue={deadlineValue}

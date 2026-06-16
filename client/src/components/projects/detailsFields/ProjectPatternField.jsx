@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { capitalizeWords } from "../../../utils/formatText"
 import { PatternContext } from "../../../context/PatternContext";
 import { PencilLine } from "lucide-react"
 
@@ -16,7 +17,8 @@ export default function ProjectPatternField({ project, onUpdate }) {
 	//Edit Pattern with Search Pattern Functionality
 	async function handlePatternChange(selectedId) {
 		await onUpdate({
-			pattern_id: selectedId ? Number(selectedId): null});
+			pattern_id: selectedId ? Number(selectedId) : null
+		});
 		setEditingPattern(false);
 		setPatternSearch("");
 	}
@@ -24,26 +26,26 @@ export default function ProjectPatternField({ project, onUpdate }) {
 	return (
 		<div className="proj-details-field">
 			<span className="proj-details-label">
-				<PencilLine 
-					size={20} 
-					color="#9f831d" 
-					onClick={() => setEditingPattern(true)} 
-					style={{ cursor: "pointer" }} 
+				<PencilLine
+					size={20}
+					color="#9f831d"
+					onClick={() => setEditingPattern(true)}
+					style={{ cursor: "pointer" }}
 				/>
 				{" "} Pattern
 			</span>
 			{editingPattern ? (
-				<div>
+				<div className="proj-pattern-edit">
 					<input
 						type="text"
-						placeholder="Search patterns..."
+						placeholder="Search pattern by name, brand ..."
 						value={patternSearch}
 						onChange={(e) => setPatternSearch(e.target.value)}
 						autoFocus
 					/>
 					<ul className="proj-pat-list">
-						<li onClick={() => handlePatternChange(null)} style={{ cursor: "pointer" }}>
-							No pattern linked
+						<li onClick={() => handlePatternChange(null)} style={{ cursor: "pointer", color: "#dd586a", fontWeight: "bold" }}>
+							NO PATTERN
 						</li>
 						{patterns
 							.filter(pat =>
@@ -54,7 +56,7 @@ export default function ProjectPatternField({ project, onUpdate }) {
 								<li
 									key={pat.id}
 									onClick={() => handlePatternChange(pat.id)} style={{ cursor: "pointer" }}>
-									{pat.name} ({pat.brand})
+									{capitalizeWords(pat?.name)} ({pat?.brand})
 								</li>
 							))
 						}
@@ -67,13 +69,15 @@ export default function ProjectPatternField({ project, onUpdate }) {
 						onClick={() => setEditingPattern(false)}>Cancel</button>
 				</div>
 			) : (
-				<span>
-					{patternId && (
-						<Link to={`/patterns/${patternId}`} className="proj-card-patt-link">
-							{patternId ? `${p?.name} (${p?.brand})` : "No pattern linked"}
+				<div className="proj-card-patt-link">
+					{patternId ? (
+						<Link to={`/patterns/${patternId}`} >
+							{capitalizeWords(p?.name)} ({p?.brand})
 						</Link>
+					) : (
+						<span className="proj-card-patt-none">No pattern linked</span>
 					)}
-				</span>
+				</div>
 			)}
 		</div>
 	)

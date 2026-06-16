@@ -3,6 +3,13 @@ body {
   margin-left: 130px;
 }
 
+.go-back {
+    display: inline-flex;
+    align-items: center;
+	  gap: 5px;
+}
+
+
 /* Modal */
 .modal-overlay {
   position: fixed;
@@ -126,8 +133,6 @@ body {
 /* Pattern Requirments Table */
 div.table { 
   overflow-x: auto; 
-  padding: 15px;
-  margin-top: 25px;
 }
 
 .req_table {

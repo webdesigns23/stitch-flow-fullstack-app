@@ -1,4 +1,4 @@
-/* ------ Header -----*/
+/* -------------------- Header -------------------*/
 .proj-header {
 	text-align: left;
 	display: flex;
@@ -24,12 +24,7 @@
 	border: 2px solid rgb(211, 123, 123);
 }
 
-.go-back {
-    display: inline-flex;
-	gap: 5px;
-}
-
-/* ------ Project Details Main Info -----*/
+/* -------------- Project Details Main Info -----------*/
 .proj-details {
 	text-align: left;
 }
@@ -39,16 +34,16 @@
 	margin-bottom: 20px;
 }
 
-.proj-details-label {
+/* .proj-details-label {
   	display: block;
 	font-size: 16px;
 	color: #5e5b5c;
   	text-transform: uppercase;
   	letter-spacing: 0.06em;
 	margin-bottom: 5px;
-}
+} */
 
-/* ------ Status Card ------ */
+/* ------------------ Status Card -------------------- */
 .status-banner-card {
 	background: rgba(252, 251, 250, 0.85);
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
@@ -118,8 +113,36 @@
 	border-radius: 8px;
 }
 
-/* ------ Project Info Layout ------ */
+/* ------------------ Project Info Layout ------------------ */
 /*Deadline in App.css*/
+/* ---------------- Deadline Edit ---------------- */
+.proj-deadline-edit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.proj-deadline-edit input[type="date"] {
+    padding: 6px 10px;
+    border: 1px solid #c8b89a;
+    border-radius: 4px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 0.9rem;
+    color: #3a2e22;
+    background: #fff;
+}
+
+.proj-deadline-edit input[type="date"]:focus {
+    outline: none;
+    border-color: #986f16;
+}
+
+.proj-deadline-edit input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: sepia(1) saturate(4) hue-rotate(5deg) brightness(0.9);
+    cursor: pointer;
+}
 
 .primary-info-grid {
 	display: grid;
@@ -131,6 +154,34 @@
 .proj-card-meta {
 	color: rgb(139, 113, 113);
 }
+
+.proj-card-patt-link {
+	margin: 10px;
+	font-size: 1.15rem;
+}
+
+.proj-pat-list {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.proj-card-patt-none {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	color: gray;
+}
+
+.proj-pattern-edit select,
+.proj-pattern-edit input[type="text"] {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #c8b89a;
+  border-radius: 4px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 0.9rem;
+  color: #3a2e22;
+  background: #fff;
+  box-sizing: border-box;
+}
+
 
 .notes-display {
 	white-space: pre-wrap;
@@ -153,7 +204,7 @@
 	padding: 16px;
 }
 
-/* ---- Image Upload Form ---- */
+/* -------------------- Image Upload Form ---------------- */
 .image-upload-card {
   background: rgba(252, 251, 250, 0.85);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
@@ -198,7 +249,7 @@
 	color: rgb(54, 49, 49);
 }
 
-/* ------ Project Image Gallery ----- */
+/* ---------------- Project Image Gallery --------------- */
 .gallery-section-card {
   	background: rgba(252, 251, 250, 0.85);
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);

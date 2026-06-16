@@ -26,7 +26,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   align-items: flex-start;
-  padding-bottom: 60vh;
+  padding-bottom: 50vh;
 }
 
 h1 {
@@ -44,14 +44,13 @@ h2 {
   font-size: 2.2em;
   line-height: 1.1;
   color: rgb(58, 103, 170);
-  margin: 10px;
   text-shadow: 2px 2px 4px rgba(63, 61, 61, 0.5);
 }
 
 h3 {
   font-size: 25px;
   color: rgb(92, 77, 77);
-  margin: 8px;
+  margin: 5px;
 }
 
 p, li {
