@@ -22,7 +22,6 @@ export default function DashboardUrgency({activeProjects, isOverdue, isDueSoon, 
 
 				{overdueProjects.length > 0 && (
 					<div className="stat-projects-list">
-						<hr style={{margin:'40px'}}></hr>
 						<ul className="proj-urgent-list">
 							{overdueProjects.map(p => (
 								<li key={p.id}>
@@ -42,7 +41,6 @@ export default function DashboardUrgency({activeProjects, isOverdue, isDueSoon, 
 				</h3>
 				{dueSoonProjects.length > 0 && (
 					<div className="stat-projects-list">
-						<hr style={{margin:'40px'}}></hr>
 						<ul className="proj-urgent-list">
 							{dueSoonProjects.map(p => (
 								<li key={p.id}>

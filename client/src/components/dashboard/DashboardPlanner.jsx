@@ -1,24 +1,6 @@
 import { Link } from "react-router-dom"
-
-//css range classes
-function getUrgencyClass(daysLeft) {
-	if(daysLeft < 0) return "overdue";
-	if(daysLeft === 0) return "today";
-	if(daysLeft <= 3) return "soon";
-	if(daysLeft <= 7) return "week";
-	if(daysLeft <= 14) return "early";
-	return "coming-up";
-}
-
-function getDeadlineLabel(daysLeft,deadline) {
-	const dayName = new Date(deadline).toLocaleDateString("en-US", { weekday: "long"});
-
-	if (daysLeft < 0) return `overdue - ${Math.abs(daysLeft)} day${Math.abs(daysLeft) === 1 ? "" : "s"} late`;
-	if(daysLeft === 0) return "due today";
-	if (daysLeft === 1) return `due tomorrow - ${dayName}`; 
-	return `due in ${daysLeft} days - ${dayName}`;
-}
-
+import { CalendarRange } from "lucide-react";
+import { getUrgencyClass, getDeadlineLabel, getWeekRange } from "../../utils/deadlines";
 
 export default function DashboardPlanner({activeProjects, isOverdue, isDueSoon, daysOverdue, daysUntilDue}) {
 
@@ -28,55 +10,70 @@ export default function DashboardPlanner({activeProjects, isOverdue, isDueSoon, 
 		.map(p => ({...p, daysLeft: (isOverdue(p.deadline) ? -daysOverdue(p.deadline) : daysUntilDue(p.deadline))
 	})).sort((a, b) => a.daysLeft - b.daysLeft);
 
-	//Get upcoming projects in 7,14,21,28 days
-	const dayRanges = [7, 14, 21, 28];
-	let upcomingProjects = [];
-	let activeDayRange = null;
-
-	for (const dayRange of dayRanges) {
-		upcomingProjects = withDeadlines.filter(p => p.daysLeft <= dayRange);
-		if (upcomingProjects.length > 0) {
-			activeDayRange = dayRange;
-			break;
-		}
-	}
-
-	const rangeTitle = (activeDayRange === 7 || activeDayRange === null ? 
-		"This week" : "Coming up");
-
-	const rangeContext = (activeDayRange === 7 ? "" : activeDayRange ? `nothing due within 7 days, showing next ${activeDayRange} days` : "");
+	//Show this week and preview of next week planner
+	const thisWeek = withDeadlines.filter(p => p.daysLeft <=7);
+	const nextWeek = withDeadlines.filter(p => p.daysLeft > 7 && p.daysLeft <= 14);
+	const hasProjects = thisWeek.length > 0 || nextWeek.length > 0; 
 
 
-	return (
-		<>		
-			<div className="stat-gallery-item is-full">
-				<div className="upcoming-proj-header">
-					<h3 className="day-range-title">{rangeTitle}</h3>
-					{rangeContext && (
-						<span className="day-range-context">{rangeContext}</span>
-					)}
-				</div>
-
-				{/* show planning projects by range */}
-				{upcomingProjects.length > 0 ? (
-					<div className="upcoming-proj-main">
-						{upcomingProjects.map(p => (
-							<Link 
-								to={`/projects/${p.id}`} 
-								key={p.id}
-								className={`upcoming-proj ${getUrgencyClass(p.daysLeft)}`}>
-								<span>{p.title}</span>
-								<span>{getDeadlineLabel(p.daysLeft, p.deadline)}</span>
-							</Link>
-						))}
-					</div>
-				) : (
-					<div className="empty-upcoming-proj">
-						<span>No projects due in the next 28 days!</span>
-						<Link to="/projects">+ Add New Project</Link>
-					</div>
-				)}
+return (
+		<div className="stat-gallery-item is-full">
+			<div className="upcoming-proj-header">
+				<h3 className="day-range-title">
+					<CalendarRange size={25} color="#9f831d" /> {""}Weekly Schedule</h3>
+				<span className="day-range-context">next two weeks</span>
 			</div>
-		</>
+
+			{hasProjects ? (
+				<div className="planner-weeks">
+
+					{/* This weeks projects*/}
+					<div className="week-group">
+						<div className="week-label">This week: {getWeekRange(0)}</div>
+						{thisWeek.length > 0 ? (
+							<div className="upcoming-proj-main">
+								{thisWeek.map(p => (
+									<Link
+										to={`/projects/${p.id}`}
+										key={p.id}
+										className={`upcoming-proj ${getUrgencyClass(p.daysLeft)}`}>
+										<span>{p.title}</span>
+										<span>{getDeadlineLabel(p.daysLeft, p.deadline)}</span>
+									</Link>
+								))}
+							</div>
+						) : (
+							<p className="week-empty">Nothing due this week — get ahead on next week!</p>
+						)}
+					</div>
+					
+
+					{/* Next weeks projects*/}
+					<div className="week-group">
+						<div className="week-label">Next week: {getWeekRange(7)}</div>
+						{nextWeek.length > 0 ? (
+							<div className="upcoming-proj-main">
+								{nextWeek.map(p => (
+									<Link
+										to={`/projects/${p.id}`}
+										key={p.id}
+										className={`upcoming-proj ${getUrgencyClass(p.daysLeft)}`}>
+										<span>{p.title}</span>
+										<span>{getDeadlineLabel(p.daysLeft, p.deadline)}</span>
+									</Link>
+								))}
+							</div>
+						) : (
+							<p className="week-empty">Nothing due next week</p>
+						)}
+					</div>
+				</div>
+			) : (
+				<div className="empty-upcoming-proj">
+					<span>No projects due in the next two weeks</span>
+					<Link to="/projects">+ Add New Project</Link>
+				</div>
+			)}
+		</div>
 	)
 }

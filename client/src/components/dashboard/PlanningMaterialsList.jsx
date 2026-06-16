@@ -12,7 +12,6 @@ export default function PlanningMaterialsList() {
 
   return (
     <div>
-      <h2 className="planning-dash-title">Planned Projects Materials</h2>
 
       {planningProjects.length === 0 && <p>No projects in planning.</p>}
 
@@ -22,7 +21,7 @@ export default function PlanningMaterialsList() {
 
         return (
           <div key={project.id} className="req-card">
-            <h3>{capitalizeWords(project.title)}</h3>
+            <h2>{capitalizeWords(project.title)}</h2>
 			<div className="table" >
             {reqs.length > 0 ? (
               <table className="req_table">
