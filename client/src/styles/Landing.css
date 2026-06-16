@@ -3,6 +3,8 @@ body.landing-bg {
 	background-size: cover;
 	background-position: center;
 	margin: 0;
+  padding-bottom: 1vh;
+  padding-top: 2vh;
 }
 
 .landing-page {
@@ -49,6 +51,7 @@ body.landing-bg {
   align-items: center;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  justify-content: center;
 }
 
 .landing-auth h2 {
@@ -115,7 +118,7 @@ body.landing-bg {
 }
 
 .button-landing button {
-  width: 300px;
+  width: fit-content;
   background: rgb(201, 190, 190);
   border: 2px solid rgba(212, 178, 92, 0.5);
   color: #1f303d;
