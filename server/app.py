@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from config import app, api
 
-
 #Register Resources
 from resources.auth import register_auth_resources
 from resources.projects import register_project_resources

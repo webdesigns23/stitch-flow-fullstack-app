@@ -6,15 +6,17 @@ Stay inspired and organized with all your sewing projects in one easy space
 # Overview
 A sewing project management tracker that helps casual sewists, quilters, and cosplayers turn creative ideas into finished projects. Plan your projects, track your progress, and keep all your pattern specs, materials, costs and notes in one place. Whether you’re starting something new or revisiting a favorite creation, StitchFlow keeps your sewing projects moving smoothly from the first stitch to the final seam so you can spend less time organizing and more time sewing.
 
+# Live Demo
+[Visit Stitch Flow]
+
 # Features
-- Users can view Projects and Patterns
-- Add Projects and Patterns
-- Delete Projects and Patterns
-- Update status of Projects
-- Update Pattern Information
-- Connect Patterns to Projects
-- View all completed Projects
-- View a Dashboad that gives an overview of how many projects and patterns they have as well as a pie chart that shows how many projects are at a certain status.
+- User authentication (signup/login) so each user's projects and patterns stay private
+- View, add, and delete Projects and Patterns
+- Track Project status on a Kanban board, grouped by deadline month, with overdue and due-soon highlighting
+- Update Pattern information and link Patterns to Projects (or mark a Project as "no pattern")
+- Upload and manage Project photos via Cloudinary, with filterable image galleries and a lightbox viewer
+- View all completed Projects in a dedicated gallery
+- View a Dashboard with project stats, a pie chart of Projects by status, a bi-weekly schedule view, overdue/due-soon alerts, and a card showing how many planning-status Projects have a linked pattern, with a "View Materials" link to the Materials page
 
 # Tools Featured in this Project:
 - [GitHub Repo](https://github.com/webdesigns23/stitch-flow-fullstack-app.git)
@@ -28,21 +30,26 @@ A sewing project management tracker that helps casual sewists, quilters, and cos
 - Virtualenv
 - Python Packages listed in requirements.txt
 - Flask
-- SQLAlchemy
-- SQLite for development
-- Vite
+- Flask-SQLAlchemy
+- Flask-Migrate
+- Flask-JWT-Extended
+- Flask-Bcrypt
+- Flask-CORS
+- PostgreSQL (via Neon)
+- Cloudinary (image hosting & management)
 
 # Resources
 - [React Router](https://reactrouter.com/en/main)
 - [Recharts](https://recharts.org/en-US)
 
 # React Router Endpoints
-* "/" : Home Page, about Stitch Flow
-* "/dashboard" : Dashboard Page with stats and pie chart of projects by status
-* "/projects" : Projects Gallery, has filtering and add project form
-* "/patterns" : Patterns Gallery, has add patterns form, links to patterns/id page
+* "/" : Landing Page (if not logged in), about Stitch Flow, Signup, Login 
+* "/" : Dashboard Page (if logged in) with stats and pie chart of projects by status, link to materials page, bi-weekly schedule
+* "/materials" : Displays material list of projects in planning status that have a linked pattern
+* "/projects" : Projects Gallery, has filtering and add project form, links to projects/id page
+* "/projects/:id" : Project details, deadline, pattern link, image gallery, notes, and status
+* "/patterns" : Patterns Gallery, has filtering and add patterns form, links to patterns/id page
 * "/patterns/:id" : Pattern info and requirments, edit pattern info
-* "/materials" : Feature thats coming soon, lets users know what to look forward to
 * "/completed" : Gallery of Completed Project Cards
 
 # Set Up and Installation:
@@ -62,25 +69,35 @@ source env1/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-3. Navigate into the server/ directory and set environment variables:
+
+3. Navigate into the server/ directory and create a `.env` file with the following variables:
 ```bash
-cd server
+DATABASE_URL=
+JWT_SECRET_KEY=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
+
+4. Set environment variables for running the Flask server locally:
+```bash
 export FLASK_APP=app.py
 export FLASK_RUN_PORT=5555
 ```
-4. Create a migrations folder, run initial migration and update
+
+5. Create a migrations folder, run initial migration and update
 ```bash
 cd server
 flask db init
 flask db migrate -m "initial migration"
 flask db upgrade
 ```
-5. Populate database with initial data
+6. Populate database with initial data
 ```bash
 python seed.py
 ```
 # Running Back-end of Application:
-6. Should run on port 5555 to match proxy in package.json
+Should run on port 5555 to match proxy in package.json
 You can run the Flask server with:
 ```bash
 python app.py
@@ -103,38 +120,65 @@ npm run dev
 ```
 
 # API Endpoints and Functionality:
-`/projects`
-`/projects/<id>`
-`/patterns`
-`/patterns/<id>`
-`/patterns/<pattern_id>/requirements`
 
-## Project and Pattern Index Class:
-`GET /projects or /patterns – paginated`
-* Returns all Projects and Patterns
-Includes Pagination if called:
-* Uses page and per_page query parameters
-* Returns only the requested chunk of data
-* Includes metadata like the total number of pages
+## Auth
+`POST /signup`
+* Creates a new user account
 
-`POST /projects and /patterns`
-* Adds a New Project or Pattern
+`POST /login`
+* Logs in an existing user and returns a JWT
 
-## Project Deatails and Pattern Details Class:
-`GET /projects/<id> or /patterns/<id>`
-*Returns all projects or patterns by id
+`GET /me`
+* Returns the currently authenticated user's info
 
-`PATCH /projects/<id> or /patterns/<id>`
-* Search by id
-* Update a status for projects
-* Update pattern information
+## Projects
+`GET /projects`
+* Returns all Projects for the logged-in user
 
-`DELETE /cellar_record/<id>`
-* Delete a a project or pattern
+`POST /projects`
+* Adds a new Project
 
-## Pattern Requirements List Class:
-`GET /patterns/<pattern_id>/requirements`
-*Returns all pattern requirments for a patterns by id
+`GET /projects/<id>`
+* Returns a single Project by id
+
+`PATCH /projects/<id>`
+* Updates a Project (status, deadline, pattern link, notes, etc.)
+
+`DELETE /projects/<id>`
+* Deletes a Project
+
+## Project Images
+`GET /projects/<id>/images`
+* Returns all images for a Project
+
+`POST /projects/<id>/images`
+* Uploads a new image to Cloudinary and links it to a Project
+
+`PATCH /projects/<id>/images/<image_id>`
+* Updates an image's type or notes
+
+`DELETE /projects/<id>/images/<image_id>`
+* Deletes a Project image
+
+## Patterns
+`GET /patterns`
+* Returns all Patterns
+
+`POST /patterns`
+* Adds a new Pattern
+
+`GET /patterns/<id>`
+* Returns a single Pattern by id
+
+`PATCH /patterns/<id>`
+* Updates Pattern information
+
+`DELETE /patterns/<id>`
+* Deletes a Pattern
+
+## Pattern Requirements
+`GET /patterns/<id>/requirements`
+* Returns all requirements for a Pattern
 
 # Testing: 
 - Does not contain test files.
@@ -142,11 +186,16 @@ Includes Pagination if called:
 - Test endpoints in Postman or by using application in browser and inspect
 
 # Application Flow:
-1. Add a pattern with all pattern info and pattern requirements
-2. Add a project with pattern, choose from pattern dropdown to link to project
-3. Default status is set to "planning"
-4. Update status as you work on your project
-5. Delete if you decide you no longer want to work on project
+1. Sign up or log in to your account
+2. View Dashboard too see stats and weekly schedule, if empty then add pattern/projects
+3. Add a pattern with all pattern info and pattern requirements
+4. Add a project, optionally linking a pattern from the dropdown (or mark it as "No Pattern")
+5. Default status is set to "planning"
+6. Track progress on the Kanban board, organized by deadline month and status
+7. Upload progress photos to your project's image gallery
+8. Update status as you work, mark as finished when complete
+9. View finished projects in the Completed gallery
+10. Delete if you decide you no longer want to work on a project
 
 # Commit and Push Git History if any adjustments to this code are made
 1. Add your changes to the staging area by executing
@@ -158,3 +207,8 @@ git add .
 git commit -m "Your commit message"
 git push origin main
 ```
+
+# Author and Project Context
+* Created by: Sharmaine Perea
+* Project Created for Flatiron School Software Engineering Bootcamp
+* Assignment: Capstone Project 2
