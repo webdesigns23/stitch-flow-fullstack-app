@@ -41,10 +41,14 @@ A sewing project management tracker that helps casual sewists, quilters, and cos
 # Resources
 - [React Router](https://reactrouter.com/en/main)
 - [Recharts](https://recharts.org/en-US)
+- [Cloudinary](https://cloudinary.com/home)
+
+# ERD
+![Entity Relationship Diagram](./server/images/project%202%20ERD.png)
 
 # React Router Endpoints
 * "/" : Landing Page (if not logged in), about Stitch Flow, Signup, Login 
-* "/" : Dashboard Page (if logged in) with stats and pie chart of projects by status, link to materials page, bi-weekly schedule
+* "/" : Dashboard Page (if logged in) with stats, pie chart, link to materials page, bi-weekly schedule
 * "/materials" : Displays material list of projects in planning status that have a linked pattern
 * "/projects" : Projects Gallery, has filtering and add project form, links to projects/id page
 * "/projects/:id" : Project details, deadline, pattern link, image gallery, notes, and status
