@@ -10,6 +10,7 @@ import CompleteProjects from './pages/CompleteProjects';
 import PatternPage from './pages/PatternPage';
 import PatternDetailsPage from './pages/PatternDetailsPage'
 import LandingPage from "./pages/LandingPage";
+import ScrollToTop from "./components/ScrollToTop";
 import { PatternProvider } from "./context/PatternContext";
 import { ProjectsProvider } from "./context/ProjectContext";
 import { me } from "./api/auth";
@@ -50,7 +51,6 @@ export default function App() {
   }
   
   if (checkAuth) return <div>  
-    <h1>Checking Authorization...</h1>
     <img src="src/assets/Planning.png" width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
     </div>
   if (!user) return <LandingPage onLogin={onLogin}/>;
@@ -60,6 +60,7 @@ export default function App() {
       <PatternProvider>
         <ProjectsProvider>
           <BrowserRouter>  
+            <ScrollToTop />
             <NavBar user={user} setUser={setUser}/>
             <main className="main">
               <div className="container">

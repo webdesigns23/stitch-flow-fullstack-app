@@ -2,7 +2,7 @@
 .navbar {
   position: fixed;
   inset: 0 auto 0 0;       
-  width: 150px;
+  width: 130px;
   background:  #1e1b1b;
   color: #bfaeae;
   padding: 20px 14px;
@@ -16,16 +16,19 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 20px;
   margin: 0;
   padding: 0;
 }
 
 .nav-user {
   color: rgb(168, 157, 157);
+  text-align: center;
+  padding-bottom: 50px;
 }
 
 .nav-links a {
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -48,7 +51,7 @@
 }
 
 .nav-logo {
-  width: 90%;
+  width: 95%;
 }
 
 .logout_btn {
@@ -60,7 +63,7 @@
   border-radius: 8px;
   color: #bfaeae;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: background 0.2s;
 }
 

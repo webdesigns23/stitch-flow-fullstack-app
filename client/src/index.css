@@ -6,6 +6,10 @@
   text-align: left;
 } 
 
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   font-weight: 500;
   color: #5c5d85;
@@ -22,6 +26,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   align-items: flex-start;
+  padding-bottom: 60vh;
 }
 
 h1 {
@@ -29,7 +34,8 @@ h1 {
   font-size: 3.5em;
   line-height: 1.1;
   color: rgb(48, 49, 49);
-  margin: 10px;
+  margin: 5px;
+  padding-bottom: 15px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 

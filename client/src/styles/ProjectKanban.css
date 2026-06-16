@@ -5,7 +5,7 @@
     padding: 1rem 0;
 }
 
-/* ---- Toolbar ----*/
+/* ------------------------- Toolbar ---------------------------*/
 .toolbar {
 	display: flex;
     flex-direction: row;
@@ -62,7 +62,7 @@
 	text-decoration: none;
 }
 
-/* ----- Month section ----- */
+/* -------------------- Month section -------------------- */
 .kanban-month-header {
     display: flex;
     align-items: center;
@@ -101,7 +101,7 @@
     background: #b4900b;
 }
 
-/* ----- Kanban Columns ----- */
+/* --------------------- Kanban Columns ---------------------- */
 .kanban-columns {
     display: flex;
     gap: 10px;
