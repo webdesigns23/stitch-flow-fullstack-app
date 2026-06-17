@@ -22,7 +22,7 @@ export default function ProjectDeadlineField({project, onUpdate, isCompleted}) {
 
 	return(
 		<div className="proj-details-field">
-			<span className="proj-details-label">
+			<span title="Click to Edit" className="proj-details-label">
 				<CalendarDays 
 					size={20} 
 					color="#9f831d" 

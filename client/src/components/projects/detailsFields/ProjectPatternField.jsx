@@ -25,7 +25,7 @@ export default function ProjectPatternField({ project, onUpdate }) {
 
 	return (
 		<div className="proj-details-field">
-			<span className="proj-details-label">
+			<span title="Click to Edit" className="proj-details-label">
 				<PencilLine
 					size={20}
 					color="#9f831d"
@@ -75,7 +75,10 @@ export default function ProjectPatternField({ project, onUpdate }) {
 							{capitalizeWords(p?.name)} ({p?.brand})
 						</Link>
 					) : (
-						<span className="proj-card-patt-none">No pattern linked</span>
+						<span className="proj-card-none">
+							No pattern linked
+							<p>Click icon to add/update pattern </p>
+						</span>
 					)}
 				</div>
 			)}

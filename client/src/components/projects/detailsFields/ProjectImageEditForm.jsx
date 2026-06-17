@@ -97,7 +97,7 @@ export default function ProjectImageEditForm({img, images, project, onImageUpdat
 			) : (
 				<div className="proj-image-info">
 					<header className="proj-image-header">
-						<span className="proj-image-type">
+						<span title="Click to Edit" className="proj-image-type">
 							{/* edit image type/ notes */}
 							<Pencil
 								size={18}
@@ -109,13 +109,15 @@ export default function ProjectImageEditForm({img, images, project, onImageUpdat
 							{" "} {img.image_type.replace(/_/g, " ")}
 						</span>
 						{/* delete image */}
-						<Trash2
-							size={16}
-							color="#c78275"
-							onClick={() => handleDelete(img.id)}
-							style={{ cursor: "pointer" }}
-							title="Delete Image"
-						/>
+						<span title="Click to Delete Image">						
+							<Trash2
+								size={16}
+								color="#c78275"
+								onClick={() => handleDelete(img.id)}
+								style={{ cursor: "pointer" }}
+								title="Delete Image"
+							/>
+						</span>
 					</header>
 				</div>
 			)}
