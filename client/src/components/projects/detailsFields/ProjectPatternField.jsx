@@ -34,6 +34,7 @@ export default function ProjectPatternField({ project, onUpdate }) {
 				/>
 				{" "} Pattern
 			</span>
+
 			{editingPattern ? (
 				<div className="proj-pattern-edit">
 					<input
@@ -43,33 +44,40 @@ export default function ProjectPatternField({ project, onUpdate }) {
 						onChange={(e) => setPatternSearch(e.target.value)}
 						autoFocus
 					/>
-					<ul className="proj-pat-list">
-						<li onClick={() => handlePatternChange(null)} style={{ cursor: "pointer", color: "#dd586a", fontWeight: "bold" }}>
-							NO PATTERN
-						</li>
-						{patterns
-							.filter(pat =>
-								pat.name.toLowerCase().includes(patternSearch.toLowerCase()) ||
-								pat.brand.toLowerCase().includes(patternSearch.toLowerCase())
-							)
-							.map(pat => (
-								<li
-									key={pat.id}
-									onClick={() => handlePatternChange(pat.id)} style={{ cursor: "pointer" }}>
-									{capitalizeWords(pat?.name)} ({pat?.brand})
-								</li>
-							))
-						}
-					</ul>
-					<Link to="/patterns" className="proj-card-patt-link">
-						Don't see your pattern? Add it on the Patterns page
-					</Link>
-					<button
-						className="proj-card-btn-remove"
-						onClick={() => setEditingPattern(false)}>Cancel</button>
+					<div className="proj-pat-list">
+						<ul >
+							<li onClick={() => handlePatternChange(null)} style={{ cursor: "pointer", color: "#dd586a", fontWeight: "bold" }}>
+								NO PATTERN
+							</li>
+							{patterns
+								.filter(pat =>
+									pat.name.toLowerCase().includes(patternSearch.toLowerCase()) ||
+									pat.brand.toLowerCase().includes(patternSearch.toLowerCase())
+								)
+								.map(pat => (
+									<li
+										key={pat.id}
+										onClick={() => handlePatternChange(pat.id)} style={{ cursor: "pointer" }}>
+										{capitalizeWords(pat?.name)} ({pat?.brand})
+									</li>
+								))
+							}
+						</ul>
+						<div>
+							<button
+							className="proj-card-btn-remove"
+							onClick={() => setEditingPattern(false)}>
+							Cancel Edit
+							</button>
+						</div>
+
+						<Link to="/patterns" className="proj-card-pat-link">
+							Don't see your pattern? Add it on the Patterns page
+						</Link>
+					</div>
 				</div>
 			) : (
-				<div className="proj-card-patt-link">
+				<div className="proj-pat-link">
 					{patternId ? (
 						<Link to={`/patterns/${patternId}`} >
 							{capitalizeWords(p?.name)} ({p?.brand})

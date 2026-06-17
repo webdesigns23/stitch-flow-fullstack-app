@@ -62,8 +62,9 @@ export default function ProjectImageEditForm({img, images, project, onImageUpdat
 		<div>
 			{/* Editing View */}
 			{editingImageId === img.id ? (
-				<div>
+				<div className="proj-image-edit">
 					<select
+						className="proj-image-edit-select"
 						value={editImageType}
 						onChange={(e) => setEditImageType(e.target.value)}>
 						{image_types.map(t => (
@@ -73,26 +74,29 @@ export default function ProjectImageEditForm({img, images, project, onImageUpdat
 						))}
 					</select>
 					<textarea
-						type="text"
+						className="proj-image-edit-textarea"
 						value={editImageNotes}
 						onChange={(e) => setEditImageNotes(e.target.value)}
 						placeholder="Add a note..."
 						maxLength={250}>
+						rows={2}
 					</textarea>
 
-					<button
-						className="proj-card-btn"
-						onClick={() => handleEditSave(img.id)}
-						title="Save">
-						Save
-					</button>
+					<div className="proj-card-edit-actions">
+						<button
+							className="proj-card-btn"
+							onClick={() => handleEditSave(img.id)}
+							title="Save">
+							Save
+						</button>
 
-					<button
-						className="proj-card-btn-remove"
-						onClick={handleCancelEdit}
-						title="Cancel">
-						Cancel
-					</button>
+						<button
+							className="proj-card-btn-remove"
+							onClick={handleCancelEdit}
+							title="Cancel">
+							Cancel
+						</button>
+					</div>
 				</div>
 			) : (
 				<div className="proj-image-info">

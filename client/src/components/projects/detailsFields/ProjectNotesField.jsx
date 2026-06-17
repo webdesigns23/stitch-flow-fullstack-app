@@ -38,7 +38,7 @@ export default function ProjectNotesField({project, onUpdate}) {
 						/>
 						<div className="notes-actions">
 							<button
-								className="proj-card-btn-remove"
+								className="proj-card-btn"
 								onClick={field.save}>						Save
 							</button>
 							<button

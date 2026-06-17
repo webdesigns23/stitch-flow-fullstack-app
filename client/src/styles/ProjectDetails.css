@@ -34,14 +34,14 @@
 	margin-bottom: 20px;
 }
 
-/* .proj-details-label {
+.proj-details-label {
   	display: block;
 	font-size: 16px;
 	color: #5e5b5c;
   	text-transform: uppercase;
   	letter-spacing: 0.06em;
 	margin-bottom: 5px;
-} */
+}
 
 /* ------------------ Status Card -------------------- */
 .status-banner-card {
@@ -114,7 +114,7 @@
 }
 
 /* ------------------ Project Info Layout ------------------ */
-/*Deadline in App.css*/
+/*Deadline general in App.css for global deadline styling */
 /* ---------------- Deadline Edit ---------------- */
 .proj-deadline-edit {
     display: flex;
@@ -155,13 +155,36 @@
 	color: rgb(139, 113, 113);
 }
 
-.proj-card-patt-link {
+.proj-pat-link {
 	margin: 10px;
 	font-size: 1.15rem;
 }
 
-.proj-pat-list {
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+.proj-pat-list ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.proj-pat-list li {
+	padding: 0.5rem 0.75rem;
+	border-bottom: 1px solid #f5f0e8;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.proj-pat-list li:last-child {
+	border-bottom: none;
+}
+
+.proj-pat-list li:hover {
+	background-color: #faf5e8;
+	color: #9f831d;
+}
+
+.proj-card-pat-link {
+	font-size: 20px;
 }
 
 .proj-card-none {
@@ -247,6 +270,40 @@
 
 .proj-card-label {
 	color: rgb(54, 49, 49);
+}
+
+/* ---------------- Edit Project Image Gallery --------------- */
+.proj-image-edit {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	padding: 0.75rem;
+}
+
+.proj-image-edit-select {
+	width: 100%;
+	padding: 0.45rem 0.6rem;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	font-size: 0.95rem;
+	background: #fff;
+	color: #333;
+}
+
+.proj-image-edit-textarea {
+	width: 100%;
+	padding: 0.5rem 0.6rem;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	font-size: 0.9rem;
+	font-family: inherit;
+	resize: vertical;
+	box-sizing: border-box;
+}
+
+.proj-image-edit-actions {
+	display: flex;
+	gap: 0.5rem;
 }
 
 /* ---------------- Project Image Gallery --------------- */

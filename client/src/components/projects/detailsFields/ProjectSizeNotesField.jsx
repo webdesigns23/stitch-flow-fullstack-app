@@ -36,7 +36,7 @@ export default function ProjectSizeNotesField({project, onUpdate}) {
 							autoFocus
 						/>
 						<button
-							className="proj-card-btn-remove"
+							className="proj-card-btn"
 							onClick={field.save}>
 							Save
 						</button>
