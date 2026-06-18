@@ -1,7 +1,8 @@
 import { useEffect, useState, useContext } from "react";
+import { Scissors } from "lucide-react";
 import { PatternContext } from "../../context/PatternContext"
 
-export default function EditPatternForm({pattern, handlePatternUpdated}) {
+export default function EditPatternForm({pattern, handlePatternUpdated, onClose}) {
 	const categories = [
 	"clothing", "accessories", "quilting", "home_decor", "costumes", "other"];
 
@@ -54,11 +55,13 @@ export default function EditPatternForm({pattern, handlePatternUpdated}) {
 		}
 	}
 
-	if (editError) return <p>Error: {editError}</p>
-
 	return (
-		<form className="p_form" onSubmit={handleSubmit}>
-			<h2>Edit Pattern:</h2>
+		<form className="form" onSubmit={handleSubmit}>
+			<h2 className="form-heading">
+				<Scissors size={30} color="#9f831d" />
+				{" "} Edit Pattern
+			</h2>
+
 			<div className="form_row">
 				<label>Name:
 					<input type="text" value={name}
@@ -97,7 +100,15 @@ export default function EditPatternForm({pattern, handlePatternUpdated}) {
 					onChange={(e) => setNotes(e.target.value)} maxLength={100} />
 				</label>
 			</div>
-				<button className="button_row" type="submit">Save Changes</button>
+			{editError && <p className="form-error">{editError}</p>}
+
+			<div 
+				className="form_row" 
+				style={{ flexDirection: "row", gap: "0.5rem" }}
+			>
+				<button type="submit">Save Changes</button>
+				<button type="button" onClick={onClose}>Cancel</button>
+			</div>
 		</form>
 
 	)

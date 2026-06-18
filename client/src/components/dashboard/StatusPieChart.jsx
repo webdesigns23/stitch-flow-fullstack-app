@@ -34,7 +34,7 @@ export default function StatusPieChart({statusCounts={}, statuses={}}) {
 					nameKey="name" 
 					cx="50%"        
 					cy="50%"        
-					outerRadius={140}
+					outerRadius={120}
 					label={false} 
           			>
 					{data.map((entry, index) => (
@@ -44,8 +44,8 @@ export default function StatusPieChart({statusCounts={}, statuses={}}) {
 				<Tooltip />
 				<Legend
 					layout='vertical'
-					
 					align='left'
+					wrapperStyle={{ margin: "28px" }}
 					itemSorter={() => null}/>
 			</PieChart>
 		</ResponsiveContainer>

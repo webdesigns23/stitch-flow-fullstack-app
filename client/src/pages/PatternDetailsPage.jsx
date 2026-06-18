@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState  } from "react";
 import { Link, useParams, useNavigate} from "react-router-dom";
-import { CircleArrowLeft } from "lucide-react";
+import { CircleArrowLeft, Tag, Hash, Folder } from "lucide-react";
 import { PatternContext } from "../context/PatternContext";
 import { fetchPatternById } from "../api/patterns";
 import { capitalizeWords } from "../utils/formatText";
@@ -49,48 +49,66 @@ export default function PatternDetails() {
 			setPattern(updated);
 		} setEditing(false);
 	}
-	
-	return(
+
+	return (
 		<>
 			<header className="proj-header">
-					<Link className="go-back" to="/patterns">
-						<CircleArrowLeft color="#986f16" />
-						{" "} Back to All Patterns
-					</Link>
-			</header>
-			
-			<h1>{capitalizeWords(pattern.name)}</h1>
-			<div className="grid">
-			<p><strong>Brand:</strong> {pattern.brand}</p>
-			<p><strong>Pattern #:</strong> {pattern.pattern_number}</p>
-			<p><strong>Category:</strong> {pattern.category}</p>
-			</div>
+				<Link className="go-back" to="/patterns">
+					<CircleArrowLeft color="#986f16" />
+					{" "} Back to All Patterns
+				</Link>
 
-			{pattern.notes && (
-				<p><strong>Notes:</strong> {pattern.notes}</p>
-			)}
-			<ReqDetails pattern={pattern}/>
-
-			<button onClick={() => setEditing(!editing)}>
-				{editing ? "Exit Editing Mode" : "Edit Pattern"}
-			</button>
-			{editing && (
-				<EditPatternForm 
-			pattern={pattern}
-			handlePatternUpdated={handlePatternUpdated}/>
-			)}
-
-			{/* delete button */}
-			{pattern && (
-				<button className="delete_button" 
-				onClick={(e) => { 
-					e.preventDefault(); 
-					e.stopPropagation(); 
-					handleDelete();}}>
-				Delete Pattern
+				<button className="proj-card-btn-remove"
+					onClick={(e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						handleDelete();
+					}}>
+					Delete Pattern
 				</button>
+			</header>
+			<main className="pat-details">
+
+				<h1>{capitalizeWords(pattern.name)}</h1>
+				
+				<div className="pat-meta-row">
+					<span className="pat-meta-item">
+						<Tag size={16}/>
+						{pattern.brand}
+					</span>
+				
+					<span className="pat-meta-item">
+						<Hash size={16}/>
+						{pattern.pattern_number}
+					</span>
+					<span className="pat-meta-item">
+						<Folder size={16}/>
+						{pattern.category}
+					</span>
+				</div>
+				<p>{pattern.notes ?
+					 pattern.notes : 
+					 "No Notes"}
+				</p>
+			</main>
+
+			<button className="proj-card-btn" onClick={() => setEditing(true)}>
+				Edit Pattern Details
+			</button>
+
+			{editing && (
+				<div className="modal-overlay" onClick={() => setEditing(false)}>
+					<div className="modal-content" onClick={(e) => e.stopPropagation()}>
+						<EditPatternForm
+							pattern={pattern}
+							onClose={() => setEditing(false)}
+							handlePatternUpdated={handlePatternUpdated} />
+					</div>
+				</div>
 			)}
 
+			{/* Pattern Requirements Info */}
+			<ReqDetails pattern={pattern} />
 		</>
 	)
 }

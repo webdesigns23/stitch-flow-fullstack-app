@@ -1,4 +1,5 @@
 import { useContext, useMemo } from "react";
+import { ClipboardList } from "lucide-react";
 import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
 
@@ -11,8 +12,7 @@ export default function PlanningMaterialsList() {
   );
 
   return (
-    <div>
-
+    <>
       {planningProjects.length === 0 && <p>No projects in planning.</p>}
 
       {planningProjects.map(project => {
@@ -20,40 +20,44 @@ export default function PlanningMaterialsList() {
         const reqs = pattern?.pattern_requirements ?? [];
 
         return (
-          <div key={project.id} className="req-card">
-            <h2>{capitalizeWords(project.title)}</h2>
-			<div className="table" >
-            {reqs.length > 0 ? (
-              <table className="req_table">
-                <thead>
-                  <tr>
-                    <th>Role</th>
-                    <th>Material</th>
-                    <th>Qty</th>
-                    <th>Unit</th>
-                    <th>Size</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {reqs.map((r) => (
-                    <tr key={r.id}>
-                      <td>{r.role}</td>
-                      <td>{r.material_type}</td>
-                      <td>{r.quantity}</td>
-                      <td>{r.unit}</td>
-                      <td>{r.size}</td>
+          <div key={project.id} className="pattern-details-card">
+            <span className="proj-details-label">
+            <ClipboardList size={20} color="#9f831d" />
+            {" "} {capitalizeWords(project.title)}
+          </span>
+            
+            <div className="table" >
+              {reqs.length > 0 ? (
+                <table className="req_table">
+                  <thead>
+                    <tr>
+                      <th>Role</th>
+                      <th>Material</th>
+                      <th>Qty</th>
+                      <th>Unit</th>
+                      <th>Size</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No requirements found.</p>
-            )}
-			</div>
+                  </thead>
+                  <tbody>
+                    {reqs.map((r) => (
+                      <tr key={r.id}>
+                        <td>{r.role}</td>
+                        <td>{r.material_type}</td>
+                        <td>{r.quantity}</td>
+                        <td>{r.unit}</td>
+                        <td>{r.size}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>No requirements found.</p>
+              )}
+            </div>
           </div>
         );
       })}
-	  
-    </div>
+
+    </>
   );
 }

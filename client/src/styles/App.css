@@ -131,8 +131,20 @@ body {
 }
 
 /* Pattern Requirments Table */
+.pattern-details-card {
+	background: #fff;
+	border: 1px solid #e0d5c1;
+	border-radius: 8px;
+	padding: 1.25rem 1.5rem;
+	margin-bottom: 1.25rem;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
 div.table { 
-  overflow-x: auto; 
+  width: 90%;
+	border-collapse: collapse;
+	font-size: 1rem;
 }
 
 .req_table {
@@ -141,15 +153,22 @@ div.table {
 }
 
 .req_table thead th {
-  text-align: center;
-  padding: 0.6rem 0.75rem;
-  color: rgb(120, 128, 148);
-  border-bottom: rgb(93, 111, 121) double ;
+  text-align: left;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	letter-spacing: 0.03em;
+	color: #9f831d;
+	border-bottom: 1px solid #e0d5c1;
+	padding: 0.5rem 0.75rem;
 }
 
 .req_table td {
-  padding: 0.55rem 0.75rem;
-  border-bottom: 2px solid  rgb(218, 213, 213);
-  color: #504242;
+  padding: 0.5rem 0.75rem;
+	border-bottom: 1px solid #f5f0e8;
+	color: #3a3636;
+}
+
+.req-table tr:last-child td {
+	border-bottom: none;
 }
 

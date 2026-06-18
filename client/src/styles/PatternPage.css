@@ -6,6 +6,10 @@
   border-top: 10px solid rgb(168, 160, 149);
 }
 
+.pat-details p {
+  font-size: 1.15rem;
+}
+
 .pat-card-title {
 	font-size: 20px;
 	font-weight: 600;
@@ -62,4 +66,35 @@
 .gallery-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(0,0,0,.12);
+}
+
+/* pattern details */
+
+.pat-meta-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.25rem;
+	padding-bottom: 0.75rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid #e0dcd2;
+}
+
+.pat-meta-item {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-size: 1.5rem;
+	color: #5a5a52;
+  text-transform: capitalize;
+}
+
+.pat-meta-item svg {
+	color: #986f16;
+}
+
+.pat-notes {
+	font-size: 0.9rem;
+	color: #7a776d;
+	font-style: italic;
+	margin: 0;
 }

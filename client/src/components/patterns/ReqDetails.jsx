@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ClipboardList } from "lucide-react";
 import { useParams } from "react-router-dom";
 
 
@@ -39,8 +40,11 @@ export default function ReqDetails({pattern}) {
 	
 	
 	return (
-		<div>
-			<h2>Material Requirements:</h2>
+		<div className="pattern-details-card">
+			<span className="proj-details-label">
+				<ClipboardList size={20} color="#9f831d" />
+				{" "} Material Requirements
+			</span>
 
 			{requirements && requirements.length > 0 ? (
 			<div className="table">
