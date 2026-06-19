@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState  } from "react";
 import { Link, useParams, useNavigate} from "react-router-dom";
-import { CircleArrowLeft, Tag, Hash, Folder } from "lucide-react";
+import { CircleArrowLeft, Tag, Hash, Folder, Heart } from "lucide-react";
 import { PatternContext } from "../context/PatternContext";
 import { fetchPatternById } from "../api/patterns";
 import { capitalizeWords } from "../utils/formatText";
@@ -38,9 +38,9 @@ export default function PatternDetails() {
 				}
 			};
 			loadPatternDetails()
-		}, [id, patterns]) 
+		}, [id]) 
 	
-	if (patLoading) return <p>Loading pattern details...</p>
+	if (patLoading) return <p><Heart />{" "} Loading pattern details...</p>
 	if (patError || !pattern) return <p>Error: {patError || "Pattern not found"}</p>
 
 	//Update Function
@@ -98,12 +98,12 @@ export default function PatternDetails() {
 
 			{editing && (
 				<div className="modal-overlay" onClick={() => setEditing(false)}>
-					<div className="modal-content" onClick={(e) => e.stopPropagation()}>
+					<span className="modal-content" onClick={(e) => e.stopPropagation()}>
 						<EditPatternForm
 							pattern={pattern}
 							onClose={() => setEditing(false)}
 							handlePatternUpdated={handlePatternUpdated} />
-					</div>
+					</span>
 				</div>
 			)}
 

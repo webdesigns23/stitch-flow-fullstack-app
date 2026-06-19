@@ -13,7 +13,7 @@ body.landing-bg {
   text-align: center;
 }
 
-/* Welcome/About Section (left) */
+/* ----------------- Welcome/About Section------------------ (left) */
 .landing-welcome {
   flex: 1;
   padding: 6rem;
@@ -38,7 +38,7 @@ body.landing-bg {
 	border-top: 3px solid rgb(168, 141, 65);
 }
 
-/* Signup/Login Section (right) */
+/* -------------------- Signup/Login Section -------------------- (right) */
 .landing-auth {
   width: 35%;
   flex-shrink: 0;
@@ -146,7 +146,7 @@ body.landing-bg {
   100% { opacity: 1; }
 }
 
-/* Responsive */
+/* -------------- Responsive ------------------ */
 @media (max-width: 768px) {
   .landing-page {
     flex-direction: column;

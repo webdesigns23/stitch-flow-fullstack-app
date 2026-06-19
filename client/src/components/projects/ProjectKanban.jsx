@@ -1,7 +1,7 @@
-import { useState } from "react"
-import { Search, MoveUpRight } from "lucide-react"
+import { useState } from "react";
 import ProjectCard from "./ProjectCard";
-import "../../styles/ProjectKanban.css";
+import { Search, MoveUpRight } from "lucide-react";
+import "../../styles/Kanban.css";
 
 const STATUSES = [
 	{ key: "planning", label: "Planning" },
@@ -64,8 +64,8 @@ export default function ProjectKanban({ projects }) {
 					</label>
 				</div>
 
-				{/* Month Filter Nav Bar and Pills*/}
-				<div className="kanban-month-filter-nav">
+				{/* Month Filter Bar and Pills*/}
+				<div className="pattern-project-filter-nav">
 				{monthKeys.map(key => {
 					const [year, month] = key.split("-");
 					const monthIndex = parseInt(month) - 1;
@@ -74,7 +74,7 @@ export default function ProjectKanban({ projects }) {
 						<a 
 							key={key} 
 							href={`#month-${key}`}
-							className="kanban-month-filter-pill">
+							className="pattern-project-filter-pill">
 							{MONTH_NAMES[monthIndex]} {year}
 						</a>
 					);				
@@ -93,14 +93,14 @@ export default function ProjectKanban({ projects }) {
 						<section 
 							key={key} 
 							id={`month-${key}`} 
-							className="kanban-month"
+							className="kanban-filter"
 						>
-							<div className="kanban-month-header">
-								<h2 className="kanban-month-title">
+							<div className="kanban-filter-header">
+								<h2 className="kanban-filter-title">
 									{MONTH_NAMES[monthIndex]}
 								</h2>
 								<div />
-								<hr className="kanban-month-line" />
+								<hr className="kanban-filter-line" />
 							</div>
 							
 							{/* Kanban Column headings (statuses) */}

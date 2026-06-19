@@ -47,11 +47,12 @@ export default function EditPatternForm({pattern, handlePatternUpdated, onClose}
 			notes: notes.trim(),
 		};
 
-		const response = await updatePattern(pattern.id, patternEdits);
-		if (response.ok) {
-			handlePatternUpdated?.(response.data);
-		}else {
-			setEditError (response.error?.message || "Unable to update Pattern");
+		const updated = await updatePattern(pattern.id, patternEdits);
+		if (updated) {
+			handlePatternUpdated?.(updated);
+			onClose();
+		} else {
+			setEditError ("Unable to update Pattern");
 		}
 	}
 
@@ -59,28 +60,28 @@ export default function EditPatternForm({pattern, handlePatternUpdated, onClose}
 		<form className="form" onSubmit={handleSubmit}>
 			<h2 className="form-heading">
 				<Scissors size={30} color="#9f831d" />
-				{" "} Edit Pattern
+				{" "} Edit Pattern Details
 			</h2>
 
-			<div className="form_row">
+			<div className="form-row">
 				<label>Name:
 					<input type="text" value={name}
 					onChange={(e) => setName(e.target.value)} maxLength={35} />
 				</label>
 			</div>	
-			<div className="form_row">
+			<div className="form-row">
 				<label>Brand:
 					<input type="text"  value={brand}
 					onChange={(e) => setBrand(e.target.value)} maxLength={35}/>
 				</label>
 			</div>
-			<div className="form_row">
+			<div className="form-row">
 				<label>Pattern #:
 					<input type="text"  value={patternNumber}
 					onChange={(e) => setPatternNumber(e.target.value)} maxLength={35}/>
 				</label>
 			</div>
-			<div className="form_row">		
+			<div className="form-row">		
 				<label>Category:
 					<select value={category} 
 						onChange={(e) => setCategory(e.target.value)} >
@@ -94,7 +95,7 @@ export default function EditPatternForm({pattern, handlePatternUpdated, onClose}
 					</select>
 				</label>
 			</div>
-			<div className="form_row">
+			<div className="form-row">
 				<label>Notes:
 					<input type="text" value={notes}
 					onChange={(e) => setNotes(e.target.value)} maxLength={100} />
@@ -103,7 +104,7 @@ export default function EditPatternForm({pattern, handlePatternUpdated, onClose}
 			{editError && <p className="form-error">{editError}</p>}
 
 			<div 
-				className="form_row" 
+				className="form-row" 
 				style={{ flexDirection: "row", gap: "0.5rem" }}
 			>
 				<button type="submit">Save Changes</button>

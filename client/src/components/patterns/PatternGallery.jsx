@@ -1,7 +1,8 @@
-import { useContext, useState } from 'react'
-import { PatternContext } from '../../context/PatternContext'
-import { Search, MoveUpRight } from "lucide-react"
-import PatternCard from "./PatternCard"
+import { useContext, useState } from 'react';
+import PatternCard from "./PatternCard";
+import { PatternContext } from '../../context/PatternContext';
+import { Search, MoveUpRight } from "lucide-react";
+import "../../styles/Kanban.css";
 
 const CATEGORIES = ["clothing", "accessories", "quilting", "home_decor", "costumes", "other"]
 
@@ -57,13 +58,13 @@ export default function PatternGallery() {
 					</label>
 				</div>
 
-				{/* Pattern Filter Nav Bar and Pills*/}
-				<div className="kanban-month-filter-nav">
+				{/* Pattern Filter Bar and Pills*/}
+				<div className="pattern-project-filter-nav">
 					{activeCategories.map(cat => (
 						<a
 							key={cat}
 							href={`#category-${cat}`}
-							className="kanban-month-filter-pill"
+							className="pattern-project-filter-pill"
 						>
 							{cat.replace(/_/g, " ")}
 						</a>
@@ -77,14 +78,14 @@ export default function PatternGallery() {
 					<section
 						key={cat}
 						id={`category-${cat}`}
-						className="kanban-month"
+						className="kanban-filter"
 					>
-						<div className="kanban-month-header">
+						<div className="kanban-filter-header">
 							<h2 className="kanban-month-title">
 								{cat.replace(/_/g, " ")}
 							</h2>
 							<div />
-							<hr className="kanban-month-line" />
+							<hr className="kanban-filter-line" />
 						</div>
 
 						<div className="gallery">

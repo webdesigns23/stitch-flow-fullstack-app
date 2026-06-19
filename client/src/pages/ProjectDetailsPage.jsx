@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { CircleArrowLeft } from "lucide-react";
+import { CircleArrowLeft, Heart } from "lucide-react";
 import { formatDate } from "../utils/dateUtils";
 import { ProjectContext } from "../context/ProjectContext";
 import { fetchProjectById } from "../api/projects";
@@ -45,7 +45,7 @@ export default function ProjectDetails() {
 		loadProjectDetails()
 	}, [id])
 
-	if (projLoading) return <p>Loading project details...</p>
+	if (projLoading) return <p><Heart />{" "}Loading project details...</p>
 	if (projError || !project) return <p>Error: {projError || "Project not found"}</p>
 
 

@@ -1,3 +1,4 @@
+/* --------------------- Project Kanban Board ------------------ */
 .kanban-board {
     display: flex;
     flex-direction: column;
@@ -50,15 +51,17 @@
 	box-shadow: 0 0 0 3px rgba(126, 90, 90, 0.12);
 }
 
-/*Month filters*/
-.kanban-month-filter-nav {
+
+
+/* ------------------- Heading filters (Months on Projects, Category on Patterns) ------------------- */
+.pattern-project-filter-nav {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     margin-top: 5px;
 }
 
-.kanban-month-filter-pill {
+.pattern-project-filter-pill {
     font-size: 16px;
 	font-weight: 500;
 	padding: 8px 16px;
@@ -71,14 +74,14 @@
 }
 
 /* -------------------- Month section -------------------- */
-.kanban-month-header {
+.kanban-filter-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin: 12px;
 }
 
-.kanban-month-title{
+.kanban-filter-title{
 	font-weight: 100;
 	font-size: 2.5em;
 	line-height: 1.1;
@@ -86,6 +89,12 @@
 	margin: 10px;
 	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     text-transform: capitalize;
+}
+
+.kanban-filter-line {
+    flex: 1;
+    height: 1px;
+    background: #b4900b;
 }
 
 .kanban-month-year {
@@ -103,11 +112,6 @@
     white-space: nowrap;
 }
 
-.kanban-month-line {
-    flex: 1;
-    height: 1px;
-    background: #b4900b;
-}
 
 /* --------------------- Kanban Columns ---------------------- */
 .kanban-columns {

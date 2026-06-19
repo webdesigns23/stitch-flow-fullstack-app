@@ -10,7 +10,7 @@ body {
 }
 
 
-/* Modal */
+/* ----------------------- Modals (forms, edit pattern details) ------------------------*/
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -25,14 +25,13 @@ body {
   background: rgb(99, 96, 92,.75);
   border-radius: 8px;
   padding: 23px;
-  width: 100%;
-  max-width: 600px;
+  width: 85%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-height: 90vh;
   overflow-y: auto;
 }
 
-/* Textbox Notes Areas */
+/* ------------------- Textbox Project Deatais Notes Areas ----------------- */
 .notes-textarea {
   width: 100%;
   resize: vertical;
@@ -64,7 +63,7 @@ body {
   gap: 8px;
 }
 
-/* Deadline on Project Cards and Project Details */
+/* -------------- Deadline on Project Cards and Project Details --------------- */
 .proj-card-deadline {
 	display: inline-flex;
 	align-items: center;
@@ -129,46 +128,3 @@ body {
   color: rgb(0, 0, 0);
   font-weight: bold;
 }
-
-/* Pattern Requirments Table */
-.pattern-details-card {
-	background: #fff;
-	border: 1px solid #e0d5c1;
-	border-radius: 8px;
-	padding: 1.25rem 1.5rem;
-	margin-bottom: 1.25rem;
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-
-div.table { 
-  width: 90%;
-	border-collapse: collapse;
-	font-size: 1rem;
-}
-
-.req_table {
-  width: 90%;
-  font-size: 1rem;
-}
-
-.req_table thead th {
-  text-align: left;
-	text-transform: uppercase;
-	font-size: 0.75rem;
-	letter-spacing: 0.03em;
-	color: #9f831d;
-	border-bottom: 1px solid #e0d5c1;
-	padding: 0.5rem 0.75rem;
-}
-
-.req_table td {
-  padding: 0.5rem 0.75rem;
-	border-bottom: 1px solid #f5f0e8;
-	color: #3a3636;
-}
-
-.req-table tr:last-child td {
-	border-bottom: none;
-}
-

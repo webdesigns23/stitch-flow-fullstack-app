@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Scissors, Ruler } from "lucide-react";
+import { Scissors, Ruler, Trash2 } from "lucide-react";
 import { PatternContext } from "../../context/PatternContext";
 import { createPattern } from "../../api/patterns";
 import "../../styles/Forms.css"
@@ -91,42 +91,42 @@ export default function AddPatternForm({ onClose }) {
 				<Scissors size={30} color="#9f831d" />
 				{" "} Add New Pattern
 			</h2>
+			<div className="form-pat-details-block">
+				<div className="form-row">
+					<label>Name:
+						<input type="text" placeholder="Pattern name" value={name}
+							onChange={(e) => setName(e.target.value)} required />
+					</label>
+				</div>
 
-			<div className="form-row">
-				<label>Name:
-					<input type="text" placeholder="Pattern name" value={name}
-						onChange={(e) => setName(e.target.value)} required />
-				</label>
+				<div className="form-row">
+					<label>Brand:
+						<input type="text" placeholder="Pattern brand" value={brand}
+							onChange={(e) => setBrand(e.target.value)} required />
+					</label>
+				</div>
+
+				<div className="form-row">
+					<label>Pattern Number:
+						<input type="text" placeholder="Pattern number" value={patternNumber}
+							onChange={(e) => setPatternNumber(e.target.value)} required />
+					</label>
+				</div>
+
+				<div className="form-row">
+					<label>Category:
+						<select value={category} onChange={(e) => setCategory(e.target.value)} required>
+							<option value="">Select category...</option>
+							<option value="clothing">Clothing</option>
+							<option value="accessories">Accessories</option>
+							<option value="quilting">Quilting</option>
+							<option value="home_decor">Home Decor</option>
+							<option value="costumes">Costumes</option>
+							<option value="other">Other</option>
+						</select>
+					</label>
+				</div>
 			</div>
-
-			<div className="form-row">
-				<label>Brand:
-					<input type="text" placeholder="Pattern brand" value={brand}
-						onChange={(e) => setBrand(e.target.value)} required />
-				</label>
-			</div>
-
-			<div className="form-row">
-				<label>Pattern Number:
-					<input type="text" placeholder="Pattern number" value={patternNumber}
-						onChange={(e) => setPatternNumber(e.target.value)} required />
-				</label>
-			</div>
-
-			<div className="form-row">
-				<label>Category:
-					<select value={category} onChange={(e) => setCategory(e.target.value)} required>
-						<option value="">Select category...</option>
-						<option value="clothing">Clothing</option>
-						<option value="accessories">Accessories</option>
-						<option value="quilting">Quilting</option>
-						<option value="home_decor">Home Decor</option>
-						<option value="costumes">Costumes</option>
-						<option value="other">Other</option>
-					</select>
-				</label>
-			</div>
-
 			<div className="form-row">
 				<label>Notes:
 					<textarea placeholder="Notes" value={notes}
@@ -135,7 +135,7 @@ export default function AddPatternForm({ onClose }) {
 				</label>
 			</div>
 
-			{/* Pattern requirements */}
+			{/* Pattern Requirements Form */}
 			{requirements.map((req, index) => (
 				<div key={index} className="form-req-block">
 					<p className="form-req-label">
@@ -171,11 +171,13 @@ export default function AddPatternForm({ onClose }) {
 						</label>
 					</div>
 
-					<div className="button-row button-row--left">
-						<button type="button" onClick={() => removeRow(index)}
-							disabled={requirements.length === 1}>
-							Remove
-						</button>
+					<div className="button-row button-row--left" >
+							<Trash2 
+								type="button" 
+								onClick={() => removeRow(index)}
+								disabled={requirements.length === 1}
+								style={{ cursor: "pointer" }}
+							/>
 					</div>
 				</div>
 			))}

@@ -26,10 +26,10 @@ export default function PatternPage() {
 				{showPatForm && (
 					<div className="modal-overlay"
 						onClick={() => setShowPatForm(false)}>
-							<div className="modal-content"
+							<span className="modal-content"
 								onClick={(e) => e.stopPropagation()}>
 								<AddPatternForm onClose={() => setShowPatForm(false)}/>
-							</div>
+							</span>
 					</div>
 				)}
 
