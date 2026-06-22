@@ -148,6 +148,14 @@ Includes Pagination if called:
 4. Update status as you work on your project
 5. Delete if you decide you no longer want to work on project
 
+# Future Upgrades:
+* Time to complete stats (generic days, then hours logged)
+	- Total time 
+	- Time at each phase
+* Generate reports by year/month/project category
+* Project quantity, for ordering fabric, and weight time to complete accuracy
+* Pattern API for less manual pattern entries
+
 # Commit and Push Git History if any adjustments to this code are made
 1. Add your changes to the staging area by executing
 2. Create a commit by executing 

@@ -6,9 +6,16 @@ export default function CompletedPage() {
 	const statusKey = (s) =>
 		(s || "").toLowerCase().trim().replace(/[_\s]+/g, "-");
 
-	const {projects, deleteProject, updateProject,} = useContext(ProjectContext)
+	const {projects} = useContext(ProjectContext)
 
 	const completed = projects.filter(p => p.status === "complete" && p.completed_at);
+
+	// Days to complete project stat
+	function getDaysToComplete(project) {
+		const start = new Date(project.created_at);
+		const end = new Date(project.completed_at);
+		return Math.round((end - start) / (1000 * 60 * 60 * 24));
+	}
 
 	return (
 		<>
@@ -24,8 +31,7 @@ export default function CompletedPage() {
 					<ProjectCard 
 					project={project} 
 					isCompleted={true}
-					handleDelete={() => deleteProject(project.id)}
-					updateProject={(updates) => updateProject(project.id, updates)}
+					daysToComplete = {getDaysToComplete(project)}
 					/>
 				</div>
 			  ))}

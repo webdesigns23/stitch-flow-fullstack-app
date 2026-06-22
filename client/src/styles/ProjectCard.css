@@ -76,3 +76,9 @@
 	cursor: pointer;
 	border-radius: 4px;
 }
+
+.proj-complete-time {
+	color: rgb(134, 96, 12);
+	font-size: 20px;
+	text-align: center;
+}

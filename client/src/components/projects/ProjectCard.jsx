@@ -10,7 +10,7 @@ const STATUSES = [
 		"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
 	];
 
-export default function ProjectCard({ project, isCompleted }) {
+export default function ProjectCard({ project, isCompleted, daysToComplete }) {
 	const { updateProject, isOverdue, isDueSoon } = useContext(ProjectContext);
 	const p = project?.pattern;
 
@@ -46,9 +46,15 @@ export default function ProjectCard({ project, isCompleted }) {
 
 					{/* project deadline */}
 					{isCompleted ? (
-						<span className="proj-card-deadline">
-							Finished: {formatDate(project.completed_at)}
-						</span>
+						<>						
+							<span className="proj-card-deadline">
+								Finished: {formatDate(project.completed_at)}
+							</span>
+							<p className="proj-complete-time">
+								Completed in 
+								<strong> {daysToComplete}</strong> {daysToComplete === 1 ? "day" : "days"}
+							</p>
+						</>
 					):(
 						<span className={
 							isOverdue(project.deadline) ?"proj-card-deadline-overdue":
@@ -62,21 +68,24 @@ export default function ProjectCard({ project, isCompleted }) {
 			</Link>
 
 			{/* status dropdown */}
-			<div className="kanban-card-footer">
-				<span className="kanban-card-status">Update Status:</span>
-				<select 
-					className="kanban-card-select" 
-					value={project?.status} 
-					onChange={handleStatusChange}>
-					
-					{	STATUSES.map(s => (
-						<option key={s} value={s}>
-							{s.replace(/_/g, " ")}
-						</option>
-					))}
-				</select>
-			</div>
-			
+			{!isCompleted && (
+				<div className="kanban-card-footer">
+					<span className="kanban-card-status">
+						Update Status:
+					</span>
+					<select 
+						className="kanban-card-select" 
+						value={project?.status} 
+						onChange={handleStatusChange}>
+						
+						{	STATUSES.map(s => (
+							<option key={s} value={s}>
+								{s.replace(/_/g, " ")}
+							</option>
+						))}
+					</select>
+				</div>
+			)}
 		</article>
 	)
 }
