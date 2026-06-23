@@ -26,7 +26,7 @@ export default function StatusPieChart({statusCounts={}, statuses={}}) {
 
 	return (
 		<div className="pie-chart">
-		<ResponsiveContainer width="100%" height="100%">
+		<ResponsiveContainer width="99%" height="100%" minWidth={0}>
 			<PieChart>
 				<Pie
 					data={data}
