@@ -36,7 +36,7 @@ export default function ReqDetails({pattern}) {
 	}, [id])
 
 	if (reqLoading) return <p>Loading pattern details...</p>
-	if (reqError || !pattern) return <p>Error: {patError || "Pattern not found"}</p>
+	if (reqError || !pattern) return <p>Error: {reqError || "Pattern not found"}</p>
 	
 	
 	return (
