@@ -55,3 +55,16 @@ export async function fetchPatternById(id) {
     if (!response.ok) throw new Error(`HTTP error!: ${response.status}`);
     return response.json();
 }
+
+//List Pattern Requirements
+export async function fetchPatternReqs(id) {
+	const token = localStorage.getItem("token");
+	const response = await fetch(`${API_URL}/patterns/${id}/requirements`,{
+		headers: {
+			"Accept": "application/json",
+			...(token ? { Authorization: `Bearer ${token}`} : {}),
+		},
+	})
+	if (!response.ok) throw new Error(`HTTP error!: ${respsonse.status}`);
+	return response.json();
+}

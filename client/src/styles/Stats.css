@@ -72,6 +72,11 @@
   min-width: 0;
 }
 
+.pie-chart {
+  height: 100%;
+  width: 400px;
+}
+
 .pie-chart .recharts-legend-item-text {
   font-size: 21px !important;
   color: #4e4b4b !important;
