@@ -19,10 +19,12 @@ const MONTH_NAMES = [
 export default function ProjectKanban({ projects }) {
 	const [ searchProjects, setSearchProjects ] = useState("");
 
-	//Search projects by title
+	//Search only active projects by title
 	const query = searchProjects.toLowerCase();
 
-	const filteredProjects = projects.filter(p => 
+	const activeProjects = projects.filter(p => !p.completed_at);
+
+	const filteredProjects = activeProjects.filter(p => 
 		p.title.toLowerCase().includes(query)
 	);
 

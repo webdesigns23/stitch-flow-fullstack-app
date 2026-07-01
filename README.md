@@ -37,6 +37,7 @@ A sewing project management tracker that helps casual sewists, quilters, and cos
 - Flask-CORS
 - PostgreSQL (via Neon)
 - Cloudinary (image hosting & management)
+- Depolyed on Vercel and Render
 
 # Resources
 - [React Router](https://reactrouter.com/en/main)

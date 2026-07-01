@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import PatternCard from "./PatternCard";
 import { PatternContext } from '../../context/PatternContext';
+import { capitalizeWords } from '../../utils/formatText';
 import { Search, MoveUpRight } from "lucide-react";
 import "../../styles/Kanban.css";
 
