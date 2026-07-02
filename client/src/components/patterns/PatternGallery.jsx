@@ -38,7 +38,9 @@ export default function PatternGallery() {
 
 	//Group patterns in to sections by category
 	const categorySections = CATEGORIES.reduce((acc, cat) => {
-		const matches = filteredPatterns.filter(p => p.category === cat);
+		const matches = filteredPatterns
+		.filter(p => p.category === cat)
+		.sort((a, b) => a.name.localeCompare(b.name));
 		if (matches.length > 0) acc[cat] = matches;
 		return acc;
 	}, {});
@@ -83,7 +85,7 @@ export default function PatternGallery() {
 					>
 						<div className="kanban-filter-header">
 							<h2 className="kanban-month-title">
-								{cat.replace(/_/g, " ")}
+								{capitalizeWords(cat.replace(/_/g, " "))}
 							</h2>
 							<div />
 							<hr className="kanban-filter-line" />
