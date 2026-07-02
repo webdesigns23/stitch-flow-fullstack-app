@@ -14,6 +14,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { PatternProvider } from "./context/PatternContext";
 import { ProjectsProvider } from "./context/ProjectContext";
 import { me } from "./api/auth";
+import statuses from "./assets/Planning.png"
 
 
 export default function App() {
@@ -51,7 +52,7 @@ export default function App() {
   }
   
   if (checkAuth) return <div>  
-    <img src="src/assets/Planning.png" width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
+    <img src={statuses} width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
     </div>
   if (!user) return <LandingPage onLogin={onLogin}/>;
 
