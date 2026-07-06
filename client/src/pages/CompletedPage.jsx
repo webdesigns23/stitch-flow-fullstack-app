@@ -8,14 +8,29 @@ export default function CompletedPage() {
 
 	const {projects} = useContext(ProjectContext)
 
-	const completed = projects.filter(p => p.status === "complete" && p.completed_at);
+	const completed = projects.filter(p => p?.status === "complete" && p?.completed_at);
 
 	// Days to complete project stat
 	function getDaysToComplete(project) {
-		const start = new Date(project.created_at);
-		const end = new Date(project.completed_at);
+		const start = new Date(project?.created_at);
+		const end = new Date(project?.completed_at);
 		return Math.round((end - start) / (1000 * 60 * 60 * 24));
 	}
+
+	// Group completed projects by year
+	const groupByYear = completed.slice()
+		.sort((a,b) => new Date(b.completed_at) - new Date(a.completed_at))
+		.reduce((acc, project) => {
+			const year = new Date(project.completed_at).getFullYear();
+			if (!acc[year]) {
+				acc[year] = [];
+			}
+			acc[year].push(project);
+			return acc;
+		}, {});
+
+	// Sort from most recent year
+	const years = Object.keys(groupByYear).sort((a, b) => b - a);
 
 	return (
 		<>
@@ -23,19 +38,28 @@ export default function CompletedPage() {
 		  {completed.length === 0 ? (
 			<h2>No completed projects yet!</h2>
 		  ): (
-			<div className="gallery">
-			  {completed.map(project => (
-				<div key={project.id} 
-				className="gallery-item" 
-				data-status={statusKey(project.status)}>
-					<ProjectCard 
-					project={project} 
-					isCompleted={true}
-					daysToComplete = {getDaysToComplete(project)}
-					/>
-				</div>
-			  ))}
-			</div>
+			years.map(year => (
+				<section key={year} className="kanban-filter">
+					<div className="kanban-filter-header">
+						<h2 className="kanban-filter-title">{year}</h2>
+						<hr className="kanban-filter-line" />
+					</div>
+					
+					<div className="gallery">
+						{groupByYear[year].map(project => (
+							<div key={project.id} 
+							className="gallery-item" 
+							data-status={statusKey(project?.status)}>
+								<ProjectCard 
+								project={project} 
+								isCompleted={true}
+								daysToComplete = {getDaysToComplete(project)}
+								/>
+							</div>
+						))}
+					</div>
+				</section>
+			))
 		  )}
 		</>
 	  )

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { CalendarRange } from "lucide-react";
 import { getUrgencyClass, getDeadlineLabel, getWeekRange } from "../../utils/deadlines";
+import { capitalizeWords } from "../../utils/formatText";
 
 export default function DashboardPlanner({activeProjects, isOverdue, isDueSoon, daysOverdue, daysUntilDue}) {
 
@@ -36,9 +37,9 @@ return (
 									<Link
 										to={`/projects/${p.id}`}
 										key={p.id}
-										className={`upcoming-proj ${getUrgencyClass(p.daysLeft)}`}>
-										<span>{p.title}</span>
-										<span>{getDeadlineLabel(p.daysLeft, p.deadline)}</span>
+										className={`upcoming-proj ${getUrgencyClass(p?.daysLeft)}`}>
+										<span>{capitalizeWords(p?.title)}</span>
+										<span>{getDeadlineLabel(p?.daysLeft, p.deadline)}</span>
 									</Link>
 								))}
 							</div>
@@ -57,9 +58,9 @@ return (
 									<Link
 										to={`/projects/${p.id}`}
 										key={p.id}
-										className={`upcoming-proj ${getUrgencyClass(p.daysLeft)}`}>
-										<span>{p.title}</span>
-										<span>{getDeadlineLabel(p.daysLeft, p.deadline)}</span>
+										className={`upcoming-proj ${getUrgencyClass(p?.daysLeft)}`}>
+										<span>{capitalizeWords(p?.title)}</span>
+										<span>{getDeadlineLabel(p?.daysLeft, p?.deadline)}</span>
 									</Link>
 								))}
 							</div>

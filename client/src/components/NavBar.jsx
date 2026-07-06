@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutDashboard, Folder, SquareScissors, SquareCheck, LogOut } from "lucide-react";
+import { LayoutDashboard, Folder, Ruler, CircleCheckBig, LogOut } from "lucide-react";
 import {NavLink, useNavigate} from "react-router-dom";
 import "../styles/NavBar.css"
 import logo from "../assets/logo1.png"
@@ -9,8 +9,8 @@ import { getInitials } from "../utils/formatText";
 const NAV_ITEMS = [
 	{ to: "/" , label: "Dashboard", icon: LayoutDashboard, end: true },
 	{ to: "/projects", label: "Projects", icon: Folder },
-	{ to: "/patterns", label: "Patterns", icon: SquareScissors },
-	{ to: "/completed", label: "Completed", icon: SquareCheck },
+	{ to: "/patterns", label: "Patterns", icon: Ruler },
+	{ to: "/completed", label: "Completed", icon: CircleCheckBig },
 ]
 
 export default function NavBar({user, setUser}) {

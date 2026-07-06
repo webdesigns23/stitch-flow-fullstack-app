@@ -84,10 +84,9 @@ export default function PatternGallery() {
 						className="kanban-filter"
 					>
 						<div className="kanban-filter-header">
-							<h2 className="kanban-month-title">
+							<h2 className="kanban-filter-title">
 								{capitalizeWords(cat.replace(/_/g, " "))}
 							</h2>
-							<div />
 							<hr className="kanban-filter-line" />
 						</div>
 
