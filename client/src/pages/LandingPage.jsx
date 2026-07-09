@@ -33,7 +33,6 @@ export default function LandingPage({onLogin}) {
 				
 			</div>
 
-
 			{/* Auth Section */}
 			<div className="landing-auth">
 				<img className="logo" src={logo} alt="Stitch Flow Logo" />
@@ -45,15 +44,30 @@ export default function LandingPage({onLogin}) {
 				) : (
 				<LoginForm onLogin={onLogin} />
 				)}
-		
-				<h3>
-				{showSignup ? "Already have an account?" : "Don't have an account?"}
-				</h3>
-				<div className="button-landing">
-					<button onClick={() => setShowSignup(prevState => !prevState)}>
-						{showSignup ? "Back to Login" : "Sign Up Now!"}
+
+				{/* guest read-only */}
+				{!showSignup && (
+					<>	
+						<div className="divider">
+							<span className="divider-text">or</span>
+						</div>
+						<div >
+							<button className="button-landing guest">
+								View demo as guest
+							</button>
+						</div>
+					</>
+				)}
+				
+				{/* signup/login toggle text */}
+				<p className="auth-signup-link">
+					{showSignup ? "Already have an account?" : "New here?"}
+					<button className="button-link" onClick={() => setShowSignup(prevState => !prevState)}>
+						{showSignup ? "Log in" : "Create an account"}
 					</button>
-				</div>
+				</p>		
+				
+				
 			</div>
 		</div>
 	)

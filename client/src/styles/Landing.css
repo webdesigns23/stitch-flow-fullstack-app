@@ -71,7 +71,7 @@ body.landing-bg {
 }
 
 .landing-auth p {
-  color: rgb(235, 128, 137);
+  color: #d4b038;;
   font-size: 19px;
   text-transform: capitalize;
 }
@@ -102,12 +102,13 @@ body.landing-bg {
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
-  font-size: 1rem;
-  color: #d4b038;
+  font-size: 1.05rem;
+  color: #dab12d;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .form_field input {
+  width: 50%;
   background: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 0.5rem 0.7rem;
@@ -117,24 +118,65 @@ body.landing-bg {
   border-radius: 6px;
 }
 
-.button-landing button {
-  width: fit-content;
+.button-landing {
+  width: 300px;
   background: rgb(201, 190, 190);
   border: 2px solid rgba(212, 178, 92, 0.5);
   color: #1f303d;
+  font-size: 1.05rem;
   font-weight: bold;
-  font-size: 1rem;
+  letter-spacing: .5px;
   cursor: pointer;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.button-landing button:hover {
+.button-landing:hover {
   background: rgba(212, 178, 92, 0.12);
 }
 
-.button-landing button:disabled {
+.button-landing:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 90%;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(218, 211, 211, 0.5);
+}
+
+.divider-text {
+  font-size: 20px;
+  color: rgba(248, 246, 246, 0.842);
+}
+
+.button-landing.guest {
+  background:  none;
+  color: rgb(199, 194, 194);
+}
+
+.button-link {
+  background: none;
+	border: none;
+	padding: 0;
+	color: rgba(248, 246, 246, 0.75);
+	text-decoration: underline;
+	cursor: pointer;
+  letter-spacing: .5px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.button-link:hover {
+  color: rgba(199, 194, 194, 0.863);
 }
 
 .fade-in-image {

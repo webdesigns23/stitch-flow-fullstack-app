@@ -57,8 +57,8 @@ export default function LoginForm({onLogin}) {
 
 			{error && <p className="error"> {error}</p>}
 
-			<div className="button-landing">
-				<button type="submit">
+			<div>
+				<button className="button-landing" type="submit">
 					{loading ? "Logging in..." : "Login"}
 				</button>
 			</div>
