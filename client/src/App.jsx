@@ -13,7 +13,7 @@ import LandingPage from "./pages/LandingPage";
 import ScrollToTop from "./components/ScrollToTop";
 import { PatternProvider } from "./context/PatternContext";
 import { ProjectsProvider } from "./context/ProjectContext";
-import { me } from "./api/auth";
+import { me, guestLogin } from "./api/auth";
 import statuses from "./assets/Planning.png"
 
 
@@ -36,7 +36,8 @@ export default function App() {
         } else {
           localStorage.removeItem("token");
         }
-      } catch (_) {
+      } catch (e) {
+        console.error("User not authorized", e);
         setUser(null);
       } finally {
         setCheckAuth(false);
@@ -51,10 +52,22 @@ export default function App() {
     setCheckAuth(false);
   }
   
+  const handleGuestLogin = async () => {
+    try {
+      const response = await guestLogin();
+      if (!response.ok) return;
+      const data = await response.json();
+      onLogin(data.token, data.user);
+    } catch (e) {
+      console.error("Guest login failed", e);
+    }
+  }
+  
   if (checkAuth) return <div>  
     <img src={statuses} width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
     </div>
-  if (!user) return <LandingPage onLogin={onLogin}/>;
+
+  if (!user) return <LandingPage onLogin={onLogin} onGuestLogin={handleGuestLogin}/>;
 
   return (
     <>

@@ -5,7 +5,7 @@ import logo from "../assets/logo1.png";
 import status from "../assets/Planning.png";
 import "../styles/Landing.css"
 
-export default function LandingPage({onLogin}) {
+export default function LandingPage({onLogin, onGuestLogin}) {
 	const [showSignup, setShowSignup] = useState(false);
 
 	useEffect(() => {
@@ -45,14 +45,14 @@ export default function LandingPage({onLogin}) {
 				<LoginForm onLogin={onLogin} />
 				)}
 
-				{/* guest read-only */}
+				{/* guest demo mode */}
 				{!showSignup && (
 					<>	
 						<div className="divider">
 							<span className="divider-text">or</span>
 						</div>
 						<div >
-							<button className="button-landing guest">
+							<button className="button-landing guest" onClick={onGuestLogin}>
 								View demo as guest
 							</button>
 						</div>

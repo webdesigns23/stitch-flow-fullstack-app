@@ -25,6 +25,13 @@ export function login(email, password) {
 	});
 }
 
+// Login a guest user
+export function guestLogin() {
+	return fetch(`${API_URL}/guest_login`, {
+		method: "POST",
+	})
+}
+
 // Check if a user is authorized
 export function me() {
 	const token = localStorage.getItem("token");
