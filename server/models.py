@@ -30,6 +30,7 @@ class User(db.Model):
 	display_name = db.Column(db.String, nullable=False)
 	email = db.Column(db.String, unique=True, nullable=False)
 	_password_hash = db.Column(db.String, nullable=False)
+	is_guest = db.Column(db.Boolean, default=False, nullable=False)
 
 	#relationship
 	projects = db.relationship("Project", back_populates = "user", cascade="all, delete-orphan")

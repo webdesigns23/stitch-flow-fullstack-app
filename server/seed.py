@@ -16,10 +16,10 @@ with app.app_context():
 
 	# Create USERS: unique username, pw hashed before stored!
 	print('Creating Users...')
-	u1 = User(email = 'luna@email.com', display_name='Luna Lovegood') 
+	u1 = User(email = 'luna@email.com', display_name='Luna Lovegood', is_guest=False) 
 	u1.password_hash = 'kitten123'
 
-	u2 = User(email = 'guest@email.com', display_name='Guest Demo')
+	u2 = User(email = 'guest@email.com', display_name='Guest Demo', is_guest=True)
 	u2.password_hash = 'pw123'
 
 	db.session.add_all([u1,u2])

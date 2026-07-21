@@ -93,9 +93,20 @@ class Login(Resource):
         access_token = create_access_token(identity=str(user.id))
         return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 200)
     
+class GuestLogin(Resource):
+    def post(self):
+        guest = User.query.filter_by(email='guest@email.com').first()
+
+        if not guest:
+            return {'error': ['Guest access unavailable']}, 503
+        
+        access_token = create_access_token(identity=str(guest.id)) 
+        return make_response(jsonify(token=access_token, user=UserSchema().dump(guest)), 200)
+    
 
 # API Endpoints
 def register_auth_resources(api):
     api.add_resource(Signup, '/signup', endpoint='signup')
     api.add_resource(WhoAmI, '/me', endpoint='me')
     api.add_resource(Login, '/login', endpoint='login')
+    api.add_resource(GuestLogin, '/guest_login', endpoint='guest_login')

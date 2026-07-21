@@ -20,6 +20,7 @@ class UserSchema(Schema):
 	id = fields.Integer(dump_only=True)	
 	display_name = fields.String(required=True)
 	email = fields.Email(required=True)
+	is_guest = fields.Boolean(required=True)
 
 	#relationship
 	projects = fields.Nested(lambda: ProjectSchema(exclude=("user",)), many=True, dump_only=True)
