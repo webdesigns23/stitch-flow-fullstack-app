@@ -19,7 +19,7 @@ export function PatternProvider({children, token}){
 		async function fetchData() {
 			setLoading(true);
 			setError(null);
-			
+
 		try{
 			const response = await fetchPatterns();
 			if (!response.ok) {
@@ -43,7 +43,7 @@ export function PatternProvider({children, token}){
 
 		try {
 			const response = await deletePatternById(pattern_id);
-			if (!response.ok && response.status !==204) {
+			if (!response.ok) {
 				throw new Error(`${response.status}`);
 			}
 			setPatterns(prev => prev.filter((p) => p.id !==pattern_id));
@@ -67,7 +67,12 @@ export function PatternProvider({children, token}){
 			};	
 			
 			const updated = await response.json();
-			setPatterns(prev => prev.map(p => (p.id === pattern_id ? {...p, ...updates} : p)));
+
+			setPatterns(prev => 
+				prev.map(p => 
+					(p.id === pattern_id ? updated : p)
+				)
+			);
 			return updated;
 		} catch	(error) {
 		setError(`Failed to update pattern: ${error.message || error}`)

@@ -64,7 +64,11 @@ export function ProjectsProvider({children, token}){
 			const response = await updateProjectById(project_id, updates);
 			const data = await response.json();
 			if (!response.ok) throw new Error(`${response.status}`);			
-			setProjects(prev => prev.map(p => (p.id === project_id ? data : p)));
+			setProjects(prev => 
+				prev.map(p => 
+					(p.id === project_id ? data : p)
+				)
+			);
 			return data;
 		} catch	(error) {
 		setError(`Failed to update project: ${error.message || error}`)
