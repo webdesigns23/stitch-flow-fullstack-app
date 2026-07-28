@@ -13,14 +13,11 @@ const NAV_ITEMS = [
 	{ to: "/completed", label: "Completed", icon: CircleCheckBig },
 ]
 
-export default function NavBar({user, setUser}) {
+export default function NavBar({user, onLogout}) {
 	const navigate = useNavigate();
 	
 	function handleLogout() {
-		localStorage.removeItem("token");
-		localStorage.removeItem("user");
-		setUser(null);
-
+		onLogout();
 		navigate("/");
 	}
 

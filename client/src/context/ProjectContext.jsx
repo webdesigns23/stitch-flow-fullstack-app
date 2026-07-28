@@ -1,9 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
 import { fetchProjects, deleteProjectById, updateProjectById } from "../api/projects";
 import { getToday, parseDeadline } from "../utils/dateUtils";
+// import { setLegendSettings } from "recharts/types/state/legendSlice";
 export const ProjectContext = createContext(null);
 
-export function ProjectsProvider({children}){
+export function ProjectsProvider({children, token}){
 
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,29 +13,41 @@ export function ProjectsProvider({children}){
 
   //Lists all Projects
 	useEffect(() => {
+		if (!token) {
+			setProjects([]);
+			setLoading(false);
+			return;
+		}
+
 		async function fetchData() {
-		try{
+			setLoading(true);
+			setError(null);
+		try{		
+
 			const response = await fetchProjects();
+			
 			if (!response.ok) {
 			throw new Error(`HTTP error!: ${response.status}`);
 			}
+
 			const data = await response.json();
 			setProjects(Array.isArray(data) ? data : []);
-		} catch (error){
-			setError("Error loading project data", error);
-		}finally{
-			setLoading(false);
-		}
+			} catch (error){
+				setError(`Error loading project data: ${error.message}`);
+			} finally{
+				setLoading(false);
+			}
 		};
-		fetchData()
-	}, [])
+
+		fetchData();
+	}, [token]);
 
 	//Delete Project
 	async function deleteProject(project_id) {
 		try {
 			setLoading(true);
 			const response = await deleteProjectById(project_id);
-			if (!response.ok && response.status !==204) {
+			if (!response.ok) {
 				throw new Error(`${response.status}`);
 			}
 			setProjects(prev => prev.filter(p => p.id !==project_id));

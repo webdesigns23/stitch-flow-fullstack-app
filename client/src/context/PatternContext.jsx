@@ -3,14 +3,23 @@ import { fetchPatterns, deletePatternById, updatePatternById } from "../api/patt
 
 export const PatternContext = createContext(null);
 
-export function PatternProvider({children}){		
+export function PatternProvider({children, token}){		
   	const [patterns, setPatterns] = useState([]);
   	const [loading, setLoading] = useState(true);
   	const [error, setError] = useState(null);
 	
   	//Lists all Patterns
 	useEffect(() => {
+		if (!token) {
+			setPatterns([]);
+			setLoading(false);
+			return;
+		}
+
 		async function fetchData() {
+			setLoading(true);
+			setError(null);
+			
 		try{
 			const response = await fetchPatterns();
 			if (!response.ok) {
@@ -19,13 +28,13 @@ export function PatternProvider({children}){
 			const data = await response.json();
 			setPatterns(Array.isArray(data) ? data : []);
 		} catch (error){
-			setError(error.message);
+			setError(`Error loading pattern data: ${error.message}`);
 		}finally{
 			setLoading(false);
 		}
 		};
 		fetchData()
-	}, []); 
+	}, [token]); 
 
 	//Delete Pattern
 	async function deletePattern(pattern_id) {

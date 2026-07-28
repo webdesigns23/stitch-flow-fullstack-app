@@ -5,9 +5,10 @@ import logo from "../assets/logo1.png";
 import status from "../assets/Planning.png";
 import "../styles/Landing.css"
 
-export default function LandingPage({onLogin, onGuestLogin}) {
+export default function LandingPage({onLogin, onGuestLogin, guestLoading}) {
 	const [showSignup, setShowSignup] = useState(false);
 
+	// Landing page body styling Add/Remove
 	useEffect(() => {
 		document.body.classList.add("landing-bg");
 		return () => document.body.classList.remove("landing-bg");
@@ -52,8 +53,15 @@ export default function LandingPage({onLogin, onGuestLogin}) {
 							<span className="divider-text">or</span>
 						</div>
 						<div >
-							<button className="button-landing guest" onClick={onGuestLogin}>
-								View demo as guest
+							<button 
+								className="button-landing guest" 
+								onClick={onGuestLogin}
+							>
+								{guestLoading ? (
+									"Loading Demo..."
+								) : (
+									"View demo as guest"
+								)}
 							</button>
 						</div>
 					</>

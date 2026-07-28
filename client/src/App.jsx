@@ -18,64 +18,98 @@ import statuses from "./assets/Planning.png"
 
 
 export default function App() {
+  const [token, setToken] = useState(() => localStorage.getItem("token"));
   const [user, setUser] = useState(null);
   const [checkAuth, setCheckAuth] = useState(true);
+  const [ guestLoading, setGuestLoading ] = useState(false);
 
 
+  // Check for token first
   useEffect(() => {
-    (async () => {
+    async function checkCurrentUser() {
+      if (!token) {
+        setCheckAuth(false);
+        return;
+      }
+
       try {
         const response = await me();
+
         if (!response.ok) {
-          setCheckAuth(false);
+          localStorage.removeItem("token");
+          setToken(null);
+          setUser(null);
           return;
         }
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data);
-        } else {
-          localStorage.removeItem("token");
-        }
-      } catch (e) {
-        console.error("User not authorized", e);
+
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error("User not authorized", error);
+        localStorage.removeItem("token");
+        setToken(null);
         setUser(null);
       } finally {
         setCheckAuth(false);
       }
-    })();
-  },[]);
+    }
+    
+    checkCurrentUser();
+  }, [token]);
 
-
-  const onLogin = (token, user) => {
-    localStorage.setItem("token", token);
-    setUser(user);
-    setCheckAuth(false);
-  }
+  // User Login
+  const onLogin = (newToken, loggedInUser) => {
+    localStorage.setItem("token", newToken);
+    setToken(newToken);
+    setUser(loggedInUser);
+  };
   
+  // Guest Login Button
   const handleGuestLogin = async () => {
+    setGuestLoading(true);
+
     try {
       const response = await guestLogin();
-      if (!response.ok) return;
+
+      if (!response.ok) {
+        throw new Error(`Guest login failed: ${response.status}`);
+      }
+
       const data = await response.json();
       onLogin(data.token, data.user);
-    } catch (e) {
-      console.error("Guest login failed", e);
+    } catch (error) {
+      console.error("Guest login failed", error);
+    } finally {
+      setGuestLoading(false);
     }
   }
+
+  // Logout user
+  function handleLogout() {
+		localStorage.removeItem("token");
+		setToken(null);
+		setUser(null);
+	};
+
   
   if (checkAuth) return <div>  
     <img src={statuses} width="100%" alt="sewing supplies, thread, scissors, measuring tape"/>
     </div>
 
-  if (!user) return <LandingPage onLogin={onLogin} onGuestLogin={handleGuestLogin}/>;
+  if (!user) {
+    return <LandingPage 
+      onLogin={onLogin} 
+      onGuestLogin={handleGuestLogin}
+      guestLoading={guestLoading}/>
+  };
 
   return (
     <>
-      <PatternProvider>
-        <ProjectsProvider>
+      <PatternProvider token={token}>
+        <ProjectsProvider token={token}>
           <BrowserRouter>  
             <ScrollToTop />
-            <NavBar user={user} setUser={setUser}/>
+            <NavBar user={user} onLogout={handleLogout}/>
             <main className="main">
               <div className="container">
                 <Routes>
