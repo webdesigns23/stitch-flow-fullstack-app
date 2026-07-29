@@ -43,13 +43,14 @@ h2 {
   font-weight: 100;
   font-size: 2.2em;
   line-height: 1.1;
-  color: rgb(58, 103, 170);
+  color: rgb(52, 71, 100);
   text-shadow: 2px 2px 4px rgba(63, 61, 61, 0.5);
 }
 
 h3 {
   font-size: 22px;
-  color: rgb(92, 77, 77);
+  color: rgb(92, 80, 77);
+  text-shadow: 2px 2px 4px rgba(208, 211, 216, 0.5);
   margin: 5px;
 }
 

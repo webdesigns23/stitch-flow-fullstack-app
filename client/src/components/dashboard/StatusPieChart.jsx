@@ -1,6 +1,8 @@
-import {PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer} from 'recharts';
+import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';
+import { Link } from 'react-router-dom'
+import { CircleArrowRight, Folder } from 'lucide-react';
 
-export default function StatusPieChart({statusCounts={}, statuses={}}) {
+export default function StatusPieChart({statusCounts={}}) {
 	const pieStatuses = [
 		"planning",
 		"cutting",
@@ -17,38 +19,95 @@ export default function StatusPieChart({statusCounts={}, statuses={}}) {
 		"rgb(161, 155, 58, .75)", 
 	];
 
-	const data = pieStatuses.map((status) => (
-		{name: status.replace(/_/g, " "), value: Number(statusCounts[status] || 0)}
-	));
+	//For pie chart legend
+	const data = pieStatuses.map((status, index) => ({
+		name: status.replace(/_/g, " "), 
+		value: Number(statusCounts[status] || 0),
+		color: COLORS[index],
+	}));
+
+	//Total num of active projects
+	const activeProjects = data.reduce(
+		(total, item) => total + item.value, 0);
 
 	//if zero value hide label
-	const visibleLabel = data.filter((item) => item.value > 0);
+	// const visibleLabel = data.filter((item) => item.value > 0);
 
 	return (
 		<div className="pie-chart">
-		<ResponsiveContainer width="99%" height="100%" minWidth={0}>
-			<PieChart>
-				<Pie
-					data={data}
-					dataKey="value" 
-					nameKey="name" 
-					cx="50%"        
-					cy="50%"        
-					outerRadius={120}
-					label={false} 
-          			>
-					{data.map((entry, index) => (
-						<Cell key={pieStatuses[index]} fill={COLORS[index % COLORS.length]} />
+			<h3 className='dashboard-title'>
+				Active Projects by Status
+			</h3>
+			<div className='pie-chart-container'>
+
+				{/*Left Column chart legend */}
+				<section className='pie-chart-legend'>
+					{data.map((item) => (
+						<div key={item.name} className='pie-legend-row'>
+							<div className='pie-legend-label'>
+								<span 
+									className='pie-legend-color' 
+									style={{ backgroundColor: item.color }}
+								/>
+								<span>{item.name}</span>
+							</div>
+
+							<span className='pie-legend-count'>
+								{item.value}
+							</span>
+						</div>
 					))}
-				</Pie>
-				<Tooltip />
-				<Legend
-					layout='vertical'
-					align='left'
-					wrapperStyle={{ margin: "28px" }}
-					itemSorter={() => null}/>
-			</PieChart>
-		</ResponsiveContainer>
+				
+				</section>
+
+				{/*Right Column visual chart */}
+				<section className='pie-chart-visual'>
+					<ResponsiveContainer width="100%" height="100%">
+						<PieChart>
+							<Pie
+								data={data}
+								dataKey="value" 
+								nameKey="name" 
+								cx="50%"        
+								cy="50%"        
+								outerRadius={90}
+								innerRadius={65}
+								paddingAngle={2}
+								label={false} 
+								>
+								{data.map((item) => (
+									<Cell 
+										key={item.name} 
+										fill={item.color}
+									/>
+								))}
+								<Label
+									value={`${activeProjects}`}
+									position="center"
+									dy={-24}
+									className='pie-total'
+								/>
+								<Label
+									value="Total"
+									position="center"
+									dy={10}
+								/>
+								<Label
+									value="Projects"
+									position="center"
+									dy={30}
+								/>
+							</Pie>
+						</PieChart>
+					</ResponsiveContainer>
+				</section>	
+			</div>
+			<footer className='chart-footer'>
+				<Link className="go-projects" to="/projects">
+					View All Projects
+					<CircleArrowRight color="#986f16"/>
+				</Link>
+			</footer>
 		</div>
 	)
 }

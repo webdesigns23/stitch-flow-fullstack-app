@@ -83,3 +83,9 @@
 	font-size: 20px;
 	text-align: center;
 }
+
+.empty-img {
+	width: 300px;
+	height: auto;
+	opacity: .5;
+}

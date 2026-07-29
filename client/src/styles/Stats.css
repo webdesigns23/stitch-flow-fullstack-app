@@ -36,6 +36,100 @@
   color: #6387a5;
 }
 
+.dashboard-title {
+  display: flex;
+  justify-content: flex-start;
+  gap: 6px;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+}
+
+/*------------------- Pie Chart ---------------------*/
+.pie-chart {
+	height: 100%;
+	box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-left: 25px;
+  font-size: 20px;
+}
+
+.pie-chart-container {
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+	align-items: center;
+	gap: 32px;
+  flex: 1;
+  min-height: 0;
+}
+
+
+/* LEFT LEGEND */
+
+.pie-chart-legend {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+  margin: 5px;
+}
+
+.pie-legend-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.pie-legend-label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+  text-transform: capitalize;
+}
+
+.pie-legend-color {
+	width: 23px;
+	height: 16px;
+	flex-shrink: 0;
+  border-radius: 3px;
+}
+
+.pie-legend-count {
+	font-weight: 600;
+  color: rgb(80, 74, 74);
+}
+
+
+
+/* RIGHT CHART */
+
+.pie-chart-visual {
+	width: 90%;
+	height: 90%;
+	min-width: 0;
+}
+
+.chart-footer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding-top: 8px;
+}
+
+.go-projects {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: #986f16;
+	text-decoration: none;
+	font-size: 1rem;
+}
+
+.pie-total {
+	font-size: 44px;
+	font-weight: 600;
+	fill: #2b2d31;
+}
 /* ----------------- Totals Section ----------------- */
 .totals-header,
 .materials-heading,

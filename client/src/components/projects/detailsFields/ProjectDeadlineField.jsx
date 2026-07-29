@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { CalendarDays } from "lucide-react"
-import { formatDate } from "../../../utils/dateUtils";
+import { formatDate } from "../../../utils/dateTime";
 import { ProjectContext } from "../../../context/ProjectContext";
 
 export default function ProjectDeadlineField({project, onUpdate, isCompleted}) {

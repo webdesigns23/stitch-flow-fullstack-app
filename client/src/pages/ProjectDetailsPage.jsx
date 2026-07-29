@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { CircleArrowLeft, Heart } from "lucide-react";
-import { formatDate } from "../utils/dateUtils";
+import { formatDate } from "../utils/dateTime";
 import { ProjectContext } from "../context/ProjectContext";
 import { fetchProjectById } from "../api/projects";
 import { capitalizeWords } from "../utils/formatText";

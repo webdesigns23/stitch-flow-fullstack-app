@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
-import { formatDate } from "../../utils/dateUtils"
+import { formatDate } from "../../utils/dateTime"
 import "../../styles/ProjectCard.css";
 import { Ruler } from "lucide-react";
 

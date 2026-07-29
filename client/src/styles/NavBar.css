@@ -88,6 +88,7 @@
 
 .logout_btn:hover, .nav-link:hover {
   background: rgba(255,255,255,0.06);
+  border-left: 2px solid rgb(189, 165, 33);
   border-radius: 8px;
   color: #e8d9d9;
 }

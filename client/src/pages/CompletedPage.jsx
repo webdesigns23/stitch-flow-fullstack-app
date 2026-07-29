@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { ProjectContext } from '../context/ProjectContext';
 import ProjectCard from '../components/projects/ProjectCard';
-
+import empty_complete from '../assets/empty_complete.png'
 export default function CompletedPage() {
 	const statusKey = (s) =>
 		(s || "").toLowerCase().trim().replace(/[_\s]+/g, "-");
@@ -36,7 +36,7 @@ export default function CompletedPage() {
 		<>
 		<h1>Finished Projects</h1>
 		  {completed.length === 0 ? (
-			<h2>No completed projects yet!</h2>
+			<img className="empty-img" src={empty_complete} alt="No project images yet"/>
 		  ): (
 			years.map(year => (
 				<section key={year} className="kanban-filter">

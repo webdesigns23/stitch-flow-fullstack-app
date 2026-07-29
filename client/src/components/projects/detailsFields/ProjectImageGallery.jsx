@@ -21,6 +21,18 @@ export default function ProjectImageGallery({ project, onImageUpdate }) {
 
 	const images = project.project_images || [];
 
+	//Dynamically add filter category when category exists
+	const availableTypes = [ ...new Set(
+		images.map(img => img.image_type)
+	)];
+
+	const visisbleFilters = IMAGE_TYPES.filter(({ key }) => {
+		if (key === "all"){
+			return availableTypes.length > 1;
+		} 
+		return availableTypes.includes(key);
+	});
+
 	//Filter images by type in image gallery
 	const filteredImages = filterType === "all" ? images : images.filter(img => (
 		img.image_type === filterType)
@@ -36,7 +48,7 @@ export default function ProjectImageGallery({ project, onImageUpdate }) {
 
 			{/* create image filter pills */}
 			<div className="image-filter-pills">
-				{IMAGE_TYPES.map(({ key, label }) => (
+				{visisbleFilters.map(({ key, label }) => (
 					<button
 						key={key}
 						className={`${filterType === key ? "image-filter-pill-active" : "image-filter-pill"}`}
@@ -71,7 +83,7 @@ export default function ProjectImageGallery({ project, onImageUpdate }) {
 					))}
 				</div>
 			) : (
-				<img className="empty-proj-img" src={empty_images} alt="No project images yet"/>
+				<img className="empty-img" src={empty_images} alt="No project images yet"/>
 			)}
 
 			{/* lightbox images */}

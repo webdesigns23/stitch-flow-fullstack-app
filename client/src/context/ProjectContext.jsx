@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { fetchProjects, deleteProjectById, updateProjectById } from "../api/projects";
-import { getToday, parseDeadline } from "../utils/dateUtils";
+import { getToday, parseDeadline } from "../utils/dateTime";
 // import { setLegendSettings } from "recharts/types/state/legendSlice";
 export const ProjectContext = createContext(null);
 
