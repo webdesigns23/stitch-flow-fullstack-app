@@ -12,29 +12,29 @@
 	flex-direction: column;
 	gap: 3px;
 	padding: 6px;
-	text-align: left;
-	font-family: "Times New Roman", Times, Georgia, serif;
+	align-items: stretch;
+	margin: 8px;
 }
 
 .kanban-card-title {
-	margin: 6px;
-	font-size: 18px;
+	font-size: 1.25rem;
 	font-weight: 600;
 	color: #3a3020;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	text-align: left;
 	border-bottom: 1px solid rgb(206, 204, 204);
 }
 
 .kanban-card-pattern {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
 	font-size: 16px;
 	margin: 3px;
-	color: #888780;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	color: #585854;
+}
+
+.kanban-card-pattern.none {
+	color: rgb(201, 97, 97);
 }
 
 /* Deadline Overdue outline card in red  */
@@ -42,7 +42,6 @@
 	background: white;
 	border-radius: 8px;
 	border-left: 4px solid transparent;
-	overflow: hidden;
 	border: 4px solid rgb(197, 105, 105);
 }
 
@@ -51,25 +50,27 @@
 	background: white;
 	border-radius: 8px;
 	border-left: 4px solid transparent;
-	overflow: hidden;
 	border: 4px solid rgb(214, 169, 45);
 }
 
 .kanban-card-footer {
 	padding: 0 10px 10px;
-	text-align: left;
+	text-align: right;
 }
 
 .kanban-card-status {
-	color: gray;
-	font-size: 14px;
+	color: rgb(16, 66, 99);
+	font-size: .85rem;
+	letter-spacing: .5px;	
+	font-weight: 550;
+	text-transform: uppercase
 }
 
 .kanban-card-select {
 	width: 100%;
-	font-family: 'Lato', sans-serif;
 	font-size: 12px;
-	padding: 3px 6px;
+	margin: 8px 0;
+	padding: 6px;
 	border: 0.5px solid #d3d1c7;
 	background: #f7f5f2;
 	color: #2c2c2a;

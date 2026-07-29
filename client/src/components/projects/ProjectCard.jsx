@@ -4,6 +4,7 @@ import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
 import { formatDate } from "../../utils/dateUtils"
 import "../../styles/ProjectCard.css";
+import { Ruler } from "lucide-react";
 
 
 const STATUSES = [
@@ -38,18 +39,21 @@ export default function ProjectCard({ project, isCompleted, daysToComplete }) {
 					{/* linked pattern or none */}
 					{p ? (
 						<p className="kanban-card-pattern">
-						{capitalizeWords(p?.name)}
+							<Ruler />
+							{capitalizeWords(p?.name)}
 						</p>
 					) : (
-						<p className="kanban-card-pattern">No Pattern Linked</p>
+						<p className="kanban-card-pattern none">
+							<Ruler />
+							No Pattern Linked</p>
 					)}
 
 					{/* project deadline */}
 					{isCompleted ? (
 						<>						
-							<span className="proj-card-deadline">
+							<div className="proj-card-deadline">
 								Finished: {formatDate(project.completed_at)}
-							</span>
+							</div>
 							<p className="proj-complete-time">
 								Completed in 
 								<strong> {daysToComplete}</strong> {daysToComplete === 1 ? "day" : "days"}

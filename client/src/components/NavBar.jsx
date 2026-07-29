@@ -2,7 +2,7 @@ import React from "react";
 import { LayoutDashboard, Folder, Ruler, CircleCheckBig, LogOut } from "lucide-react";
 import {NavLink, useNavigate} from "react-router-dom";
 import "../styles/NavBar.css"
-import logo from "../assets/logo1.png"
+import logo from "../assets/sf_logo.png"
 import { capitalizeWords } from "../utils/formatText";
 import { getInitials } from "../utils/formatText";
 
@@ -32,16 +32,20 @@ export default function NavBar({user, onLogout}) {
 		<ul className="nav-links">
 			{NAV_ITEMS.map(({to, label, icon: Icon, end}) => (
 				<li key={to} className="nav-item">
-					<NavLink to={to} end={end} className="nav-icon-link" aria-label={label}>
-						<Icon size={23} color="#ab9717"/>
+					<NavLink 
+						to={to} 
+						end={end} 
+						className="nav-link" aria-label={label}
+					>
+						<Icon size={20} color="#b18b0e"/>
+					<span className="nav-label">{label}</span>	
 					</NavLink>
-					<span className="nav-tooltip">{label}</span>
 				</li>
 			))}
 		</ul>
 		<button className="logout_btn" onClick={handleLogout} aria-label="Logout">
-			<LogOut size={18}/>
-			<span className="nav-tooltip">Logout</span>
+			<LogOut size={20}/>
+			<span className="nav-label">Logout</span>
 		</button>	
 
     </nav>

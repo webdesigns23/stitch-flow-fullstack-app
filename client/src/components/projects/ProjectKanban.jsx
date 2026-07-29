@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { Search, MoveUpRight } from "lucide-react";
+import empty from "../../assets/empty_projects.png"
 import "../../styles/Kanban.css";
 
 const STATUSES = [
@@ -17,14 +18,14 @@ const MONTH_NAMES = [
 ];
 
 export default function ProjectKanban({ projects }) {
-	const [ searchProjects, setSearchProjects ] = useState("");
+	const [searchProjects, setSearchProjects] = useState("");
 
 	//Search only active projects by title
 	const query = searchProjects.toLowerCase();
 
 	const activeProjects = projects.filter(p => !p.completed_at);
 
-	const filteredProjects = activeProjects.filter(p => 
+	const filteredProjects = activeProjects.filter(p =>
 		p.title.toLowerCase().includes(query)
 	);
 
@@ -41,46 +42,46 @@ export default function ProjectKanban({ projects }) {
 	const monthKeys = Object.keys(monthSections).sort();
 
 	if (projects.length === 0) {
-		return(
+		return (
 			<div className='kanban-empty'>
 				<h2>
 					Click the "Add New Project" button to add your first Project!
 					<MoveUpRight size={75} />
 				</h2>
 			</div>
-		) 
+		)
 	}
 
 	return (
 		<>
-		<div className="toolbar">
-			{/* Search bar */}
+			<div className="toolbar">
+				{/* Search bar */}
 				<div className='search-bar'>
 					<label><Search />
 						<input
 							type="text"
 							placeholder="Search by project title..."
 							value={searchProjects}
-							onChange={(e) => setSearchProjects(e.target.value)} 
+							onChange={(e) => setSearchProjects(e.target.value)}
 						/>
 					</label>
 				</div>
 
 				{/* Month Filter Bar and Pills*/}
 				<div className="pattern-project-filter-nav">
-				{monthKeys.map(key => {
-					const [year, month] = key.split("-");
-					const monthIndex = parseInt(month) - 1;
+					{monthKeys.map(key => {
+						const [year, month] = key.split("-");
+						const monthIndex = parseInt(month) - 1;
 
-					return (
-						<a 
-							key={key} 
-							href={`#month-${key}`}
-							className="pattern-project-filter-pill">
-							{MONTH_NAMES[monthIndex]} {year}
-						</a>
-					);				
-				})}
+						return (
+							<a
+								key={key}
+								href={`#month-${key}`}
+								className="pattern-project-filter-pill">
+								{MONTH_NAMES[monthIndex]} {year}
+							</a>
+						);
+					})}
 				</div>
 			</div>
 
@@ -92,9 +93,9 @@ export default function ProjectKanban({ projects }) {
 					const monthProjects = monthSections[key];
 
 					return (
-						<section 
-							key={key} 
-							id={`month-${key}`} 
+						<section
+							key={key}
+							id={`month-${key}`}
 							className="kanban-filter"
 						>
 							<div className="kanban-filter-header">
@@ -104,7 +105,7 @@ export default function ProjectKanban({ projects }) {
 								<div />
 								<hr className="kanban-filter-line" />
 							</div>
-							
+
 							{/* Kanban Column headings (statuses) */}
 							<div className="kanban-columns">
 								{STATUSES.map(({ key: statusKey, label }) => {
@@ -120,10 +121,17 @@ export default function ProjectKanban({ projects }) {
 											{/* Kanban Project Cards */}
 											<div className="kanban-column-body">
 												{cards.length === 0 ? (
-													<div>-</div>
+													<div
+														className="empty-proj-container"
+													>
+														<img
+															className="empty-proj-img" 
+															src={empty}
+															alt="No projects in this status" />
+													</div>
 												) : (
 													cards.map(project => (
-													<ProjectCard key={project.id} project={project} />
+														<ProjectCard key={project.id} project={project} />
 													))
 												)}
 											</div>

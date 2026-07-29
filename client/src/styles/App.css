@@ -1,6 +1,6 @@
 body {
   background-color: #f7f3ed;
-  margin-left: 50px;
+  margin-left: 116px;
 }
 
 .go-back {
@@ -43,7 +43,7 @@ body {
   line-height: 1.6;
   background: #fff;
   box-sizing: border-box;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .notes-textarea:focus {
@@ -74,7 +74,7 @@ body {
 	color: #455c86;
 	margin-top: 4px;
 	border-radius: 10px;
-	padding: 6px 20px 6px 20px;
+	padding: 8px 20px 8px 20px;
 	background: rgba(192, 187, 187, 0.25);
 }
 

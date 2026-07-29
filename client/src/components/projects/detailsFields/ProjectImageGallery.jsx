@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Image } from "lucide-react";
 import ProjectImageEditForm from "./ProjectImageEditForm";
+import empty_images from "../../../assets/empty_proj_images.png"
 import "../../../styles/ProjectDetails.css"
 
 const IMAGE_TYPES = [
@@ -70,7 +71,7 @@ export default function ProjectImageGallery({ project, onImageUpdate }) {
 					))}
 				</div>
 			) : (
-				<p>No Project Images</p>
+				<img className="empty-proj-img" src={empty_images} alt="No project images yet"/>
 			)}
 
 			{/* lightbox images */}

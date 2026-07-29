@@ -114,6 +114,20 @@
 
 
 /* --------------------- Kanban Columns ---------------------- */
+.empty-proj-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 180px; /* adjust as needed */
+}
+
+.empty-proj-img {
+  width: 150px;
+  height: auto;
+  opacity: .5;
+}
+
 .kanban-columns {
     display: flex;
     gap: 10px;
@@ -153,4 +167,5 @@
     flex-direction: column;
     gap: 6px;
     min-height: 52px;
+    align-items: left;
 }
