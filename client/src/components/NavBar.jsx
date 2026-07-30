@@ -2,7 +2,7 @@ import React from "react";
 import { LayoutDashboard, Folder, Ruler, CircleCheckBig, LogOut } from "lucide-react";
 import {NavLink, useNavigate} from "react-router-dom";
 import "../styles/NavBar.css"
-import logo from "../assets/sf_logo.png"
+import logo from "../assets/logo1.png"
 import { capitalizeWords } from "../utils/formatText";
 import { getInitials } from "../utils/formatText";
 
@@ -25,6 +25,7 @@ export default function NavBar({user, onLogout}) {
     <nav className="navbar">
 		
 		<img className="nav-logo" src={logo} width="100%" alt="stitch flow logo"/>
+		<p className="stitch-flow">Stitch Flow</p>
 		<p className="nav-user">
 			{getInitials(user?.display_name)}
 		</p>
@@ -45,7 +46,7 @@ export default function NavBar({user, onLogout}) {
 		</ul>
 		<button className="logout_btn" onClick={handleLogout} aria-label="Logout">
 			<LogOut size={20}/>
-			<span className="nav-label">Logout</span>
+			<span className="nav-label logout">Logout</span>
 		</button>	
 
     </nav>

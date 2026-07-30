@@ -2,7 +2,7 @@
 .navbar {
   position: fixed;
   inset: 0 auto 0 0;       
-  width: 123px;
+  width: 100px;
   background:  #1e1b1b;
   color: #bfaeae;
   padding: 20px 14px;
@@ -16,25 +16,33 @@
   height: auto;
 }
 
+.stitch-flow {
+  color: #ebe9db;
+  font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0px;
+}
+
 .nav-user {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #3a352b;
-  color: #c99a3f;
+  color: #d19a2c;
   font-size: 23px;
   font-weight: 500;
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  margin: 10px auto 100px;
+  margin: 10px auto 25px;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  flex-direction: column;;
   width: 100%;
   margin: 0;
   padding: 12px 14px;
@@ -55,35 +63,33 @@
 
 .nav-label {
   color:#ebe9db; 
-  letter-spacing: .75px;
+  letter-spacing: .5px;
   font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 16px;
+  font-size: .75rem;
   font-weight: lighter; 
 }
 
 .logout_btn {
   margin-top: auto;
-
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	gap: 14px;
-
 	width: 100%;
-	box-sizing: border-box;
-	padding: 12px 14px;
-
+	padding: 6px 8px;
 	background: transparent;
 	border: 1px solid rgba(255, 255, 255, 0.12);
 	border-radius: 8px;
-
-	color: #bfaeae;
+	color: #aa8a0b;
+  gap: 8px;
 	cursor: pointer;
-	font: inherit;
-
 	transition:
 		background-color 0.2s ease,
 		color 0.2s ease;
+}
+
+.nav-label.logout {
+  color:#aa8a0b;
+  font-size: .75rem;
 }
 
 .logout_btn:hover, .nav-link:hover {

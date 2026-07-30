@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { CalendarDays } from "lucide-react"
-import { formatDate } from "../../../utils/dateTime";
+import { formatFullDate } from "../../../utils/dateTime";
+import { getDeadlineLabel } from "../../../utils/deadlines";
 import { ProjectContext } from "../../../context/ProjectContext";
 
 export default function ProjectDeadlineField({project, onUpdate, isCompleted}) {
@@ -50,30 +51,36 @@ export default function ProjectDeadlineField({project, onUpdate, isCompleted}) {
 						</button>
 			    	</div>
 				) : (
-					<div>
+					<div className="deadline-display">
 						<span 
-							className={`${
-								!isCompleted && isOverdue(project.deadline) ? "proj-card-deadline-overdue":
-								!isCompleted && isDueSoon(project.deadline) ? "proj-card-deadline-due-soon": "proj-card-deadline"}`}>
-
-							{" "} {formatDate(project.deadline)} 
+							className={
+								!isCompleted && isOverdue(project?.deadline) 
+								? "proj-card-deadline-overdue"
+								: !isCompleted && isDueSoon(project?.deadline) 
+								? "proj-card-deadline-due-soon"
+								: "proj-card-deadline"}
+						>
+							{formatFullDate(project.deadline)} 
 						</span>
 
-						{!isCompleted && isOverdue(project.deadline) && (
-							<p className="deadline-days-overdue">
-								Overdue by {daysOverdue(project.deadline)} days
-							</p>
-						)}
-
-						{!isCompleted && isDueSoon(project.deadline) && (
-							<p className="deadline-days-soon">
-								Due in {daysUntilDue(project.deadline)} days
+						{!isCompleted && (isOverdue(project?.deadline) || isDueSoon(project?.deadline)) && (
+							<p
+								className={
+									isOverdue(project?.deadline)
+										? "deadline-days-overdue"
+										: "deadline-days-soon"
+								}
+							>
+								{getDeadlineLabel(
+									daysUntilDue(project?.deadline),
+									project?.deadline
+								)}
 							</p>
 						)}
 
 						{isCompleted && project.completed_at && (
 							<p className="proj-card-finished">
-								Finished: {formatDate(project.completed_at)}
+								Finished: {formatFullDate(project.completed_at)}
 							</p>
 						)}
 					</div>

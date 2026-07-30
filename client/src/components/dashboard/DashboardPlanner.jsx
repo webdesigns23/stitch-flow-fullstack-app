@@ -12,8 +12,8 @@ export default function DashboardPlanner({activeProjects, isOverdue, isDueSoon, 
 	})).sort((a, b) => a.daysLeft - b.daysLeft);
 
 	//Show this week and preview of next week planner
-	const thisWeek = withDeadlines.filter(p => p.daysLeft <=7);
-	const nextWeek = withDeadlines.filter(p => p.daysLeft > 7 && p.daysLeft <= 14);
+	const thisWeek = withDeadlines.filter(p => p.daysLeft <7);
+	const nextWeek = withDeadlines.filter(p => p.daysLeft >= 7 && p.daysLeft <= 14);
 	const hasProjects = thisWeek.length > 0 || nextWeek.length > 0; 
 
 
@@ -21,7 +21,7 @@ return (
 		<div className="stat-gallery-item is-full">
 			<div className="upcoming-proj-header">
 				<h3 className="dashboard-title">
-					<CalendarRange size={25} color="#9f831d" /> {""}Weekly Schedule</h3>
+					<CalendarRange size={24} color="#9f831d" />Weekly Schedule</h3>
 				<span className="day-range-context">next two weeks</span>
 			</div>
 
@@ -65,7 +65,7 @@ return (
 								))}
 							</div>
 						) : (
-							<p className="week-empty">Nothing due next week</p>
+							<p className="field-empty">Nothing due next week</p>
 						)}
 					</div>
 				</div>

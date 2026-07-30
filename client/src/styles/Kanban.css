@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 1rem 0;
 }
 
 .kanban-empty {
@@ -16,7 +15,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 20px;
     gap: 10px;
 }
 
@@ -62,15 +60,18 @@
 }
 
 .pattern-project-filter-pill {
-    font-size: 16px;
+    font-size: 14px;
 	font-weight: 500;
-	padding: 8px 16px;
+	padding: 6px 12px;
     margin: 10px;
 	border-radius: 8px;
 	border: 1px solid #8d7313;
-	background: white;
 	color: #030303;
 	text-decoration: none;
+}
+
+.pattern-project-filter-pill:hover {
+    border: 1px solid rgb(203, 136, 147);
 }
 
 /* -------------------- Month section -------------------- */
@@ -82,12 +83,10 @@
 }
 
 .kanban-filter-title{
-	font-weight: 100;
-	font-size: 2.5em;
-	line-height: 1.1;
-	color: rgb(51, 52, 54);
-	margin: 10px;
-	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+	font-size: 2rem;
+	color: rgb(85, 66, 66);
+	margin: 4px;
+	text-shadow: none;
     text-transform: capitalize;
 }
 

@@ -6,7 +6,7 @@
 	align-items: center;
 }
 
-.proj-card-btn {
+/* .proj-card-btn {
 	max-width: fit-content;
 	background: rgb(233, 231, 231);
 	border: 2px solid rgba(12, 12, 11, 0.5);
@@ -15,7 +15,7 @@
 	font-size: 1rem;
 	cursor: pointer;
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
+} */
 
 .proj-card-btn-remove {
 	max-width: fit-content;
@@ -116,6 +116,10 @@
 /* ------------------ Project Info Layout ------------------ */
 /*Deadline general in App.css for global deadline styling */
 /* ---------------- Deadline Edit ---------------- */
+.deadline-display {
+	margin: 20px 0px;
+}
+
 .proj-deadline-edit {
     display: flex;
     flex-wrap: wrap;

@@ -11,9 +11,14 @@ export function getUrgencyClass(daysLeft) {
 export function getDeadlineLabel(daysLeft, deadline) {
 	const dayName = new Date(deadline).toLocaleDateString("en-US", { weekday: "long"});
 
-	if (daysLeft < 0) return `Overdue - ${Math.abs(daysLeft)} day${Math.abs(daysLeft) === 1 ? "" : "s"} late`;
+	if (daysLeft < -1) return `Overdue by ${Math.abs(daysLeft)} days`;
+	
+	if (daysLeft === -1) return "Due Yesterday";
+
 	if(daysLeft === 0) return "Due Today";
-	if (daysLeft === 1) return `Due Tomorrow - ${dayName}`; 
+	
+	if (daysLeft === 1) return "Due Tomorrow"; 
+	
 	return `Due in ${daysLeft} days - ${dayName}`;
 }
 

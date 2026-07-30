@@ -1,13 +1,12 @@
 import StatusPieChart from "./StatusPieChart"
+import { CircleCheckBig } from "lucide-react";
 
-export default function DashboardTotals({projects, patterns, statuses,statusCounts}) {
+export default function DashboardTotals({projects, statuses, statusCounts}) {
 
-	//Find totals for Projects, Patterns, Completed, Overdue, Due Soon
-	const totalPatterns = patterns?.length || 0;
+	//Find totals for Projects & Completed
 	const completedProjects = projects?.filter(p => p.status === "complete") || [];
 	const totalCompleted = completedProjects.length;
-	const totalActiveProjects = projects?.length - totalCompleted || 0;
-
+	
 	//Find completed projects this month
 	const now = new Date();
 
@@ -20,40 +19,35 @@ export default function DashboardTotals({projects, patterns, statuses,statusCoun
 
 	return (
 		<>
-			
-			
-			<div className="stat-gallery-item is-compact">
-				{/* active total with pie chart */}
-				<div className="active-proj-info">
-					<h3 className="totals-header">Active Projects</h3>
-					<span className="stat-value">{totalActiveProjects}</span>
-				</div>
-
-				{/* patterns total */}
-				<div className="patterns-info">
-					<h3 className="totals-header">Total Patterns</h3>
-					<span className="stat-value">{totalPatterns}</span>
-				</div>				
+			{/* Daily focus */}
+			<div className="stat-gallery-item is-wide">
+				<h3 className="dashboard-title">
+					Today's Focus
+				</h3>
 			</div>
 
-			{/* active total with pie chart */}
+			{/* Active total with pie chart */}
 			<div className="stat-gallery-item is-wide">
 				<div className="totals-chart-section">
 					{/* Pie Chart */}
 					<StatusPieChart 
 						statusCounts={statusCounts} 
-						statuses={statuses}/>						
+					/>						
 				</div>
 			</div>
+
+			{/* Completed this month and all time */}
 			<div className="stat-gallery-item is-compact">
-				{/* completed this month */}
-				<h3 className="totals-header">Completed Projects</h3>
+				
+				<CircleCheckBig size={28} color="#986f16"/>
+				<h3 className="dashboard-title">
+					Completed Projects
+				</h3>
 				<div className="completed-info">
 					<span className="stat-value">{totalCompleted}</span>
 					<p className="totals-footer">this month</p>
 				</div>
 
-				{/* completed total projects */}
 				<div className="completed-info">
 					<span className="stat-value">{totalCompleted}</span>
 					<p className="totals-footer">all time</p>

@@ -40,14 +40,14 @@ export default function StatsGallery() {
 			{/* Basic Stats */}
 			<DashboardTotals 
 				projects={projects} 
-				patterns={patterns}
 				statusCounts={statusCounts} 
 				statuses={STATUSES}/>
 
 			{/* Dynamic Stats */}
 			<DashboardUrgency 	
 				activeProjects={activeProjects}
-				projects={projects} 
+				projects={projects}
+				patterns={patterns} 
 				isDueSoon={isDueSoon} 
 				isOverdue={isOverdue}
 				daysOverdue={daysOverdue}

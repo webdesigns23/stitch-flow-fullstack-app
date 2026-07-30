@@ -20,21 +20,19 @@
 	font-size: 1.25rem;
 	font-weight: 600;
 	color: #3a3020;
-	text-align: left;
-	border-bottom: 1px solid rgb(206, 204, 204);
+	
+	margin: 0px 0px 8px 0px;
+	border-bottom: 1px solid #dad6c9;
 }
 
 .kanban-card-pattern {
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	font-size: 16px;
-	margin: 3px;
-	color: #585854;
+	font-size: 1rem;
+	margin: 0px;
+	color: #5b5b57;
 }
 
 .kanban-card-pattern.none {
-	color: rgb(201, 97, 97);
+	color: rgb(143, 115, 15);
 }
 
 /* Deadline Overdue outline card in red  */
@@ -50,20 +48,18 @@
 	background: white;
 	border-radius: 8px;
 	border-left: 4px solid transparent;
-	border: 4px solid rgb(214, 169, 45);
+	border: 4px solid rgb(37, 167, 117);
 }
 
+
+/* -----------------Status Update-------------------- */
 .kanban-card-footer {
 	padding: 0 10px 10px;
-	text-align: right;
 }
 
 .kanban-card-status {
-	color: rgb(16, 66, 99);
-	font-size: .85rem;
-	letter-spacing: .5px;	
-	font-weight: 550;
-	text-transform: uppercase
+	color: rgb(110, 109, 98);
+	font-weight: bold;
 }
 
 .kanban-card-select {
@@ -80,7 +76,7 @@
 
 .proj-complete-time {
 	color: rgb(134, 96, 12);
-	font-size: 20px;
+	font-size: .85rem;
 	text-align: center;
 }
 
@@ -89,3 +85,34 @@
 	height: auto;
 	opacity: .5;
 }
+
+.kanban-select-wrapper {
+	position: relative;
+	width: 100%;
+}
+
+.kanban-status-dot {
+	position: absolute;
+	left: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+
+	z-index: 1;
+	pointer-events: none;
+}
+
+.kanban-card-select {
+	width: 100%;
+	padding-left: 30px;
+	text-transform: capitalize;
+}
+
+.status-planning {background-color: rgb(199, 140, 150);}
+.status-cutting {background-color: rgb(45, 114, 160);}
+.status-ready_to_sew {background-color: rgb(47, 116, 78);}
+.status-sewing {background-color: rgb(110, 94, 141);}
+.status-final_touches {background-color: rgb(161, 155, 58);}

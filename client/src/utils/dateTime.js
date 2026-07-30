@@ -1,6 +1,6 @@
 
 //formats date from y/m/d to month day, year
-export function formatDate(dateString) {
+export function formatFullDate(dateString) {
   try {
     const [month, day, year] = dateString.split("/");
     const dateObj = new Date(year, month - 1, day);
@@ -14,6 +14,37 @@ export function formatDate(dateString) {
     return dateString; 
   }
 };
+
+//formats date from y/m/d to month day, year
+export function formatDate(dateString) {
+  try {
+    const [month, day, year] = dateString.split("/");
+    const dateObj = new Date(year, month - 1, day);
+
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+    }).format(dateObj);
+  } catch (error) {
+    return dateString; 
+  }
+};
+
+//formats day, month day
+export function formatDayDate(dateString) {
+  try {
+    const [month, day, year] = dateString.split("/");
+    const dateObj = new Date(year, month - 1, day);
+
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    }).format(dateObj);
+  } catch (error) {
+    return dateString;
+  }
+}
 
 //parse deadline date to compare
 export function parseDeadline(project_deadline) {

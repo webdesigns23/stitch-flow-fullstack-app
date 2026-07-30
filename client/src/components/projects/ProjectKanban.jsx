@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProjectCard from "./ProjectCard";
-import { Search, MoveUpRight } from "lucide-react";
+import { Search, MoveUpRight, CalendarDays } from "lucide-react";
 import empty from "../../assets/empty_projects.png"
 import "../../styles/Kanban.css";
 
@@ -100,7 +100,8 @@ export default function ProjectKanban({ projects }) {
 						>
 							<div className="kanban-filter-header">
 								<h2 className="kanban-filter-title">
-									{MONTH_NAMES[monthIndex]}
+									<CalendarDays />
+									{" "}{MONTH_NAMES[monthIndex]} {year}
 								</h2>
 								<div />
 								<hr className="kanban-filter-line" />
@@ -114,7 +115,7 @@ export default function ProjectKanban({ projects }) {
 										<div key={statusKey} className="kanban-column">
 											<div className={`kanban-column-head kanban-column-head--${statusKey}`}>
 												<span className="kanban-column-label">
-													{label} ({cards.length})
+													{label}
 												</span>
 											</div>
 

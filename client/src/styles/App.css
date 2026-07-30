@@ -1,6 +1,6 @@
 body {
   background-color: #f7f3ed;
-  margin-left: 116px;
+  margin-left: 100px;
 }
 
 .go-back {
@@ -65,63 +65,37 @@ body {
 
 /* -------------- Deadline on Project Cards and Project Details --------------- */
 .proj-card-deadline {
-	display: inline-flex;
-	align-items: center;
-	width:fit-content;
-	gap: 4px;
-	font-size: 16px;
+	font-size: 1rem;
 	font-weight: 600;
-	color: #455c86;
-	margin-top: 4px;
-	border-radius: 10px;
-	padding: 8px 20px 8px 20px;
-	background: rgba(192, 187, 187, 0.25);
+	color: #383a3d;
+	border-radius: 8px;
+  box-sizing: border-box; 
+  padding: 6px 20px;     
+	background: rgba(167, 169, 157, 0.25);
 }
 
 /* Deadline Overdue outline card in red and hightlight due date */
-.proj-card-deadline-overdue {
-	display: inline-flex;
-	align-items: center;
-	width:fit-content;
-	gap: 4px;
-	font-size: 16px;
-	font-weight: 600;
-	color: #c75962;
-	margin-top: 4px;
-	border-radius: 10px;
-	padding: 6px 20px 6px 20px;
-	background: rgba(192, 187, 187, 0.25);
-  border: 2px solid rgb(197, 105, 105);
+.proj-card-deadline.overdue {
+	color: #9e4149;
+	background: rgba(197, 105, 105, 0.25);
 }
 
 /* Deadline Due within 7 days outline card in yellow and hightlight due date */
-.proj-card-deadline-due-soon {
-	display: inline-flex;
-	align-items: center;
-	width:fit-content;
-	gap: 4px;
-	font-size: 16px;
-	font-weight: 600;
-	color: rgb(184, 131, 34);
-	margin-top: 4px;
-	border-radius: 10px;
-	padding: 6px 20px 6px 20px;
-	background: rgba(192, 187, 187, 0.25);
-  border: 2px solid rgb(214, 169, 45);
+.proj-card-deadline.due-soon {
+	color: rgb(18, 87, 48);
+	background: rgba(55, 164, 103, 0.25);
 }
 
-.deadline-days-overdue {
+.deadline-days-overdue, .deadline-days-soon {
   color: rgb(184, 55, 55);
   text-transform: capitalize;
   font-weight: bold;
   font-size: 20px;
+  margin-top: 6px;
 }
 
 .deadline-days-soon {
-  color: rgb(153, 100, 32);
-  text-transform: capitalize;
-  font-weight: bold;
-  font-size: 20px;
+  color: rgb(31, 142, 68);
 }
 
 .proj-card-finished {

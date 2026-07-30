@@ -6,9 +6,9 @@
   margin-top: 23px;
 }
 
-.stat-gallery-item.is-compact { grid-column: span 3; }
-.stat-gallery-item.is-third { grid-column: span 4; }
-.stat-gallery-item.is-wide { grid-column: span 6; }
+.stat-gallery-item.is-compact { grid-column: span 2; }
+.stat-gallery-item.is-forth { grid-column: span 3; }
+.stat-gallery-item.is-wide { grid-column: span 5; }
 .stat-gallery-item.is-full { grid-column: span 12; }
 
 @media (max-width: 1100px) {
@@ -33,15 +33,17 @@
 .stat-value {
   font-size: 2.25rem;
   font-weight: 700;
-  color: #6387a5;
+  color: #836d0e;
 }
 
 .dashboard-title {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
   gap: 6px;
   text-transform: uppercase;
-  font-size: 1.25rem;
+  font-size: clamp(.85rem, 1rem, 1.15rem);
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /*------------------- Pie Chart ---------------------*/
@@ -51,7 +53,7 @@
   display: flex;
   flex-direction: column;
   padding-left: 25px;
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 .pie-chart-container {
@@ -99,8 +101,6 @@
   color: rgb(80, 74, 74);
 }
 
-
-
 /* RIGHT CHART */
 
 .pie-chart-visual {
@@ -147,7 +147,7 @@
 }
 
 .completed-info {
-  padding: 16px
+  padding: 8px
 }
 
 .stat-gallery-item.is-compact {
@@ -178,29 +178,27 @@
 }
 
 /* ------------------ Urgent Section ------------------- */
-.overdue-heading, .due-soon-heading {
+.dashboard-title.overdue, .dashboard-title.due-soon {
   color: rgb(204, 87, 87);
-  font-size: 1.5rem;
-  text-transform: uppercase;
   padding-bottom: 8px;
   border-bottom: 1px solid rgb(212, 206, 206);
 }
 
-.due-soon-heading {
-  color: rgb(148, 122, 51);
+.dashboard-title.due-soon {
+  color: rgb(18, 107, 73);
 }
 
 .overdue-badge, .due-soon-badge {
   display: inline-block;
   background: rgb(204, 87, 87, .35);
-  border-radius: 15px;
-  padding: 1px 16px;
+  border-radius: 5px;
+  padding: 5px 16px;
   font-size: 1.25rem;
   margin-left: 16px;
 }
 
 .due-soon-badge {
-  background: rgba(180, 142, 36, 0.35);
+  background: rgba(41, 121, 90, 0.35);
 }
 
 .proj-urgent-list {
@@ -215,6 +213,7 @@
 .proj-urgent-list li {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 5px;
 }
 
@@ -336,9 +335,9 @@
     border-bottom: 0.5px solid #e8e4e0;
 }
 
-.week-empty {
-    font-size: 1.5rem;
-    color: #797474dc;
+.field-empty {
+    font-size: 1.25rem;
+    color: rgba(106, 103, 97, 0.75);
     font-style: italic;
 }
 

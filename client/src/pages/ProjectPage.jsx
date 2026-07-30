@@ -14,19 +14,15 @@ export default function ProjectPage() {
 	<div className="project-container">
 
 		<header className="proj-header">
-				<Link className="go-back" to="/completed">
-					<CircleArrowLeft color="#986f16" />
-					{" "}View All Completed Projects
-				</Link>
-
-				<button
-					className="proj-card-btn" 
-					onClick={() => setShowProjForm(true)}>
-						+ Add New Project
-				</button>
+			<h1>Sewing Projects</h1>
+			<button
+				className="proj-card-btn" 
+				onClick={() => setShowProjForm(true)}>
+					+ Add New Project
+			</button>
 		</header>
 
-		<h1>Sewing Projects</h1>
+		
 
 		{/* Add Project Modal */}
 		{showProjForm && (

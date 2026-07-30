@@ -70,8 +70,8 @@ export default function StatusPieChart({statusCounts={}}) {
 								nameKey="name" 
 								cx="50%"        
 								cy="50%"        
-								outerRadius={90}
-								innerRadius={65}
+								outerRadius={80}
+								innerRadius={60}
 								paddingAngle={2}
 								label={false} 
 								>
