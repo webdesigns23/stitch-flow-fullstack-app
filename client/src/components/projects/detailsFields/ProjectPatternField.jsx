@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { capitalizeWords } from "../../../utils/formatText"
 import { PatternContext } from "../../../context/PatternContext";
-import { PencilLine } from "lucide-react"
+import { ArrowRight, PencilLine } from "lucide-react"
 
 export default function ProjectPatternField({ project, onUpdate }) {
 	const { patterns, loading: patternLoading } = useContext(PatternContext);
@@ -72,7 +72,8 @@ export default function ProjectPatternField({ project, onUpdate }) {
 						</div>
 
 						<Link to="/patterns" className="proj-card-pat-link">
-							Don't see your pattern? Add it on the Patterns page
+							Add New Pattern on Patterns page
+							{" "}<ArrowRight size={16}/>
 						</Link>
 					</div>
 				</div>

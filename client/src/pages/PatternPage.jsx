@@ -16,7 +16,7 @@ export default function PatternPage() {
 				<button
 					className="proj-card-btn" 
 					onClick={() => setShowPatForm(true)}>
-						+ Add New Pattern
+						+ New Pattern
 				</button>
 		</header>
 

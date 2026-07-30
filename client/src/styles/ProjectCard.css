@@ -17,7 +17,7 @@
 }
 
 .kanban-card-title {
-	font-size: 1.25rem;
+	font-size: 1rem;
 	font-weight: 600;
 	color: #3a3020;
 	
@@ -26,7 +26,7 @@
 }
 
 .kanban-card-pattern {
-	font-size: 1rem;
+	font-size: .85rem;
 	margin: 0px;
 	color: #5b5b57;
 }
@@ -58,8 +58,8 @@
 }
 
 .kanban-card-status {
+	font-size: .85rem;
 	color: rgb(110, 109, 98);
-	font-weight: bold;
 }
 
 .kanban-card-select {
@@ -72,6 +72,7 @@
 	color: #2c2c2a;
 	cursor: pointer;
 	border-radius: 4px;
+	text-overflow: ellipsis;
 }
 
 .proj-complete-time {

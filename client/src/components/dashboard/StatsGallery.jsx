@@ -1,9 +1,14 @@
 import { PatternContext } from "../../context/PatternContext"
 import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from "react";
-import DashboardTotals from "./DashboardTotals";
+import DashboardFocus from "./DashboardFocus";
+import DashboardAtGlance from "./DashboardAtGlance";
+import StatusPieChart from "./StatusPieChart";
+import DashboardCompleted from "./DashboardCompleted";
 import DashboardUrgency from "./DashboardUrgency";
 import DashboardPlanner from "./DashboardPlanner";
+import DashboardMaterials from "./DashboardMaterials";
+import DashboardPattern from "./DashboardPatterns";
 import "../../styles/Stats.css"
 
 
@@ -33,25 +38,45 @@ export default function StatsGallery() {
 		}, {})
 	}
 
-	const statusCounts = getStatusCount(projects);
+	const statusCounts = getStatusCount(activeProjects);
 
 	return (
 		<div className="stat-gallery">
-			{/* Basic Stats */}
-			<DashboardTotals 
-				projects={projects} 
-				statusCounts={statusCounts} 
-				statuses={STATUSES}/>
+			{/* Due most urgently */}
+			<DashboardFocus
+				activeProjects={activeProjects}
+				daysUntilDue={daysUntilDue} />
 
-			{/* Dynamic Stats */}
-			<DashboardUrgency 	
+			{/* Overview of everything */}
+			<DashboardAtGlance 
 				activeProjects={activeProjects}
 				projects={projects}
 				patterns={patterns} 
 				isDueSoon={isDueSoon} 
 				isOverdue={isOverdue}
 				daysOverdue={daysOverdue}
-				daysUntilDue={daysUntilDue}/>
+				daysUntilDue={daysUntilDue}
+				statuses={STATUSES}/>
+
+			
+			{/* Pie chart */}
+						<div className="stat-gallery-item is-wide">
+							<div className="totals-chart-section">
+								{/* Pie Chart */}
+								<StatusPieChart 
+									statusCounts={statusCounts} 
+								/>						
+							</div>
+						</div>
+
+			<DashboardMaterials 
+				activeProjects={activeProjects}/>
+
+			<DashboardPattern
+				patterns={patterns} />
+
+
+			
 
 			{/* Weekly project planner */}
 			<DashboardPlanner 

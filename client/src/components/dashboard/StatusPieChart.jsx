@@ -88,7 +88,7 @@ export default function StatusPieChart({statusCounts={}}) {
 									className='pie-total'
 								/>
 								<Label
-									value="Total"
+									value="Active"
 									position="center"
 									dy={10}
 								/>

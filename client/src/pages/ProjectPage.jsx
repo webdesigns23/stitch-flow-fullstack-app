@@ -18,7 +18,7 @@ export default function ProjectPage() {
 			<button
 				className="proj-card-btn" 
 				onClick={() => setShowProjForm(true)}>
-					+ Add New Project
+					+ New Project
 			</button>
 		</header>
 

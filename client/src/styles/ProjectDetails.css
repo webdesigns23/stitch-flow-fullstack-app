@@ -36,7 +36,7 @@
 
 .proj-details-label {
   	display: block;
-	font-size: 16px;
+	font-size: 1rem;
 	color: #5e5b5c;
   	text-transform: uppercase;
   	letter-spacing: 0.06em;
@@ -69,7 +69,7 @@
 	color: #425d7a;
 	cursor: pointer;
 	text-align: center;
-	font-size: 18px;
+	font-size: 1rem;
 }
 
 /* Hide default radio, replace with circle */
@@ -161,7 +161,7 @@
 
 .proj-pat-link {
 	margin: 10px;
-	font-size: 1.15rem;
+	font-size: 1rem;
 }
 
 .proj-pat-list ul {
@@ -188,7 +188,7 @@
 }
 
 .proj-card-pat-link {
-	font-size: 20px;
+	font-size: 1rem;
 }
 
 .proj-card-none {
@@ -213,7 +213,7 @@
 .notes-display {
 	white-space: pre-wrap;
 	font-family: 'Times New Roman', Times, serif;
-	font-size: 18px;
+	font-size: 1rem;
 }
 
 .secondary-info-grid {
@@ -254,7 +254,7 @@
   border: 1px solid #c8b89a;
   border-radius: 4px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #3a2e22;
   background: #fff;
   box-sizing: border-box;
@@ -328,22 +328,21 @@
 .image-filter-pill {
 	background: white;
 	color: #030303;
-	font-size: 14px;
-	padding: 8px 16px;
+	font-size: 12px;
+	font-weight: lighter;
+	padding: 5px 10px;
     margin: 10px;
-	border-radius: 8px;
+	border-radius: 6px;
 	border: 1px solid #8d7313;
-	text-decoration: none;
+	
 }
 
 .image-filter-pill-active {
 	color: rgb(255, 255, 255);
 	background: rgb(87, 84, 84);
-	padding: 8px 16px;
-    margin: 10px;
-	border-radius: 8px;
+    margin: 6px;
 	border: 1px solid #8d7313;
-	text-decoration: none;
+	font-weight: lighter;
 }
 
  /* gallery individual cards */

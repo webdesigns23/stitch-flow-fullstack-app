@@ -65,7 +65,7 @@ body {
 
 /* -------------- Deadline on Project Cards and Project Details --------------- */
 .proj-card-deadline {
-	font-size: 1rem;
+	font-size: .9rem;
 	font-weight: 600;
 	color: #383a3d;
 	border-radius: 8px;

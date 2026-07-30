@@ -2,6 +2,8 @@ import { useContext } from 'react'
 import { ProjectContext } from '../context/ProjectContext';
 import ProjectCard from '../components/projects/ProjectCard';
 import empty_complete from '../assets/empty_complete.png'
+
+
 export default function CompletedPage() {
 	const statusKey = (s) =>
 		(s || "").toLowerCase().trim().replace(/[_\s]+/g, "-");

@@ -1,5 +1,5 @@
 
-//formats date from y/m/d to month day, year
+//formats date from y/m/d to May 23, 2016
 export function formatFullDate(dateString) {
   try {
     const [month, day, year] = dateString.split("/");
@@ -15,36 +15,35 @@ export function formatFullDate(dateString) {
   }
 };
 
-//formats date from y/m/d to month day, year
-export function formatDate(dateString) {
-  try {
-    const [month, day, year] = dateString.split("/");
-    const dateObj = new Date(year, month - 1, day);
-
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-    }).format(dateObj);
-  } catch (error) {
-    return dateString; 
-  }
-};
-
-//formats day, month day
-export function formatDayDate(dateString) {
+//formats to weekday name Mon
+export function formatWeekday(dateString) {
   try {
     const [month, day, year] = dateString.split("/");
     const dateObj = new Date(year, month - 1, day);
 
     return new Intl.DateTimeFormat("en-US", {
       weekday: "short",
-      month: "short",
-      day: "numeric",
     }).format(dateObj);
-  } catch (error) {
+  } catch {
     return dateString;
   }
 }
+
+//formats to short date May 23
+export function formatDate(dateString) {
+  try {
+    const [month, day, year] = dateString.split("/");
+    const dateObj = new Date(year, month - 1, day);
+
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+    }).format(dateObj);
+  } catch {
+    return dateString;
+  }
+}
+
 
 //parse deadline date to compare
 export function parseDeadline(project_deadline) {

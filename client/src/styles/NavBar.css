@@ -58,7 +58,7 @@
   gap: 8px;
   width: 90%;
   margin: 0;
-  padding: 12px 8px;
+  padding: 14px 6px;
 }
 
 .nav-label {
@@ -92,9 +92,13 @@
   font-size: .75rem;
 }
 
-.logout_btn:hover, .nav-link:hover {
+.nav-link:hover {
   background: rgba(255,255,255,0.06);
   border-left: 2px solid rgb(189, 165, 33);
-  border-radius: 8px;
+  border-radius: 6px;
   color: #e8d9d9;
+}
+
+.logout_btn:hover {
+  border: 1px solid rgb(170, 148, 24);
 }

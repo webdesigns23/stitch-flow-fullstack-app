@@ -19,7 +19,17 @@ export function getDeadlineLabel(daysLeft, deadline) {
 	
 	if (daysLeft === 1) return "Due Tomorrow"; 
 	
-	return `Due in ${daysLeft} days - ${dayName}`;
+	return `Due in ${daysLeft} days`;
+}
+
+//Deadline label for project cards-shorter
+export function getCardDeadlineLabel(daysLeft) {
+	if (daysLeft < -1) return `Overdue by ${Math.abs(daysLeft)} days`;
+	if (daysLeft === -1) return "Due Yesterday";
+	if (daysLeft === 0) return "Due Today";
+	if (daysLeft === 1) return "Due Tomorrow";
+
+	return `Due in ${daysLeft} days`;
 }
 
 //Deadline Week Ranges

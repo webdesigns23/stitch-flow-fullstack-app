@@ -45,7 +45,7 @@ export default function ProjectKanban({ projects }) {
 		return (
 			<div className='kanban-empty'>
 				<h2>
-					Click the "Add New Project" button to add your first Project!
+					Click the "New Project" button to add your first Project!
 					<MoveUpRight size={75} />
 				</h2>
 			</div>
@@ -100,7 +100,7 @@ export default function ProjectKanban({ projects }) {
 						>
 							<div className="kanban-filter-header">
 								<h2 className="kanban-filter-title">
-									<CalendarDays />
+									<CalendarDays size={18} />
 									{" "}{MONTH_NAMES[monthIndex]} {year}
 								</h2>
 								<div />
@@ -132,7 +132,10 @@ export default function ProjectKanban({ projects }) {
 													</div>
 												) : (
 													cards.map(project => (
-														<ProjectCard key={project.id} project={project} />
+														<ProjectCard 
+															key={project.id} 
+															project={project}
+												    	/>
 													))
 												)}
 											</div>

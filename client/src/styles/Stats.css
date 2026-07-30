@@ -1,14 +1,16 @@
 /* -------- Layout and General for the dashboard gallery -------- */
 .stat-gallery {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 1.5rem;
-  margin-top: 23px;
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: 1.5rem;
+	margin-top: 23px;
 }
 
+.stat-gallery-item.is-focus{ grid-column: span 4; }
+.stat-gallery-item.is-glance{ grid-column: span 8; }
 .stat-gallery-item.is-compact { grid-column: span 2; }
 .stat-gallery-item.is-forth { grid-column: span 3; }
-.stat-gallery-item.is-wide { grid-column: span 5; }
+.stat-gallery-item.is-wide { grid-column: span 6; }
 .stat-gallery-item.is-full { grid-column: span 12; }
 
 @media (max-width: 1100px) {
@@ -24,26 +26,146 @@
 }
 
 .stat-gallery-item {
-  background: #fff;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(5, 5, 5, 0.08);
-  border-radius: 8px;
+	box-sizing: border-box;
+	background: #fff;
+	padding: 1.25rem;
+	box-shadow: 0 3px 10px rgba(5, 5, 5, 0.08);
+	border-radius: 10px;
+}
+
+/*Shared Headings*/
+.dashboard-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #4c403c;
 }
 
 .stat-value {
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 600;
   color: #836d0e;
 }
 
-.dashboard-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 6px;
-  text-transform: uppercase;
-  font-size: clamp(.85rem, 1rem, 1.15rem);
-  font-family: Georgia, 'Times New Roman', Times, serif;
+/* ---------------- Today's Focus ---------------- */
+
+.today-focus {
+	padding: 20px;
+}
+
+.focus-content{
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 24px;
+	margin-top: 18px;
+}
+
+.focus-date {
+	display: flex;
+	flex-direction: column;
+
+	padding-right: 24px;
+	border-right: 1px solid #e8e4e0;
+}
+
+.focus-weekday {
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #77716b;
+}
+
+.focus-short-date {
+	font-size: 1.65rem;
+	font-weight: 600;
+	color: #2c2c2a;
+}
+
+.focus-project {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.focus-project h4 {
+	margin: 0;
+	font-size: 1.2rem;
+}
+
+.focus-deadline {
+	margin: 0;
+	color: #986f16;
+	font-weight: 600;
+}
+
+.focus-deadline.overdue,
+.focus-deadline.today {
+	color: #b54848;
+}
+
+.focus-project-link {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+
+	width: fit-content;
+	margin-top: 10px;
+
+	color: #986f16;
+	text-decoration: none;
+}
+
+.focus-empty {
+	margin-top: 20px;
+}
+
+/*------------------- At a Glance ---------------------*/
+
+.glance-content {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: stretch;
+	margin-top: 18px;
+}
+
+/* Individual stat columns */
+
+.stat-gallery-overdue,
+.stat-gallery-due-soon,
+.glance-content > div:last-child {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 130px;
+	padding: 10px 20px;
+	text-align: center;
+	border-right: 1px solid #e8e4e0;
+}
+
+.glance-content > div:last-child {
+	border-right: none;
+}
+
+.completed-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+}
+
+.stat-value {
+	font-size: 2rem;
+	font-weight: 600;
+	line-height: 1;
+	color: #2c2c2a;
 }
 
 /*------------------- Pie Chart ---------------------*/
@@ -64,7 +186,6 @@
   flex: 1;
   min-height: 0;
 }
-
 
 /* LEFT LEGEND */
 
@@ -126,38 +247,9 @@
 }
 
 .pie-total {
-	font-size: 44px;
+	font-size: 40px;
 	font-weight: 600;
 	fill: #2b2d31;
-}
-/* ----------------- Totals Section ----------------- */
-.totals-header,
-.materials-heading,
-.day-range-title {
-  font-size: 1.25rem;
-  color: #575654;
-  text-transform: uppercase;
-}
-
-.active-proj-info, .patterns-info, .completed-info {
-  margin: 14px;
-  background: rgba(241, 241, 240, 0.85);
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.completed-info {
-  padding: 8px
-}
-
-.stat-gallery-item.is-compact {
-  text-align: center;
-  align-content: center;
-}
-
-.totals-chart-section {
-  display: flex;
-  gap: 1px;
 }
 
 .totals-chart-section .pie-chart {
@@ -166,68 +258,17 @@
   min-width: 0;
 }
 
-.pie-chart .recharts-legend-item-text {
-  font-size: 21px !important;
-  color: #4e4b4b !important;
-}
-
 .totals-footer {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: rgb(116, 104, 104);
   margin: 2px;
 }
 
-/* ------------------ Urgent Section ------------------- */
-.dashboard-title.overdue, .dashboard-title.due-soon {
-  color: rgb(204, 87, 87);
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgb(212, 206, 206);
-}
+/* ------------------ Materials Section ------------------- */
 
-.dashboard-title.due-soon {
-  color: rgb(18, 107, 73);
-}
-
-.overdue-badge, .due-soon-badge {
-  display: inline-block;
-  background: rgb(204, 87, 87, .35);
-  border-radius: 5px;
-  padding: 5px 16px;
-  font-size: 1.25rem;
-  margin-left: 16px;
-}
-
-.due-soon-badge {
-  background: rgba(41, 121, 90, 0.35);
-}
-
-.proj-urgent-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.proj-urgent-list li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-}
-
-.proj-urgent-list li a {
-  font-size: 1.15rem;
-  text-decoration: none;
-}
-
-.proj-urgent-list li a:hover {
-  text-decoration: underline;
-}
 
 .materials-count {
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: bold;
   margin: 8px;
   color: #6387a5;
@@ -237,110 +278,4 @@
   font-size: 1.25rem;
   display: inline-flex;
 	gap: 5px;
-}
-
-
-/* --------------- Weekly Planner Section -------------- */
-.upcoming-proj-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.day-range-context {
-  font-size: 1.5rem;
-  color: #928d8d;
-}
-
-.upcoming-proj-main {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 16px;
-}
-
-.upcoming-proj {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 10px 18px;
-  border-radius: 10px;
-  text-decoration: none;
-  min-width: 130px;
-  background: rgba(240, 237, 235, 0.5);
-  box-shadow: 0 4px 15px rgba(68, 67, 67, 0.25);
-  border-radius: 8px;
-  margin: 10px;
-}
-
-.upcoming-proj span:first-child {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-.upcoming-proj span:last-child {
-  font-size: 1.25rem;
-}
-
-.upcoming-proj.overdue { border-top: 8px solid rgb(199, 140, 150); }
-.upcoming-proj.today { border-top: 8px solid rgb(199, 140, 150); }
-.upcoming-proj.soon { border-top: 8px solid rgb(161, 155, 58); }
-.upcoming-proj.week { border-top: 8px solid rgb(89, 138, 111); }
-.upcoming-proj.early { border-top: 8px solid rgb(45, 114, 160); }
-.upcoming-proj.coming-up { border-top: 8px solid rgb(110, 94, 141); }
-
-.empty-upcoming-proj {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 14px;
-  background: #f9f8f5;
-  border: 0.5px dashed #ccc;
-  border-radius: 8px;
-}
-
-.empty-upcoming-proj span {
-  font-size: 1.75rem;
-  color: #888;
-}
-
-.empty-upcoming-proj a {
-  font-size: 0.8rem;
-  padding: 5px 12px;
-  border-radius: 6px;
-  background: #fff;
-  border: 0.5px solid #ccc;
-  color: #2c2c2a;
-  text-decoration: none;
-}
-
-.planner-weeks {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.week-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.week-label {
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: #52514e;
-    text-transform: uppercase;
-    padding-bottom: 8px;
-    border-bottom: 0.5px solid #e8e4e0;
-}
-
-.field-empty {
-    font-size: 1.25rem;
-    color: rgba(106, 103, 97, 0.75);
-    font-style: italic;
-}
-
-
-
-
+} 

@@ -65,28 +65,6 @@ export default function DashboardUrgency({activeProjects, isOverdue, isDueSoon, 
 				)}
 			</div>
 
-			{/*Materials List*/}
-			<div className="stat-gallery-item is-forth">
-				<h3 className="dashboard-title">Materials Needed</h3>
-
-				{materialsProjects.length > 0 ? (
-					<div>
-						<p className="materials-count">
-							{materialsProjects.length} Planned Project{materialsProjects.length === 1 ? "" : "s"} with Linked Pattern
-						</p>
-						<Link to="/materials" className="materials-link">
-						<NotebookText size={23} color="#9f831d"/>{" "} View materials list</Link>
-					</div>
-				) : (
-					<p className="empty-materials">No planned projects with patterns linked</p>
-				)}
-			</div>
-
-			{/* Number of Patterns */}
-			<div className="stat-gallery-item is-forth">
-				<h3 className="dashboard-title">Total Patterns</h3>
-				<span className="stat-value">{totalPatterns}</span>
-			</div>
 		</>
 	)
 }

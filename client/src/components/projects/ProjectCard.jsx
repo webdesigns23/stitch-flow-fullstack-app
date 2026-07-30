@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
-import { formatDayDate, formatFullDate} from "../../utils/dateTime"
-import { getDeadlineLabel } from "../../utils/deadlines";
+import { formatDate, formatFullDate} from "../../utils/dateTime"
+import { getCardDeadlineLabel } from "../../utils/deadlines";
 import "../../styles/ProjectCard.css";
 import { CalendarCheck, Ruler } from "lucide-react";
 
@@ -12,22 +12,11 @@ const STATUSES = [
 		"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
 	];
 
-export default function ProjectCard({ project}) {
+export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 	const { updateProject, isOverdue, isDueSoon, daysUntilDue} = useContext(ProjectContext);
 	
 	//projects pattern
 	const pattern = project?.pattern;
-
-	//check if project completed
-	const isCompleted = Boolean(project?.completed_at);
-
-	//check how may days project took to complete if completed
-	const daysToComplete = isCompleted
-	? calculateDaysToComplete(
-			project.created_at,
-			project.completed_at
-		)
-	: null;
 
 	//Update Status on radio bar
 	async function handleStatusChange(e) {
@@ -83,8 +72,8 @@ export default function ProjectCard({ project}) {
 							}
 						>
 							{isOverdue(project?.deadline) || isDueSoon(project?.deadline)
-								? getDeadlineLabel(daysUntilDue(project?.deadline), project?.deadline)
-								: `Due: ${formatDayDate(project?.deadline)}`
+								? getCardDeadlineLabel(daysUntilDue(project?.deadline), project?.deadline)
+								: `Due: ${formatDate(project?.deadline)}`
 							}	
 						</span>	
 					)}

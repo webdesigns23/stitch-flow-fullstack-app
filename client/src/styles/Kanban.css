@@ -2,7 +2,7 @@
 .kanban-board {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .kanban-empty {
@@ -38,7 +38,7 @@
 	border: 1px solid #cfcfcf;
 	border-radius: 6px;
 	background: #f7f6f6;
-	font-size: 13px;
+	font-size: 12px;
 	color: #333;
 	box-sizing: border-box;
 }
@@ -62,8 +62,7 @@
 .pattern-project-filter-pill {
     font-size: 14px;
 	font-weight: 500;
-	padding: 6px 12px;
-    margin: 10px;
+	padding: 4px 10px;
 	border-radius: 8px;
 	border: 1px solid #8d7313;
 	color: #030303;
@@ -78,14 +77,11 @@
 .kanban-filter-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin: 12px;
+    gap: 8px;
 }
 
 .kanban-filter-title{
-	font-size: 2rem;
 	color: rgb(85, 66, 66);
-	margin: 4px;
 	text-shadow: none;
     text-transform: capitalize;
 }
@@ -95,22 +91,6 @@
     height: 1px;
     background: #b4900b;
 }
-
-.kanban-month-year {
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: #888780;
-}
-
-.kanban-month-count {
-    font-size: 12px;
-    color: #888780;
-    background: #ede8de;
-    padding: 2px 10px;
-    border-radius: 10px;
-    white-space: nowrap;
-}
-
 
 /* --------------------- Kanban Columns ---------------------- */
 .empty-proj-container {
@@ -142,6 +122,7 @@
 .kanban-column-head {
 	color: black;
     display: flex;
+    font-size: .85rem;
     justify-content: center;
     align-items: center;
     padding: 8px;

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import { CalendarRange } from "lucide-react";
 import { getUrgencyClass, getDeadlineLabel, getWeekRange } from "../../utils/deadlines";
+import { formatWeekday, formatDate} from "../../utils/dateTime";
 import { capitalizeWords } from "../../utils/formatText";
+import '../../styles/DashboardPlanner.css'
 
 export default function DashboardPlanner({activeProjects, isOverdue, isDueSoon, daysOverdue, daysUntilDue}) {
 
@@ -12,7 +14,7 @@ export default function DashboardPlanner({activeProjects, isOverdue, isDueSoon, 
 	})).sort((a, b) => a.daysLeft - b.daysLeft);
 
 	//Show this week and preview of next week planner
-	const thisWeek = withDeadlines.filter(p => p.daysLeft <7);
+	const thisWeek = withDeadlines.filter(p => p.daysLeft < 7);
 	const nextWeek = withDeadlines.filter(p => p.daysLeft >= 7 && p.daysLeft <= 14);
 	const hasProjects = thisWeek.length > 0 || nextWeek.length > 0; 
 
@@ -37,9 +39,26 @@ return (
 									<Link
 										to={`/projects/${p.id}`}
 										key={p.id}
-										className={`upcoming-proj ${getUrgencyClass(p?.daysLeft)}`}>
-										<span>{capitalizeWords(p?.title)}</span>
-										<span>{getDeadlineLabel(p?.daysLeft, p.deadline)}</span>
+										className={`upcoming-proj ${p?.status}`}
+									>
+										<div className="planner-date">
+											<span className="planner-weekday">
+												{formatWeekday(p?.deadline)}
+											</span>
+											<span className="planner-short-date">
+												{formatDate(p?.deadline)}
+											</span>
+										</div>
+
+										<div className="planner-proj-info">
+											<span className="planner-proj-title">
+												{capitalizeWords(p?.title)}
+											</span>
+												
+											<span className="planner-proj-deadline">
+												{getDeadlineLabel(p?.daysLeft, p.deadline)}
+											</span>
+										</div>	
 									</Link>
 								))}
 							</div>
@@ -58,9 +77,26 @@ return (
 									<Link
 										to={`/projects/${p.id}`}
 										key={p.id}
-										className={`upcoming-proj ${getUrgencyClass(p?.daysLeft)}`}>
-										<span>{capitalizeWords(p?.title)}</span>
-										<span>{getDeadlineLabel(p?.daysLeft, p?.deadline)}</span>
+										className={`upcoming-proj ${p?.status}`}
+									>
+										<div className="planner-date">
+											<span className="planner-weekday">
+												{formatWeekday(p?.deadline)}
+											</span>
+											<span className="planner-short-date">
+												{formatDate(p?.deadline)}
+											</span>
+										</div>
+
+										<div className="planner-proj-info">
+											<span className="planner-proj-title">
+												{capitalizeWords(p?.title)}
+											</span>
+												
+											<span className="planner-proj-deadline">
+												{getDeadlineLabel(p?.daysLeft, p.deadline)}
+											</span>
+										</div>	
 									</Link>
 								))}
 							</div>
