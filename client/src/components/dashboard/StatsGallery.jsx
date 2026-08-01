@@ -68,12 +68,11 @@ export default function StatsGallery() {
 							</div>
 						</div>
 
-			<DashboardMaterials 
-				activeProjects={activeProjects}/>
-
 			<DashboardPattern
 				patterns={patterns} />
 
+			<DashboardMaterials 
+				activeProjects={activeProjects}/>
 
 			
 

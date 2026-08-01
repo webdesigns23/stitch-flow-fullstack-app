@@ -3,7 +3,7 @@ import { Goal, CircleArrowRight, TriangleAlert } from "lucide-react";
 import { capitalizeWords } from "../../utils/formatText";
 import { formatWeekday, formatDate } from "../../utils/dateTime";
 import { getCardDeadlineLabel } from "../../utils/deadlines";
-import placeholderImage from "../../assets/logo1.png"
+import placeholderImage from "../../assets/empty_image.png"
 
 
 const PROGRESS = {
@@ -75,7 +75,7 @@ export default function DashboardFocus({activeProjects, daysUntilDue}) {
 			{overdueProjects.length > 1 && (
 				<div className="focus-overdue-count">
 					<TriangleAlert size={16} />
-					{overdueProjects.length} overdue projects
+					{" "}{overdueProjects.length} overdue projects
 				</div>
 			)}
 

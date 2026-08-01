@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { NotebookText, CircleArrowRight } from "lucide-react"
+import { NotebookText, CircleArrowRight, Spool } from "lucide-react"
 
 
 export default function DashboardMaterials({activeProjects}) {
@@ -11,24 +11,21 @@ export default function DashboardMaterials({activeProjects}) {
 	return (
 		<div className="stat-gallery-item is-forth">
 			{/*Materials List*/}
-			<div >
+			<div className="total-pat-mat">
 				<h2 className="dashboard-title">
+					<Spool size={22} color="#9f831d"/>
 					Materials Needed
 				</h2>
 
 				{materialsProjects.length > 0 ? (
 					<div>
-						<div>
-							<span className="stat-value">
-								{materialsProjects.length} 
-							</span>
-							
-							<p className="totals-footer">
-								Planned Project{materialsProjects.length === 1 ? "" : "s"} with Linked Pattern
-							</p>
-							
-						</div>
+						<span className="stat-value">
+							{materialsProjects.length} 
+						</span>
 						
+						<p className="totals-footer">
+							Planned Project{materialsProjects.length === 1 ? "" : "s"} with Linked Pattern
+						</p>
 					</div>
 				) : (
 					<p className="empty-materials">No planned projects with patterns linked</p>

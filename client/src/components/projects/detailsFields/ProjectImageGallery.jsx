@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Image } from "lucide-react";
 import ProjectImageEditForm from "./ProjectImageEditForm";
-import empty_images from "../../../assets/empty_proj_images.png"
+import empty_images from "../../../assets/empty_image.png"
 import "../../../styles/ProjectDetails.css"
 
 const IMAGE_TYPES = [
