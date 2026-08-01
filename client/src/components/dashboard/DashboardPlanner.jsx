@@ -23,7 +23,7 @@ return (
 		<div className="stat-gallery-item is-full">
 			<div className="upcoming-proj-header">
 				<h2 className="dashboard-title">
-					<CalendarRange size={24} color="#9f831d" />Weekly Schedule</h2>
+					<CalendarRange size={24} color="#9f831d" />Upcoming Deadlines</h2>
 				<span className="day-range-context">next two weeks</span>
 			</div>
 
@@ -55,7 +55,9 @@ return (
 												{capitalizeWords(p?.title)}
 											</span>
 												
-											<span className="planner-proj-deadline">
+											<span 
+												className={`planner-proj-deadline ${getUrgencyClass(p.daysLeft)}`}
+											>
 												{getDeadlineLabel(p?.daysLeft, p.deadline)}
 											</span>
 										</div>	
@@ -89,11 +91,14 @@ return (
 										</div>
 
 										<div className="planner-proj-info">
+
 											<span className="planner-proj-title">
 												{capitalizeWords(p?.title)}
 											</span>
 												
-											<span className="planner-proj-deadline">
+											<span 
+												className={`planner-proj-deadline ${getUrgencyClass(p.daysLeft)}`}
+											>
 												{getDeadlineLabel(p?.daysLeft, p.deadline)}
 											</span>
 										</div>	
@@ -114,3 +119,4 @@ return (
 		</div>
 	)
 }
+

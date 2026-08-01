@@ -28,7 +28,7 @@ export default function PatternPlanning() {
 			</div>
 
 			<p className="missing-patterns-description">
-				Projects missing a pattern.  Click <strong>View Project</strong> to check specs and link the right pattern."
+				Projects missing a pattern.  Click <strong>View Project</strong> to check specs and link the right pattern.
 			</p>
 
 			<section className="missing-patterns-section">

@@ -5,9 +5,10 @@ import { NotebookText, CircleArrowRight, Spool, Lightbulb} from "lucide-react"
 export default function DashboardMaterials({activeProjects}) {
 
 	//Planning projects with patterns for materials list
-	// const materialsProjects = activeProjects
-	// 	?.filter(p => (p.status === "planning" && p?.pattern?.id)) || [];
-	//Projects without a pattern 
+	const materialsProjects = activeProjects
+		?.filter(p => (p.status === "planning" && p?.pattern?.id)) || [];
+
+	//Planning projects without a pattern 
 	const projectsMissingPatterns = activeProjects.filter(
 		project =>
 			project.status === "planning" &&
@@ -15,6 +16,7 @@ export default function DashboardMaterials({activeProjects}) {
 	);
 	
 	const missingCount = projectsMissingPatterns.length;
+	const materialsCount = materialsProjects.length;
 
 	return (
 		<div className="stat-gallery-item is-forth">
@@ -22,9 +24,10 @@ export default function DashboardMaterials({activeProjects}) {
 			<div className="total-pat-mat">
 				<h2 className="dashboard-title">
 					<Spool size={22} color="#9f831d"/>
-					Next to Plan
+					Materials Planning
 				</h2>
 
+				{/* Projects that need patterns */}
 				{missingCount > 0 ? (
 					<>
 						<div>
@@ -35,16 +38,10 @@ export default function DashboardMaterials({activeProjects}) {
 							<p className="totals-footer">
 								{missingCount === 1
 								? "Project needs a pattern"
-								: "Project needs patterns"}
+								: "Projects need patterns"}
 							</p>
 						</div>
-						<div className="planning-callout">
-							<Lightbulb size={22} aria-hidden="true" />
-							<p>
-								Visit Project Details to link a pattern.
-							</p>
-						</div>
-					</>
+						</>
 				) : (
 					<div className="planning-complete">
 						<p>
@@ -52,11 +49,38 @@ export default function DashboardMaterials({activeProjects}) {
 						</p>
 					</div>
 				)}
+
+				<div className="stats-divider" />
+
+				{/* Projects that need materials */}
+				{materialsCount > 0 ? (
+					<>
+						<div>
+							<span className="stat-value">
+								{materialsCount} 
+							</span>
+							
+							<p className="totals-footer">
+								{materialsCount === 1
+								? "Project needs materials"
+								: "Projects need materials"}
+							</p>
+						</div>
+					</>
+				) : (
+					<div className="planning-complete">
+						<p>
+							No materials to gather yet.
+						</p>
+					</div>
+				)}
+
+
 			</div>
 			
 			<footer className='dash-card-footer'>
 				<Link to="/materials" className="go-link">
-					View Materials List
+					View Materials Planner
 					<CircleArrowRight size={16} />
 				</Link>	
 			</footer>

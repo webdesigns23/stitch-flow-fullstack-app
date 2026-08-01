@@ -1,3 +1,4 @@
+
 //Deadline CSS range classes
 export function getUrgencyClass(daysLeft) {
 	if(daysLeft < 0) return "overdue";
@@ -7,6 +8,7 @@ export function getUrgencyClass(daysLeft) {
 	if(daysLeft <= 14) return "early";
 	return "coming-up";
 }
+
 //Deadline Range Labels
 export function getDeadlineLabel(daysLeft, deadline) {
 	const dayName = new Date(deadline).toLocaleDateString("en-US", { weekday: "long"});

@@ -27,8 +27,12 @@ export default function DashboardPattern({patterns = []}) {
 					<>
 						<div>
 							<span className="stat-value">{totalPatterns}</span>
-							<p className="totals-footer">Patterns in your library</p>
+							<p className="totals-footer">
+								Patterns in your library</p>
 						</div>
+
+						<div className="stats-divider" />
+						
 						<div className="pattern-category-section">
 							<h3 className="pattern-category-heading">Category</h3>
 							<ul  className="pattern-category-list">

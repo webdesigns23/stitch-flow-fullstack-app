@@ -399,12 +399,62 @@
 	min-width: 0;
 }
 
+/* ------------------ Materials Planning ------------------- */
+.total-pat-mat {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.materials-count {
+	font-size: 1rem;
+	font-weight: bold;
+	margin: 8px;
+	color: #6387a5;
+}
+
+.materials-link {
+	font-size: 1.25rem;
+	display: inline-flex;
+	gap: 5px;
+} 
+
+/* Success state */
+
+.planning-complete {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+
+	margin-top: 24px;
+	padding: 14px 16px;
+
+	border: 1px solid #d8ead7;
+	border-radius: 8px;
+	background: #fbfdfb;
+}
+
+.planning-complete svg {
+	flex-shrink: 0;
+	color: #47a564;
+}
+
+.planning-complete p {
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.45;
+	color: #5e5b5c;
+}
+
+.stats-divider {
+	height: 1px;
+	background: #e6ddd1;
+}
+
 /* ---------- Pattern Categories ---------- */
 
 .pattern-category-section {
-	margin-top: 18px;
-	padding-top: 14px;
-	border-top: 1px solid #ddd6ce;
+	margin-top: 8px;
 }
 
 .pattern-category-heading {
@@ -439,77 +489,3 @@
 	color: #49483f;
 }
 
-
-/* ------------------ Materials Section ------------------- */
-.total-pat-mat {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-}
-
-.materials-count {
-	font-size: 1rem;
-	font-weight: bold;
-	margin: 8px;
-	color: #6387a5;
-}
-
-.materials-link {
-	font-size: 1.25rem;
-	display: inline-flex;
-	gap: 5px;
-} 
-
-/* ---------- Next to Plan ---------- */
-
-.planning-callout {
-	display: flex;
-	align-items: center;
-	gap: 14px;
-
-	margin-top: 22px;
-	padding: 6px 12px;
-
-	border: 1px solid #ddd3c2;
-	border-radius: 8px;
-	background: #fffdfa;
-}
-
-.planning-callout svg {
-	flex-shrink: 0;
-	color: #b48b1d;
-}
-
-.planning-callout p {
-	margin: 0;
-	font-size: 0.85rem;
-	line-height: 1.45;
-	color: #5e5b5c;
-}
-
-/* Success state */
-
-.planning-complete {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-
-	margin-top: 24px;
-	padding: 14px 16px;
-
-	border: 1px solid #d8ead7;
-	border-radius: 8px;
-	background: #fbfdfb;
-}
-
-.planning-complete svg {
-	flex-shrink: 0;
-	color: #47a564;
-}
-
-.planning-complete p {
-	margin: 0;
-	font-size: 0.95rem;
-	line-height: 1.45;
-	color: #5e5b5c;
-}
