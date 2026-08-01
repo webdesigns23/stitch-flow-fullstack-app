@@ -22,8 +22,8 @@ export default function DashboardPlanner({activeProjects, isOverdue, isDueSoon, 
 return (
 		<div className="stat-gallery-item is-full">
 			<div className="upcoming-proj-header">
-				<h3 className="dashboard-title">
-					<CalendarRange size={24} color="#9f831d" />Weekly Schedule</h3>
+				<h2 className="dashboard-title">
+					<CalendarRange size={24} color="#9f831d" />Weekly Schedule</h2>
 				<span className="day-range-context">next two weeks</span>
 			</div>
 

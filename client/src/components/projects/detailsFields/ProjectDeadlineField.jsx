@@ -23,7 +23,7 @@ export default function ProjectDeadlineField({project, onUpdate, isCompleted}) {
 
 	return(
 		<div className="proj-details-field">
-			<span title="Click to Edit" className="proj-details-label">
+			<h2 title="Click to Edit" className="proj-details-label">
 				<CalendarDays 
 					size={20} 
 					color="#9f831d" 
@@ -31,7 +31,7 @@ export default function ProjectDeadlineField({project, onUpdate, isCompleted}) {
 					style={{ cursor: "pointer" }} 
 					title="click to edit"
 				/>{" "} Deadline
-			</span>
+			</h2>
 				{editingDeadline ? (
 					<div className="proj-deadline-edit">
 						<input

@@ -22,7 +22,7 @@ export default function DashboardCompleted({projects}) {
 			{/* Completed this month and all time */}
 			<div className="stat-gallery-completed">
 				
-				<CircleCheckBig color="#3ca74f"/>
+				<CircleCheckBig size={40} color="#3ca74f"/>
 		
 				<div className="completed-info">
 					<span className="stat-value">{totalCompleted}</span>

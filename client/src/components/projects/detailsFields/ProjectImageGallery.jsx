@@ -41,9 +41,9 @@ export default function ProjectImageGallery({ project, onImageUpdate }) {
 	return (
 		<div className="proj-images-section">
 			<header className="proj-images-gallery-header">
-				<span className="proj-details-label"><Image size={16} color="#9f831d" />
+				<h2 className="proj-details-label"><Image size={16} color="#9f831d" />
 					{" "} Project Images ({images.length})
-				</span>
+				</h2>
 			</header>
 
 			{/* create image filter pills */}

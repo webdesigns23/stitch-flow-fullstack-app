@@ -50,12 +50,12 @@ export default function ProjectImageForm({project, onImageUpdate}) {
 		<div className="proj-details-field">
 			{/* upload image form */}
 			<form className="proj-image-form" onSubmit={handleUpload}>
-				<span className="proj-details-label">
+				<h2 className="proj-details-label">
 				<ImagePlus
 					size={20} 
 					color="#9f831d" 
 				/>{" "} Upload Images
-				</span>
+				</h2>
 
 				{uploadError && <p>{uploadError}</p>}
 

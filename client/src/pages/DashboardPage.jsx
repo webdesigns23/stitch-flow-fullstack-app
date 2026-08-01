@@ -8,11 +8,11 @@ export default function DashboardPage({user}) {
 	<> 
 		<header className="proj-header">
 				<h1>{getGreeting()}, {capitalizeWords(user?.display_name)}</h1>
-				<button
+				{/* <button
 					className="proj-card-btn" 
 					onClick={() => setShowProjForm(true)}>
 						+ New Project
-				</button>
+				</button> */}
 		</header>
 	  
 	  <hr className="kanban-filter-line" />

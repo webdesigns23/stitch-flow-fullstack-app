@@ -13,14 +13,14 @@ export default function ProjectSizeNotesField({project, onUpdate}) {
 		<>
 			{/* Size(measurement) notes */}
 			<div className="proj-details-field">
-				<span title="Click to Edit" className="proj-details-label">
+				<h2 title="Click to Edit" className="proj-details-label">
 					<PencilRuler 
 						size={20} 
 						color="#9f831d" 
 						onClick={field.startEditing} 
 						style={{ cursor: "pointer" }} 
 					/> {" "} Size
-				</span>
+				</h2>
 
 				{/* Editing notes opened */}
 				{field.editing ? (

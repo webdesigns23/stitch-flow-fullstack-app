@@ -5,7 +5,6 @@ import DashboardFocus from "./DashboardFocus";
 import DashboardAtGlance from "./DashboardAtGlance";
 import StatusPieChart from "./StatusPieChart";
 import DashboardCompleted from "./DashboardCompleted";
-import DashboardUrgency from "./DashboardUrgency";
 import DashboardPlanner from "./DashboardPlanner";
 import DashboardMaterials from "./DashboardMaterials";
 import DashboardPattern from "./DashboardPatterns";

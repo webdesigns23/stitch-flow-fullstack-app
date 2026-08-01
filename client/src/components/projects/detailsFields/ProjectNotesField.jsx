@@ -13,7 +13,7 @@ export default function ProjectNotesField({project, onUpdate}) {
 		<>
 			{/* notes */}
 			<div className="proj-details-field">
-				<span title="Click to Edit" className="proj-details-label">
+				<h2 title="Click to Edit" className="proj-details-label">
 					<SquarePen 
 						size={20} 
 						color="#9f831d" 
@@ -22,7 +22,7 @@ export default function ProjectNotesField({project, onUpdate}) {
 						
 					/>
 					{" "} Notes
-				</span>
+				</h2>
 
 				{/* Editing notes opened */}
 				{field.editing ? (

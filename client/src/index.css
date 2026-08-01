@@ -40,10 +40,10 @@ h1 {
 
 h2 {
   font-weight: 100;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1.1;
-  color: rgb(52, 71, 100);
-  text-shadow: 2px 2px 4px rgba(63, 61, 61, 0.5);
+  color: rgb(52, 53, 55);
+  text-shadow: 2px 2px 4px rgba(230, 203, 66, 0.5);
 }
 
 h3 {

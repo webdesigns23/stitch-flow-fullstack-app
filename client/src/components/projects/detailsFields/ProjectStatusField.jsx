@@ -1,4 +1,5 @@
 import { capitalizeWords } from "../../../utils/formatText";
+import { Sparkle } from "lucide-react";
 
 const STATUSES = [
 	"planning", "cutting", "ready_to_sew", "sewing", "final_touches", "complete"
@@ -17,7 +18,10 @@ export default function ProjectStatusField({project, onUpdate}) {
 
 	return(
 		<div className="proj-details-field">
-			<span className="proj-details-label">Current Status</span>
+			<h2 className="proj-details-label">
+				<Sparkle color="#9f831d" />
+				Current Status
+			</h2>
 			<div 
 				className="proj-progress-bar"
 				role="progressbar"

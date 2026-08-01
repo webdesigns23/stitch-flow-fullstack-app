@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { capitalizeWords } from "../../../utils/formatText"
 import { PatternContext } from "../../../context/PatternContext";
-import { ArrowRight, PencilLine } from "lucide-react"
+import { ArrowRight, Ruler} from "lucide-react"
 
 export default function ProjectPatternField({ project, onUpdate }) {
 	const { patterns, loading: patternLoading } = useContext(PatternContext);
@@ -25,15 +25,15 @@ export default function ProjectPatternField({ project, onUpdate }) {
 
 	return (
 		<div className="proj-details-field">
-			<span title="Click to Edit" className="proj-details-label">
-				<PencilLine
+			<h2 title="Click to Edit" className="proj-details-label">
+				<Ruler
 					size={20}
 					color="#9f831d"
 					onClick={() => setEditingPattern(true)}
 					style={{ cursor: "pointer" }}
 				/>
 				{" "} Pattern
-			</span>
+			</h2>
 
 			{editingPattern ? (
 				<div className="proj-pattern-edit">

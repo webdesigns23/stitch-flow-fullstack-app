@@ -1,5 +1,5 @@
 import StatusPieChart from "./StatusPieChart"
-import { CircleCheckBig, Eye, Clock, CalendarX2 } from "lucide-react"
+import { CircleCheckBig, Clock, CalendarX2 } from "lucide-react"
 import { Link } from "react-router-dom";
 import { NotebookText, } from "lucide-react"
 import { capitalizeWords }from "../../utils/formatText"
@@ -20,24 +20,25 @@ export default function DashboardAtGlance({activeProjects, isOverdue, isDueSoon,
 
 	return (
 		<div className="stat-gallery-item is-glance">
-			<h3 className="dashboard-title">
+			<h2 className="dashboard-title">
 				At a Glance
-			</h3>
+			</h2>
 			<div className="glance-content">
 				
 				{/*Overdue Projects with list */}
 				<div className="stat-gallery-overdue">
-					<CalendarX2 color="#d47052"/>
+					<CalendarX2 size={40} color="#d47052"/>
 
 					<div className="completed-info">
 						<span className="stat-value">{overdueProjects.length}</span>
 						<p className="totals-footer">Overdue</p>
-					</div>			
+					</div>
+			
 				</div>
 
 				{/*Due within 7 days with list */}
 				<div className="stat-gallery-due-soon">
-					<Clock color="#bb9715"/>
+					<Clock size={40} color="#bb9715"/>
 
 					<div className="completed-info">
 						<span className="stat-value">{dueSoonProjects.length}</span>

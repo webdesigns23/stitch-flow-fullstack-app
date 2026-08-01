@@ -35,9 +35,9 @@ export default function StatusPieChart({statusCounts={}}) {
 
 	return (
 		<div className="pie-chart">
-			<h3 className='dashboard-title'>
+			<h2 className='dashboard-title'>
 				Active Projects by Status
-			</h3>
+			</h2>
 			<div className='pie-chart-container'>
 
 				{/*Left Column chart legend */}
@@ -70,8 +70,8 @@ export default function StatusPieChart({statusCounts={}}) {
 								nameKey="name" 
 								cx="50%"        
 								cy="50%"        
-								outerRadius={80}
-								innerRadius={60}
+								outerRadius={70}
+								innerRadius={50}
 								paddingAngle={2}
 								label={false} 
 								>
@@ -84,7 +84,7 @@ export default function StatusPieChart({statusCounts={}}) {
 								<Label
 									value={`${activeProjects}`}
 									position="center"
-									dy={-24}
+									dy={-20}
 									className='pie-total'
 								/>
 								<Label
@@ -102,8 +102,8 @@ export default function StatusPieChart({statusCounts={}}) {
 					</ResponsiveContainer>
 				</section>	
 			</div>
-			<footer className='chart-footer'>
-				<Link className="go-projects" to="/projects">
+			<footer className='dash-card-footer'>
+				<Link className="go-link" to="/projects">
 					View All Projects
 					<CircleArrowRight color="#986f16"/>
 				</Link>

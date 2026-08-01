@@ -6,8 +6,8 @@
 	margin-top: 23px;
 }
 
-.stat-gallery-item.is-focus{ grid-column: span 4; }
-.stat-gallery-item.is-glance{ grid-column: span 8; }
+.stat-gallery-item.is-focus{ grid-column: span 5; }
+.stat-gallery-item.is-glance{ grid-column: span 7; }
 .stat-gallery-item.is-compact { grid-column: span 2; }
 .stat-gallery-item.is-forth { grid-column: span 3; }
 .stat-gallery-item.is-wide { grid-column: span 6; }
@@ -31,46 +31,82 @@
 	padding: 1.25rem;
 	box-shadow: 0 3px 10px rgba(5, 5, 5, 0.08);
 	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
 }
 
 /*Shared Headings*/
 .dashboard-title {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0 0 16px;
-  text-transform: uppercase;
-  font-size: 1rem;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  color: #4c403c;
+  	display: block;
+	color: #5e5b5c;
+  	text-transform: uppercase;
+  	letter-spacing: 0.06em;
+	margin: 2px;
 }
 
 .stat-value {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #836d0e;
+	font-size: 2.25rem;
+	font-weight: 600;
+	color: #49483f;
 }
+
+.totals-footer {
+	font-size: 1.15rem;
+	color: rgb(116, 104, 104);
+	margin: 2px;
+}
+
+.dash-card-footer {
+	margin-top: auto;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding-top: 16px;
+}
+
+.go-link {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: #986f16;
+	text-decoration: none;
+	font-size: 1rem;
+}
+
 
 /* ---------------- Today's Focus ---------------- */
-
-.today-focus {
-	padding: 20px;
-}
-
 .focus-content{
 	display: grid;
-	grid-template-columns: auto 1fr;
+	grid-template-columns: 120px minmax(0, 1fr);;
 	align-items: center;
 	gap: 24px;
 	margin-top: 18px;
 }
 
+.focus-image-wrapper {
+	width: 120px;
+	height: 160px;
+	border: 2px ridge rgb(210, 184, 40);
+	border-radius: 8px;
+	overflow: hidden;
+	background-color: #f3efe7;
+}
+
+.dashboard-img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.today-focus {
+	padding: 20px;
+}
+
 .focus-date {
 	display: flex;
 	flex-direction: column;
-
-	padding-right: 24px;
-	border-right: 1px solid #e8e4e0;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #c7c1ba;
 }
 
 .focus-weekday {
@@ -93,7 +129,7 @@
 	gap: 6px;
 }
 
-.focus-project h4 {
+.focus-proj-title {
 	margin: 0;
 	font-size: 1.2rem;
 }
@@ -125,6 +161,41 @@
 	margin-top: 20px;
 }
 
+.focus-status {
+	padding: 5px 10px;
+	max-width: fit-content;
+	border-radius: 6px;
+}
+
+/* ---------- Urgency accent ---------- */
+.focus-status.planning {background: rgb(199, 140, 150);}
+.focus-status.final_touches {background: rgb(161, 155, 58);}
+.focus-status.ready_to_sew {background: rgb(89, 138, 111);}
+.focus-status.cutting {background: rgb(45, 114, 160);}
+.focus-status.sewing {background: rgb(110, 94, 141, .25);}
+
+.focus-progress-header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 6px;
+	font-size: 1rem;
+}
+
+.progress-track {
+	width: 100%;
+	height: 10px;
+	background-color: #ece8e1;
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+.progress-fill {
+	height: 100%;
+	background-color: rgb(200, 161, 22);
+	border-radius: inherit;
+	transition: width 0.3s ease;
+}
+
 /*------------------- At a Glance ---------------------*/
 
 .glance-content {
@@ -142,12 +213,12 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	gap: 8px;
 	min-height: 130px;
 	padding: 10px 20px;
 	text-align: center;
-	border-right: 1px solid #e8e4e0;
+	border-right: 1px solid #c5beb7;
 }
 
 .glance-content > div:last-child {
@@ -161,30 +232,23 @@
 	gap: 2px;
 }
 
-.stat-value {
-	font-size: 2rem;
-	font-weight: 600;
-	line-height: 1;
-	color: #2c2c2a;
-}
-
 /*------------------- Pie Chart ---------------------*/
 .pie-chart {
 	height: 100%;
 	box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  padding-left: 25px;
-  font-size: 1rem;
+	display: flex;
+	flex-direction: column;
+	padding-left: 25px;
+	font-size: 1rem;
 }
 
 .pie-chart-container {
 	display: grid;
-	grid-template-columns: 1fr 1.5fr;
+	grid-template-columns: 1.5fr 1.5fr;
 	align-items: center;
-	gap: 32px;
-  flex: 1;
-  min-height: 0;
+	gap: 25px;
+  	flex: 1;
+ 	min-height: 0;
 }
 
 /* LEFT LEGEND */
@@ -193,7 +257,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-  margin: 5px;
+ 	margin: 5px;
 }
 
 .pie-legend-row {
@@ -207,19 +271,19 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
-  text-transform: capitalize;
+  	text-transform: capitalize;
 }
 
 .pie-legend-color {
 	width: 23px;
 	height: 16px;
 	flex-shrink: 0;
-  border-radius: 3px;
+  	border-radius: 3px;
 }
 
 .pie-legend-count {
 	font-weight: 600;
-  color: rgb(80, 74, 74);
+  	color: rgb(80, 74, 74);
 }
 
 /* RIGHT CHART */
@@ -230,21 +294,8 @@
 	min-width: 0;
 }
 
-.chart-footer {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	padding-top: 8px;
-}
 
-.go-projects {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	color: #986f16;
-	text-decoration: none;
-	font-size: 1rem;
-}
+
 
 .pie-total {
 	font-size: 40px;
@@ -253,29 +304,24 @@
 }
 
 .totals-chart-section .pie-chart {
-  flex: 1;
-  height: 280px;
-  min-width: 0;
+	flex: 1;
+	height: 280px;
+	min-width: 0;
 }
 
-.totals-footer {
-  font-size: 1rem;
-  color: rgb(116, 104, 104);
-  margin: 2px;
-}
 
 /* ------------------ Materials Section ------------------- */
 
 
 .materials-count {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 8px;
-  color: #6387a5;
+	font-size: 1rem;
+	font-weight: bold;
+	margin: 8px;
+	color: #6387a5;
 }
 
 .materials-link {
-  font-size: 1.25rem;
-  display: inline-flex;
+	font-size: 1.25rem;
+	display: inline-flex;
 	gap: 5px;
 } 

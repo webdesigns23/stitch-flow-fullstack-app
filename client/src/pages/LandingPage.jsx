@@ -18,7 +18,7 @@ export default function LandingPage({onLogin, onGuestLogin, guestLoading}) {
 		<div className="landing-page">
 			{/* Welcome/About Section */}
 			<div className="landing-welcome"> 
-				<h1>Welcome to Stitch Flow</h1>
+				<h1 className="landing-title">Welcome to Stitch Flow</h1>
 				
 				<h2>
 					Stay inspired and organized with all your sewing projects in one easy space
