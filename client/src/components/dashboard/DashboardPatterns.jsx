@@ -24,7 +24,7 @@ export default function DashboardPattern({patterns = []}) {
 				</h2>
 
 				{totalPatterns > 0 ? (
-					<div>
+					<>
 						<div>
 							<span className="stat-value">{totalPatterns}</span>
 							<p className="totals-footer">Patterns in your library</p>
@@ -46,7 +46,7 @@ export default function DashboardPattern({patterns = []}) {
 									))}
 							</ul>
 						</div>
-					</div>
+					</>
 				) : (
 					<p className="empty-materials">No Patterns in your Library</p>
 				)}

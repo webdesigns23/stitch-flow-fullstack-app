@@ -67,14 +67,12 @@ export default function StatsGallery() {
 								/>						
 							</div>
 						</div>
-
-			<DashboardPattern
-				patterns={patterns} />
-
+						
 			<DashboardMaterials 
 				activeProjects={activeProjects}/>
 
-			
+			<DashboardPattern
+				patterns={patterns} />
 
 			{/* Weekly project planner */}
 			<DashboardPlanner 

@@ -1,6 +1,7 @@
-import PlanningMaterialsList from "../components/dashboard/PlanningMaterialsList"
+import MaterialsList from "../components/dashboard/MaterialsList"
+import PatternPlanning from "../components/dashboard/PatternPlanning";
 import { Link } from "react-router-dom"
-import { CircleArrowLeft } from "lucide-react";
+import { CircleArrowLeft, Lightbulb } from "lucide-react";
 
 
 export default function MaterialsPage() {
@@ -11,11 +12,14 @@ export default function MaterialsPage() {
 					<CircleArrowLeft color="#986f16" />
 					{" "}Go back to dashboard
 				</Link>
-		</header>
-			<h1> 
-				Planned Projects Materials List
-			</h1>
-			<PlanningMaterialsList />
+			</header>
+			
+			<h1>Gather Materials</h1>
+			<p>Plan your projects and collect everything you need before you start sewing.</p>
+
+			<PatternPlanning />
+			<MaterialsList />
+
 		</div>
 	)
 }

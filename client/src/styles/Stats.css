@@ -73,7 +73,7 @@
 	gap: 8px;
 	color: #986f16;
 	text-decoration: none;
-	font-size: 1.15rem;
+	font-size: 1rem;
 }
 
 
@@ -444,7 +444,7 @@
 .total-pat-mat {
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
+	gap: 16px;
 }
 
 .materials-count {
@@ -459,3 +459,57 @@
 	display: inline-flex;
 	gap: 5px;
 } 
+
+/* ---------- Next to Plan ---------- */
+
+.planning-callout {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+
+	margin-top: 22px;
+	padding: 6px 12px;
+
+	border: 1px solid #ddd3c2;
+	border-radius: 8px;
+	background: #fffdfa;
+}
+
+.planning-callout svg {
+	flex-shrink: 0;
+	color: #b48b1d;
+}
+
+.planning-callout p {
+	margin: 0;
+	font-size: 0.85rem;
+	line-height: 1.45;
+	color: #5e5b5c;
+}
+
+/* Success state */
+
+.planning-complete {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+
+	margin-top: 24px;
+	padding: 14px 16px;
+
+	border: 1px solid #d8ead7;
+	border-radius: 8px;
+	background: #fbfdfb;
+}
+
+.planning-complete svg {
+	flex-shrink: 0;
+	color: #47a564;
+}
+
+.planning-complete p {
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.45;
+	color: #5e5b5c;
+}

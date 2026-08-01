@@ -105,7 +105,7 @@
 	border: 1px solid #e0d5c1;
 	border-radius: 8px;
 	padding: 1.25rem 1.5rem;
-	margin-bottom: 1.25rem;
+	margin: 1rem 0;
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -141,3 +141,70 @@ div.table {
 	border-bottom: none;
 }
 
+/* --------------materials page------------- */
+.gather {
+	margin: 25px;
+}
+
+.materials-section {
+	margin-bottom: 32px;
+}
+
+.materials-section-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 14px;
+}
+
+.missing-patterns-section {
+	margin-top: 18px;
+	padding: 8px;
+	background: #fff;
+	border: 1px solid #ded3c4;
+	border-radius: 10px;
+}
+
+.missing-patterns-description {
+	margin: 0 0 20px;
+	color: #7c7671;
+}
+
+.missing-patterns-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.missing-patterns-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	padding: 8px 0;
+	border-bottom: 1px solid #eee7df;
+}
+
+.missing-patterns-item:last-child {
+	border-bottom: 0;
+}
+
+.missing-pattern-project-title {
+	margin: 0 0 6px;
+	font-size: 1rem;
+}
+
+.missing-pattern-status {
+	display: inline-block;
+	padding: 3px 8px;
+	border-radius: 6px;
+	background: #eadce0;
+	color: #76565f;
+	font-size: 0.78rem;
+}
+
+.materials-empty,
+.materials-success {
+	margin: 0;
+	color: #6f6862;
+}
