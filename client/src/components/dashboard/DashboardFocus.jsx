@@ -121,6 +121,9 @@ export default function DashboardFocus({activeProjects, daysUntilDue}) {
 
 					{/* current progress */}
 					<div className="focus-progress">
+						<span 
+							className={`focus-status-dot status-${focusProject?.status}`}
+						/>
 						<p className={`focus-status ${focusProject.status}`}>
 							{capitalizeWords(focusProject.status)}
 						</p>

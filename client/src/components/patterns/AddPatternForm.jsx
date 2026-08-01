@@ -76,7 +76,7 @@ export default function AddPatternForm({ onClose }) {
 			setCategory("");
 			setNotes("");
 			setRequirements([{ ...emptyReqs }]);
-			if (onClose) onClose();
+			onClose?.();
 
 		} catch (error) {
 			setError(error.message || "Error creating pattern.");

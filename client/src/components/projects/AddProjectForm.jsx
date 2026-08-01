@@ -51,7 +51,7 @@ export default function AddProjectForm({ onClose }) {
 
 			setProjects(
 				prev => [data, ...(Array.isArray(prev) ? prev : [])]);
-			onClose();
+			onClose?.();
 			navigate(`/projects/${data.id}`)
 
 		} catch (error) {

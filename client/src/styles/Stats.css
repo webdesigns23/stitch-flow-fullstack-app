@@ -37,15 +37,18 @@
 
 /*Shared Headings*/
 .dashboard-title {
-  	display: block;
+  	display: flex;
+	align-items: center;
+	gap: 8px;
 	color: #5e5b5c;
   	text-transform: uppercase;
   	letter-spacing: 0.06em;
 	margin: 2px;
+
 }
 
 .stat-value {
-	font-size: 2.25rem;
+	font-size: 2.15rem;
 	font-weight: 600;
 	color: #49483f;
 }
@@ -77,15 +80,15 @@
 /* ---------------- Today's Focus ---------------- */
 .focus-content{
 	display: grid;
-	grid-template-columns: 120px minmax(0, 1fr);;
+	grid-template-columns: 140px minmax(0, 1fr);;
 	align-items: center;
 	gap: 24px;
 	margin-top: 18px;
 }
 
 .focus-image-wrapper {
-	width: 120px;
-	height: 160px;
+	width: 140px;
+	height: 180px;
 	border: 2px ridge rgb(210, 184, 40);
 	border-radius: 8px;
 	overflow: hidden;
@@ -106,7 +109,7 @@
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 8px;
-	border-bottom: 1px solid #c7c1ba;
+	border-bottom: 1px dashed #c7c1ba;
 }
 
 .focus-weekday {
@@ -165,13 +168,14 @@
 	padding: 5px 10px;
 	max-width: fit-content;
 	border-radius: 6px;
+	color: rgb(0, 0, 0);
 }
 
 /* ---------- Urgency accent ---------- */
-.focus-status.planning {background: rgb(199, 140, 150);}
-.focus-status.final_touches {background: rgb(161, 155, 58);}
-.focus-status.ready_to_sew {background: rgb(89, 138, 111);}
-.focus-status.cutting {background: rgb(45, 114, 160);}
+.focus-status.planning {background: rgb(199, 140, 150, .25);}
+.focus-status.final_touches {background: rgb(161, 155, 58, .25);}
+.focus-status.ready_to_sew {background: rgb(89, 138, 111, .25);}
+.focus-status.cutting {background: rgb(45, 114, 160, .25);}
 .focus-status.sewing {background: rgb(110, 94, 141, .25);}
 
 .focus-progress-header {
@@ -230,6 +234,89 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 2px;
+}
+
+/*------------------- Quick Actions ---------------------*/
+.actions-container {
+	margin: 12px;
+	padding-top: 12px;
+	border-top: 1px dashed gray;
+}
+
+
+.quick-actions {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 12px;
+	margin-top: 8px;
+	justify-content: stretch;
+    align-items: center;
+    justify-items: center;
+    align-content: stretch;
+}
+
+.quick-action-card {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 8px 16px;
+	width: 100%;
+	background: #fffdf8;
+	border: 1px solid #d8b24b;
+	border-radius: 10px;
+	cursor: pointer;
+	text-align: left;
+	font: inherit;
+	color: inherit;
+	transition:
+		transform .2s ease,
+		box-shadow .2s ease,
+		border-color .2s ease,
+		background-color .2s ease;
+}
+
+.quick-action-card:hover {
+	transform: translateY(-2px);
+	background: #fdf9ef;
+	border-color: #b48b1d;
+	box-shadow: 0 6px 16px rgba(0,0,0,.08);
+}
+
+.quick-action-card:focus-visible {
+	outline: 2px solid #b48b1d;
+	outline-offset: 3px;
+}
+
+/* Icon */
+.quick-action-icon {
+	flex-shrink: 0;
+	color: #b48b1d;
+	transition: transform .25s ease;
+}
+
+.quick-action-card:hover .quick-action-icon {
+	transform: rotate(90deg);
+}
+
+/* Text */
+.quick-action-content {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.quick-action-title {
+	margin: 0;
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: #4b4743;
+}
+
+.quick-action-description {
+	margin: 0;
+	font-size: .9rem;
+	color: #77716b;
+	line-height: 1.35;
 }
 
 /*------------------- Pie Chart ---------------------*/
