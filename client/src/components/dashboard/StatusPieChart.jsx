@@ -30,9 +30,6 @@ export default function StatusPieChart({statusCounts={}}) {
 	const activeProjects = data.reduce(
 		(total, item) => total + item.value, 0);
 
-	//if zero value hide label
-	// const visibleLabel = data.filter((item) => item.value > 0);
-
 	return (
 		<div className="pie-chart">
 			<h2 className='dashboard-title'>

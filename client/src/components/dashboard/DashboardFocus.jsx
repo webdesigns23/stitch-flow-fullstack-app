@@ -125,7 +125,7 @@ export default function DashboardFocus({activeProjects, daysUntilDue}) {
 							className={`focus-status-dot status-${focusProject?.status}`}
 						/>
 						<p className={`focus-status ${focusProject.status}`}>
-							{capitalizeWords(focusProject.status)}
+							{capitalizeWords(focusProject.status.replace(/_/g, " "))}
 						</p>
 						<div className="focus-progress-header">
 							

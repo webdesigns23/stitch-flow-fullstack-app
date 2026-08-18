@@ -24,7 +24,7 @@ export default function DashboardMaterials({activeProjects}) {
 			<div className="total-pat-mat">
 				<h2 className="dashboard-title">
 					<Spool size={22} color="#9f831d"/>
-					Materials Planning
+					Gather Materials
 				</h2>
 
 				{/* Projects that need patterns */}

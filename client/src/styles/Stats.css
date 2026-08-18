@@ -38,13 +38,12 @@
 /*Shared Headings*/
 .dashboard-title {
   	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	gap: 8px;
 	color: #5e5b5c;
   	text-transform: uppercase;
   	letter-spacing: 0.06em;
 	margin: 2px;
-
 }
 
 .stat-value {
@@ -81,7 +80,7 @@
 .focus-content{
 	display: grid;
 	grid-template-columns: 140px minmax(0, 1fr);;
-	align-items: center;
+	align-items: start;
 	gap: 24px;
 	margin-top: 18px;
 }
@@ -170,10 +169,12 @@
 }
 
 .focus-status {
-	padding: 5px 10px;
+	padding: 5px 16px;
 	max-width: fit-content;
 	border-radius: 6px;
 	color: rgb(0, 0, 0);
+	border: 1.5px solid;
+	font-weight: bold;
 }
 
 /* ---------- Urgency accent ---------- */
@@ -182,6 +183,12 @@
 .focus-status.ready_to_sew {background: rgb(89, 138, 111, .25);}
 .focus-status.cutting {background: rgb(45, 114, 160, .25);}
 .focus-status.sewing {background: rgb(110, 94, 141, .25);}
+
+.focus-status.planning {border-color: rgb(199, 140, 150);}
+.focus-status.final_touches {border-color: rgb(161, 155, 58);}
+.focus-status.ready_to_sew {border-color: rgb(89, 138, 111);}
+.focus-status.cutting {border-color: rgb(45, 114, 160);}
+.focus-status.sewing {border-color: rgb(110, 94, 141);}
 
 .focus-progress-header {
 	display: flex;
