@@ -51,7 +51,7 @@ export default function CompletedPage() {
 						{groupByYear[year].map(project => (
 							<div key={project.id} 
 							className="gallery-item" 
-							data-status={statusKey(project?.status)}>
+							>
 								<ProjectCard 
 								project={project} 
 								isCompleted={true}

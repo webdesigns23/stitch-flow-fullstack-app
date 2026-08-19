@@ -6,6 +6,7 @@ import { formatDate, formatFullDate} from "../../utils/dateTime"
 import { getCardDeadlineLabel } from "../../utils/deadlines";
 import "../../styles/ProjectCard.css";
 import { CalendarCheck, Ruler } from "lucide-react";
+import empty_image from "../../assets/logo1.png"
 
 
 const STATUSES = [
@@ -24,6 +25,9 @@ export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 		await updateProject(project?.id, {status: e.target.value});
 	}
 
+	// Find finished image -- add this inside the component before the return
+	const finishedImage = project?.project_images?.find(img => img.image_type === "finished");
+
 	return(
 		<article className={
 			isCompleted ? "kanban-card" :
@@ -33,6 +37,29 @@ export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 
 			<Link to={`/projects/${project?.id}`} className="card_link" aria-label={`${project?.title}`}>
 				<div className="kanban-card-body">
+
+					{/* finished photo or prompt -- only on completed cards */}
+					{isCompleted && (
+						<div className="completed-card-image">
+							{finishedImage ? (
+								<img
+									src={finishedImage.secure_url}
+									alt={`Finished ${project?.title}`}
+									className="completed-card-img"
+								/>
+							) : (
+								<div className="completed-card-no-img">
+									<p>Add your finished photo...</p>
+									<img
+										src={empty_image}
+										alt="placeholder image"
+										className="completed-card-img empty"
+									/>
+									
+								</div>
+							)}
+						</div>
+  					)}
 
 					{/* project title */}
 					<h3 className="kanban-card-title">

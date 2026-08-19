@@ -114,6 +114,7 @@ export default function ProjectDetails() {
 						<ProjectNotesField project={project} onUpdate={handleFieldUpdates}/>
 					</article>
 
+					{/* upload images */}
 					<article className="image-upload-card">
 						<ProjectImageForm 
 							project={project} 
