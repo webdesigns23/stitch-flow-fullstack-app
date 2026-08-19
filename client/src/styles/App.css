@@ -1,4 +1,5 @@
-body {
+
+/* body {
   background-color: #f7f3ed;
   margin-left: 100px;
 }
@@ -7,11 +8,11 @@ body {
     display: inline-flex;
     align-items: center;
 	  gap: 5px;
-}
+} */
 
 
 /* ----------------------- Modals (forms, edit pattern details) ------------------------*/
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
@@ -29,10 +30,10 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-height: 90vh;
   overflow-y: auto;
-}
+} */
 
 /* ------------------- Textbox Project Deatais Notes Areas ----------------- */
-.notes-textarea {
+/* .notes-textarea {
   width: 100%;
   resize: vertical;
   padding: 10px 12px;
@@ -43,7 +44,6 @@ body {
   line-height: 1.6;
   background: #fff;
   box-sizing: border-box;
-  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .notes-textarea:focus {
@@ -61,10 +61,10 @@ body {
 .notes-actions {
   display: flex;
   gap: 8px;
-}
+} */
 
 /* -------------- Deadline on Project Cards and Project Details --------------- */
-.proj-card-deadline {
+/* .proj-card-deadline {
 	font-size: .9rem;
 	font-weight: 600;
 	color: #383a3d;
@@ -72,16 +72,16 @@ body {
   box-sizing: border-box; 
   padding: 6px 20px;     
 	background: rgba(167, 169, 157, 0.25);
-}
+} */
 
 /* Deadline Overdue outline card in red and hightlight due date */
-.proj-card-deadline.overdue {
+/* .proj-card-deadline.overdue {
 	color: #9e4149;
 	background: rgba(197, 105, 105, 0.25);
-}
+} */
 
 /* Deadline Due within 7 days outline card in yellow and hightlight due date */
-.proj-card-deadline.due-soon {
+/* .proj-card-deadline.due-soon {
 	color: rgb(18, 87, 48);
 	background: rgba(55, 164, 103, 0.25);
 }
@@ -101,4 +101,4 @@ body {
 .proj-card-finished {
   color: rgb(0, 0, 0);
   font-weight: bold;
-}
+} */

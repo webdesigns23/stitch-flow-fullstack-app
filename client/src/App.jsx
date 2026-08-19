@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import './styles/App.css'
 import NavBar from './components/NavBar';
 import DashboardPage from './pages/DashboardPage';
 import MaterialsPage from "./pages/MaterialsPage";

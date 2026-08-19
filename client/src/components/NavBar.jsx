@@ -38,13 +38,13 @@ export default function NavBar({user, onLogout}) {
 						end={end} 
 						className="nav-link" aria-label={label}
 					>
-						<Icon size={20} color="#b18b0e"/>
+						<Icon size={20} className="nav-icon"/>
 					<span className="nav-label">{label}</span>	
 					</NavLink>
 				</li>
 			))}
 		</ul>
-		<button className="logout_btn" onClick={handleLogout} aria-label="Logout">
+		<button className="logout-btn" onClick={handleLogout} aria-label="Logout">
 			<LogOut size={20}/>
 			<span className="nav-label logout">Logout</span>
 		</button>	

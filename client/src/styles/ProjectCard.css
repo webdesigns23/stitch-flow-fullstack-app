@@ -1,117 +1,113 @@
+
 .kanban-card {
-	background: white;
-	border-radius: 8px;
-	border: 0.5px solid #e0d8c8;
-	border-left: 4px solid transparent;
-	overflow: hidden;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border-soft);
+  border-left: 4px solid transparent;
+  overflow: hidden;
 }
-
-/*---- Kanban cards info ---- */
+ 
+/* -------------------- Card Info -------------------- */
 .kanban-card-body {
-	display: flex;
-	flex-direction: column;
-	gap: 3px;
-	padding: 6px;
-	align-items: stretch;
-	margin: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px;
+  align-items: stretch;
+  margin: 8px;
 }
-
+ 
 .kanban-card-title {
-	font-size: 1rem;
-	font-weight: 600;
-	color: #3a3020;
-	
-	margin: 0px 0px 8px 0px;
-	border-bottom: 1px solid #dad6c9;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--slate-mid);
+  margin: 0 0 8px 0;
+  border-bottom: 1px solid var(--surface-mid);
 }
-
+ 
 .kanban-card-pattern {
-	font-size: .85rem;
-	margin: 0px;
-	color: #5b5b57;
+  font-size: 0.85rem;
+  margin: 0;
+  color: var(--slate-muted);
 }
-
+ 
 .kanban-card-pattern.none {
-	color: rgb(143, 115, 15);
+  color: var(--gold);
 }
-
-/* Deadline Overdue outline card in red  */
+ 
+/* Overdue -- red outline */
 .kanban-card-overdue {
-	background: white;
-	border-radius: 8px;
-	border-left: 4px solid transparent;
-	border: 4px solid rgb(197, 105, 105);
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 4px solid var(--status-pink);
 }
-
-/* Deadline Due within 7 days outline card in yellow  */
+ 
+/* Due soon -- green outline */
 .kanban-card-due-soon {
-	background: white;
-	border-radius: 8px;
-	border-left: 4px solid transparent;
-	border: 4px solid rgb(37, 167, 117);
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 4px solid var(--status-green);
 }
-
-
-/* -----------------Status Update-------------------- */
+ 
+/* -------------------- Status Update -------------------- */
 .kanban-card-footer {
-	padding: 0 10px 10px;
+  padding: 0 10px 10px;
 }
-
+ 
 .kanban-card-status {
-	font-size: .85rem;
-	color: rgb(110, 109, 98);
+  font-size: 0.85rem;
+  color: var(--slate-muted);
 }
-
+ 
 .kanban-card-select {
-	width: 100%;
-	font-size: 12px;
-	margin: 8px 0;
-	padding: 6px;
-	border: 0.5px solid #d3d1c7;
-	background: #f7f5f2;
-	color: #2c2c2a;
-	cursor: pointer;
-	border-radius: 4px;
-	text-overflow: ellipsis;
+  width: 100%;
+  font-size: 0.75rem;
+  margin: 8px 0;
+  padding: 6px;
+  border: 0.5px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--slate);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  text-overflow: ellipsis;
+  padding-left: 30px;
+  text-transform: capitalize;
 }
-
+ 
 .proj-complete-time {
-	color: rgb(134, 96, 12);
-	font-size: .85rem;
-	text-align: center;
+  color: var(--gold-dark, var(--gold));
+  font-size: 0.85rem;
+  text-align: center;
 }
-
+ 
 .empty-img {
-	width: 300px;
-	height: auto;
-	opacity: .5;
+  width: 300px;
+  height: auto;
+  opacity: 0.5;
 }
-
+ 
+/* -------------------- Status Dot -------------------- */
 .kanban-select-wrapper {
-	position: relative;
-	width: 100%;
+  position: relative;
+  width: 100%;
 }
-
+ 
 .kanban-status-dot {
-	position: absolute;
-	left: 12px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 9px;
-	height: 9px;
-	border-radius: 50%;
-	z-index: 1;
-	pointer-events: none;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
 }
-
-.kanban-card-select {
-	width: 100%;
-	padding-left: 30px;
-	text-transform: capitalize;
-}
-
-.status-planning {background-color: rgb(199, 140, 150);}
-.status-cutting {background-color: rgb(45, 114, 160);}
-.status-ready_to_sew {background-color: rgb(47, 116, 78);}
-.status-sewing {background-color: rgb(110, 94, 141);}
-.status-final_touches {background-color: rgb(161, 155, 58);}
+ 
+/* -------------------- Status Colors -------------------- */
+.status-planning     { background-color: var(--status-pink); }
+.status-cutting      { background-color: var(--status-blue); }
+.status-ready_to_sew { background-color: var(--status-green); }
+.status-sewing       { background-color: var(--status-purple); }
+.status-final_touches{ background-color: var(--status-gold); }
+ 

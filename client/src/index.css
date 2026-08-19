@@ -1,83 +1,263 @@
+/* ------------------------- 1. DESIGN --------------------------*/
+:root {
+  /* Golds */
+  --gold: #9f831d;
+  --gold-light: #c8a84b;
+  --gold-soft: rgba(159, 131, 29, 0.15);
 
-#root {
-  width: 90%;
-  margin: 0 auto;
-  padding: .5rem;
-  text-align: left;
-} 
+  /* Dark surface (navbar) */
+  --surface-dark: #1e1b1b;
+  --surface-dark-mid: #3a352b;
+
+  /* Warm darks (text, headings) */
+  --slate: #2c2c2a;
+  --slate-mid: #49483f;
+  --slate-muted: #77716b;
+
+  /* Warm whites (backgrounds) */
+  --surface: #fff;
+  --surface-alt: #f7f3ed;
+  --surface-mid: #ebe9e5;
+
+  /* Borders */
+  --border: #ddd;
+  --border-soft: #ebe9db;
+
+  /* Shadows / overlays */
+  --shadow-sm: rgba(0, 0, 0, 0.08);
+  --shadow-md: rgba(0, 0, 0, 0.25);
+  --shadow-overlay: rgba(0, 0, 0, 0.4);
+
+  /* Status colors (Kanban columns) */
+  --status-blue: rgb(45, 114, 160);
+  --status-blue-soft: rgba(45, 114, 160, 0.15);
+  --status-green: rgb(47, 116, 78);
+  --status-green-soft: rgba(47, 116, 78, 0.15);
+  --status-pink: rgb(199, 140, 150);
+  --status-pink-soft: rgba(199, 140, 150, 0.15);
+  --status-purple: rgb(110, 94, 141);
+  --status-purple-soft: rgba(110, 94, 141, 0.15);
+  --status-gold: rgb(161, 155, 58);
+  --status-gold-soft: rgba(161, 155, 58, 0.15);
+
+  /* Error / Warning */
+  --error: #9e4149;
+  --error-soft: rgba(197, 105, 105, 0.25);
+  --success: rgb(31, 142, 68);
+  --success-soft: rgba(55, 164, 103, 0.25);
+
+  /* Typography */
+  --font-display: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+
+/* ------------------------ 2. RESET/BASE --------------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   scroll-behavior: smooth;
 }
 
-a {
-  font-weight: 500;
-  color: #5c5d85;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #af656f;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   align-items: flex-start;
+  background-color: var(--surface-alt);
+  font-family: var(--font-body);
+  color: var(--slate);
   padding-bottom: 50vh;
 }
 
+#root {
+  text-align: left;
+}
+
+.main {
+  margin-left: 128px;
+  width: calc(100% - 128px);
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+
+/* ------------------------ 3. BASE ELEMENTS --------------------------*/
 h1 {
+  font-family: var(--font-display);
   font-weight: 100;
   font-size: 2.25rem;
   line-height: 1.1;
-  color: rgb(48, 49, 49);
+  color: var(--slate);
   margin: 10px 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px var(--shadow-md);
 }
 
 h2 {
+  font-family: var(--font-display);
   font-weight: 100;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1.1;
-  color: rgb(52, 53, 55);
-  text-shadow: 2px 2px 4px rgba(230, 203, 66, 0.5);
+  color: var(--slate-mid);
+  text-shadow: 2px 2px 4px var(--gold-soft);
 }
 
 h3 {
+  font-family: var(--font-display);
   font-size: 1rem;
-  color: rgb(92, 80, 77);
-  text-shadow: 2px 2px 4px rgba(208, 211, 216, 0.5);
+  color: var(--slate-mid);
   margin: 5px;
 }
 
-p, li {
-  color: rgb(73, 68, 68);
+p,
+li {
   font-size: .85rem;
+  color: var(--slate-muted);
 }
 
-span {
-  color: black;
+a {
+  font-weight: 500;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--gold-light);
 }
 
 button {
-  border: 2px solid rgb(201, 173, 12);
-  font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
-  padding: .35rem 1rem;
-  font-size: .85rem;
+  border: 2px solid var(--gold);
+  font-family: var(--font-display);
+  padding: 0.35rem 1rem;
+  font-size: .95rem;
   font-weight: 550;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   margin: 8px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--slate);
+  transition: border-color 0.2s, background 0.2s;
 }
 
 button:hover {
-  border-color: #a3a093;
+  border-color: var(--gold-light);
+  background: var(--gold-soft);
 }
 
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+
+
+/* ------------------------- 4. SHARED UTILS ---------------------------*/
+
+/* Navigation */
+.go-back {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--shadow-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: rgba(99, 96, 92, 0.75);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 85%;
+  box-shadow: 0 4px 20px var(--shadow-md);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Notes textarea */
+.notes-textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 10px 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  font-size: .85rem;
+  font-family: var(--font-body);
+  color: var(--slate-mid);
+  line-height: 1.6;
+  background: var(--surface);
+  box-sizing: border-box;
+}
+
+.notes-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.notes-display {
+  white-space: pre-wrap;
+  font-size: .85rem;
+  color: var(--slate-mid);
+  line-height: 1.6;
+}
+
+.notes-actions {
+  display: flex;
+  gap: .5rem;
+}
+
+/* Deadline badges */
+.proj-card-deadline {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--slate);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  padding: 6px 20px;
+  background: rgba(167, 169, 157, 0.25);
+}
+
+.proj-card-deadline.overdue {
+  color: var(--error);
+  background: var(--error-soft);
+}
+
+.proj-card-deadline.due-soon {
+  color: var(--success);
+  background: var(--success-soft);
+}
+
+.deadline-days-overdue,
+.deadline-days-soon {
+  color: var(--error);
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-top: 6px;
+}
+
+.deadline-days-soon {
+  color: var(--success);
+}
+
+.proj-card-finished {
+  color: var(--slate);
+  font-weight: bold;
 }
 

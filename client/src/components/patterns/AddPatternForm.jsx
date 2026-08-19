@@ -88,7 +88,7 @@ export default function AddPatternForm({ onClose }) {
 	return (
 		<form className="form" onSubmit={handlePatternSubmit}>
 			<h2 className="form-heading">
-				<Scissors size={30} color="#9f831d" />
+				<Scissors size={30} className="form-icon"/>
 				{" "} Add New Pattern
 			</h2>
 			<div className="form-pat-details-block">
@@ -139,7 +139,7 @@ export default function AddPatternForm({ onClose }) {
 			{requirements.map((req, index) => (
 				<div key={index} className="form-req-block">
 					<p className="form-req-label">
-						<Ruler size={16} color="#9f831d"/>
+						<Ruler size={16} className="form-icon"/>
 						{" "} Requirement {index + 1}</p>
 
 					<div className="form-row">
@@ -182,11 +182,11 @@ export default function AddPatternForm({ onClose }) {
 				</div>
 			))}
 
-			<div className="button_row button_row--left">
+			<div className="button-row button-row--left">
 				<button type="button" onClick={addRow}>+ Add Requirement</button>
 			</div>
 
-			<div className="button_row">
+			<div className="button-row">
 				<button type="submit" disabled={submitting}>
 					{submitting ? "Saving..." : "Save Pattern"}
 				</button>
