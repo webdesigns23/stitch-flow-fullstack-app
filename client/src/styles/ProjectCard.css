@@ -1,6 +1,6 @@
 
 .kanban-card {
-  background: var(--surface);
+  background: var(--white);
   border-radius: var(--radius);
   border: 0.5px solid var(--border-soft);
   border-left: 4px solid transparent;
@@ -22,7 +22,7 @@
   font-weight: 600;
   color: var(--slate-mid);
   margin: 0 0 8px 0;
-  border-bottom: 1px solid var(--surface-mid);
+  border-bottom: 1px solid var(--cream-mid);
 }
  
 .kanban-card-pattern {
@@ -37,14 +37,14 @@
  
 /* Overdue -- red outline */
 .kanban-card-overdue {
-  background: var(--surface);
+  background: var(--white);
   border-radius: var(--radius);
   border: 4px solid var(--status-pink);
 }
  
 /* Due soon -- green outline */
 .kanban-card-due-soon {
-  background: var(--surface);
+  background: var(--white);
   border-radius: var(--radius);
   border: 4px solid var(--status-green);
 }
@@ -65,7 +65,7 @@
   margin: 8px 0;
   padding: 6px;
   border: 0.5px solid var(--border);
-  background: var(--surface-alt);
+  background: var(--cream);
   color: var(--slate);
   cursor: pointer;
   border-radius: var(--radius-sm);

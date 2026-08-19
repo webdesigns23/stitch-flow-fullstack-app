@@ -50,7 +50,7 @@ body.landing-bg {
   flex-shrink: 0;
   background: rgba(58, 54, 54, 0.85);
   box-shadow: 0 4px 15px var(--shadow-overlay);
-  color: var(--surface-mid);
+  color: var(--cream-mid);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -112,7 +112,7 @@ body.landing-bg {
  
 .form_field input {
   width: 50%;
-  background: var(--surface);
+  background: var(--cream);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 0.5rem 0.7rem;
   color: var(--slate);
@@ -147,7 +147,7 @@ body.landing-bg {
  
 .button-landing.guest {
   background: none;
-  color: var(--surface-mid);
+  color: var(--cream-mid);
 }
  
 .button-link {

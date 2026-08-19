@@ -19,7 +19,7 @@
 }
  
 .stitch-flow {
-  color: var(--surface-mid);
+  color: var(--cream-mid);
   font-family: var(--font-display);
   font-size: .95rem;
   text-transform: uppercase;
@@ -32,7 +32,7 @@
   justify-content: center;
   align-items: center;
   background-color: var(--surface-dark-mid);
-  color: var(--gold);
+  color: var(--gold-light);
   font-size: 1.25rem;
   font-weight: 500;
   height: 50px;
@@ -66,7 +66,7 @@
   width: 98%;
   margin: 0;
   padding: 14px 6px;
-  color: var(--surface-mid);
+  color: var(--cream-mid);
 }
 
 .nav-link:hover {
@@ -75,7 +75,6 @@
 }
 
 .nav-label {
-  color: var(--surface-mid);
   letter-spacing: 0.5px;
   font-family: var(--font-display);
   font-size: .85rem;

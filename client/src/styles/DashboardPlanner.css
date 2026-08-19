@@ -1,176 +1,155 @@
 
-/* --------------- Weekly Planner Section -------------- */
-
+/* -------------------- Planner Layout -------------------- */
 .upcoming-proj-main {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 14px;
-
-	width: 100%;
-	margin: 10px 0 16px;
-	padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: 100%;
+  margin: 10px 0 16px;
+  padding: 0;
 }
-
-
-/* Individual planner card */
+ 
+/* -------------------- Individual Planner Card -------------------- */
 .upcoming-proj {
-	display: flex;
-	flex-direction: row;
-	gap: 16px;
-
-	width: 200px;
-	min-height: auto;
-	padding: 10px 16px;
-	margin: 0;
-
-	background: #fffdf8;;
-	border:1px solid #d8b24b;
-	border-radius: 10px;
-
-	box-shadow: 0 3px 10px rgba(68, 67, 67, 0.07);;
-	text-decoration: none;
-	color: #2c2c2a;
-
-	transition:
-		box-shadow 0.2s,
-		transform 0.2s;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 250px;
+  min-height: auto;
+  padding: 10px 16px;
+  margin: 0;
+  background: var(--cream-light);
+  border: 1px solid var(--gold-light);
+  border-radius: var(--radius);
+  box-shadow: 0 3px 10px var(--shadow-sm);
+  text-decoration: none;
+  color: var(--slate);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
-
+ 
 .upcoming-proj:hover {
-	box-shadow: 0 4px 12px rgba(68, 67, 67, 0.12);
-	transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-sm);
+  transform: translateY(-1px);
 }
-
-/* ---------- Urgency accent ---------- */
-.upcoming-proj.planning {border-left: 6px solid rgb(199, 140, 150);}
-.upcoming-proj.final_touches {border-left: 6px solid rgb(161, 155, 58);}
-.upcoming-proj.ready_to_sew {border-left: 6px solid rgb(89, 138, 111);}
-.upcoming-proj.cutting {border-left: 6px solid rgb(45, 114, 160);}
-.upcoming-proj.sewing {border-left: 6px solid rgb(110, 94, 141);}
-
-/* ---------- Empty planner ---------- */
-
+ 
+/* Status accent borders */
+.upcoming-proj.planning     { border-left: 6px solid var(--status-pink); }
+.upcoming-proj.final_touches{ border-left: 6px solid var(--status-gold); }
+.upcoming-proj.ready_to_sew { border-left: 6px solid var(--status-green); }
+.upcoming-proj.cutting      { border-left: 6px solid var(--status-blue); }
+.upcoming-proj.sewing       { border-left: 6px solid var(--status-purple); }
+ 
+/* -------------------- Empty Planner -------------------- */
 .empty-upcoming-proj {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	padding: 12px 14px;
-	background: #f9f8f5;
-	border: 0.5px dashed #ccc;
-	border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--cream);
+  border: 0.5px dashed var(--border);
+  border-radius: var(--radius-sm);
 }
-
+ 
 .empty-upcoming-proj span {
-	font-size: 1.25rem;
-	color: #888;
+  font-size: 1.25rem;
+  color: var(--slate-muted);
 }
-
+ 
 .empty-upcoming-proj a {
-	font-size: 0.8rem;
-	padding: 5px 12px;
-
-	border-radius: 6px;
-	background: #fff;
-	border: 0.5px solid #ccc;
-
-	color: #2c2c2a;
-	text-decoration: none;
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  border: 0.5px solid var(--border);
+  color: var(--slate);
+  text-decoration: none;
 }
-
-
-/* ---------- Weekly headers ---------- */
-
+ 
+/* -------------------- Weekly Headers -------------------- */
 .upcoming-proj-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
-
+ 
 .planner-weeks {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-
+ 
 .week-group {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-
+ 
 .week-label {
-	font-size: 0.9rem;
-	color: #52514e;
-	text-transform: uppercase;
-
-	padding-bottom: 8px;
-	border-bottom: 0.5px solid #e8e4e0;
+  font-size: 0.85rem;
+  color: var(--slate-mid);
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid var(--border-soft);
 }
-
+ 
 .field-empty,
 .week-empty {
-	font-size: 1rem;
-	color: rgba(106, 103, 97, 0.75);
-	font-style: italic;
+  font-size: 1rem;
+  color: var(--slate-muted);
+  font-style: italic;
 }
-
-
-/* ---------- Planner card content ---------- */
-
+ 
+/* -------------------- Planner Card Content -------------------- */
 .planner-date {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
-
+ 
 .planner-weekday {
-	font-size: 0.75rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-	color: #777;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-muted);
 }
-
+ 
 .planner-short-date {
-	font-size: 1.15rem;
-	font-weight: 600;
-	line-height: 1.1;
-	color: #2c2c2a;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--slate);
 }
-
+ 
 .planner-proj-info {
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
-	border-left: 1px solid rgb(220, 215, 215);
-	padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 1px solid var(--border);
+  padding-left: 16px;
 }
-
+ 
 .planner-proj-title {
   display: block;
-	font-size: 1rem;
-	font-weight: 600;
-	color: #2c2c2a;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--slate);
 }
-
+ 
 .planner-proj-deadline {
-	display: block;
-  	font-size: 0.85rem;
-	color: #343a41;
+  display: block;
+  font-size: 0.85rem;
+  color: var(--slate-muted);
 }
-
-.planner-proj-deadline {
-	color: #6d655f;
-}
-
+ 
 .planner-proj-deadline.soon {
-	color: #479326;
-	font-weight: 600;
+  color: var(--success);
+  font-weight: 600;
 }
-
+ 
 .planner-proj-deadline.overdue {
-	color: #dd5b1f;
-	font-weight: 600;
+  color: var(--error);
+  font-weight: 600;
 }
+ 

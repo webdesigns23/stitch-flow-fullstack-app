@@ -6,7 +6,7 @@
   --gold-soft: rgba(159, 131, 29, 0.15);
 
   /* Dark surface (navbar) */
-  --surface-dark: #1e1b1b;
+  --surface-dark: #181717;
   --surface-dark-mid: #3a352b;
 
   /* Warm darks (text, headings) */
@@ -15,9 +15,10 @@
   --slate-muted: #77716b;
 
   /* Warm whites (backgrounds) */
-  --surface: #fff;
-  --surface-alt: #f7f3ed;
-  --surface-mid: #ebe9e5;
+  --white: #fff; 
+  --cream-light: #fbfaf6;
+  --cream: #f7f3ed;
+  --cream-mid: #ebe9e5; 
 
   /* Borders */
   --border: #ddd;
@@ -73,7 +74,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   align-items: flex-start;
-  background-color: var(--surface-alt);
+  background-color: var(--cream);
   font-family: var(--font-body);
   color: var(--slate);
   padding-bottom: 50vh;
@@ -201,7 +202,7 @@ button:focus-visible {
   font-family: var(--font-body);
   color: var(--slate-mid);
   line-height: 1.6;
-  background: var(--surface);
+  background: var(--white);
   box-sizing: border-box;
 }
 
