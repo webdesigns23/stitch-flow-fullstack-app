@@ -3,6 +3,7 @@ import ProjectCard from "./ProjectCard";
 import { Search, MoveUpRight, CalendarDays } from "lucide-react";
 import empty from "../../assets/empty_projects.png"
 import "../../styles/Kanban.css";
+import { parseDeadline } from "../../utils/dateTime";
 
 const STATUSES = [
 	{ key: "planning", label: "Planning" },
@@ -25,9 +26,10 @@ export default function ProjectKanban({ projects }) {
 
 	const activeProjects = projects.filter(p => !p.completed_at);
 
-	const filteredProjects = activeProjects.filter(p =>
-		p.title.toLowerCase().includes(query)
-	);
+	//Search by title, then sort by soonest deadline first
+	const filteredProjects = activeProjects
+		.filter(p => p.title.toLowerCase().includes(query))
+		.sort((a,b) => parseDeadline(a.deadline) - parseDeadline(b.deadline));
 
 	//Group filtered projects into sections by month
 	const monthSections = {};
