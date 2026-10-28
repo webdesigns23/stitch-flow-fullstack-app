@@ -14,14 +14,13 @@
   gap: 3px;
   padding: 6px;
   align-items: stretch;
-  margin: 8px;
 }
  
 .kanban-card-title {
   font-size: 1rem;
   font-weight: 600;
   color: var(--slate-mid);
-  margin: 0 0 8px 0;
+  margin: 8px 0;
   border-bottom: 1px solid var(--cream-mid);
 }
  
@@ -112,28 +111,54 @@
 .status-final_touches{ background-color: var(--status-gold); }
 
 
-/* -------------------- Completed Card -------------------- */
+/* -------------------- Completed Cards -------------------- */
 .completed-gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   margin: 12px 0;
 }
- 
-.completed-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px var(--shadow-md);
+
+/* One box per card: the inner card fills the outer gallery box */
+.completed-gallery .gallery-item {
+  display: flex;
+  width: 232px;
 }
- 
+
+.completed-gallery .kanban-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+.completed-gallery .card_link,
+.completed-gallery .kanban-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Titles take two lines of space, so the underline always lines up */
+.completed-gallery .kanban-card-title {
+  min-height: 2.6em;
+}
+
+/* Pin "Completed in" to the bottom of every card */
+.completed-gallery .proj-complete-time {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
 /* -------------------- Image -------------------- */
 .completed-card-image {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--cream-mid);
   border-radius: var(--radius-sm);
 }
- 
+
 .completed-card-img {
   display: block;
   width: 100%;
@@ -142,6 +167,21 @@
   object-position: center;
 }
 
+/* Placeholder when there's no finished photo */
+.completed-card-no-img {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
 .completed-card-img.empty {
+  height: auto;
+  max-height: 60%;
+  object-fit: contain;
   opacity: 50%;
 }

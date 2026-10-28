@@ -66,16 +66,19 @@ export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 						{capitalizeWords(project?.title)}
 					</h3>
 
-					{/* linked pattern or none */}
-					{pattern ? (
-						<p className="kanban-card-pattern">
-							<Ruler size={12}/>
-							{" "} {capitalizeWords(pattern?.name)}
-						</p>
-					) : (
-						<p className="kanban-card-pattern none">
-							<Ruler size={12}/>
-							{" "} No Pattern Linked</p>
+					{/* linked pattern or none, only on active project cards */}
+					{!isCompleted && (
+						pattern ? (
+							<p className="kanban-card-pattern">
+								<Ruler size={12}/>
+								{" "} {capitalizeWords(pattern?.name)}
+							</p>
+						) : (
+							<p className="kanban-card-pattern none">
+								<Ruler size={12}/>
+								{" "} No Pattern Linked
+							</p>
+						)
 					)}
 
 					{/* project deadline */}

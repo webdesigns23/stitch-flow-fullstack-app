@@ -4,7 +4,11 @@ Sewing Project Manager Full-Stack App
 Stay inspired and organized with all your sewing projects in one easy space
 
 # Overview
-A sewing project management tracker that helps casual sewists, quilters, and cosplayers turn creative ideas into finished projects. Plan your projects, track your progress, and keep all your pattern specs, materials, costs and notes in one place. Whether you’re starting something new or revisiting a favorite creation, StitchFlow keeps your sewing projects moving smoothly from the first stitch to the final seam so you can spend less time organizing and more time sewing.
+Stitch Flow is a full-stack project manager for sewists, from hobbyists to small custom apparel businesses. Plan projects, track progress on a Kanban board, and keep pattern specs, materials, photos, and notes together, from the first stitch to the final seam.
+
+It also answers the question every custom maker struggles with in a busy season: can I take on another order? The Production Planner schedules every piece of work by deadline at a steady weekly pace, shows what to sew each week, and flags when you're at capacity or should hold off on new orders.
+
+Stitch Flow started as my capstone project and grew out of my own custom dancewear business, Charms Dancewear, to help manage custom orders.
 
 # Live Demo
 [Visit Stitch Flow](https://stitch-flow-fullstack-app.vercel.app/)
@@ -18,26 +22,36 @@ A sewing project management tracker that helps casual sewists, quilters, and cos
 - View all completed Projects in a dedicated gallery
 - View a Dashboard with project stats, a pie chart of Projects by status, a bi-weekly schedule view, overdue/due-soon alerts, and a card showing how many planning-status Projects have a linked pattern, with a "View Materials" link to the Materials page
 
+- User authentication (signup and login) so each user's projects and patterns stay private
+- Guest demo login for exploring the app with sample data
+- Add, view, edit, and delete Projects and Patterns
+- Kanban board grouped by deadline month and sorted soonest first, with overdue and due-soon highlighting
+- Project quantity, for orders with more than one piece (team costumes, bulk orders)
+- Link Patterns to Projects, or mark a Project as having no pattern
+- Upload and manage Project photos via Cloudinary, with filterable image galleries and a lightbox viewer
+- Completed Projects gallery, grouped by year, showing finished photos and how many days each project took
+- Dashboard with today's focus, project stats, weeks of work booked, a pie chart of - Projects by status, and a materials summary
+- Production Planner that automatically schedules work and flags capacity (see below)
+
 # Tools Featured in this Project:
 - [GitHub Repo](https://github.com/webdesigns23/stitch-flow-fullstack-app.git)
 - Text Editor or IDE (e.g., VS Code)
 - Git + GitHub
-- React
-- React Router
+- React, React Router
 - Vite
 - Node.js
-- Python 3.8.13+
+- Python 3.12
 - Virtualenv
 - Python Packages listed in requirements.txt
-- Flask
+- Flask, Flask-RESTful
 - Flask-SQLAlchemy
-- Flask-Migrate
-- Flask-JWT-Extended
-- Flask-Bcrypt
+- Flask-Migrate (Alembic)
+- Flask-JWT-Extended, Flask-Bcrypt
 - Flask-CORS
+- Marshmallow
 - PostgreSQL (via Neon)
 - Cloudinary (image hosting & management)
-- Depolyed on Vercel and Render
+- Depolyed on Vercel (client) and Render (server)
 
 # Resources
 - [React Router](https://reactrouter.com/en/main)
@@ -67,57 +81,48 @@ cd <folder name>
 # Server: Running Application Backend:
 1. Set up your virtual environment of choice (virtualenv prefered)
 ```bash
-virtualenv env1
-source env1/bin/activate
+cd server
+python -m venv venv
+source venv/bin/activate
 ```
-2. Install PyPi dependencies using requiements.txt
+2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Navigate into the server/ directory and create a `.env` file with the following variables:
+3. Create a .env file in server/:
 ```bash
 DATABASE_URL=
 JWT_SECRET_KEY=
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
+ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
 ```
 
-4. Set environment variables for running the Flask server locally:
+4. Apply the database migrations(the migrations/ folder is included, so there's no need to run flask db init):
 ```bash
-export FLASK_APP=app.py
-export FLASK_RUN_PORT=5555
+flask --app app db upgrade
 ```
-
-5. Create a migrations folder, run initial migration and update
-```bash
-cd server
-flask db init
-flask db migrate -m "initial migration"
-flask db upgrade
-```
-6. Populate database with initial data
+5. Optional, for a new local database only: load seed data
 ```bash
 python seed.py
 ```
-# Running Back-end of Application:
-Should run on port 5555 to match proxy in package.json
-You can run the Flask server with:
+
+6. Start the server (runs on port 5555):
 ```bash
 python app.py
 ```
 
 # Client: Running Application Frontend:
-To run the React application
-Should run on: (http://127.0.0.1:5173/)
-1. Open client folder
+1. In a second terminal, install dependencies:
 ```bash
 cd client
-```
-2. Install dependencies
-```bash
 npm install
+```
+2. Create a .env file in client/ pointing to the server:
+```bash
+VITE_API_URL=http://127.0.0.1:5555
 ```
 3. Start the application
 ```bash
@@ -191,16 +196,16 @@ npm run dev
 - Test endpoints in Postman or by using application in browser and inspect
 
 # Application Flow:
-1. Sign up or log in to your account
-2. View Dashboard too see stats and weekly schedule, if empty then add pattern/projects
-3. Add a pattern with all pattern info and pattern requirements
-4. Add a project, optionally linking a pattern from the dropdown (or mark it as "No Pattern")
-5. Default status is set to "planning"
+1. Sign up, log in
+2. Check the Dashboard for today's focus, weeks of work booked, and this week's Production Plan
+3. Add a pattern with its info and material requirements
+4. Add a project with a deadline and quantity, optionally linking a pattern
+5. New projects start in "planning" status
 6. Track progress on the Kanban board, organized by deadline month and status
-7. Upload progress photos to your project's image gallery
-8. Update status as you work, mark as finished when complete
+7. Upload progress photos to the project's image gallery
+8. Update the status as you work, and mark it complete when finished
 9. View finished projects in the Completed gallery
-10. Delete if you decide you no longer want to work on a project
+10. Use the Production Planner flag befoer taking on new orders
 
 # Commit and Push Git History if any adjustments to this code are made
 1. Add your changes to the staging area by executing
@@ -216,4 +221,4 @@ git push origin main
 # Author and Project Context
 * Created by: Sharmaine Perea
 * Project Created for Flatiron School Software Engineering Bootcamp
-* Assignment: Capstone Project 2
+* Assignment: Capstone Project 2 and expanded since

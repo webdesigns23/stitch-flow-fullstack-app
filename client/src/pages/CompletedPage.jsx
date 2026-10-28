@@ -47,7 +47,7 @@ export default function CompletedPage() {
 						<hr className="kanban-filter-line" />
 					</div>
 					
-					<div className="gallery">
+					<div className="gallery completed-gallery">
 						{groupByYear[year].map(project => (
 							<div key={project.id} 
 							className="gallery-item" 
