@@ -24,6 +24,7 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
 }
 
 app.json.compact = False
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 ALLOWED_ORIGINS = set(os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(","))
 
