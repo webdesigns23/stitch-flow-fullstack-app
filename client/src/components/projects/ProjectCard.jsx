@@ -102,6 +102,7 @@ export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 								? getCardDeadlineLabel(daysUntilDue(project?.deadline), project?.deadline)
 								: `Due: ${formatDate(project?.deadline)}`
 							}	
+							{project?.quantity > 1 && ` (${project.quantity} Total)`}
 						</span>	
 					)}
 					

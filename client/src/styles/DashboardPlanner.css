@@ -86,7 +86,8 @@
 }
  
 .week-label {
-  font-size: 0.85rem;
+  font-size: .90rem;
+  font-weight: bold;
   color: var(--slate-mid);
   text-transform: uppercase;
   padding-bottom: 8px;
@@ -153,3 +154,51 @@
   font-weight: 600;
 }
  
+
+/* -------------------- Work Plan Additions -------------------- */
+.work-plan-message {
+  margin: 4px 2px 0;
+  color: var(--slate-mid);
+  font-size: 0.9rem;
+  background: #efede9;
+  border-radius: 8px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.work-plan-message.max_capacity  { color: var(--status-gold); background: var(--status-gold-soft); }
+.work-plan-message.over_capacity { color: var(--status-pink); background: var(--status-pink-soft); }
+.work-plan-message.at_risk       { color: var(--white);       background: var(--error); font-weight: 600; }
+
+.work-plan-alert {
+  margin: 4px 2px 0;
+  color: var(--error);
+  font-size: 0.85rem;
+}
+
+.week-total {
+  font-size: .85rem;
+}
+
+.planner-proj-pieces {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--slate-mid);
+}
+
+.upcoming-proj.late {
+  border-color: var(--error);
+}
+
+.capacity-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+
+.capacity-badge.on_track      { color: var(--status-green); background: var(--status-green-soft); }
+.capacity-badge.max_capacity  { color: var(--status-gold);  background: var(--status-gold-soft); }
+.capacity-badge.over_capacity { color: var(--status-pink);  background: var(--status-pink-soft); }
+.capacity-badge.at_risk       { color: var(--white);        background: var(--error); }

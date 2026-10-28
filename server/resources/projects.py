@@ -77,8 +77,8 @@ class ProjectIndex(Resource):
                 return {"error": "Quantity must be a whole number"}, 422
             if quantity < 1:
                 return {"error": "Quantity must be at least 1"}, 422
-            if quantity > 60:
-                return {"error": "Quantity cannot be more than 60"}, 422
+            if quantity > 40:
+                return {"error": "Quantity cannot be more than 40"}, 422
 
             new_project = Project(
                 user_id = user_id,
@@ -167,8 +167,8 @@ class ProjectDetails(Resource):
                 return {"error": "Quantity must be a whole number"}, 422
             if quantity < 1:
                 return {"error" : "Quantity must be at least 1"}, 422
-            if quantity > 60:
-                return {"error": "Quantity must be more than 60"}, 422
+            if quantity > 40:
+                return {"error": "Quantity must be more than 40"}, 422
             project.quantity = quantity
 
         if "pattern_id" in data:

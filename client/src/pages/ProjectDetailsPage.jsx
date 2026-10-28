@@ -10,6 +10,7 @@ import ProjectDeadlineField from "../components/projects/detailsFields/ProjectDe
 import ProjectPatternField from "../components/projects/detailsFields/ProjectPatternField";
 import ProjectStatusField from "../components/projects/detailsFields/ProjectStatusField";
 import ProjectSizeNotesField from "../components/projects/detailsFields/ProjectSizeNotesField";
+import ProjectQuantityField from "../components/projects/detailsFields/ProjectQuantityField";
 import ProjectNotesField from "../components/projects/detailsFields/ProjectNotesField";
 import ProjectImageGallery from "../components/projects/detailsFields/ProjectImageGallery";
 import "../styles/ProjectDetails.css";
@@ -91,12 +92,14 @@ export default function ProjectDetails() {
 				{/* Grid Area: 3 Columns for Deadline, Notes, Size */}
 				<div className="primary-info-grid">
 					
-					{/* deadline */}
+					{/* deadline and quantity */}
 					<article className="meta-card deadline-card">
 						<ProjectDeadlineField 
 							project={project} 
 							onUpdate={handleFieldUpdates}
 							isCompleted={project.status == "complete"} />
+
+						<ProjectQuantityField project={project} onUpdate={handleFieldUpdates}/>
 
 						<hr className="proj-card-divider" />
 

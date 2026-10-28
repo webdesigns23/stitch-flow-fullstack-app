@@ -16,6 +16,7 @@ export default function AddProjectForm({ onClose }) {
 	const [status, setStatus] = useState("planning");
 	const [deadline, setDeadline] = useState("");
 	const [measurements, setMeasurements] = useState("");
+	const [quantity, setquantity] = useState(1);
 	const [notes, setNotes] = useState("");
 	const [patternId, setPatternId] = useState(null);
 	const [submitting, setSubmitting] = useState(false);
@@ -39,6 +40,7 @@ export default function AddProjectForm({ onClose }) {
 				status,
 				deadline: deadline || null,
 				measurement_notes: measurements.trim() || null,
+				quantity: Number(quantity) || 1,
 				notes: notes.trim() || "",
 				pattern_id: patternId ?? null,
 			};
@@ -108,6 +110,19 @@ export default function AddProjectForm({ onClose }) {
 							value={deadline}
 							onChange={(e) => setDeadline(e.target.value)}
 							maxLength={100}
+						/>
+					</label>
+				</div>
+
+				<div className="form_row">
+					<label>Quantity:
+						<input
+							type="number"
+							placeholder="Quantity"
+							min="1"
+							max="40"
+							value={quantity}
+							onChange={(e) => setquantity(e.target.value)}
 						/>
 					</label>
 				</div>

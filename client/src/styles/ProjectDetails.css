@@ -149,6 +149,38 @@
   cursor: pointer;
 }
  
+/* --------------------------Quantity------------------------------*/
+.proj-quantity {
+  margin: 20px 0;
+}
+
+.proj-card-deadline.quantity{
+  background: rgba(218, 204, 166, 0.5);
+}
+
+.proj-quantity-edit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 20px;
+}
+
+.proj-quantity-edit input[type="number"] {
+  width: 80px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--slate-mid);
+  background: var(--white);
+}
+
+.proj-quantity-edit input[type="number"]:focus {
+  outline: none;
+  border-color: var(--gold);
+}
 
 /* -------------------- Meta Card -------------------- */
 .meta-card {
