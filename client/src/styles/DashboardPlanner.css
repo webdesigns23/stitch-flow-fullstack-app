@@ -13,10 +13,10 @@
 .upcoming-proj {
   display: flex;
   flex-direction: row;
-  gap: 16px;
-  width: 250px;
+  gap: 8px;
+  width: 224px;
   min-height: auto;
-  padding: 10px 16px;
+  padding: 8px 16px;
   margin: 0;
   background: var(--cream-light);
   border: 1px solid var(--gold-light);
@@ -70,7 +70,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom:8px;
 }
  
 .planner-weeks {
@@ -83,6 +83,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 16px;
 }
  
 .week-label {
@@ -117,7 +118,7 @@
 }
  
 .planner-short-date {
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.1;
   color: var(--slate);
@@ -128,12 +129,12 @@
   flex-direction: column;
   gap: 4px;
   border-left: 1px solid var(--border);
-  padding-left: 16px;
+  padding-left: 8px;
 }
  
 .planner-proj-title {
   display: block;
-  font-size: 1rem;
+  font-size: .85rem;
   font-weight: 600;
   color: var(--slate);
 }
@@ -158,12 +159,12 @@
 /* -------------------- Work Plan Additions -------------------- */
 .work-plan-message {
   margin: 4px 2px 0;
-  color: var(--slate-mid);
+  color: var(--slate-muted);
   font-size: 0.9rem;
-  background: #efede9;
+  /* background: #efede9;
   border-radius: 8px;
   padding: 5px 10px;
-  text-align: center;
+  text-align: center; */
 }
 
 .work-plan-message.max_capacity  { color: var(--status-gold); background: var(--status-gold-soft); }
@@ -178,6 +179,12 @@
 
 .week-total {
   font-size: .85rem;
+}
+
+.work-plan-booked {
+  margin: 6px 2px 0;
+  font-size: 0.85rem;
+  color: var(--slate);
 }
 
 .planner-proj-pieces {
@@ -202,3 +209,13 @@
 .capacity-badge.max_capacity  { color: var(--status-gold);  background: var(--status-gold-soft); }
 .capacity-badge.over_capacity { color: var(--status-pink);  background: var(--status-pink-soft); }
 .capacity-badge.at_risk       { color: var(--white);        background: var(--error); }
+
+.pattern-project-filter-pill {
+  background: var(--white);
+  font: inherit;
+  cursor: pointer;
+}
+
+.pattern-project-filter-pill.active {
+  background: var(--gold-soft);
+}

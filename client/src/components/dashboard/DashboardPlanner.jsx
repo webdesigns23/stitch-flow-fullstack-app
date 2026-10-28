@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { CalendarRange } from "lucide-react";
+import { useState } from "react";
 import { getUrgencyClass, getDeadlineLabel, getWeekRange } from "../../utils/deadlines";
 import { formatWeekday, formatDate} from "../../utils/dateTime";
 import { capitalizeWords } from "../../utils/formatText";
@@ -14,19 +14,33 @@ const FLAG_LABELS = {
 };
 
 const FLAG_MESSAGES = {
-	on_track: "Every deadline fits at 21 a week",
-	max_capacity: "To hit every deadline, plan on up to 28 a week",
-	over_capacity: "Every deadline needs up to 35 a week, your best-week pace",
+	on_track: "All deadlines will be met with a production schedule of 21 a week",
+	max_capacity: "To hit every deadline, plan on making up to 28 a week",
+	over_capacity: "Every deadline needs up to 35 a week, your best-week pace!",
 	at_risk: "Over 35 a week. Hold off on new orders until you catch up!",
 };
 
-const WEEK_NAMES = ["This week", "Next week"];
+//Max weeks to show in production planner
+const MAX_WEEKS = 8;
+
+// const WEEK_NAMES = ["This week", "Next week"];
+function weekName(index) {
+	if (index === 0) return "This week";
+	if (index === 1) return "Next week";
+	return `Week ${index + 1}`;
+}
 
 export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue, daysUntilDue}) {
+	const [ weeksToShow, setWeeksToShow] = useState(1);
 
 	//Plan what to sew each week, earliest deadline first
 	const { flag, weeks, lateProjects } = planWork(activeProjects.filter(p => p.deadline));
-	const shownWeeks = weeks.slice(0, 2);
+
+	//Dynamicaly show weeks of work, up to 8
+	const maxWeeks = Math.min(weeks.length, MAX_WEEKS);
+	const weekOptions = Array.from({ length: maxWeeks }, (_, i) => i + 1);
+	const visibleWeeks = Math.min(weeksToShow, maxWeeks);
+	const shownWeeks = weeks.slice(0, visibleWeeks);
 	const hasProjects = shownWeeks.some(w => w.items.length > 0);
 
 	//Days left until a project's deadline (negative when overdue)
@@ -38,16 +52,45 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 		<div className="stat-gallery-item is-full">
 			<div className="upcoming-proj-header">
 				<h2 className="dashboard-title">
-					<CalendarRange size={24} color="#9f831d" />Work Plan
+					Production Planner
 				</h2>
+
+				{/* Week selector, only as many weeks as there is work for */}
+				{weekOptions.length > 1 && (
+					<nav className="pattern-project-filter-nav">
+						{weekOptions.map(n => (
+							<button
+								key={n}
+								className={`pattern-project-filter-pill ${visibleWeeks === n ? "active" : ""}`}
+								onClick={() => setWeeksToShow(n)}
+							>
+								{n} {n === 1 ? "week" : "weeks"}
+							</button>
+						))}
+					</nav>
+				)}
+				
+			</div>
+			<div>
 				<span className={`capacity-badge ${flag}`}>{FLAG_LABELS[flag]}</span>
+				<p className={`work-plan-message ${flag}`}>
+					{FLAG_MESSAGES[flag]}
+				</p>	
+				
 			</div>
 
-			<p className={`work-plan-message ${flag}`}>{FLAG_MESSAGES[flag]}</p>
 			<hr></hr>
 			{lateProjects.length > 0 && (
 				<p className="work-plan-alert">
 					At risk at 21 a week: {lateProjects.map(p => capitalizeWords(p.title)).join(", ")}
+				</p>
+			)}
+
+			
+
+			{weeks.length > MAX_WEEKS && (
+				<p className="work-plan-more">
+					Booked {weeks.length} weeks out, showing the first {MAX_WEEKS}
 				</p>
 			)}
 
@@ -56,7 +99,7 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 					{shownWeeks.map((week, index) => (
 						<div className="week-group" key={week.start.getTime()}>
 							<div className="week-label">
-								{WEEK_NAMES[index]}: {getWeekRange(week.start)}
+								{weekName(index)}: {getWeekRange(week.start)}
 							</div>
 
 							{/* Weekly total */}

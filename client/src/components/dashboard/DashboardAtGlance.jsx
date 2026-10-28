@@ -1,16 +1,13 @@
-import StatusPieChart from "./StatusPieChart"
-import { CircleCheckBig, Clock, CalendarX2, CirclePlus } from "lucide-react"
-import { Link } from "react-router-dom";
-import { NotebookText, } from "lucide-react"
-import { capitalizeWords }from "../../utils/formatText"
-import { formatDate } from "../../utils/dateTime";
+import { useState } from "react";
+import { Clock, CalendarX2, CirclePlus, CalendarRange } from "lucide-react"
 import DashboardCompleted from "./DashboardCompleted";
 import AddProjectForm from "../projects/AddProjectForm";
 import AddPatternForm from "../patterns/AddPatternForm";
-import { useState } from "react";
+import { planWork } from "../../utils/workPlan";
 
 
-export default function DashboardAtGlance({activeProjects, isOverdue, isDueSoon, daysOverdue, daysUntilDue, projects, patterns}) {
+
+export default function DashboardAtGlance({activeProjects, isOverdue, isDueSoon,  projects}) {
 	const [showProjForm, setShowProjForm] = useState(false);
 	const [showPatForm, setShowPatForm] = useState(false);
 
@@ -21,6 +18,10 @@ export default function DashboardAtGlance({activeProjects, isOverdue, isDueSoon,
 	const dueSoonProjects = activeProjects
 		.filter(p => isDueSoon(p.deadline))
 		.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+
+	//Production time, how many weeks of work are booked
+	const { weeks: plannedWeeks, flag } = planWork(activeProjects.filter(p => p.deadline));
+	const weeksOut = plannedWeeks.length;
 
 	return (
 		<div className="stat-gallery-item is-glance">
@@ -52,6 +53,18 @@ export default function DashboardAtGlance({activeProjects, isOverdue, isDueSoon,
 							<p className="totals-footer">Due Soon<br></br>(next 7 days)</p>
 						</div>
 
+					</div>
+
+					{/* Production schedule, weeks of work booked */}
+					<div className="stat-gallery-weeks-out">
+						<CalendarRange size={30} color="#258eca"/>
+
+						<div className="completed-info">
+							<span className="stat-value">{weeksOut}</span>
+							<p className="totals-footer">
+								{weeksOut === 1 ? "Week" : "Weeks"} Out<br></br>(production time)
+							</p>
+						</div>
 					</div>
 						
 					{/* Completed this month and all time */}
@@ -139,9 +152,6 @@ export default function DashboardAtGlance({activeProjects, isOverdue, isDueSoon,
 					</div>
 				</div>
 			)}
-
-
-
 		</div>
 	)
 }

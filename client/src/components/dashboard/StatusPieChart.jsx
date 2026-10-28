@@ -1,6 +1,6 @@
 import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';
 import { Link } from 'react-router-dom'
-import { CircleArrowRight, Folder } from 'lucide-react';
+import { CircleArrowRight } from 'lucide-react';
 
 export default function StatusPieChart({statusCounts={}}) {
 	const pieStatuses = [
@@ -102,7 +102,7 @@ export default function StatusPieChart({statusCounts={}}) {
 			<footer className='dash-card-footer'>
 				<Link className="go-link" to="/projects">
 					View All Projects
-					<CircleArrowRight color="#986f16"/>
+					<CircleArrowRight size={16} color="#986f16"/>
 				</Link>
 			</footer>
 		</div>

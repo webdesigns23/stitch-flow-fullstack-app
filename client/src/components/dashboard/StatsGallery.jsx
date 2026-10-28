@@ -41,6 +41,14 @@ export default function StatsGallery() {
 
 	return (
 		<div className="stat-gallery">
+			{/* Weekly project planner */}
+			<DashboardPlanner 
+				activeProjects={activeProjects} 
+				isDueSoon={isDueSoon} 
+				isOverdue={isOverdue}
+				daysOverdue={daysOverdue}
+				daysUntilDue={daysUntilDue}/>
+
 			{/* Due most urgently */}
 			<DashboardFocus
 				activeProjects={activeProjects}
@@ -56,7 +64,8 @@ export default function StatsGallery() {
 				daysOverdue={daysOverdue}
 				daysUntilDue={daysUntilDue}
 				statuses={STATUSES}/>
-
+			
+				
 			
 			{/* Pie chart */}
 			<div className="stat-gallery-item is-wide">
@@ -74,13 +83,7 @@ export default function StatsGallery() {
 			<DashboardPattern
 				patterns={patterns} />
 
-			{/* Weekly project planner */}
-			<DashboardPlanner 
-				activeProjects={activeProjects} 
-				isDueSoon={isDueSoon} 
-				isOverdue={isOverdue}
-				daysOverdue={daysOverdue}
-				daysUntilDue={daysUntilDue}/>	
+			
 		</div>
 	)
 }
