@@ -114,13 +114,15 @@ class ProjectDetails(Resource):
             return {"error": "No projects found, add a project"}, 404
         
         if "title" in data:
-            title = data.get("title").strip()
+            title = (data.get("title") or "").strip()
+            if not title:
+                return {"error" : "Title is required"}, 422
             if len(title) > 35:
                 return {"error": "Title cannot be more than 35 characters"}, 422
             project.title = title
 
         if "status" in data:
-            new_status = data.get("status").strip()
+            new_status = (data.get("status") or "").strip()
             if new_status not in allowed_project_status:
                 return {"error": "Invalid status, update to 'planning',  'cutting', 'ready_to_sew', 'sewing', 'final_touches', or 'complete'"}, 422
             project.status = new_status
@@ -130,7 +132,7 @@ class ProjectDetails(Resource):
                 project.completed_at = None
 
         if "notes" in data:
-            notes = data.get("notes").strip()
+            notes = (data.get("notes") or "").strip()
             if len(notes) > 500:
                 return {"error": "Notes cannot be more than 500 characters"}, 422
             project.notes = notes
@@ -152,9 +154,9 @@ class ProjectDetails(Resource):
             if patternId is None:
                 project.pattern = None
             else:
-                pattern = db.session.get(Pattern, patternId)
+                pattern = Pattern.query.filter_by(id=patternId, user_id=user_id).first()
                 if not pattern:
-                    return {"error": "Pattern not found"}, 422
+                    return {"error": "Pattern not found"}, 404
                 project.pattern = pattern
             
         try:
@@ -260,7 +262,7 @@ class ProjectImageDetails(Resource):
         data = request.get_json() or {}
         
         if "image_type" in data:
-            image_type =  data.get("image_type", "").strip()
+            image_type =  (data.get("image_type") or "").strip()
             if image_type not in allowed_image_types:
                 return {"error": f"Invalid status, must be one of the following: {allowed_image_types} "}, 422
             image.image_type = image_type
