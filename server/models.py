@@ -67,6 +67,7 @@ class Project(db.Model):
 	notes = db.Column(db.Text, nullable=True)
 	deadline = db.Column(db.Date, nullable=False, default=default_deadline)
 	measurement_notes = db.Column(db.String, nullable=True)
+	quantity = db.Column(db.Integer, nullable=False, default=1, server_default="1")
 	created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
 	updated_at = db.Column(db.DateTime, onupdate=func.now(), server_default=func.now())
 	pattern_id = db.Column(db.Integer, db.ForeignKey('patterns.id'), nullable=True, index=True)

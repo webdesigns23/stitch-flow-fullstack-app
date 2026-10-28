@@ -70,6 +70,16 @@ class ProjectIndex(Resource):
             if measurement_notes and len(measurement_notes) > 100:
                 return {"error": "Measurement Notes cannot be more than 100 characters"}, 422
 
+            raw_quantity = data.get("quantity")
+            try:
+                quantity = 1 if raw_quantity in (None, "") else int(raw_quantity)
+            except (TypeError, ValueError):
+                return {"error": "Quantity must be a whole number"}, 422
+            if quantity < 1:
+                return {"error": "Quantity must be at least 1"}, 422
+            if quantity > 60:
+                return {"error": "Quantity cannot be more than 60"}, 422
+
             new_project = Project(
                 user_id = user_id,
                 title = title,
@@ -77,6 +87,7 @@ class ProjectIndex(Resource):
                 notes = notes,
                 deadline = deadline,
                 measurement_notes = measurement_notes,
+                quantity = quantity,
                 pattern = pattern           
             )
 
@@ -148,6 +159,17 @@ class ProjectDetails(Resource):
             if measurement_notes and len(measurement_notes) > 100:
                 return {"error": "Measurement notes cannot be more than 100 characters"}, 422
             project.measurement_notes = measurement_notes
+
+        if "quantity" in data:
+            try:
+                quantity = int(data.get("quantity"))
+            except (TypeError, ValueError):
+                return {"error": "Quantity must be a whole number"}, 422
+            if quantity < 1:
+                return {"error" : "Quantity must be at least 1"}, 422
+            if quantity > 60:
+                return {"error": "Quantity must be more than 60"}, 422
+            project.quantity = quantity
 
         if "pattern_id" in data:
             patternId = data.get("pattern_id")

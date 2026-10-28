@@ -45,6 +45,7 @@ class ProjectSchema(Schema):
 	status = fields.String(validate=validate.OneOf(allowed_project_status), load_default="planning")
 	deadline = fields.Date(required=True, format="%m/%d/%Y")
 	measurement_notes = fields.String(required=False, validate=validate.Length(max=100))
+	quantity = fields.Integer(load_default=1, validate=validate.Range(min=1, max=60))
 	notes = fields.String(required=False, validate=validate.Length(max=500))
 	created_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
 	updated_at = fields.DateTime(dump_only=True, format="%m/%d/%Y")
