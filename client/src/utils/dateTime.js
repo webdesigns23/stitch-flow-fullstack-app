@@ -1,6 +1,16 @@
+//Date/time helpers
+export {
+  formatFullDate, //formats date from y/m/d to May 23, 2016
+  formatWeekday, //formats to weekday name Mon
+  formatDate, //formats to short date May 23
+  parseDeadline, //parse deadline date to compare
+  getToday, //gets todays date
+  getGreeting, //dashboard greeting depending on time
+};
 
-//formats date from y/m/d to May 23, 2016
-export function formatFullDate(dateString) {
+
+
+function formatFullDate(dateString) {
   try {
     const [month, day, year] = dateString.split("/");
     const dateObj = new Date(year, month - 1, day);
@@ -15,8 +25,7 @@ export function formatFullDate(dateString) {
   }
 };
 
-//formats to weekday name Mon
-export function formatWeekday(dateString) {
+function formatWeekday(dateString) {
   try {
     const [month, day, year] = dateString.split("/");
     const dateObj = new Date(year, month - 1, day);
@@ -29,8 +38,7 @@ export function formatWeekday(dateString) {
   }
 }
 
-//formats to short date May 23
-export function formatDate(dateString) {
+function formatDate(dateString) {
   try {
     const [month, day, year] = dateString.split("/");
     const dateObj = new Date(year, month - 1, day);
@@ -44,24 +52,20 @@ export function formatDate(dateString) {
   }
 }
 
-
-//parse deadline date to compare
-export function parseDeadline(project_deadline) {
+function parseDeadline(project_deadline) {
   const [month, day, year] = project_deadline.split("/");
   const deadlineDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
   deadlineDate.setHours(0, 0, 0, 0);
   return deadlineDate;
 }
 
-//gets todays date
-export function getToday() {
+function getToday() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   return today;
 }
 
-//dashboard greeting depending on time
-export function getGreeting() {
+function getGreeting() {
   const hour = new Date().getHours();
 
   if (hour < 12) {

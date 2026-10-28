@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
 import { capitalizeWords } from "../../utils/formatText";
 import { formatDate, formatFullDate} from "../../utils/dateTime"
-import { getCardDeadlineLabel } from "../../utils/deadlines";
+import { getDeadlineLabel } from "../../utils/deadlines";
 import "../../styles/ProjectCard.css";
 import { CalendarCheck, Ruler } from "lucide-react";
 import empty_image from "../../assets/logo1.png"
@@ -99,7 +99,7 @@ export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 							}
 						>
 							{isOverdue(project?.deadline) || isDueSoon(project?.deadline)
-								? getCardDeadlineLabel(daysUntilDue(project?.deadline), project?.deadline)
+								? getDeadlineLabel(daysUntilDue(project?.deadline), project?.deadline)
 								: `Due: ${formatDate(project?.deadline)}`
 							}	
 							{project?.quantity > 1 && ` (${project.quantity} Total)`}

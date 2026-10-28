@@ -1,6 +1,12 @@
+//Deadline helpers
+export {
+	getUrgencyClass, //Deadline CSS range classes
+	getDeadlineLabel, //Deadline Range Labels
+	getWeekRange, //Deadline Week Ranges Oct 4 - Oct 10 
+};
 
-//Deadline CSS range classes
-export function getUrgencyClass(daysLeft) {
+
+function getUrgencyClass(daysLeft) {
 	if(daysLeft < 0) return "overdue";
 	if(daysLeft === 0) return "today";
 	if(daysLeft <= 3) return "soon";
@@ -9,40 +15,18 @@ export function getUrgencyClass(daysLeft) {
 	return "coming-up";
 }
 
-//Deadline Range Labels
-export function getDeadlineLabel(daysLeft, deadline) {
-	const dayName = new Date(deadline).toLocaleDateString("en-US", { weekday: "long"});
-
+function getDeadlineLabel(daysLeft) {
 	if (daysLeft < -1) return `Overdue by ${Math.abs(daysLeft)} days`;
-	
 	if (daysLeft === -1) return "Due Yesterday";
-
 	if(daysLeft === 0) return "Due Today";
-	
 	if (daysLeft === 1) return "Due Tomorrow"; 
-	
 	return `Due in ${daysLeft} days`;
 }
 
-//Deadline label for project cards-shorter
-export function getCardDeadlineLabel(daysLeft) {
-	if (daysLeft < -1) return `Overdue by ${Math.abs(daysLeft)} days`;
-	if (daysLeft === -1) return "Due Yesterday";
-	if (daysLeft === 0) return "Due Today";
-	if (daysLeft === 1) return "Due Tomorrow";
-
-	return `Due in ${daysLeft} days`;
-}
-
-//Deadline Week Ranges
-export function getWeekRange(daysFromToday) {
-	const wkStart = new Date();
-	wkStart.setDate(wkStart.getDate() + daysFromToday);
-
+function getWeekRange(wkStart) {
 	const wkEnd = new Date(wkStart);
-	wkEnd.setDate(wkStart.getDate() + 6)
+	wkEnd.setDate(wkStart.getDate() + 6);
 
 	const format = (d) => d.toLocaleDateString("en-US", {month: "short", day: "numeric"});
-
 	return `${format(wkStart)} - ${format(wkEnd)}`
 }

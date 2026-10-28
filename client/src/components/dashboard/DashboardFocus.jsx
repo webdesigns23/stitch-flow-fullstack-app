@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Goal, CircleArrowRight, TriangleAlert } from "lucide-react";
 import { capitalizeWords } from "../../utils/formatText";
 import { formatWeekday, formatDate } from "../../utils/dateTime";
-import { getCardDeadlineLabel } from "../../utils/deadlines";
+import { getDeadlineLabel } from "../../utils/deadlines";
 import placeholderImage from "../../assets/empty_image.png"
 
 
@@ -105,7 +105,7 @@ export default function DashboardFocus({activeProjects, daysUntilDue}) {
 								: "focus-deadline"
 						}
 					>
-						{getCardDeadlineLabel(focusProject.daysLeft)}
+						{getDeadlineLabel(focusProject.daysLeft)}
 					</p>
 
 					<div className="focus-date">

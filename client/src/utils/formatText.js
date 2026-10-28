@@ -1,5 +1,10 @@
+//Format helpers
+export {
+	capitalizeWords,
+	getInitials,
+};
 
-export function capitalizeWords(string) {
+function capitalizeWords(string) {
 	return string
 		.split(' ')
 		.map(word => 
@@ -8,7 +13,7 @@ export function capitalizeWords(string) {
 		.join(' ');
 };
 
-export function getInitials(name) {
+function getInitials(name) {
   if (!name) return "";
   const parts = name.trim().split(/\s+/);
   const first = parts[0]?.[0] ?? "";

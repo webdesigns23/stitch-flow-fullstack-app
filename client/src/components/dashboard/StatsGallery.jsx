@@ -59,14 +59,14 @@ export default function StatsGallery() {
 
 			
 			{/* Pie chart */}
-						<div className="stat-gallery-item is-wide">
-							<div className="totals-chart-section">
-								{/* Pie Chart */}
-								<StatusPieChart 
-									statusCounts={statusCounts} 
-								/>						
-							</div>
-						</div>
+			<div className="stat-gallery-item is-wide">
+				<div className="totals-chart-section">
+					{/* Pie Chart */}
+					<StatusPieChart 
+						statusCounts={statusCounts} 
+					/>						
+				</div>
+			</div>
 						
 			<DashboardMaterials 
 				activeProjects={activeProjects}/>

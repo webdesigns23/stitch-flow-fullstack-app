@@ -56,7 +56,7 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 					{shownWeeks.map((week, index) => (
 						<div className="week-group" key={week.start.getTime()}>
 							<div className="week-label">
-								{WEEK_NAMES[index]}: {getWeekRange(index * 7)}
+								{WEEK_NAMES[index]}: {getWeekRange(week.start)}
 							</div>
 
 							{/* Weekly total */}

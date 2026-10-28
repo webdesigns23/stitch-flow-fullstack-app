@@ -1,5 +1,12 @@
 import { parseDeadline, getToday } from "./dateTime";
 
+//Work weekly planner helpers
+export {
+	scheduleWork, //calculating per week expectation, what the schedule pace is
+	planWork, //Find the pace that hits every deadline, how busy currently are
+}
+
+
 //Pace levels, finished pieces per day (7 days a week)
 export const CAPACITY_LEVELS = [
 	{ flag: "on_track", perDay: 3 },        // 21 a week
@@ -8,9 +15,9 @@ export const CAPACITY_LEVELS = [
 ];
 const DAYS_PER_WEEK = 7;
 
-// Schedule every piece, earliest deadline first, in rolling 7-day weeks starting today
-// Each day gets the same number of pieces, so calculating per week expectation
-export function scheduleWork(activeProjects, perDay, today = getToday()) {
+//Schedule every piece, earliest deadline first, in rolling 7-day weeks starting today
+function scheduleWork(activeProjects, perDay, today = getToday()) {
+	//Queue of active projects by deadline
 	const queue = activeProjects
 		.map(p => ({ project: p, deadline: parseDeadline(p.deadline), remaining: p.quantity || 1 }))
 		.sort((a, b) => a.deadline - b.deadline);
@@ -20,7 +27,7 @@ export function scheduleWork(activeProjects, perDay, today = getToday()) {
 	const day = new Date(today);
 	let next = 0;
 
-	for (let dayIndex = 0; next < queue.length && dayIndex < 730; dayIndex++) {
+	for (let dayIndex = 0; next < queue.length && dayIndex < 365; dayIndex++) {
 		const weekIndex = Math.floor(dayIndex / DAYS_PER_WEEK);
 		if (!weeks[weekIndex]) {
 			const start = new Date(today);
@@ -29,7 +36,7 @@ export function scheduleWork(activeProjects, perDay, today = getToday()) {
 		}
 		const week = weeks[weekIndex];
 
-		// Each day has the same number of pieces to give out
+		// Each day has the same number of pieces to give out based on quantity
 		let slots = perDay;
 		while (slots > 0 && next < queue.length) {
 			const job = queue[next];
@@ -51,7 +58,7 @@ export function scheduleWork(activeProjects, perDay, today = getToday()) {
 		day.setDate(day.getDate() + 1);
 	}
 
-	// Already overdue projects are reported separately; "late" means newly at risk
+	//Already overdue projects are reported separately as overdue or late projects
 	const overdueProjects = queue.filter(job => job.deadline < today).map(job => job.project);
 	const lateProjects = queue
 		.filter(job => job.deadline >= today && finishDates.get(job.project.id) > job.deadline)
@@ -64,16 +71,16 @@ export function scheduleWork(activeProjects, perDay, today = getToday()) {
 	};
 }
 
-// Find the lowest pace that hits every deadline - if above the last level, then hold off adding anything new
-export function planWork(activeProjects, today = getToday()) {
+//Decision maker for schedule work, if above the at risk level, then hold off adding anything new
+function planWork(activeProjects, today = getToday()) {
 	// The plan shown is always at on track pace
 	const plan = scheduleWork(activeProjects, CAPACITY_LEVELS[0].perDay, today);
 
-	for (const level of CAPACITY_LEVELS) {
-		const attempt = scheduleWork(activeProjects, level.perDay, today);
-		if (attempt.lateProjects.length === 0) {
-			return { flag: level.flag, ...plan };
-		}
-	}
-	return { flag: "at_risk", ...plan };
+	//On pace level first
+	const level = CAPACITY_LEVELS.find((level, i) => {
+		const attempt = i === 0 ? plan : scheduleWork(activeProjects, level.perDay, today);
+		return attempt.lateProjects.length === 0;
+	});
+
+	return {flag: level ? level.flag : "at_risk", ...plan};
 }
