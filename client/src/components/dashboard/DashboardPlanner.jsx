@@ -30,6 +30,17 @@ function weekName(index) {
 	return `Week ${index + 1}`;
 }
 
+//Helper to label for this week's share of a project
+function piecesLabel({ project, from, pieces }) {
+	const total = project.quantity || 1;
+	const isFirst = from === 1;
+	const isLast = from + pieces - 1 === total;
+
+	if (isFirst) return `Sew ${pieces} of ${total}`;
+	if (isLast) return `Sew remaining ${pieces} of ${total}`;
+	return `Sew ${pieces} more of ${total}`;
+}
+
 export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue, daysUntilDue}) {
 	const [ weeksToShow, setWeeksToShow] = useState(1);
 
@@ -118,7 +129,7 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 
 							{week.items.length > 0 ? (
 								<div className="upcoming-proj-main">
-									{week.items.map(({ project: p, pieces, late }) => (
+									{week.items.map(({ project: p, pieces, late, from }) => (
 										<Link
 											to={`/projects/${p.id}`}
 											key={p.id}
@@ -138,7 +149,7 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 													{capitalizeWords(p?.title)}
 												</span>
 												<span className="planner-proj-pieces">
-													Sew {pieces} of {p.quantity || 1}
+													{piecesLabel ({project: p, from, pieces})}
 												</span>
 												<span className={`planner-proj-deadline ${getUrgencyClass(daysLeft(p))}`}>
 													{getDeadlineLabel(daysLeft(p), p.deadline)}

@@ -41,12 +41,16 @@ function scheduleWork(activeProjects, perDay, today = getToday()) {
 		while (slots > 0 && next < queue.length) {
 			const job = queue[next];
 			const pieces = Math.min(job.remaining, slots);
+
+			// First piece number this week, e.g. 14 when 13 were scheduled in earlier weeks
+			const total = job.project.quantity || 1;
+			const item = week.items.get(job.project.id) || { project: job.project, deadline: job.deadline, from: total - job.remaining + 1, pieces: 0, late: false };
+
 			job.remaining -= pieces;
 			slots -= pieces;
 			week.used += pieces;
-
-			const item = week.items.get(job.project.id) || { project: job.project, deadline: job.deadline, pieces: 0, late: false };
 			item.pieces += pieces;
+			
 			if (day > job.deadline && job.deadline >= today) item.late = true;
 			week.items.set(job.project.id, item);
 
