@@ -5,7 +5,7 @@ import { capitalizeWords } from "../../utils/formatText";
 import { formatDate, formatFullDate} from "../../utils/dateTime"
 import { getDeadlineLabel } from "../../utils/deadlines";
 import "../../styles/ProjectCard.css";
-import { CalendarCheck, Ruler } from "lucide-react";
+import { Ruler } from "lucide-react";
 import empty_image from "../../assets/logo1.png"
 
 
@@ -67,7 +67,7 @@ export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 					</h3>
 
 					{/* linked pattern or none, only on active project cards */}
-					{!isCompleted && (
+					{/* {!isCompleted && (
 						pattern ? (
 							<p className="kanban-card-pattern">
 								<Ruler size={12}/>
@@ -79,7 +79,7 @@ export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 								{" "} No Pattern Linked
 							</p>
 						)
-					)}
+					)} */}
 
 					{/* project deadline */}
 					{isCompleted ? (
@@ -105,7 +105,9 @@ export default function ProjectCard({ project, isCompleted, daysToComplete}) {
 								? getDeadlineLabel(daysUntilDue(project?.deadline), project?.deadline)
 								: `Due: ${formatDate(project?.deadline)}`
 							}	
-							{project?.quantity > 1 && ` (${project.quantity} Total)`}
+							{project?.quantity > 1 && (
+								<span className="proj-card-quantity">{project.quantity} pcs</span>
+							)}
 						</span>	
 					)}
 					

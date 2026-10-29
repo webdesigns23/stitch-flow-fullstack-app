@@ -48,6 +48,17 @@
   border: 4px solid var(--status-green);
 }
  
+.proj-card-quantity {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--slate-muted);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
 /* -------------------- Status Update -------------------- */
 .kanban-card-footer {
   padding: 0 10px 10px;
