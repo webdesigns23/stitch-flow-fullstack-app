@@ -21,7 +21,7 @@ const FLAG_MESSAGES = {
 };
 
 //Max weeks to show in production planner
-const MAX_WEEKS = 8;
+const MAX_WEEKS = 10;
 
 // const WEEK_NAMES = ["This week", "Next week"];
 function weekName(index) {
