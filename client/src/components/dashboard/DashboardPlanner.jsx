@@ -35,6 +35,7 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 
 	//Plan what to sew each week, earliest deadline first
 	const { flag, weeks, lateProjects } = planWork(activeProjects.filter(p => p.deadline));
+	const hasWork = weeks.length > 0;
 
 	//Dynamicaly show weeks of work, up to 8
 	const maxWeeks = Math.min(weeks.length, MAX_WEEKS);
@@ -42,6 +43,7 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 	const visibleWeeks = Math.min(weeksToShow, maxWeeks);
 	const shownWeeks = weeks.slice(0, visibleWeeks);
 	const hasProjects = shownWeeks.some(w => w.items.length > 0);
+	
 
 	//Days left until a project's deadline (negative when overdue)
 	function daysLeft(p) {
@@ -71,21 +73,25 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 				)}
 				
 			</div>
-			<div>
-				<span className={`capacity-badge ${flag}`}>{FLAG_LABELS[flag]}</span>
-				<p className={`work-plan-message ${flag}`}>
-					{FLAG_MESSAGES[flag]}
-				</p>	
-				
-			</div>
 
-			<hr></hr>
+			{hasWork && (
+				<>
+					<div>
+						<span className={`capacity-badge ${flag}`}>{FLAG_LABELS[flag]}</span>
+						<p className={`work-plan-message ${flag}`}>
+							{FLAG_MESSAGES[flag]}
+						</p>	
+						
+					</div>
+					<hr></hr>
+				</>
+			)}
+			
 			{lateProjects.length > 0 && (
 				<p className="work-plan-alert">
 					At risk at 21 a week: {lateProjects.map(p => capitalizeWords(p.title)).join(", ")}
 				</p>
 			)}
-
 			
 
 			{weeks.length > MAX_WEEKS && (
@@ -150,9 +156,14 @@ export default function DashboardPlanner({activeProjects, isOverdue, daysOverdue
 				</div>
 			) : (
 				<div className="empty-upcoming-proj">
-					<span>Nothing to sew yet</span>
-					<Link to="/projects">+ Add New Project</Link>
+					<span className="empty-planner-title">
+					Add your first project to build your production schedule
+					</span>
+					<p className="empty-planner-text">
+						Stitch Flow plans what to sew each week by deadline and quantity, and lets you know when you're at capacity.
+					</p>
 				</div>
+				
 			)}
 		</div>
 	)

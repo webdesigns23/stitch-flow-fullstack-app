@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { CircleArrowRight, Ruler } from "lucide-react"
-import { capitalizeWords } from "../../utils/formatText";
 
 
 export default function DashboardPattern({patterns = []}) {
@@ -28,7 +27,8 @@ export default function DashboardPattern({patterns = []}) {
 						<div>
 							<span className="stat-value">{totalPatterns}</span>
 							<p className="totals-footer">
-								Patterns in your library</p>
+								Patterns in your library
+							</p>
 						</div>
 
 						<div className="stats-divider" />
